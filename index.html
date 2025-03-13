@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FightersTech</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        background-color: #00284e;
+      }
+      header {
+        background-color: #081424;
+        color: white;
+        padding: 20px;
+        position: relative;
+      }
+      /* Language switcher styles */
+      .language-switcher {
+        margin-top: 10px;
+      }
+      .language-switcher button {
+        margin: 0 5px;
+        padding: 5px 10px;
+        background: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      .store-links a {
+        margin: 10px;
+        display: inline-block;
+      }
+      .store-links .apple-badge {
+        width: 200px;
+        height: 60px;
+        object-fit: contain;
+      }
+      .store-links .google-badge {
+        margin-top: 30px;
+        width: 220px;
+        height: 100px;
+        object-fit: contain;
+        transform: translateY(19px);
+      }
+      .content {
+        padding: 20px;
+        background-color: #00284e;
+      }
+      .video {
+        margin: 20px auto;
+        max-width: 600px;
+      }
+      .video iframe {
+        width: 100%;
+        max-width: 560px;
+      }
+      #videoCaption {
+        color: #fff;
+        margin-top: 10px;
+        font-size: 1em;
+      }
+      .app-images img {
+        max-width: 300px;
+        margin: 10px;
+      }
+      footer {
+        background-color: #081424;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        font-size: 0.9em;
+      }
+      footer nav a {
+        color: #fff;
+        margin: 0 10px;
+        text-decoration: none;
+      }
+      footer nav a:hover {
+        text-decoration: underline;
+      }
+      .social-icons a {
+        color: #fff;
+        margin: 0 5px;
+        text-decoration: none;
+      }
+
+      /* Media Queries para optimización en móviles */
+      @media only screen and (max-width: 600px) {
+        header {
+          padding: 10px;
+        }
+        h1#headerTitle {
+          font-size: 1.5em;
+          margin: 10px 0;
+        }
+        .language-switcher {
+          margin-top: 10px;
+        }
+        .language-switcher button {
+          padding: 8px 12px;
+          font-size: 0.9em;
+        }
+        .store-links a {
+          display: block;
+          margin: 10px auto;
+        }
+        .store-links img {
+          max-width: 90%;
+          height: auto;
+        }
+        .video {
+          max-width: 100%;
+          margin: 20px 10px;
+        }
+        .app-images img {
+          max-width: 90%;
+          height: auto;
+          margin: 10px auto;
+          display: block;
+        }
+        footer {
+          padding: 10px;
+          font-size: 0.8em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img
+        src="https://legal.fighterstech.com/fighterstech.png"
+        alt="Logo de FightersTech"
+        width="100"
+      />
+      <h1 id="headerTitle">FightersTech</h1>
+      <!-- Language switcher movido debajo del título -->
+      <div class="language-switcher">
+        <button onclick="setLanguage('es')">ES</button>
+        <button onclick="setLanguage('en')">EN</button>
+      </div>
+    </header>
+    <div class="content">
+      <section class="store-links">
+        <!-- Apple badge link with alert -->
+        <a href="#" id="appleLink">
+          <img
+            src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+            alt="Disponible en App Store"
+            class="apple-badge"
+          />
+        </a>
+        <a
+          href="https://play.google.com/store/apps/details?id=com.xiscoteon.fighterstech"
+          target="_blank"
+          id="googleLink"
+        >
+          <img
+            src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
+            alt="Disponible en Play Store"
+            class="google-badge"
+          />
+        </a>
+      </section>
+      <section class="video">
+        <iframe
+          id="ytVideo"
+          src="https://www.youtube.com/embed/VIDEO_ID"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+        <p id="videoCaption"></p>
+      </section>
+      <section class="app-images">
+        <img id="screenshot1" src="" alt="Captura de pantalla 1" />
+        <img id="screenshot2" src="" alt="Captura de pantalla 2" />
+        <img id="screenshot3" src="" alt="Captura de pantalla 3" />
+        <img id="screenshot4" src="" alt="Captura de pantalla 4" />
+        <img id="screenshot5" src="" alt="Captura de pantalla 5" />
+      </section>
+    </div>
+    <footer>
+      <div class="footer-content">
+        <p>
+          © <span id="currentYear"></span> FightersTech.
+          <span id="footerRights">Todos los derechos reservados.</span>
+        </p>
+        <nav>
+          <a href="#" id="linkLegal">Aviso Legal</a>
+          <a href="#" id="linkPrivacy">Política de Privacidad</a>
+          <a href="#" id="linkTerms">Términos de Servicio</a>
+          <a href="#" id="linkCookies">Política de Cookies</a>
+          <a href="#" id="linkConduct"
+            >Código de Conducta y Directivas de la comunidad</a
+          >
+          <a href="mailto:info@fighterstech.com" id="linkContact">Contacto</a>
+        </nav>
+        <div class="social-icons">
+          <a href="https://twitter.com/fighterstech" target="_blank">Twitter</a>
+          <a href="https://instagram.com/fighterstech" target="_blank"
+            >Instagram</a
+          >
+          <a href="https://www.tiktok.com/@fighterstech" target="_blank"
+            >TikTok</a
+          >
+          <a
+            href="https://bsky.app/profile/fighterstech.bsky.social"
+            target="_blank"
+            >Bluesky</a
+          >
+        </div>
+      </div>
+    </footer>
+    <script>
+      // Set current year
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+
+      // Global language variable; default is Spanish ("es")
+      let currentLang = "en";
+
+      // Detect the browser's language
+      const userLang = navigator.language || navigator.userLanguage;
+      if (userLang && userLang.substring(0, 2).toLowerCase() === "es") {
+        currentLang = "es";
+      } else {
+        currentLang = "en";
+      }
+
+      // Translations and URLs for each language
+      const translations = {
+        es: {
+          appleAlert: "Enlace a App Store no disponible aún",
+          headerTitle: "FightersTech",
+          footerRights: "Todos los derechos reservados.",
+          linkLegal: "Aviso Legal",
+          linkPrivacy: "Política de Privacidad",
+          linkTerms: "Términos de Servicio",
+          linkCookies: "Política de Cookies",
+          linkConduct: "Código de Conducta y Directivas de la comunidad",
+          linkContact: "Contacto",
+          appleAlt: "Disponible en App Store",
+          googleAlt: "Disponible en Play Store",
+          videoCaption: "Video no disponible aún. Próximamente", //"Mira nuestro video de presentación",
+          legalUrls: {
+            linkLegal: "https://legal.fighterstech.com/es/",
+            linkPrivacy: "https://legal.fighterstech.com/es/privacy-policy/",
+            linkTerms: "https://legal.fighterstech.com/es/terms-of-service/",
+            linkCookies: "https://legal.fighterstech.com/es/cookie-policy/",
+            linkConduct: "https://legal.fighterstech.com/es/conduct/",
+          },
+          screenshots: {
+            screenshot1: "Captura de pantalla 1",
+            screenShot1Link: "img/01_es.jpg",
+            screenshot2: "Captura de pantalla 2",
+            screenShot2Link: "img/02_es.jpg",
+            screenshot3: "Captura de pantalla 3",
+            screenShot3Link: "img/03_es.jpg",
+            screenshot4: "Captura de pantalla 4",
+            screenShot4Link: "img/04_es.jpg",
+            screenshot5: "Captura de pantalla 5",
+            screenShot5Link: "img/05_es.jpg",
+          },
+          ytVideoId: "VIDEO_ID_ES",
+        },
+        en: {
+          appleAlert: "App Store link not available yet",
+          headerTitle: "FightersTech",
+          footerRights: "All rights reserved.",
+          linkLegal: "Legal Notice",
+          linkPrivacy: "Privacy Policy",
+          linkTerms: "Terms of Service",
+          linkCookies: "Cookie Policy",
+          linkConduct: "Code of Conduct",
+          linkContact: "Contact",
+          appleAlt: "Available on the App Store",
+          googleAlt: "Available on Play Store",
+          videoCaption: "Video not available yet. Soon.", //"Watch our promo video",
+          legalUrls: {
+            linkLegal: "https://legal.fighterstech.com/en/",
+            linkPrivacy: "https://legal.fighterstech.com/en/privacy-policy/",
+            linkTerms: "https://legal.fighterstech.com/en/terms-of-service/",
+            linkCookies: "https://legal.fighterstech.com/en/cookie-policy/",
+            linkConduct: "https://legal.fighterstech.com/en/conduct/",
+          },
+          screenshots: {
+            screenshot1: "Screenshot 1",
+            screenShot1Link: "img/01_en.jpg",
+            screenshot2: "Screenshot 2",
+            screenShot2Link: "img/02_en.jpg",
+            screenshot3: "Screenshot 3",
+            screenShot3Link: "img/03_en.jpg",
+            screenshot4: "Screenshot 4",
+            screenShot4Link: "img/04_en.jpg",
+            screenshot5: "Screenshot 5",
+            screenShot5Link: "img/05_en.jpg",
+          },
+          ytVideoId: "VIDEO_ID_EN",
+        },
+      };
+
+      function setLanguage(lang) {
+        currentLang = lang;
+        const t = translations[lang];
+
+        // Update header title
+        document.getElementById("headerTitle").textContent = t.headerTitle;
+        // Update footer rights text
+        document.getElementById("footerRights").textContent = t.footerRights;
+        // Update legal links text and URLs
+        document.getElementById("linkLegal").textContent = t.linkLegal;
+        document.getElementById("linkLegal").href = t.legalUrls.linkLegal;
+        document.getElementById("linkPrivacy").textContent = t.linkPrivacy;
+        document.getElementById("linkPrivacy").href = t.legalUrls.linkPrivacy;
+        document.getElementById("linkTerms").textContent = t.linkTerms;
+        document.getElementById("linkTerms").href = t.legalUrls.linkTerms;
+        document.getElementById("linkCookies").textContent = t.linkCookies;
+        document.getElementById("linkCookies").href = t.legalUrls.linkCookies;
+        document.getElementById("linkConduct").textContent = t.linkConduct;
+        document.getElementById("linkConduct").href = t.legalUrls.linkConduct;
+        document.getElementById("linkContact").textContent = t.linkContact;
+        // Update alt attributes for store badges
+        document.querySelector(".apple-badge").alt = t.appleAlt;
+        document.querySelector(".google-badge").alt = t.googleAlt;
+        // Update video caption
+        document.getElementById("videoCaption").textContent = t.videoCaption;
+        // Update screenshot alt texts
+        document.getElementById("screenshot1").alt = t.screenshots.screenshot1;
+        document.getElementById("screenshot2").alt = t.screenshots.screenshot2;
+        document.getElementById("screenshot3").alt = t.screenshots.screenshot3;
+        document.getElementById("screenshot4").alt = t.screenshots.screenshot4;
+        document.getElementById("screenshot5").alt = t.screenshots.screenshot5;
+        // Update screenshot image URLs
+        document.getElementById("screenshot1").src =
+          t.screenshots.screenShot1Link;
+        document.getElementById("screenshot2").src =
+          t.screenshots.screenShot2Link;
+        document.getElementById("screenshot3").src =
+          t.screenshots.screenShot3Link;
+        document.getElementById("screenshot4").src =
+          t.screenshots.screenShot4Link;
+        document.getElementById("screenshot5").src =
+          t.screenshots.screenShot5Link;
+        // Update YouTube video ID
+        document.getElementById(
+          "ytVideo"
+        ).src = `https://www.youtube.com/embed/${t.ytVideoId}`;
+      }
+
+      // Attach event listener for Apple Store link alert
+      document
+        .getElementById("appleLink")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          alert(translations[currentLang].appleAlert);
+        });
+
+      // Initialize default language on page load
+      setLanguage(currentLang);
+    </script>
+  </body>
+</html>
