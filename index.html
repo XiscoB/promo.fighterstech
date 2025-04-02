@@ -51,6 +51,12 @@
       name="twitter:image"
       content="https://legal.fighterstech.com/fighterstech.png"
     />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
       {
@@ -90,7 +96,7 @@
       }
       header {
         background-color: #081424;
-        color: white;
+        color: white; /* #fcaf01 */
         padding: 20px;
         position: relative;
       }
@@ -204,6 +210,31 @@
           font-size: 0.8em;
         }
       }
+
+      .swiper-container {
+        width: 90%;
+        max-width: 600px; /* or a value that fits your layout */
+        margin: 20px auto;
+        position: relative;
+      }
+
+      .swiper-slide {
+        text-align: center;
+      }
+
+      .swiper-button-prev,
+      .swiper-button-next {
+        color: #fff; /* or any color that stands out on your background */
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .swiper-button-prev {
+        left: 10px; /* adjust as needed */
+      }
+
+      .swiper-button-next {
+        right: 10px; /* adjust as needed */
+      }
     </style>
   </head>
   <body>
@@ -214,6 +245,7 @@
         width="100"
       />
       <h1 id="headerTitle">FightersTech</h1>
+      <p class="subtitle" id="eslogan">Train. Fight. Compete.</p>
       <!-- Language switcher movido debajo del título -->
       <div class="language-switcher">
         <button onclick="setLanguage('es')">ES</button>
@@ -256,12 +288,47 @@
 
         <p id="videoCaption"></p>
       </section>
-      <section class="app-images">
+      <!-- <section class="app-images">
         <img id="screenshot1" src="" alt="Captura de pantalla 1" />
         <img id="screenshot2" src="" alt="Captura de pantalla 2" />
         <img id="screenshot3" src="" alt="Captura de pantalla 3" />
         <img id="screenshot4" src="" alt="Captura de pantalla 4" />
         <img id="screenshot5" src="" alt="Captura de pantalla 5" />
+        <img id="screenshot6" src="" alt="Captura de pantalla 6" />
+        <img id="screenshot7" src="" alt="Captura de pantalla 7" />
+        <img id="screenshot8" src="" alt="Captura de pantalla 8" />
+      </section> -->
+      <section class="swiper-container app-images">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="img/01_en.jpg" alt="Screenshot 1" id="screenshot1" />
+          </div>
+          <div class="swiper-slide">
+            <img src="img/02_en.jpg" alt="Screenshot 2" id="screenshot2" />
+          </div>
+          <div class="swiper-slide">
+            <img src="img/03_en.jpg" alt="Screenshot 3" id="screenshot3" />
+          </div>
+          <div class="swiper-slide">
+            <img src="img/04_en.jpg" alt="Screenshot 4" id="screenshot4" />
+          </div>
+          <div class="swiper-slide">
+            <img src="img/05_en.jpg" alt="Screenshot 5" id="screenshot5" />
+          </div>
+          <div class="swiper-slide">
+            <img src="img/06_en.jpg" alt="Screenshot 6" id="screenshot6" />
+          </div>
+          <div class="swiper-slide">
+            <img src="img/07_en.jpg" alt="Screenshot 7" id="screenshot7" />
+          </div>
+          <div class="swiper-slide">
+            <img src="img/08_en.jpg" alt="Screenshot 8" id="screenshot8" />
+          </div>
+        </div>
+        <!-- Add Pagination and Navigation if needed -->
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
       </section>
     </div>
     <footer>
@@ -317,6 +384,7 @@
         es: {
           appleAlert: "Enlace a App Store no disponible aún",
           headerTitle: "FightersTech",
+          eslogan: "Entrena. Lucha. Compite.",
           footerRights: "Todos los derechos reservados.",
           linkLegal: "Aviso Legal",
           linkPrivacy: "Política de Privacidad",
@@ -345,12 +413,19 @@
             screenShot4Link: "img/04_es.jpg",
             screenshot5: "Captura de pantalla 5",
             screenShot5Link: "img/05_es.jpg",
+            screenshot6: "Captura de pantalla 6",
+            screenShot6Link: "img/06_es.jpg",
+            screenshot7: "Captura de pantalla 7",
+            screenShot7Link: "img/07_es.jpg",
+            screenshot8: "Captura de pantalla 8",
+            screenShot8Link: "img/08_es.jpg",
           },
-          ytVideoId: "Gm3iji1VF6E",
+          ytVideoId: "qA2_sBkV_yA",
         },
         en: {
           appleAlert: "App Store link not available yet",
           headerTitle: "FightersTech",
+          eslogan: "Train. Fight. Compete.",
           footerRights: "All rights reserved.",
           linkLegal: "Legal Notice",
           linkPrivacy: "Privacy Policy",
@@ -379,8 +454,14 @@
             screenShot4Link: "img/04_en.jpg",
             screenshot5: "Screenshot 5",
             screenShot5Link: "img/05_en.jpg",
+            screenshot6: "Screenshot 6",
+            screenShot6Link: "img/06_en.jpg",
+            screenshot7: "Screenshot 7",
+            screenShot7Link: "img/07_en.jpg",
+            screenshot8: "Screenshot 8",
+            screenShot8Link: "img/08_en.jpg",
           },
-          ytVideoId: "quGH49NNdN0",
+          ytVideoId: "gXf0Bzi-3d4",
         },
       };
 
@@ -390,6 +471,7 @@
 
         // Update header title
         document.getElementById("headerTitle").textContent = t.headerTitle;
+        document.getElementById("eslogan").textContent = t.eslogan;
         // Update footer rights text
         document.getElementById("footerRights").textContent = t.footerRights;
         // Update legal links text and URLs
@@ -415,6 +497,9 @@
         document.getElementById("screenshot3").alt = t.screenshots.screenshot3;
         document.getElementById("screenshot4").alt = t.screenshots.screenshot4;
         document.getElementById("screenshot5").alt = t.screenshots.screenshot5;
+        document.getElementById("screenshot6").alt = t.screenshots.screenshot6;
+        document.getElementById("screenshot7").alt = t.screenshots.screenshot7;
+        document.getElementById("screenshot8").alt = t.screenshots.screenshot8;
         // Update screenshot image URLs
         document.getElementById("screenshot1").src =
           t.screenshots.screenShot1Link;
@@ -426,6 +511,12 @@
           t.screenshots.screenShot4Link;
         document.getElementById("screenshot5").src =
           t.screenshots.screenShot5Link;
+        document.getElementById("screenshot6").src =
+          t.screenshots.screenShot6Link;
+        document.getElementById("screenshot7").src =
+          t.screenshots.screenShot7Link;
+        document.getElementById("screenshot8").src =
+          t.screenshots.screenShot8Link;
         // Update YouTube video ID
         document.getElementById(
           "ytVideo"
@@ -442,6 +533,24 @@
 
       // Initialize default language on page load
       setLanguage(currentLang);
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var swiper = new Swiper(".swiper-container", {
+          effect: "fade",
+          fadeEffect: { crossFade: true },
+          slidesPerView: 1, // Shows one slide at a time
+          loop: false,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+        });
+      });
     </script>
   </body>
 </html>
