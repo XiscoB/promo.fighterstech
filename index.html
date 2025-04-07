@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FightersTech</title>
-    <!-- A short meta description of your page -->
+    <!-- Meta tags, Open Graph, Twitter, etc. -->
     <meta
       name="description"
-      content="FightersTech: Train, Fight, Compete. Experience the best of the FGC. Download our app now!"
+      content="FightersTech: Train. Fight. Compete. Experience the FGC. Download our app now!"
     />
     <meta name="robots" content="index, follow" />
     <meta
@@ -30,9 +30,8 @@
     <meta property="og:title" content="FightersTech" />
     <meta
       property="og:description"
-      content="FightersTech: Train, Fight, Compete. Experience the best of the FGC. Download our app now!"
+      content="FightersTech: Train. Fight. Compete. Experience the FGC. Download our app now!"
     />
-    <!-- Replace this with a URL to a larger image (1200x630px recommended) -->
     <meta
       property="og:image"
       content="https://legal.fighterstech.com/fighterstech.png"
@@ -40,7 +39,7 @@
     <meta property="og:url" content="https://promo.fighterstech.com/" />
     <meta property="og:type" content="website" />
 
-    <!-- Twitter (optional, but good to have for a consistent preview) -->
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="FightersTech" />
     <meta
@@ -51,6 +50,7 @@
       name="twitter:image"
       content="https://legal.fighterstech.com/fighterstech.png"
     />
+
     <link
       rel="stylesheet"
       href="https://unpkg.com/swiper/swiper-bundle.min.css"
@@ -96,11 +96,10 @@
       }
       header {
         background-color: #081424;
-        color: white; /* #fcaf01 */
+        color: white;
         padding: 20px;
         position: relative;
       }
-      /* Language switcher styles */
       .language-switcher {
         margin-top: 10px;
       }
@@ -112,7 +111,6 @@
         border-radius: 3px;
         cursor: pointer;
       }
-
       .store-links a {
         margin: 10px;
         display: inline-block;
@@ -133,22 +131,60 @@
         padding: 20px;
         background-color: #00284e;
       }
-      .video {
+      /* Video Swiper Section Styles */
+      .video-swiper {
         margin: 20px auto;
         max-width: 600px;
       }
-      .video iframe {
-        width: 100%;
-        max-width: 560px;
-      }
-      #videoCaption {
+      /* Overall active video title above the swiper */
+      #activeVideoTitle {
+        font-size: 1.5em;
         color: #fff;
-        margin-top: 10px;
-        font-size: 1em;
+        margin-bottom: 10px;
       }
-      .app-images img {
-        max-width: 300px;
-        margin: 10px;
+      /* Swiper container for video swiper */
+      .swiper-container {
+        width: 90%;
+        max-width: 600px;
+        margin: 20px auto;
+        position: relative;
+      }
+      .swiper-slide {
+        text-align: center;
+        position: relative;
+      }
+      .swiper-slide iframe {
+        width: 100%;
+        height: 315px;
+      }
+      /* Each video slide now has a title overlay */
+      .video-slide-content {
+        position: relative;
+      }
+      .video-slide-title {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        padding: 5px 10px;
+        font-size: 1em;
+        border-radius: 3px;
+      }
+      /* Navigation buttons positioned outside the video */
+      #videoSwiper .swiper-button-prev,
+      #videoSwiper .swiper-button-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        cursor: pointer;
+      }
+      #videoSwiper .swiper-button-prev {
+        left: -40px;
+      }
+      #videoSwiper .swiper-button-next {
+        right: -40px;
       }
       footer {
         background-color: #081424;
@@ -170,8 +206,38 @@
         margin: 0 5px;
         text-decoration: none;
       }
+      .app-images img {
+        max-width: 500px;
+        margin: 10px;
+        height: auto;
+      }
+      @media only screen and (min-width: 768px) {
+        .video-swiper,
+        .swiper-container {
+          max-width: 1280px;
+          margin: 20px auto;
+        }
+        .swiper-slide iframe {
+          height: 720px; /* 1280 x 720 maintains the 16:9 ratio */
+        }
+      }
 
-      /* Media Queries para optimización en móviles */
+      /* For mobile videos with vertical (9:16) ratio */
+      .swiper-slide iframe.mobile-video {
+        width: 100%;
+        height: auto;
+        /* Using aspect-ratio to maintain 9:16 (if supported) */
+        aspect-ratio: 9 / 16;
+      }
+      /* Styling for the Shorts link */
+      .shorts-link {
+        display: block;
+        margin-top: 5px;
+        color: #fff;
+        text-decoration: underline;
+        font-size: 0.9em;
+      }
+
       @media only screen and (max-width: 600px) {
         header {
           padding: 10px;
@@ -179,9 +245,6 @@
         h1#headerTitle {
           font-size: 1.5em;
           margin: 10px 0;
-        }
-        .language-switcher {
-          margin-top: 10px;
         }
         .language-switcher button {
           padding: 8px 12px;
@@ -195,7 +258,8 @@
           max-width: 90%;
           height: auto;
         }
-        .video {
+        .video-swiper,
+        .swiper-container {
           max-width: 100%;
           margin: 20px 10px;
         }
@@ -203,37 +267,26 @@
           max-width: 90%;
           height: auto;
           margin: 10px auto;
+        }
+        /* For mobile videos with vertical (9:16) ratio */
+        .swiper-slide iframe.mobile-video {
+          width: 100%;
+          height: auto;
+          /* Using aspect-ratio to maintain 9:16 (if supported) */
+          aspect-ratio: 9 / 16;
+        }
+        /* Styling for the Shorts link */
+        .shorts-link {
           display: block;
+          margin-top: 5px;
+          color: #fff;
+          text-decoration: underline;
+          font-size: 0.9em;
         }
         footer {
           padding: 10px;
           font-size: 0.8em;
         }
-      }
-
-      .swiper-container {
-        width: 90%;
-        max-width: 600px; /* or a value that fits your layout */
-        margin: 20px auto;
-        position: relative;
-      }
-
-      .swiper-slide {
-        text-align: center;
-      }
-
-      .swiper-button-prev,
-      .swiper-button-next {
-        color: #fff; /* or any color that stands out on your background */
-        top: 50%;
-        transform: translateY(-50%);
-      }
-      .swiper-button-prev {
-        left: 10px; /* adjust as needed */
-      }
-
-      .swiper-button-next {
-        right: 10px; /* adjust as needed */
       }
     </style>
   </head>
@@ -246,7 +299,6 @@
       />
       <h1 id="headerTitle">FightersTech</h1>
       <p class="subtitle" id="eslogan">Train. Fight. Compete.</p>
-      <!-- Language switcher movido debajo del título -->
       <div class="language-switcher">
         <button onclick="setLanguage('es')">ES</button>
         <button onclick="setLanguage('en')">EN</button>
@@ -254,7 +306,6 @@
     </header>
     <div class="content">
       <section class="store-links">
-        <!-- Apple badge link with alert -->
         <a href="#" id="appleLink">
           <img
             src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
@@ -274,30 +325,22 @@
           />
         </a>
       </section>
-      <section class="video">
-        <iframe
-          id="ytVideo"
-          src="https://www.youtube.com/embed/CllGGRZPtlk?si=I6qO4Md95CaZ6-Nr"
-          frameborder="0"
-          allowfullscreen
-          width="560"
-          height="315"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-        ></iframe>
 
-        <p id="videoCaption"></p>
+      <!-- Video Swiper Section -->
+      <section class="video-swiper">
+        <!-- Overall title element that will be updated with the active video's title -->
+        <h2 id="activeVideoTitle"></h2>
+        <div class="swiper-container" id="videoSwiper">
+          <div class="swiper-wrapper">
+            <!-- Video slides will be added dynamically -->
+          </div>
+          <div class="swiper-pagination" id="videoSwiperPagination"></div>
+          <div class="swiper-button-prev" id="videoSwiperPrev"></div>
+          <div class="swiper-button-next" id="videoSwiperNext"></div>
+        </div>
       </section>
-      <!-- <section class="app-images">
-        <img id="screenshot1" src="" alt="Captura de pantalla 1" />
-        <img id="screenshot2" src="" alt="Captura de pantalla 2" />
-        <img id="screenshot3" src="" alt="Captura de pantalla 3" />
-        <img id="screenshot4" src="" alt="Captura de pantalla 4" />
-        <img id="screenshot5" src="" alt="Captura de pantalla 5" />
-        <img id="screenshot6" src="" alt="Captura de pantalla 6" />
-        <img id="screenshot7" src="" alt="Captura de pantalla 7" />
-        <img id="screenshot8" src="" alt="Captura de pantalla 8" />
-      </section> -->
+
+      <!-- Existing App Images Swiper Section -->
       <section class="swiper-container app-images">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
@@ -325,7 +368,6 @@
             <img src="img/08_en.jpg" alt="Screenshot 8" id="screenshot8" />
           </div>
         </div>
-        <!-- Add Pagination and Navigation if needed -->
         <div class="swiper-pagination"></div>
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
@@ -368,18 +410,14 @@
       document.getElementById("currentYear").textContent =
         new Date().getFullYear();
 
-      // Global language variable; default is Spanish ("es")
+      // Global language variable; default is English
       let currentLang = "en";
-
-      // Detect the browser's language
       const userLang = navigator.language || navigator.userLanguage;
       if (userLang && userLang.substring(0, 2).toLowerCase() === "es") {
         currentLang = "es";
-      } else {
-        currentLang = "en";
       }
 
-      // Translations and URLs for each language
+      // Translations with separate video arrays for mobile and desktop.
       const translations = {
         es: {
           appleAlert: "Enlace a App Store no disponible aún",
@@ -394,7 +432,6 @@
           linkContact: "Contacto",
           appleAlt: "Disponible en App Store",
           googleAlt: "Disponible en Play Store",
-          videoCaption: "", //"Mira nuestro video de presentación",
           legalUrls: {
             linkLegal: "https://legal.fighterstech.com/es/",
             linkPrivacy: "https://legal.fighterstech.com/es/privacy-policy/",
@@ -420,7 +457,44 @@
             screenshot8: "Captura de pantalla 8",
             screenShot8Link: "img/08_es.jpg",
           },
-          ytVideoId: "qA2_sBkV_yA",
+          videoSwiper: {
+            // Videos for mobile devices.
+            mobileVideos: [
+              {
+                id: "hA1X6RGlKz0",
+                title:
+                  "Tutoriales FightersTech - Crear perfil en un juego (Video 9:16)",
+              },
+              {
+                id: "HlB5W5v_uyM",
+                title:
+                  "Tutoriales FightersTech - Funcionalidad Buscar enfrentamiento (Video 9:16)",
+              },
+              {
+                id: "QwKJ-v_YSlc",
+                title:
+                  "Tutoriales FightersTech - Funcionalidad Notificaciones de torneos (Video 9:16)",
+              },
+            ],
+            // Videos for larger screens.
+            desktopVideos: [
+              {
+                id: "dBhwQW73lJ8",
+                title:
+                  "Tutoriales FightersTech - Crear perfil en un juego (Video 16:9)",
+              },
+              {
+                id: "bwF5d7Ful3s",
+                title:
+                  "Tutoriales FightersTech - Funcionalidad Buscar enfrentamiento (Video 16:9)",
+              },
+              {
+                id: "R0tQG8VG8qc",
+                title:
+                  "Tutoriales FightersTech - Funcionalidad Notificaciones de torneos (Video 16:9)",
+              },
+            ],
+          },
         },
         en: {
           appleAlert: "App Store link not available yet",
@@ -435,7 +509,6 @@
           linkContact: "Contact",
           appleAlt: "Available on the App Store",
           googleAlt: "Available on Play Store",
-          videoCaption: "", //"Watch our promo video",
           legalUrls: {
             linkLegal: "https://legal.fighterstech.com/en/",
             linkPrivacy: "https://legal.fighterstech.com/en/privacy-policy/",
@@ -461,7 +534,43 @@
             screenshot8: "Screenshot 8",
             screenShot8Link: "img/08_en.jpg",
           },
-          ytVideoId: "gXf0Bzi-3d4",
+          videoSwiper: {
+            mobileVideos: [
+              {
+                id: "hA1X6RGlKz0",
+                title:
+                  "FightersTech Tutorials - Create a game profile (Video 9:16)",
+              },
+              {
+                id: "HlB5W5v_uyM",
+                title:
+                  "FightersTech Tutorials - Find matchups functionality (Video 9:16)",
+              },
+              {
+                id: "QwKJ-v_YSlc",
+                title:
+                  "FightersTech Tutorials - Tournament Notifications setup (Video 9:16)",
+              },
+            ],
+            // Videos for larger screens.
+            desktopVideos: [
+              {
+                id: "dBhwQW73lJ8",
+                title:
+                  "FightersTech Tutorials - Create a game profile (Video 16:9)",
+              },
+              {
+                id: "bwF5d7Ful3s",
+                title:
+                  "FightersTech Tutorials - Find matchups functionality (Video 16:9)",
+              },
+              {
+                id: "R0tQG8VG8qc",
+                title:
+                  "FightersTech Tutorials - Tournament Notifications setup (Video 16:9)",
+              },
+            ],
+          },
         },
       };
 
@@ -469,12 +578,10 @@
         currentLang = lang;
         const t = translations[lang];
 
-        // Update header title
+        // Update header and footer texts
         document.getElementById("headerTitle").textContent = t.headerTitle;
         document.getElementById("eslogan").textContent = t.eslogan;
-        // Update footer rights text
         document.getElementById("footerRights").textContent = t.footerRights;
-        // Update legal links text and URLs
         document.getElementById("linkLegal").textContent = t.linkLegal;
         document.getElementById("linkLegal").href = t.legalUrls.linkLegal;
         document.getElementById("linkPrivacy").textContent = t.linkPrivacy;
@@ -486,12 +593,10 @@
         document.getElementById("linkConduct").textContent = t.linkConduct;
         document.getElementById("linkConduct").href = t.legalUrls.linkConduct;
         document.getElementById("linkContact").textContent = t.linkContact;
-        // Update alt attributes for store badges
         document.querySelector(".apple-badge").alt = t.appleAlt;
         document.querySelector(".google-badge").alt = t.googleAlt;
-        // Update video caption
-        document.getElementById("videoCaption").textContent = t.videoCaption;
-        // Update screenshot alt texts
+
+        // Update screenshots for the images swiper
         document.getElementById("screenshot1").alt = t.screenshots.screenshot1;
         document.getElementById("screenshot2").alt = t.screenshots.screenshot2;
         document.getElementById("screenshot3").alt = t.screenshots.screenshot3;
@@ -500,7 +605,6 @@
         document.getElementById("screenshot6").alt = t.screenshots.screenshot6;
         document.getElementById("screenshot7").alt = t.screenshots.screenshot7;
         document.getElementById("screenshot8").alt = t.screenshots.screenshot8;
-        // Update screenshot image URLs
         document.getElementById("screenshot1").src =
           t.screenshots.screenShot1Link;
         document.getElementById("screenshot2").src =
@@ -517,13 +621,60 @@
           t.screenshots.screenShot7Link;
         document.getElementById("screenshot8").src =
           t.screenshots.screenShot8Link;
-        // Update YouTube video ID
-        document.getElementById(
-          "ytVideo"
-        ).src = `https://www.youtube.com/embed/${t.ytVideoId}`;
+
+        // Determine which video array to use based on viewport width.
+        const isMobile = window.innerWidth < 768;
+        const videosToShow = isMobile
+          ? t.videoSwiper.mobileVideos
+          : t.videoSwiper.desktopVideos;
+
+        // Populate the video swiper slides with the iframe and title overlay.
+        const videoWrapper = document
+          .getElementById("videoSwiper")
+          .querySelector(".swiper-wrapper");
+        videoWrapper.innerHTML = "";
+        videosToShow.forEach((video) => {
+          const slide = document.createElement("div");
+          slide.classList.add("swiper-slide");
+          slide.setAttribute("data-title", video.title);
+          const iframeClass = isMobile ? "mobile-video" : "";
+          // Build the slide content, adding a link for Shorts if on mobile.
+          let slideContent = `
+    <div class="video-slide-content">
+      <iframe class="${iframeClass}" src="https://www.youtube.com/embed/${video.id}?rel=0" frameborder="0" allowfullscreen></iframe>
+    </div>`;
+          if (isMobile) {
+            slideContent = `
+      <div class="video-slide-content">
+        <iframe class="${iframeClass}" src="https://www.youtube.com/embed/${video.id}?rel=0" frameborder="0" allowfullscreen></iframe>
+       
+      </div>`;
+          }
+          slide.innerHTML = slideContent;
+          videoWrapper.appendChild(slide);
+        });
+
+        if (
+          window.videoSwiper &&
+          typeof window.videoSwiper.update === "function"
+        ) {
+          window.videoSwiper.update();
+          updateActiveVideoTitle();
+        }
       }
 
-      // Attach event listener for Apple Store link alert
+      // Helper function to update the active video's title above the swiper.
+      function updateActiveVideoTitle() {
+        if (window.videoSwiper) {
+          const activeSlide =
+            window.videoSwiper.slides[window.videoSwiper.activeIndex];
+          if (activeSlide) {
+            const title = activeSlide.getAttribute("data-title");
+            document.getElementById("activeVideoTitle").textContent = title;
+          }
+        }
+      }
+
       document
         .getElementById("appleLink")
         .addEventListener("click", function (e) {
@@ -531,15 +682,12 @@
           alert(translations[currentLang].appleAlert);
         });
 
-      // Initialize default language on page load
-      setLanguage(currentLang);
-    </script>
-    <script>
       document.addEventListener("DOMContentLoaded", function () {
-        var swiper = new Swiper(".swiper-container", {
+        // Initialize the App Images Swiper (unchanged)
+        new Swiper(".app-images", {
           effect: "fade",
           fadeEffect: { crossFade: true },
-          slidesPerView: 1, // Shows one slide at a time
+          slidesPerView: 1,
           loop: false,
           pagination: {
             el: ".swiper-pagination",
@@ -550,6 +698,26 @@
             prevEl: ".swiper-button-prev",
           },
         });
+        // Initialize the Video Swiper
+        window.videoSwiper = new Swiper("#videoSwiper", {
+          effect: "fade",
+          fadeEffect: { crossFade: true },
+          slidesPerView: 1,
+          loop: false,
+          pagination: {
+            el: "#videoSwiperPagination",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: "#videoSwiperNext",
+            prevEl: "#videoSwiperPrev",
+          },
+        });
+        // Populate video slides based on language and viewport.
+        setLanguage(currentLang);
+        updateActiveVideoTitle();
+        // Update active video title on slide change.
+        window.videoSwiper.on("slideChange", updateActiveVideoTitle);
       });
     </script>
   </body>
