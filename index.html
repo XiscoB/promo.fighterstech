@@ -111,6 +111,19 @@
         border-radius: 3px;
         cursor: pointer;
       }
+      /* New top menu */
+      .main-menu {
+        margin-top: 15px;
+      }
+      .main-menu button {
+        margin: 0 8px;
+        padding: 6px 12px;
+        background: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-weight: bold;
+      }
       .store-links a {
         margin: 10px;
         display: inline-block;
@@ -131,18 +144,16 @@
         padding: 20px;
         background-color: #00284e;
       }
-      /* Video Swiper Section Styles */
-      .video-swiper {
-        margin: 20px auto;
-        max-width: 600px;
-      }
-      /* Overall active video title above the swiper */
-      #activeVideoTitle {
-        font-size: 1.5em;
+      /* Section titles */
+      h3 {
         color: #fff;
         margin-bottom: 10px;
       }
-      /* Swiper container for video swiper */
+      /* Video Swiper Section Styles */
+      .video-swiper {
+        margin: 40px auto;
+        max-width: 600px;
+      }
       .swiper-container {
         width: 90%;
         max-width: 600px;
@@ -155,9 +166,8 @@
       }
       .swiper-slide iframe {
         width: 100%;
-        height: 315px;
+        height: auto;
       }
-      /* Each video slide now has a title overlay */
       .video-slide-content {
         position: relative;
       }
@@ -171,21 +181,51 @@
         font-size: 1em;
         border-radius: 3px;
       }
-      /* Navigation buttons positioned outside the video */
-      #videoSwiper .swiper-button-prev,
-      #videoSwiper .swiper-button-next {
+      /* Navigation buttons */
+      .swiper-button-prev,
+      .swiper-button-next {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
         z-index: 10;
         cursor: pointer;
       }
-      #videoSwiper .swiper-button-prev {
+      .swiper-button-prev {
         left: -40px;
       }
-      #videoSwiper .swiper-button-next {
+      .swiper-button-next {
         right: -40px;
       }
+      /* App Images Swiper */
+      .app-images img {
+        max-width: 500px;
+        margin: 10px;
+        height: auto;
+      }
+      /* Mobile tweaks */
+      @media only screen and (min-width: 768px) {
+        .video-swiper,
+        .swiper-container {
+          max-width: 1280px;
+        }
+        .swiper-slide iframe {
+          height: 720px;
+        }
+      }
+      /* 3) Móvil: aspecto 9:16 para los .mobile-video */
+      @media only screen and (max-width: 767px) {
+        .swiper-slide iframe.mobile-video {
+          /* ancho al 100%, altura automática según aspect-ratio */
+          width: 100%;
+          height: auto;
+          aspect-ratio: 9 / 16;
+        }
+      }
+      /* Mobile vertical videos */
+      .swiper-slide iframe.mobile-video {
+        aspect-ratio: 9 / 16;
+      }
+      /* Footer */
       footer {
         background-color: #081424;
         color: #fff;
@@ -206,86 +246,94 @@
         margin: 0 5px;
         text-decoration: none;
       }
-      .app-images img {
-        max-width: 500px;
-        margin: 10px;
-        height: auto;
-      }
-      @media only screen and (min-width: 768px) {
-        .video-swiper,
-        .swiper-container {
-          max-width: 1280px;
-          margin: 20px auto;
-        }
-        .swiper-slide iframe {
-          height: 720px; /* 1280 x 720 maintains the 16:9 ratio */
-        }
-      }
-
-      /* For mobile videos with vertical (9:16) ratio */
-      .swiper-slide iframe.mobile-video {
-        width: 100%;
-        height: auto;
-        /* Using aspect-ratio to maintain 9:16 (if supported) */
-        aspect-ratio: 9 / 16;
-      }
-      /* Styling for the Shorts link */
-      .shorts-link {
-        display: block;
-        margin-top: 5px;
-        color: #fff;
-        text-decoration: underline;
-        font-size: 0.9em;
-      }
-
       @media only screen and (max-width: 600px) {
         header {
           padding: 10px;
         }
-        h1#headerTitle {
-          font-size: 1.5em;
-          margin: 10px 0;
-        }
-        .language-switcher button {
-          padding: 8px 12px;
+        .main-menu button {
+          padding: 8px 14px;
           font-size: 0.9em;
         }
-        .store-links a {
-          display: block;
-          margin: 10px auto;
+      }
+      /* Encabezados de sección */
+      h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 30px 0 15px;
+        background: linear-gradient(90deg, #fcaf01, #1e90ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: transform 0.3s ease;
+      }
+      h2:hover {
+        transform: scale(1.05);
+      }
+
+      /* Tarjetas de vídeo/imágenes */
+      .swiper-slide {
+        border-radius: 1rem;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+      }
+      .swiper-slide:hover {
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+        transform: translateY(-5px);
+      }
+
+      /* Margen y padding uniforme */
+      .content section {
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      /* Estilos para el nuevo nav */
+      .main-menu {
+        margin-top: 15px;
+      }
+
+      .main-menu ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        padding: 0;
+        margin: 0;
+      }
+
+      .main-menu .nav-link {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        background: linear-gradient(135deg, #fcaf01, #1e90ff);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s ease, box-shadow 0.2s ease,
+          background 0.3s ease;
+      }
+
+      .main-menu .nav-link:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        background: linear-gradient(135deg, #fcaf01, #3399ff);
+      }
+
+      .main-menu .nav-link:active {
+        transform: translateY(-1px);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      @media only screen and (max-width: 600px) {
+        .main-menu ul {
+          flex-direction: column;
+          gap: 0.75rem;
         }
-        .store-links img {
-          max-width: 90%;
-          height: auto;
-        }
-        .video-swiper,
-        .swiper-container {
-          max-width: 100%;
-          margin: 20px 10px;
-        }
-        .app-images img {
-          max-width: 90%;
-          height: auto;
-          margin: 10px auto;
-        }
-        /* For mobile videos with vertical (9:16) ratio */
-        .swiper-slide iframe.mobile-video {
-          width: 100%;
-          height: auto;
-          /* Using aspect-ratio to maintain 9:16 (if supported) */
-          aspect-ratio: 9 / 16;
-        }
-        /* Styling for the Shorts link */
-        .shorts-link {
-          display: block;
-          margin-top: 5px;
-          color: #fff;
-          text-decoration: underline;
-          font-size: 0.9em;
-        }
-        footer {
-          padding: 10px;
-          font-size: 0.8em;
+        .main-menu .nav-link {
+          padding: 0.6rem 1rem;
+          font-size: 0.9rem;
         }
       }
     </style>
@@ -303,7 +351,34 @@
         <button onclick="setLanguage('es')">ES</button>
         <button onclick="setLanguage('en')">EN</button>
       </div>
+
+      <nav class="main-menu">
+        <ul>
+          <li>
+            <a
+              id="menuMainFeatures"
+              href="#mainFeaturesSection"
+              class="nav-link"
+              >Main Features</a
+            >
+          </li>
+          <li>
+            <a id="menuAppImages" href="#appImagesSection" class="nav-link"
+              >App Images</a
+            >
+          </li>
+          <li>
+            <a
+              id="menuOtherFeatures"
+              href="#otherFeaturesSection"
+              class="nav-link"
+              >Other Features</a
+            >
+          </li>
+        </ul>
+      </nav>
     </header>
+
     <div class="content">
       <section class="store-links">
         <a href="#" id="appleLink">
@@ -326,23 +401,21 @@
           />
         </a>
       </section>
-
-      <!-- Video Swiper Section -->
-      <section class="video-swiper">
-        <!-- Overall title element that will be updated with the active video's title -->
-        <h2 id="activeVideoTitle"></h2>
+      <!-- Main Features Slider -->
+      <section id="mainFeaturesSection" class="video-swiper">
+        <h2 id="titleMainFeatures"></h2>
+        <h3 id="activeVideoTitle"></h3>
         <div class="swiper-container" id="videoSwiper">
-          <div class="swiper-wrapper">
-            <!-- Video slides will be added dynamically -->
-          </div>
+          <div class="swiper-wrapper"></div>
           <div class="swiper-pagination" id="videoSwiperPagination"></div>
           <div class="swiper-button-prev" id="videoSwiperPrev"></div>
           <div class="swiper-button-next" id="videoSwiperNext"></div>
         </div>
       </section>
 
-      <!-- Existing App Images Swiper Section -->
-      <section class="swiper-container app-images">
+      <!-- App Images Slider -->
+      <section id="appImagesSection" class="swiper-container app-images">
+        <h2 id="titleAppImages"></h2>
         <div class="swiper-wrapper">
           <div class="swiper-slide">
             <img src="img/01_en.jpg" alt="Screenshot 1" id="screenshot1" />
@@ -373,7 +446,20 @@
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
       </section>
+
+      <!-- Other Features Slider -->
+      <section id="otherFeaturesSection" class="video-swiper">
+        <h2 id="titleOtherFeatures"></h2>
+        <h3 id="activeOtherVideoTitle"></h3>
+        <div class="swiper-container" id="otherFeaturesSwiper">
+          <div class="swiper-wrapper"></div>
+          <div class="swiper-pagination" id="otherFeaturesPagination"></div>
+          <div class="swiper-button-prev" id="otherFeaturesPrev"></div>
+          <div class="swiper-button-next" id="otherFeaturesNext"></div>
+        </div>
+      </section>
     </div>
+
     <footer>
       <div class="footer-content">
         <p>
@@ -418,7 +504,15 @@
         </div>
       </div>
     </footer>
+
     <script>
+      // Smooth scroll helper
+      function scrollToSection(id) {
+        document
+          .getElementById(id)
+          .scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
       // Set current year
       document.getElementById("currentYear").textContent =
         new Date().getFullYear();
@@ -430,9 +524,15 @@
         currentLang = "es";
       }
 
-      // Translations with separate video arrays for mobile and desktop.
+      // Translations + video arrays, including promo video placeholder
       const translations = {
         es: {
+          menuMainFeatures: "Características",
+          menuAppImages: "Imágenes",
+          menuOtherFeatures: "Otras Funcionalidades",
+          mainFeaturesTitle: "Características Principales",
+          appImagesTitle: "Imágenes de la App",
+          otherFeaturesTitle: "Otras Funcionalidades",
           appleAlert: "Enlace a App Store no disponible aún",
           headerTitle: "FightersTech",
           eslogan: "Entrena. Lucha. Compite.",
@@ -471,45 +571,99 @@
             screenShot8Link: "img/08_es.jpg",
           },
           videoSwiper: {
-            // Videos for mobile devices.
             mobileVideos: [
               {
-                id: "hA1X6RGlKz0",
-                title:
-                  "Tutoriales FightersTech - Crear perfil en un juego (Video 9:16)",
+                id: "L3y-TKoFLac",
+                title: "FightersTech - Promo - Notificaciones de torneos",
               },
               {
-                id: "HlB5W5v_uyM",
-                title:
-                  "Tutoriales FightersTech - Funcionalidad Buscar enfrentamiento (Video 9:16)",
+                id: "kBUb80-_1q8",
+                title: "Tutoriales FightersTech - Crear perfil en un juego",
               },
               {
-                id: "QwKJ-v_YSlc",
-                title:
-                  "Tutoriales FightersTech - Funcionalidad Notificaciones de torneos (Video 9:16)",
+                id: "UhyUUrff7fo",
+                title: "Tutoriales FightersTech - Buscar enfrentamientos",
+              },
+              {
+                id: "oMRXMtoeXz4",
+                title: "Tutoriales FightersTech - Notificaciones de torneos",
               },
             ],
-            // Videos for larger screens.
             desktopVideos: [
               {
-                id: "dBhwQW73lJ8",
-                title:
-                  "Tutoriales FightersTech - Crear perfil en un juego (Video 16:9)",
+                id: "L3y-TKoFLac",
+                title: "FightersTech - Promo - Notificaciones de torneos",
               },
               {
-                id: "bwF5d7Ful3s",
-                title:
-                  "Tutoriales FightersTech - Funcionalidad Buscar enfrentamiento (Video 16:9)",
+                id: "kBUb80-_1q8",
+                title: "Tutoriales FightersTech - Crear perfil en un juego",
               },
               {
-                id: "R0tQG8VG8qc",
+                id: "UhyUUrff7fo",
+                title: "Tutoriales FightersTech - Buscar enfrentamientos",
+              },
+              {
+                id: "oMRXMtoeXz4",
+                title: "Tutoriales FightersTech - Notificaciones de torneos",
+              },
+            ],
+            // Fill these with your “other” video IDs & titles
+            mobileOtherVideos: [
+              {
+                id: "WReOhnLcwsI",
+                title: "Funcionalidades rápidas - Ordenar juegos",
+              },
+              {
+                id: "psTcdC6eMxo",
+                title: "Funcionalidades rápidas - Vincular cuenta de Discord",
+              },
+              {
+                id: "NdsL6khpMT0",
+                title: "Funcionalidades rápidas - Bloquear usuarios",
+              },
+              {
+                id: "8IrUcP-Ntco",
+                title: "Funcionalidades rápidas - Compartir en otras redes",
+              },
+              {
+                id: "VJMd9pxKzLk",
                 title:
-                  "Tutoriales FightersTech - Funcionalidad Notificaciones de torneos (Video 16:9)",
+                  "Funcionalidades rápidas - Gestionar notificaciones locales",
+              },
+            ],
+            desktopOtherVideos: [
+              {
+                id: "WReOhnLcwsI",
+                title: "Funcionalidades rápidas - Ordenar juegos",
+              },
+              {
+                id: "psTcdC6eMxo",
+                title: "Funcionalidades rápidas - Vincular cuenta de Discord",
+              },
+              {
+                id: "NdsL6khpMT0",
+                title: "Funcionalidades rápidas - Bloquear usuarios",
+              },
+              {
+                id: "8IrUcP-Ntco",
+                title: "Funcionalidades rápidas - Compartir en otras redes",
+              },
+              {
+                id: "VJMd9pxKzLk",
+                title:
+                  "Funcionalidades rápidas - Gestionar notificaciones locales",
               },
             ],
           },
         },
         en: {
+          menuMainFeatures: "Features",
+          menuAppImages: "App Images",
+          menuOtherFeatures: "Other Features",
+          mainFeaturesTitle: "Main Features",
+          mainFeaturesTitle: "Main Features",
+          appImagesTitle: "App Images",
+          otherFeaturesTitle: "Other Features",
           appleAlert: "App Store link not available yet",
           headerTitle: "FightersTech",
           eslogan: "Train. Fight. Compete.",
@@ -550,37 +704,82 @@
           videoSwiper: {
             mobileVideos: [
               {
-                id: "hA1X6RGlKz0",
-                title:
-                  "FightersTech Tutorials - Create a game profile (Video 9:16)",
+                id: "kqk9hnAPGs8",
+                title: "FightersTech - Promo - Tournament Notifications",
               },
               {
-                id: "HlB5W5v_uyM",
-                title:
-                  "FightersTech Tutorials - Find matchups functionality (Video 9:16)",
+                id: "ps-_JYRVj_o",
+                title: "FightersTech Tutorials - Create a game profile",
               },
               {
-                id: "QwKJ-v_YSlc",
-                title:
-                  "FightersTech Tutorials - Tournament Notifications setup (Video 9:16)",
+                id: "kVKoGtZGB6I",
+                title: "FightersTech Tutorials - Find matchups",
+              },
+              {
+                id: "Wkk7CATkGVs",
+                title: "FightersTech Tutorials - Tournament Notifications",
               },
             ],
-            // Videos for larger screens.
             desktopVideos: [
               {
-                id: "dBhwQW73lJ8",
-                title:
-                  "FightersTech Tutorials - Create a game profile (Video 16:9)",
+                id: "kqk9hnAPGs8",
+                title: "FightersTech - Promo - Tournament Notifications",
               },
               {
-                id: "bwF5d7Ful3s",
-                title:
-                  "FightersTech Tutorials - Find matchups functionality (Video 16:9)",
+                id: "ps-_JYRVj_o",
+                title: "FightersTech Tutorials - Create a game profile",
               },
               {
-                id: "R0tQG8VG8qc",
-                title:
-                  "FightersTech Tutorials - Tournament Notifications setup (Video 16:9)",
+                id: "kVKoGtZGB6I",
+                title: "FightersTech Tutorials - Find matchups",
+              },
+              {
+                id: "Wkk7CATkGVs",
+                title: "FightersTech Tutorials - Tournament Notifications",
+              },
+            ],
+            mobileOtherVideos: [
+              {
+                id: "DqD7IKQrpeU",
+                title: "Quick Features - Game Order",
+              },
+              {
+                id: "wN0_XOfZWKs",
+                title: "Quick Features - Link Discord Account",
+              },
+              {
+                id: "Gt-_QeyyOQY",
+                title: "Quick Features - Block Users",
+              },
+              {
+                id: "mZcjf6B4lhM",
+                title: "Quick Features - Sharing in other social apps",
+              },
+              {
+                id: "_FImH9v2_j4",
+                title: "Quick Features - Manage local notifications",
+              },
+            ],
+            desktopOtherVideos: [
+              {
+                id: "DqD7IKQrpeU",
+                title: "Quick Features - Game Order",
+              },
+              {
+                id: "wN0_XOfZWKs",
+                title: "Quick Features - Link Discord Account",
+              },
+              {
+                id: "Gt-_QeyyOQY",
+                title: "Quick Features - Block Users",
+              },
+              {
+                id: "mZcjf6B4lhM",
+                title: "Quick Features - Sharing in other social apps",
+              },
+              {
+                id: "_FImH9v2_j4",
+                title: "Quick Features - Manage local notifications",
               },
             ],
           },
@@ -591,7 +790,7 @@
         currentLang = lang;
         const t = translations[lang];
 
-        // Update header and footer texts
+        // Header & footer
         document.getElementById("headerTitle").textContent = t.headerTitle;
         document.getElementById("eslogan").textContent = t.eslogan;
         document.getElementById("footerRights").textContent = t.footerRights;
@@ -608,84 +807,94 @@
         document.getElementById("linkContact").textContent = t.linkContact;
         document.querySelector(".apple-badge").alt = t.appleAlt;
         document.querySelector(".google-badge").alt = t.googleAlt;
+        // Al final de setLanguage(lang):
+        // Actualizar títulos de secciones
+        document.getElementById("titleMainFeatures").textContent =
+          t.mainFeaturesTitle;
+        document.getElementById("titleAppImages").textContent =
+          t.appImagesTitle;
+        document.getElementById("titleOtherFeatures").textContent =
+          t.otherFeaturesTitle;
+        // Menú principal
+        document.getElementById("menuMainFeatures").textContent =
+          t.menuMainFeatures;
+        document.getElementById("menuAppImages").textContent = t.menuAppImages;
+        document.getElementById("menuOtherFeatures").textContent =
+          t.menuOtherFeatures;
 
-        // Update screenshots for the images swiper
-        document.getElementById("screenshot1").alt = t.screenshots.screenshot1;
-        document.getElementById("screenshot2").alt = t.screenshots.screenshot2;
-        document.getElementById("screenshot3").alt = t.screenshots.screenshot3;
-        document.getElementById("screenshot4").alt = t.screenshots.screenshot4;
-        document.getElementById("screenshot5").alt = t.screenshots.screenshot5;
-        document.getElementById("screenshot6").alt = t.screenshots.screenshot6;
-        document.getElementById("screenshot7").alt = t.screenshots.screenshot7;
-        document.getElementById("screenshot8").alt = t.screenshots.screenshot8;
-        document.getElementById("screenshot1").src =
-          t.screenshots.screenShot1Link;
-        document.getElementById("screenshot2").src =
-          t.screenshots.screenShot2Link;
-        document.getElementById("screenshot3").src =
-          t.screenshots.screenShot3Link;
-        document.getElementById("screenshot4").src =
-          t.screenshots.screenShot4Link;
-        document.getElementById("screenshot5").src =
-          t.screenshots.screenShot5Link;
-        document.getElementById("screenshot6").src =
-          t.screenshots.screenShot6Link;
-        document.getElementById("screenshot7").src =
-          t.screenshots.screenShot7Link;
-        document.getElementById("screenshot8").src =
-          t.screenshots.screenShot8Link;
+        // Screenshots
+        for (let i = 1; i <= 8; i++) {
+          const key = "screenshot" + i;
+          document.getElementById(key).alt = t.screenshots[key];
+          document.getElementById(key).src =
+            t.screenshots["screenShot" + i + "Link"];
+        }
 
-        // Determine which video array to use based on viewport width.
+        // Choose mobile vs desktop
         const isMobile = window.innerWidth < 768;
-        const videosToShow = isMobile
+        const mainVideos = isMobile
           ? t.videoSwiper.mobileVideos
           : t.videoSwiper.desktopVideos;
+        const otherVideos = isMobile
+          ? t.videoSwiper.mobileOtherVideos
+          : t.videoSwiper.desktopOtherVideos;
 
-        // Populate the video swiper slides with the iframe and title overlay.
-        const videoWrapper = document
+        // Populate main features slider
+        const wrapper = document
           .getElementById("videoSwiper")
           .querySelector(".swiper-wrapper");
-        videoWrapper.innerHTML = "";
-        videosToShow.forEach((video) => {
+        wrapper.innerHTML = "";
+        mainVideos.forEach((v) => {
           const slide = document.createElement("div");
-          slide.classList.add("swiper-slide");
-          slide.setAttribute("data-title", video.title);
-          const iframeClass = isMobile ? "mobile-video" : "";
-          // Build the slide content, adding a link for Shorts if on mobile.
-          let slideContent = `
-    <div class="video-slide-content">
-      <iframe class="${iframeClass}" src="https://www.youtube.com/embed/${video.id}?rel=0" frameborder="0" allowfullscreen></iframe>
-    </div>`;
-          if (isMobile) {
-            slideContent = `
-      <div class="video-slide-content">
-        <iframe class="${iframeClass}" src="https://www.youtube.com/embed/${video.id}?rel=0" frameborder="0" allowfullscreen></iframe>
-       
-      </div>`;
-          }
-          slide.innerHTML = slideContent;
-          videoWrapper.appendChild(slide);
+          slide.className = "swiper-slide";
+          slide.setAttribute("data-title", v.title);
+          const cls = isMobile ? "mobile-video" : "";
+          slide.innerHTML = `
+            <div class="video-slide-content">
+              <iframe class="${cls}" src="https://www.youtube.com/embed/${v.id}?rel=0" frameborder="0" allowfullscreen></iframe>
+              <div class="video-slide-title">${v.title}</div>
+            </div>`;
+          wrapper.appendChild(slide);
         });
 
-        if (
-          window.videoSwiper &&
-          typeof window.videoSwiper.update === "function"
-        ) {
+        // Populate other features slider
+        const otherWrapper = document
+          .getElementById("otherFeaturesSwiper")
+          .querySelector(".swiper-wrapper");
+        otherWrapper.innerHTML = "";
+        otherVideos.forEach((v) => {
+          const slide = document.createElement("div");
+          slide.className = "swiper-slide";
+          slide.setAttribute("data-title", v.title);
+          const cls = isMobile ? "mobile-video" : "";
+          slide.innerHTML = `
+            <div class="video-slide-content">
+              <iframe class="${cls}" src="https://www.youtube.com/embed/${v.id}?rel=0" frameborder="0" allowfullscreen></iframe>
+              <div class="video-slide-title">${v.title}</div>
+            </div>`;
+          otherWrapper.appendChild(slide);
+        });
+
+        // Update swipers
+        if (window.videoSwiper) {
           window.videoSwiper.update();
           updateActiveVideoTitle();
         }
+        if (window.otherSwiper) {
+          window.otherSwiper.update();
+          updateActiveOtherVideoTitle();
+        }
       }
 
-      // Helper function to update the active video's title above the swiper.
       function updateActiveVideoTitle() {
-        if (window.videoSwiper) {
-          const activeSlide =
-            window.videoSwiper.slides[window.videoSwiper.activeIndex];
-          if (activeSlide) {
-            const title = activeSlide.getAttribute("data-title");
-            document.getElementById("activeVideoTitle").textContent = title;
-          }
-        }
+        const slide = window.videoSwiper.slides[window.videoSwiper.activeIndex];
+        document.getElementById("activeVideoTitle").textContent =
+          slide.getAttribute("data-title");
+      }
+      function updateActiveOtherVideoTitle() {
+        const slide = window.otherSwiper.slides[window.otherSwiper.activeIndex];
+        document.getElementById("activeOtherVideoTitle").textContent =
+          slide.getAttribute("data-title");
       }
 
       document
@@ -696,7 +905,7 @@
         });
 
       document.addEventListener("DOMContentLoaded", function () {
-        // Initialize the App Images Swiper (unchanged)
+        // App Images swiper
         new Swiper(".app-images", {
           effect: "fade",
           fadeEffect: { crossFade: true },
@@ -711,7 +920,8 @@
             prevEl: ".swiper-button-prev",
           },
         });
-        // Initialize the Video Swiper
+
+        // Main features swiper
         window.videoSwiper = new Swiper("#videoSwiper", {
           effect: "fade",
           fadeEffect: { crossFade: true },
@@ -726,11 +936,29 @@
             prevEl: "#videoSwiperPrev",
           },
         });
-        // Populate video slides based on language and viewport.
+        // Other features swiper
+        window.otherSwiper = new Swiper("#otherFeaturesSwiper", {
+          effect: "fade",
+          fadeEffect: { crossFade: true },
+          slidesPerView: 1,
+          loop: false,
+          pagination: {
+            el: "#otherFeaturesPagination",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: "#otherFeaturesNext",
+            prevEl: "#otherFeaturesPrev",
+          },
+        });
+
+        // Populate and set titles
         setLanguage(currentLang);
         updateActiveVideoTitle();
-        // Update active video title on slide change.
+        updateActiveOtherVideoTitle();
+
         window.videoSwiper.on("slideChange", updateActiveVideoTitle);
+        window.otherSwiper.on("slideChange", updateActiveOtherVideoTitle);
       });
     </script>
   </body>
