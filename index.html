@@ -441,6 +441,9 @@
           <div class="swiper-slide">
             <img src="img/08_en.jpg" alt="Screenshot 8" id="screenshot8" />
           </div>
+          <div class="swiper-slide">
+            <img src="img/09_en.jpg" alt="Screenshot 9" id="screenshot9" />
+          </div>
         </div>
         <div class="swiper-pagination"></div>
         <div class="swiper-button-prev"></div>
@@ -569,6 +572,8 @@
             screenShot7Link: "img/07_es.jpg",
             screenshot8: "Captura de pantalla 8",
             screenShot8Link: "img/08_es.jpg",
+            screenshot9: "Captura de pantalla 9",
+            screenShot9Link: "img/09_es.jpg",
           },
           videoSwiper: {
             mobileVideos: [
@@ -700,6 +705,8 @@
             screenShot7Link: "img/07_en.jpg",
             screenshot8: "Screenshot 8",
             screenShot8Link: "img/08_en.jpg",
+            screenshot9: "Screenshot 9",
+            screenShot9Link: "img/09_en.jpg",
           },
           videoSwiper: {
             mobileVideos: [
@@ -823,7 +830,7 @@
           t.menuOtherFeatures;
 
         // Screenshots
-        for (let i = 1; i <= 8; i++) {
+        for (let i = 1; i <= 9; i++) {
           const key = "screenshot" + i;
           document.getElementById(key).alt = t.screenshots[key];
           document.getElementById(key).src =
