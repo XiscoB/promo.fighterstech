@@ -87,6 +87,7 @@
       }
     </script>
     <style>
+      /* Reset y tipografía */
       body {
         font-family: sans-serif;
         margin: 0;
@@ -94,12 +95,15 @@
         text-align: center;
         background-color: #00284e;
       }
+
+      /* Header */
       header {
         background-color: #081424;
         color: white;
         padding: 20px;
         position: relative;
       }
+
       .language-switcher {
         margin-top: 10px;
       }
@@ -111,7 +115,8 @@
         border-radius: 3px;
         cursor: pointer;
       }
-      /* New top menu */
+
+      /* Menú principal */
       .main-menu {
         margin-top: 15px;
       }
@@ -124,174 +129,8 @@
         cursor: pointer;
         font-weight: bold;
       }
-      .store-links a {
-        margin: 10px;
-        display: inline-block;
-      }
-      .store-links .apple-badge {
-        width: 200px;
-        height: 60px;
-        object-fit: contain;
-      }
-      .store-links .google-badge {
-        margin-top: 30px;
-        width: 220px;
-        height: 100px;
-        object-fit: contain;
-        transform: translateY(19px);
-      }
-      .content {
-        padding: 20px;
-        background-color: #00284e;
-      }
-      /* Section titles */
-      h3 {
-        color: #fff;
-        margin-bottom: 10px;
-      }
-      /* Video Swiper Section Styles */
-      .video-swiper {
-        margin: 40px auto;
-        max-width: 600px;
-      }
-      .swiper-container {
-        width: 90%;
-        max-width: 600px;
-        margin: 20px auto;
-        position: relative;
-      }
-      .swiper-slide {
-        text-align: center;
-        position: relative;
-      }
-      .swiper-slide iframe {
-        width: 100%;
-        height: auto;
-      }
-      .video-slide-content {
-        position: relative;
-      }
-      .video-slide-title {
-        position: absolute;
-        bottom: 10px;
-        left: 10px;
-        background: rgba(0, 0, 0, 0.6);
-        color: #fff;
-        padding: 5px 10px;
-        font-size: 1em;
-        border-radius: 3px;
-      }
-      /* Navigation buttons */
-      .swiper-button-prev,
-      .swiper-button-next {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 10;
-        cursor: pointer;
-      }
-      .swiper-button-prev {
-        left: -40px;
-      }
-      .swiper-button-next {
-        right: -40px;
-      }
-      /* App Images Swiper */
-      .app-images img {
-        max-width: 500px;
-        margin: 10px;
-        height: auto;
-      }
-      /* Mobile tweaks */
-      @media only screen and (min-width: 768px) {
-        .video-swiper,
-        .swiper-container {
-          max-width: 1280px;
-        }
-        .swiper-slide iframe {
-          height: 720px;
-        }
-      }
-      /* 3) Móvil: aspecto 9:16 para los .mobile-video */
-      @media only screen and (max-width: 767px) {
-        .swiper-slide iframe.mobile-video {
-          /* ancho al 100%, altura automática según aspect-ratio */
-          width: 100%;
-          height: auto;
-          aspect-ratio: 9 / 16;
-        }
-      }
-      /* Mobile vertical videos */
-      .swiper-slide iframe.mobile-video {
-        aspect-ratio: 9 / 16;
-      }
-      /* Footer */
-      footer {
-        background-color: #081424;
-        color: #fff;
-        padding: 20px;
-        text-align: center;
-        font-size: 0.9em;
-      }
-      footer nav a {
-        color: #fff;
-        margin: 0 10px;
-        text-decoration: none;
-      }
-      footer nav a:hover {
-        text-decoration: underline;
-      }
-      .social-icons a {
-        color: #fff;
-        margin: 0 5px;
-        text-decoration: none;
-      }
-      @media only screen and (max-width: 600px) {
-        header {
-          padding: 10px;
-        }
-        .main-menu button {
-          padding: 8px 14px;
-          font-size: 0.9em;
-        }
-      }
-      /* Encabezados de sección */
-      h2 {
-        font-size: 2rem;
-        font-weight: 700;
-        margin: 30px 0 15px;
-        background: linear-gradient(90deg, #fcaf01, #1e90ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        transition: transform 0.3s ease;
-      }
-      h2:hover {
-        transform: scale(1.05);
-      }
 
-      /* Tarjetas de vídeo/imágenes */
-      .swiper-slide {
-        border-radius: 1rem;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-        overflow: hidden;
-        transition: box-shadow 0.3s ease, transform 0.3s ease;
-      }
-      .swiper-slide:hover {
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
-        transform: translateY(-5px);
-      }
-
-      /* Margen y padding uniforme */
-      .content section {
-        padding: 20px;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-      /* Estilos para el nuevo nav */
-      .main-menu {
-        margin-top: 15px;
-      }
-
+      /* Nuevo nav basado en lista */
       .main-menu ul {
         list-style: none;
         display: flex;
@@ -314,19 +153,180 @@
         transition: transform 0.2s ease, box-shadow 0.2s ease,
           background 0.3s ease;
       }
-
       .main-menu .nav-link:hover {
         transform: translateY(-3px);
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
         background: linear-gradient(135deg, #fcaf01, #3399ff);
       }
-
       .main-menu .nav-link:active {
         transform: translateY(-1px);
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
       }
 
+      /* Enlaces a tiendas */
+      .store-links a {
+        margin: 10px;
+        display: inline-block;
+      }
+      .store-links .apple-badge {
+        width: 200px;
+        height: 60px;
+        object-fit: contain;
+      }
+      .store-links .google-badge {
+        margin-top: 30px;
+        width: 220px;
+        height: 100px;
+        object-fit: contain;
+        transform: translateY(19px);
+      }
+
+      /* Contenedor de contenido */
+      .content {
+        padding: 20px;
+        background-color: #00284e;
+      }
+
+      /* Títulos de sección */
+      h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 30px 0 15px;
+        background: linear-gradient(90deg, #fcaf01, #1e90ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: transform 0.3s ease;
+      }
+      h2:hover {
+        transform: scale(1.05);
+      }
+      h3 {
+        color: #fff;
+        margin-bottom: 10px;
+      }
+
+      /* Sección Swiper (vídeos e imágenes) */
+      .video-swiper {
+        margin: 40px auto;
+        max-width: 600px;
+      }
+      .swiper-container {
+        width: 90%;
+        max-width: 600px;
+        margin: 20px auto;
+        position: relative;
+      }
+      .swiper-wrapper {
+        /* por defecto Swiper añade display:flex */
+      }
+      .swiper-slide {
+        text-align: center;
+        position: relative;
+        border-radius: 1rem;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+      }
+      .swiper-slide:hover {
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+        transform: translateY(-5px);
+      }
+      .swiper-slide iframe {
+        width: 100%;
+        height: auto;
+      }
+      .video-slide-content {
+        position: relative;
+      }
+      .video-slide-title {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        padding: 5px 10px;
+        font-size: 1em;
+        border-radius: 3px;
+      }
+
+      /* Botones de navegación Swiper */
+      .swiper-button-prev,
+      .swiper-button-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        cursor: pointer;
+      }
+      .swiper-button-prev {
+        left: -40px;
+      }
+      .swiper-button-next {
+        right: -40px;
+      }
+
+      /* Imágenes de la app */
+      .app-images img {
+        max-width: 500px;
+        width: 100%;
+        margin: 10px auto;
+        height: auto;
+        display: block;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #081424;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        font-size: 0.9em;
+      }
+      footer nav a {
+        color: #fff;
+        margin: 0 10px;
+        text-decoration: none;
+      }
+      footer nav a:hover {
+        text-decoration: underline;
+      }
+      .social-icons a {
+        color: #fff;
+        margin: 0 5px;
+        text-decoration: none;
+      }
+
+      /* Responsive: tablets en adelante */
+      @media only screen and (min-width: 768px) {
+        .video-swiper,
+        .swiper-container {
+          max-width: 1280px;
+        }
+        .swiper-slide iframe {
+          height: 720px;
+        }
+      }
+
+      /* Responsive: móvil */
+      @media only screen and (max-width: 767px) {
+        /* Vídeos verticales 9:16 */
+        .swiper-slide iframe.mobile-video {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 9 / 16;
+        }
+      }
+
+      /* Por si acaso: aplicar ratio a todos los iframes de móvil */
+      .swiper-slide iframe.mobile-video {
+        aspect-ratio: 9 / 16;
+      }
+
+      /* Ajustes extra para móvil pequeño */
       @media only screen and (max-width: 600px) {
+        header {
+          padding: 10px;
+        }
         .main-menu ul {
           flex-direction: column;
           gap: 0.75rem;
