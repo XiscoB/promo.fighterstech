@@ -910,13 +910,6 @@
           slide.getAttribute("data-title");
       }
 
-      document
-        .getElementById("appleLink")
-        .addEventListener("click", function (e) {
-          e.preventDefault();
-          alert(translations[currentLang].appleAlert);
-        });
-
       document.addEventListener("DOMContentLoaded", function () {
         // App Images swiper
         new Swiper(".app-images", {
