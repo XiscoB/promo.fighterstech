@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FightersTech - X - RedKingsFG</title>
+    <style>
+      /* Global and body */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background-color: #00284e;
+        color: #fff;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      /* Header styling matching main site */
+      header {
+        background-color: #081424;
+        color: white;
+        padding: 20px;
+        position: relative;
+      }
+      header img {
+        width: 100px;
+      }
+      header h1 {
+        margin: 10px 0;
+        font-size: 2rem;
+      }
+      header .subtitle {
+        font-size: 1rem;
+        margin: 5px 0;
+      }
+      /* Language switcher matching main page */
+      .language-switcher {
+        margin-top: 10px;
+      }
+      .language-switcher button {
+        margin: 0 5px;
+        padding: 5px 10px;
+        background: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        color: #081424;
+      }
+      /* Main nav styling */
+      .main-menu ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        padding: 0;
+        margin: 15px 0 0;
+      }
+      .main-menu .nav-link {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        background: linear-gradient(135deg, #fcaf01, #1e90ff);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s ease, box-shadow 0.2s ease,
+          background 0.3s ease;
+      }
+      .main-menu .nav-link:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        background: linear-gradient(135deg, #fcaf01, #3399ff);
+      }
+      .main-menu .nav-link:active {
+        transform: translateY(-1px);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+      }
+      /* Container for content */
+      .container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px;
+      }
+      .logo {
+        display: block; /* ← ensure it’s block */
+        width: 150px;
+        margin: 0 auto 20px; /* ← centers horizontally, keeps bottom margin */
+      }
+
+      .message {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+      }
+      .btn-home {
+        display: inline-block;
+        padding: 10px 20px;
+        background: linear-gradient(135deg, #fcaf01, #1e90ff);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s ease;
+      }
+      .btn-home:hover {
+        transform: translateY(-2px);
+      }
+      /* Footer styling matching main site */
+      footer {
+        background-color: #081424;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        font-size: 0.9em;
+      }
+      footer nav a {
+        color: #fff;
+        margin: 0 10px;
+        text-decoration: none;
+      }
+      footer nav a:hover {
+        text-decoration: underline;
+      }
+      .social-icons a {
+        color: #fff;
+        margin: 0 5px;
+        text-decoration: none;
+      }
+      /* Responsive: tablets and up */
+      @media only screen and (min-width: 768px) {
+        header,
+        footer {
+          padding: 30px;
+        }
+        .container {
+          padding: 40px;
+        }
+        .logo {
+          width: 200px;
+        }
+      }
+      /* Responsive: mobile vertical viewports */
+      @media only screen and (max-width: 767px) {
+        header h1 {
+          font-size: 1.5rem;
+        }
+        header .subtitle {
+          font-size: 0.85rem;
+        }
+        .main-menu ul {
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+        .main-menu .nav-link {
+          padding: 0.6rem 1rem;
+          font-size: 0.9rem;
+        }
+      }
+      /* Responsive: small mobile */
+      @media only screen and (max-width: 600px) {
+        header {
+          padding: 15px;
+        }
+        .container {
+          padding: 20px;
+        }
+        .btn-home {
+          padding: 8px 16px;
+        }
+      }
+    </style>
+    <script>
+      // Redirect if urlToRedirect URL is set
+      const urlToRedirect = "https://promo.fighterstech.com/";
+      //   const urlToRedirect = null; // Set to null to disable redirect
+      if (urlToRedirect) {
+        window.location.replace(urlToRedirect);
+      }
+      // Translations for the page
+      const translations = {
+        en: {
+          htmlLang: "en",
+          headerTitle: "FightersTech",
+          slogan: "Train. Fight. Compete.",
+          navHome: "Home",
+          navFeatures: "Features",
+          navImages: "App Images",
+          navOtherFeatures: "Other Features",
+          NavCollaborations: "Collaborations",
+          message:
+            "Our Collaborations campaign is coming soon!<br/>Check back later or explore our homepage.",
+          btnHome: "← Back to FightersTech",
+          footerRights: "All rights reserved.",
+          linkLegal: "Legal Notice",
+          linkPrivacy: "Privacy Policy",
+          linkTerms: "Terms and Conditions",
+          linkCookies: "Cookie Policy",
+          linkConduct: "Code of Conduct",
+          linkContact: "Contact",
+        },
+        es: {
+          htmlLang: "es",
+          headerTitle: "FightersTech",
+          slogan: "Entrena. Lucha. Compite.",
+          navHome: "Inicio",
+          navFeatures: "Características",
+          navImages: "Imágenes",
+          navOtherFeatures: "Otras Funcionalidades",
+          NavCollaborations: "Colaboraciones",
+          message:
+            "¡Nuestra campaña de Colaboraciones llegará pronto!<br/>Vuelve más tarde o visita nuestra página principal.",
+          btnHome: "← Volver a FightersTech",
+          footerRights: "Todos los derechos reservados.",
+          linkLegal: "Aviso Legal",
+          linkPrivacy: "Política de Privacidad",
+          linkTerms: "Términos y Condiciones",
+          linkCookies: "Política de Cookies",
+          linkConduct: "Código de Conducta",
+          linkContact: "Contacto",
+        },
+      };
+      // Determine user locale
+      let currentLang = "en";
+      const userLang = navigator.language || navigator.userLanguage;
+      if (userLang && userLang.substring(0, 2).toLowerCase() === "es") {
+        currentLang = "es";
+      }
+      // Apply translations
+      function setLanguage(lang) {
+        const t = translations[lang] || translations.en;
+        document.documentElement.lang = t.htmlLang;
+        // Header
+        document.getElementById("headerTitle").textContent = t.headerTitle;
+        document.getElementById("eslogan").textContent = t.slogan;
+        document.getElementById("navHome").textContent = t.navHome;
+        document.getElementById("navFeatures").textContent = t.navFeatures;
+        document.getElementById("navImages").textContent = t.navImages;
+        document.getElementById("navOtherFeatures").textContent =
+          t.navOtherFeatures;
+        document.getElementById("NavCollaborations").textContent =
+          t.NavCollaborations;
+        // Main content
+        document.getElementById("collabMessage").innerHTML = t.message;
+        document.getElementById("btnHome").textContent = t.btnHome;
+        // Footer
+        document.getElementById("footerRights").textContent = t.footerRights;
+        document.getElementById("linkLegal").textContent = t.linkLegal;
+        document.getElementById("linkPrivacy").textContent = t.linkPrivacy;
+        document.getElementById("linkTerms").textContent = t.linkTerms;
+        document.getElementById("linkCookies").textContent = t.linkCookies;
+        document.getElementById("linkConduct").textContent = t.linkConduct;
+        document.getElementById("linkContact").textContent = t.linkContact;
+        // Year
+        document.getElementById("currentYear").textContent =
+          new Date().getFullYear();
+        currentLang = lang;
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        setLanguage(currentLang);
+      });
+    </script>
+  </head>
+  <body>
+    <header>
+      <img
+        src="https://legal.fighterstech.com/fighterstech.png"
+        alt="FightersTech Logo"
+      />
+      <h1 id="headerTitle">FightersTech</h1>
+      <p class="subtitle" id="eslogan">Train. Fight. Compete.</p>
+      <div class="language-switcher">
+        <button onclick="setLanguage('es')">ES</button>
+        <button onclick="setLanguage('en')">EN</button>
+      </div>
+      <nav class="main-menu">
+        <ul>
+          <li><a id="navHome" href="/" class="nav-link">Home</a></li>
+          <li>
+            <a
+              id="navFeatures"
+              href="https://promo.fighterstech.com/#mainFeaturesSection"
+              class="nav-link"
+              >Features</a
+            >
+          </li>
+          <li>
+            <a
+              id="navImages"
+              href="https://promo.fighterstech.com/#appImagesSection"
+              class="nav-link"
+              >App Images</a
+            >
+          </li>
+          <li>
+            <a
+              id="navOtherFeatures"
+              href="https://promo.fighterstech.com/#otherFeaturesSection"
+              class="nav-link"
+              >Other Features</a
+            >
+          </li>
+          <li>
+            <a id="NavCollaborations" href="/redkings" class="nav-link"
+              >Collaborations</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="container">
+      <!-- <img src="/assets/kickstarter.png" alt="" class="logo" /> -->
+      <p class="message" id="collabMessage"></p>
+      <a
+        href="https://promo.fighterstech.com/"
+        class="btn-home"
+        id="btnHome"
+      ></a>
+    </div>
+    <footer>
+      <div class="footer-content">
+        <p>
+          © <span id="currentYear"></span> FightersTech.
+          <span id="footerRights">All rights reserved.</span>
+        </p>
+        <nav>
+          <a href="#" id="linkLegal">Legal Notice</a>
+          <a href="#" id="linkPrivacy">Privacy Policy</a>
+          <a href="#" id="linkTerms">Terms of Service</a>
+          <a href="#" id="linkCookies">Cookie Policy</a>
+          <a href="#" id="linkConduct">Code of Conduct</a>
+          <a href="mailto:info@fighterstech.com" id="linkContact">Contact</a>
+        </nav>
+        <div class="social-icons">
+          <a
+            href="https://twitter.com/fighterstech"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Twitter</a
+          >
+          <a
+            href="https://instagram.com/fighterstech"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Instagram</a
+          >
+          <a
+            href="https://www.tiktok.com/@fighterstech"
+            target="_blank"
+            rel="noopener noreferrer"
+            >TikTok</a
+          >
+          <a
+            href="https://bsky.app/profile/fighterstech.bsky.social"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Bluesky</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
