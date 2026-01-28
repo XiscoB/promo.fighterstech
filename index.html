@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -51,6 +51,14 @@
       content="https://legal.fighterstech.com/fighterstech.png"
     />
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <link
       rel="stylesheet"
       href="https://unpkg.com/swiper/swiper-bundle.min.css"
@@ -87,436 +95,1842 @@
       }
     </script>
     <style>
-      /* Reset y tipografía */
+      /* ========================================
+         CSS VARIABLES & DESIGN SYSTEM
+         ======================================== */
+      :root {
+        /* Colors - Gaming/Dark Theme */
+        --bg-primary: #0a0a0f;
+        --bg-secondary: #12121a;
+        --bg-tertiary: #1a1a25;
+        --bg-card: rgba(26, 26, 37, 0.6);
+        --bg-card-hover: rgba(26, 26, 37, 0.8);
+
+        /* Accent Colors */
+        --accent-cyan: #00d4ff;
+        --accent-orange: #ff6b35;
+        --accent-purple: #a855f7;
+        --accent-gradient: linear-gradient(
+          135deg,
+          var(--accent-orange) 0%,
+          var(--accent-cyan) 100%
+        );
+        --accent-glow-cyan: 0 0 30px rgba(0, 212, 255, 0.3);
+        --accent-glow-orange: 0 0 30px rgba(255, 107, 53, 0.3);
+
+        /* Text Colors */
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-muted: rgba(255, 255, 255, 0.5);
+
+        /* Typography */
+        --font-display: "Chakra Petch", sans-serif;
+        --font-body: "Inter", sans-serif;
+
+        /* Spacing */
+        --section-padding: 120px;
+        --container-max: 1280px;
+
+        /* Transitions */
+        --transition-fast: 0.2s ease;
+        --transition-medium: 0.3s ease;
+        --transition-slow: 0.5s ease;
+
+        /* Border Radius */
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 20px;
+        --radius-xl: 28px;
+      }
+
+      /* ========================================
+         RESET & BASE STYLES
+         ======================================== */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
-        font-family: sans-serif;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-        background-color: #00284e;
+        font-family: var(--font-body);
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        overflow-x: hidden;
       }
 
-      /* Header */
-      header {
-        background-color: #081424;
-        color: white;
-        padding: 20px;
+      /* Selection Color */
+      ::selection {
+        background: var(--accent-cyan);
+        color: var(--bg-primary);
+      }
+
+      /* ========================================
+         BACKGROUND EFFECTS
+         ======================================== */
+      .bg-grid {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+          linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .bg-glow {
+        position: fixed;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        filter: blur(150px);
+        opacity: 0.15;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .bg-glow-1 {
+        top: -200px;
+        right: -200px;
+        background: var(--accent-cyan);
+      }
+
+      .bg-glow-2 {
+        bottom: 20%;
+        left: -300px;
+        background: var(--accent-orange);
+      }
+
+      .bg-glow-3 {
+        top: 50%;
+        right: 10%;
+        background: var(--accent-purple);
+        opacity: 0.1;
+      }
+
+      /* ========================================
+         CONTAINER & LAYOUT
+         ======================================== */
+      .container {
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 24px;
         position: relative;
+        z-index: 1;
       }
 
-      .language-switcher {
-        margin-top: 10px;
-      }
-      .language-switcher button {
-        margin: 0 5px;
-        padding: 5px 10px;
-        background: #fff;
-        border: none;
-        border-radius: 3px;
-        cursor: pointer;
-      }
-
-      /* Menú principal */
-      .main-menu {
-        margin-top: 15px;
-      }
-      .main-menu button {
-        margin: 0 8px;
-        padding: 6px 12px;
-        background: #fff;
-        border: none;
-        border-radius: 3px;
-        cursor: pointer;
-        font-weight: bold;
+      /* ========================================
+         HEADER & NAVIGATION
+         ======================================== */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 16px 0;
+        background: rgba(10, 10, 15, 0.8);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        transition: var(--transition-medium);
       }
 
-      /* Nuevo nav basado en lista */
-      .main-menu ul {
-        list-style: none;
+      header.scrolled {
+        padding: 12px 0;
+        background: rgba(10, 10, 15, 0.95);
+      }
+
+      .header-inner {
         display: flex;
-        justify-content: center;
-        gap: 1rem;
-        padding: 0;
-        margin: 0;
+        align-items: center;
+        justify-content: space-between;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 24px;
       }
 
-      .main-menu .nav-link {
-        display: inline-block;
-        padding: 0.75rem 1.5rem;
-        background: linear-gradient(135deg, #fcaf01, #1e90ff);
-        color: #fff;
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
         text-decoration: none;
-        font-weight: 600;
-        font-size: 0.95rem;
-        border-radius: 0.5rem;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.2s ease, box-shadow 0.2s ease,
-          background 0.3s ease;
-      }
-      .main-menu .nav-link:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-        background: linear-gradient(135deg, #fcaf01, #3399ff);
-      }
-      .main-menu .nav-link:active {
-        transform: translateY(-1px);
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
       }
 
-      /* Enlaces a tiendas */
-      .store-links a {
-        margin: 10px;
-        display: inline-block;
-      }
-      .store-links .apple-badge {
-        width: 200px;
-        height: 60px;
-        object-fit: contain;
-      }
-      .store-links .google-badge {
-        margin-top: 30px;
-        width: 220px;
-        height: 100px;
-        object-fit: contain;
-        transform: translateY(19px);
+      .logo img {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius-sm);
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
       }
 
-      /* Contenedor de contenido */
-      .content {
-        padding: 20px;
-        background-color: #00284e;
-      }
-
-      /* Títulos de sección */
-      h2 {
-        font-size: 2rem;
+      .logo-text {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
         font-weight: 700;
-        margin: 30px 0 15px;
-        background: linear-gradient(90deg, #fcaf01, #1e90ff);
+        color: var(--text-primary);
+        letter-spacing: -0.02em;
+      }
+
+      /* Language Toggle */
+      .lang-toggle {
+        display: flex;
+        align-items: center;
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-xl);
+        padding: 4px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .lang-btn {
+        padding: 8px 20px;
+        border: none;
+        background: transparent;
+        color: var(--text-secondary);
+        font-family: var(--font-display);
+        font-size: 0.875rem;
+        font-weight: 600;
+        cursor: pointer;
+        border-radius: var(--radius-xl);
+        transition: var(--transition-fast);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .lang-btn:hover {
+        color: var(--text-primary);
+      }
+
+      .lang-btn.active {
+        background: var(--accent-gradient);
+        color: var(--text-primary);
+        box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+      }
+
+      /* Mobile Menu Toggle */
+      .mobile-menu-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        padding: 8px;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      .mobile-menu-toggle span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--text-primary);
+        transition: var(--transition-fast);
+      }
+
+      /* ========================================
+         HERO SECTION
+         ======================================== */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 140px 24px 80px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          ellipse at center top,
+          rgba(0, 212, 255, 0.08) 0%,
+          transparent 50%
+        );
+        pointer-events: none;
+      }
+
+      .hero-content {
+        text-align: center;
+        max-width: 900px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 20px;
+        background: var(--bg-card);
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        border-radius: var(--radius-xl);
+        font-family: var(--font-display);
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--accent-cyan);
+        margin-bottom: 32px;
+        animation: fadeInUp 0.6s ease;
+      }
+
+      .hero-badge::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        background: var(--accent-cyan);
+        border-radius: 50%;
+        box-shadow: 0 0 10px var(--accent-cyan);
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .hero-title {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 10vw, 7rem);
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.03em;
+        margin-bottom: 24px;
+        animation: fadeInUp 0.6s ease 0.1s both;
+      }
+
+      .hero-title .word {
+        display: inline-block;
+        background: var(--accent-gradient);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        transition: transform 0.3s ease;
-      }
-      h2:hover {
-        transform: scale(1.05);
-      }
-      h3 {
-        color: #fff;
-        margin-bottom: 10px;
+        background-clip: text;
+        position: relative;
       }
 
-      /* Sección Swiper (vídeos e imágenes) */
-      .video-swiper {
-        margin: 40px auto;
+      .hero-title .word::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: blur(30px);
+        opacity: 0.5;
+        z-index: -1;
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1.125rem, 3vw, 1.5rem);
+        color: var(--text-secondary);
         max-width: 600px;
+        margin: 0 auto 48px;
+        animation: fadeInUp 0.6s ease 0.2s both;
       }
-      .swiper-container {
-        width: 90%;
-        max-width: 600px;
-        margin: 20px auto;
+
+      /* Store Buttons */
+      .store-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+        animation: fadeInUp 0.6s ease 0.3s both;
+      }
+
+      .store-btn {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 28px;
+        background: var(--bg-tertiary);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-md);
+        text-decoration: none;
+        color: var(--text-primary);
+        transition: var(--transition-medium);
         position: relative;
-      }
-      .swiper-wrapper {
-        /* por defecto Swiper añade display:flex */
-      }
-      .swiper-slide {
-        text-align: center;
-        position: relative;
-        border-radius: 1rem;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         overflow: hidden;
-        transition: box-shadow 0.3s ease, transform 0.3s ease;
       }
-      .swiper-slide:hover {
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
-        transform: translateY(-5px);
+
+      .store-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--accent-gradient);
+        opacity: 0;
+        transition: var(--transition-medium);
       }
+
+      .store-btn:hover {
+        transform: translateY(-4px);
+        border-color: transparent;
+        box-shadow: var(--accent-glow-cyan);
+      }
+
+      .store-btn:hover::before {
+        opacity: 1;
+      }
+
+      .store-btn img {
+        position: relative;
+        z-index: 1;
+        height: 32px;
+        width: auto;
+      }
+
+      .store-btn-content {
+        position: relative;
+        z-index: 2;
+        text-align: left;
+      }
+
+      .store-btn svg {
+        width: 32px;
+        height: 32px;
+        fill: currentColor;
+        position: relative;
+        z-index: 2;
+        flex-shrink: 0;
+      }
+
+      .store-btn-label {
+        display: block;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .store-btn-title {
+        display: block;
+        font-family: var(--font-display);
+        font-size: 1.125rem;
+        font-weight: 600;
+      }
+
+      /* Scroll Indicator */
+      .scroll-indicator {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-muted);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        animation:
+          fadeInUp 0.6s ease 0.5s both,
+          bounce 2s infinite 1s;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        40% {
+          transform: translateX(-50%) translateY(-10px);
+        }
+        60% {
+          transform: translateX(-50%) translateY(-5px);
+        }
+      }
+
+      .scroll-indicator svg {
+        width: 24px;
+        height: 24px;
+        stroke: currentColor;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ========================================
+         FEATURES SECTION
+         ======================================== */
+      .section {
+        padding: var(--section-padding) 0;
+        position: relative;
+      }
+
+      .section-header {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 64px;
+      }
+
+      .section-label {
+        display: inline-block;
+        padding: 6px 16px;
+        background: rgba(0, 212, 255, 0.1);
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        border-radius: var(--radius-xl);
+        font-family: var(--font-display);
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--accent-cyan);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 16px;
+      }
+
+      .section-title {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 16px;
+      }
+
+      .section-title span {
+        background: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .section-description {
+        font-size: 1.125rem;
+        color: var(--text-secondary);
+      }
+
+      /* Feature Cards */
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+        margin-top: 48px;
+      }
+
+      .feature-card {
+        background: var(--bg-card);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: var(--radius-lg);
+        padding: 32px;
+        transition: var(--transition-medium);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--accent-gradient);
+        transform: scaleX(0);
+        transition: var(--transition-medium);
+      }
+
+      .feature-card:hover {
+        background: var(--bg-card-hover);
+        border-color: rgba(255, 255, 255, 0.1);
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .feature-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .feature-icon {
+        width: 56px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .feature-card h3 {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: var(--text-primary);
+      }
+
+      .feature-card p {
+        color: var(--text-secondary);
+        font-size: 0.9375rem;
+        line-height: 1.7;
+      }
+
+      /* ========================================
+         VIDEO SECTIONS
+         ======================================== */
+      .video-section {
+        background: var(--bg-secondary);
+        position: relative;
+      }
+
+      .video-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 212, 255, 0.3),
+          transparent
+        );
+      }
+
+      .video-container {
+        position: relative;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        background: var(--bg-tertiary);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      }
+
+      .swiper-container {
+        width: 100%;
+      }
+
+      .swiper-slide {
+        background: var(--bg-tertiary);
+      }
+
       .swiper-slide iframe {
         width: 100%;
-        height: auto;
-      }
-      .video-slide-content {
-        position: relative;
-      }
-      .video-slide-title {
-        position: absolute;
-        bottom: 10px;
-        left: 10px;
-        background: rgba(0, 0, 0, 0.6);
-        color: #fff;
-        padding: 5px 10px;
-        font-size: 1em;
-        border-radius: 3px;
-      }
-
-      /* Botones de navegación Swiper */
-      .swiper-button-prev,
-      .swiper-button-next {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 10;
-        cursor: pointer;
-      }
-      .swiper-button-prev {
-        left: -40px;
-      }
-      .swiper-button-next {
-        right: -40px;
-      }
-
-      /* Imágenes de la app */
-      .app-images img {
-        max-width: 500px;
-        width: 100%;
-        margin: 10px auto;
-        height: auto;
+        aspect-ratio: 16/9;
+        border: none;
         display: block;
       }
 
-      /* Footer */
-      footer {
-        background-color: #081424;
-        color: #fff;
-        padding: 20px;
-        text-align: center;
-        font-size: 0.9em;
-      }
-      footer nav a {
-        color: #fff;
-        margin: 0 10px;
-        text-decoration: none;
-      }
-      footer nav a:hover {
-        text-decoration: underline;
-      }
-      .social-icons a {
-        color: #fff;
-        margin: 0 5px;
-        text-decoration: none;
-      }
-
-      /* Responsive: tablets en adelante */
-      @media only screen and (min-width: 768px) {
-        .video-swiper,
-        .swiper-container {
-          max-width: 1280px;
-        }
-        .swiper-slide iframe {
-          height: 720px;
-        }
-      }
-
-      /* Responsive: móvil */
-      @media only screen and (max-width: 767px) {
-        /* Vídeos verticales 9:16 */
-        .swiper-slide iframe.mobile-video {
-          width: 100%;
-          height: auto;
-          aspect-ratio: 9 / 16;
-        }
-      }
-
-      /* Por si acaso: aplicar ratio a todos los iframes de móvil */
       .swiper-slide iframe.mobile-video {
-        aspect-ratio: 9 / 16;
+        aspect-ratio: 9/16;
+        max-height: 720px;
       }
 
-      /* Ajustes extra para móvil pequeño */
-      @media only screen and (max-width: 600px) {
-        header {
-          padding: 10px;
+      /* Swiper Navigation */
+      .swiper-button-prev,
+      .swiper-button-next {
+        width: 56px;
+        height: 56px;
+        background: var(--bg-card);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: var(--text-primary);
+        transition: var(--transition-medium);
+        backdrop-filter: blur(10px);
+      }
+
+      .swiper-button-prev:hover,
+      .swiper-button-next:hover {
+        background: var(--accent-gradient);
+        border-color: transparent;
+        transform: scale(1.1);
+        box-shadow: var(--accent-glow-cyan);
+      }
+
+      .swiper-button-prev::after,
+      .swiper-button-next::after {
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+
+      .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
+        background: var(--text-muted);
+        opacity: 1;
+        transition: var(--transition-fast);
+      }
+
+      .swiper-pagination-bullet-active {
+        background: var(--accent-cyan);
+        box-shadow: 0 0 10px var(--accent-cyan);
+        transform: scale(1.2);
+      }
+
+      /* Video Title */
+      .video-title {
+        text-align: center;
+        padding: 24px;
+        font-family: var(--font-display);
+        font-size: 1.125rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .video-title strong {
+        color: var(--text-primary);
+        font-weight: 600;
+      }
+
+      /* ========================================
+         APP IMAGES SECTION
+         ======================================== */
+      .app-showcase {
+        position: relative;
+      }
+
+      .app-showcase-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 64px;
+        align-items: center;
+      }
+
+      .app-showcase-content {
+        position: sticky;
+        top: 140px;
+      }
+
+      .app-showcase-content h2 {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 24px;
+      }
+
+      .app-showcase-content h2 span {
+        background: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .app-showcase-content p {
+        color: var(--text-secondary);
+        font-size: 1.125rem;
+        line-height: 1.8;
+        margin-bottom: 32px;
+      }
+
+      .feature-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .feature-list li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1rem;
+        color: var(--text-secondary);
+      }
+
+      .feature-list li::before {
+        content: "✓";
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        background: rgba(0, 212, 255, 0.1);
+        border-radius: 50%;
+        color: var(--accent-cyan);
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+
+      .app-showcase-slider {
+        position: relative;
+      }
+
+      .phone-frame {
+        position: relative;
+        background: var(--bg-tertiary);
+        border-radius: 48px;
+        padding: 16px;
+        box-shadow:
+          0 0 0 1px rgba(255, 255, 255, 0.1),
+          0 25px 50px -12px rgba(0, 0, 0, 0.5),
+          0 0 60px rgba(0, 212, 255, 0.1);
+        max-width: 380px;
+        margin: 0 auto;
+      }
+
+      .phone-frame::before {
+        content: "";
+        position: absolute;
+        top: 28px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 32px;
+        background: var(--bg-primary);
+        border-radius: 16px;
+        z-index: 10;
+      }
+
+      .phone-screen {
+        border-radius: 36px;
+        overflow: hidden;
+        background: var(--bg-primary);
+        aspect-ratio: 9/19;
+        position: relative;
+      }
+
+      .phone-screen .swiper-container {
+        border-radius: 36px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .phone-screen .swiper-wrapper {
+        height: 100%;
+      }
+
+      .phone-screen .swiper-slide {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-primary);
+      }
+
+      .phone-screen .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        user-select: none;
+        -webkit-user-drag: none;
+      }
+
+      .phone-screen .swiper-container {
+        cursor: grab;
+      }
+
+      .phone-screen .swiper-container:active {
+        cursor: grabbing;
+      }
+
+      .phone-screen .swiper-pagination {
+        bottom: 20px !important;
+      }
+
+      .phone-screen .swiper-pagination-bullet {
+        background: rgba(255, 255, 255, 0.5);
+        width: 10px;
+        height: 10px;
+        margin: 0 6px !important;
+      }
+
+      .phone-screen .swiper-pagination-bullet-active {
+        background: var(--accent-cyan);
+        transform: scale(1.3);
+      }
+
+      /* Swipe hint animation */
+      .swipe-hint {
+        display: none;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        z-index: 20;
+        pointer-events: none;
+        animation: swipeHint 2s ease-in-out infinite;
+      }
+
+      @keyframes swipeHint {
+        0%,
+        100% {
+          opacity: 0;
+          transform: translateY(-50%) translateX(0);
         }
+        50% {
+          opacity: 1;
+          transform: translateY(-50%) translateX(-10px);
+        }
+      }
+
+      .swipe-hint svg {
+        width: 32px;
+        height: 32px;
+        color: var(--accent-cyan);
+        filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
+      }
+
+      .swipe-instruction {
+        text-align: center;
+        margin-top: 24px;
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .swipe-instruction svg {
+        width: 16px;
+        height: 16px;
+        opacity: 0.7;
+      }
+
+      @media (max-width: 768px) {
+        .swipe-hint {
+          display: block;
+        }
+
+        .swipe-instruction {
+          display: flex;
+        }
+      }
+
+      /* ========================================
+         CTA SECTION
+         ======================================== */
+      .cta-section {
+        text-align: center;
+        background: var(--bg-secondary);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:
+          radial-gradient(
+            ellipse at 30% 50%,
+            rgba(0, 212, 255, 0.08) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 70% 50%,
+            rgba(255, 107, 53, 0.08) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+      }
+
+      .cta-content {
+        position: relative;
+        z-index: 1;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .cta-content h2 {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+
+      .cta-content h2 span {
+        background: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .cta-content p {
+        color: var(--text-secondary);
+        font-size: 1.25rem;
+        margin-bottom: 40px;
+      }
+
+      /* ========================================
+         FOOTER
+         ======================================== */
+      footer {
+        background: var(--bg-secondary);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 80px 0 40px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 48px;
+        margin-bottom: 64px;
+      }
+
+      .footer-brand {
+        max-width: 300px;
+      }
+
+      .footer-brand img {
+        width: 64px;
+        height: 64px;
+        border-radius: var(--radius-md);
+        margin-bottom: 20px;
+      }
+
+      .footer-brand h3 {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+
+      .footer-brand p {
+        color: var(--text-secondary);
+        font-size: 0.9375rem;
+        line-height: 1.7;
+      }
+
+      .footer-column h4 {
+        font-family: var(--font-display);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-primary);
+        margin-bottom: 20px;
+      }
+
+      .footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footer-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.9375rem;
+        transition: var(--transition-fast);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .footer-links a:hover {
+        color: var(--accent-cyan);
+      }
+
+      .footer-links a::before {
+        content: "";
+        width: 0;
+        height: 1px;
+        background: var(--accent-cyan);
+        transition: var(--transition-fast);
+      }
+
+      .footer-links a:hover::before {
+        width: 12px;
+      }
+
+      /* Social Icons */
+      .social-links {
+        display: flex;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .social-link {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-tertiary);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-md);
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: var(--transition-medium);
+      }
+
+      .social-link:hover {
+        background: var(--accent-gradient);
+        border-color: transparent;
+        color: var(--text-primary);
+        transform: translateY(-4px);
+        box-shadow: var(--accent-glow-cyan);
+      }
+
+      .social-link svg {
+        width: 20px;
+        height: 20px;
+        fill: currentColor;
+      }
+
+      /* Footer Bottom */
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 40px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .footer-bottom p {
+        color: var(--text-muted);
+        font-size: 0.875rem;
+      }
+
+      /* ========================================
+         NAVIGATION MENU (Desktop)
+         ======================================== */
+      .main-menu {
+        display: flex;
+        align-items: center;
+      }
+
+      .main-menu ul {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        list-style: none;
+      }
+
+      .nav-link {
+        padding: 10px 20px;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-family: var(--font-display);
+        font-size: 0.9375rem;
+        font-weight: 500;
+        border-radius: var(--radius-md);
+        transition: var(--transition-fast);
+      }
+
+      .nav-link:hover {
+        color: var(--text-primary);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      /* ========================================
+         ANIMATIONS
+         ======================================== */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ========================================
+         RESPONSIVE STYLES
+         ======================================== */
+      @media (max-width: 1024px) {
+        .app-showcase-wrapper {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+
+        .app-showcase-content {
+          position: static;
+          text-align: center;
+        }
+
+        .feature-list {
+          align-items: center;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .phone-frame {
+          max-width: 340px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          --section-padding: 80px;
+        }
+
+        .header-inner {
+          flex-wrap: wrap;
+        }
+
+        .main-menu {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: var(--bg-secondary);
+          padding: 20px;
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .main-menu.active {
+          display: block;
+        }
+
         .main-menu ul {
           flex-direction: column;
-          gap: 0.75rem;
+          gap: 8px;
         }
-        .main-menu .nav-link {
-          padding: 0.6rem 1rem;
-          font-size: 0.9rem;
+
+        .nav-link {
+          display: block;
+          text-align: center;
+        }
+
+        .mobile-menu-toggle {
+          display: flex;
+        }
+
+        .hero {
+          padding: 120px 20px 60px;
+        }
+
+        .store-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .store-btn {
+          width: 100%;
+          max-width: 280px;
+          justify-content: center;
+        }
+
+        .swiper-button-prev,
+        .swiper-button-next {
+          display: none;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .footer-brand {
+          max-width: 100%;
+          text-align: center;
+        }
+
+        .social-links {
+          justify-content: center;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          gap: 16px;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-title {
+          font-size: 2.5rem;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .feature-card {
+          padding: 24px;
+        }
+
+        .phone-frame {
+          border-radius: 36px;
+          padding: 12px;
+          max-width: 280px;
+        }
+
+        .phone-frame::before {
+          top: 20px;
+          width: 100px;
+          height: 26px;
+          border-radius: 13px;
+        }
+
+        .phone-screen {
+          border-radius: 28px;
         }
       }
     </style>
   </head>
   <body>
-    <header>
-      <img
-        src="https://legal.fighterstech.com/fighterstech.png"
-        alt="Logo de FightersTech"
-        width="100"
-      />
-      <h1 id="headerTitle">FightersTech</h1>
-      <p class="subtitle" id="eslogan">Train. Fight. Compete.</p>
-      <div class="language-switcher">
-        <button onclick="setLanguage('es')">ES</button>
-        <button onclick="setLanguage('en')">EN</button>
-      </div>
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
 
-      <nav class="main-menu">
-        <ul>
-          <li>
-            <a
-              id="menuMainFeatures"
-              href="#mainFeaturesSection"
-              class="nav-link"
-              >Main Features</a
+    <!-- Header -->
+    <header id="header">
+      <div class="header-inner">
+        <a href="#" class="logo">
+          <img
+            src="https://legal.fighterstech.com/fighterstech.png"
+            alt="FightersTech Logo"
+          />
+          <span class="logo-text">FightersTech</span>
+        </a>
+
+        <nav class="main-menu" id="mainMenu">
+          <ul>
+            <li>
+              <a
+                href="#mainFeaturesSection"
+                class="nav-link"
+                id="menuMainFeatures"
+                >Main Features</a
+              >
+            </li>
+            <li>
+              <a href="#appImagesSection" class="nav-link" id="menuAppImages"
+                >App Images</a
+              >
+            </li>
+            <li>
+              <a
+                href="#otherFeaturesSection"
+                class="nav-link"
+                id="menuOtherFeatures"
+                >Other Features</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <div style="display: flex; align-items: center; gap: 16px">
+          <div class="lang-toggle">
+            <button
+              class="lang-btn active"
+              onclick="setLanguage('es')"
+              data-lang="es"
             >
-          </li>
-          <li>
-            <a id="menuAppImages" href="#appImagesSection" class="nav-link"
-              >App Images</a
-            >
-          </li>
-          <li>
-            <a
-              id="menuOtherFeatures"
-              href="#otherFeaturesSection"
-              class="nav-link"
-              >Other Features</a
-            >
-          </li>
-          <!-- <li>
-            <a id="navKickstarter" href="/kickstarter" class="nav-link"
-              >Kickstarter</a
-            >
-          </li> -->
-        </ul>
-      </nav>
+              ES
+            </button>
+            <button class="lang-btn" onclick="setLanguage('en')" data-lang="en">
+              EN
+            </button>
+          </div>
+
+          <button
+            class="mobile-menu-toggle"
+            id="mobileMenuToggle"
+            aria-label="Toggle menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
     </header>
 
-    <div class="content">
-      <section class="store-links">
-        <a
-          href="https://apps.apple.com/es/app/fighterstech/id6741810411?l=en-GB"
-          id="appleLink"
-        >
-          <img
-            src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-            alt="Disponible en App Store"
-            class="apple-badge"
-          />
-        </a>
-        <a
-          href="https://play.google.com/store/apps/details?id=com.xiscoteon.fighterstech"
-          target="_blank"
-          rel="noopener noreferrer"
-          id="googleLink"
-        >
-          <img
-            src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
-            alt="Disponible en Play Store"
-            class="google-badge"
-          />
-        </a>
-      </section>
-      <!-- Main Features Slider -->
-      <section id="mainFeaturesSection" class="video-swiper">
-        <h2 id="titleMainFeatures"></h2>
-        <h3 id="activeVideoTitle"></h3>
-        <div class="swiper-container" id="videoSwiper">
-          <div class="swiper-wrapper"></div>
-          <div class="swiper-pagination" id="videoSwiperPagination"></div>
-          <div class="swiper-button-prev" id="videoSwiperPrev"></div>
-          <div class="swiper-button-next" id="videoSwiperNext"></div>
-        </div>
-      </section>
-
-      <!-- App Images Slider -->
-      <section id="appImagesSection" class="swiper-container app-images">
-        <h2 id="titleAppImages"></h2>
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src="img/01_en.jpg" alt="Screenshot 1" id="screenshot1" />
-          </div>
-          <div class="swiper-slide">
-            <img src="img/02_en.jpg" alt="Screenshot 2" id="screenshot2" />
-          </div>
-          <div class="swiper-slide">
-            <img src="img/03_en.jpg" alt="Screenshot 3" id="screenshot3" />
-          </div>
-          <div class="swiper-slide">
-            <img src="img/04_en.jpg" alt="Screenshot 4" id="screenshot4" />
-          </div>
-          <div class="swiper-slide">
-            <img src="img/05_en.jpg" alt="Screenshot 5" id="screenshot5" />
-          </div>
-          <div class="swiper-slide">
-            <img src="img/06_en.jpg" alt="Screenshot 6" id="screenshot6" />
-          </div>
-          <div class="swiper-slide">
-            <img src="img/07_en.jpg" alt="Screenshot 7" id="screenshot7" />
-          </div>
-          <div class="swiper-slide">
-            <img src="img/08_en.jpg" alt="Screenshot 8" id="screenshot8" />
-          </div>
-          <div class="swiper-slide">
-            <img src="img/09_en.jpg" alt="Screenshot 9" id="screenshot9" />
-          </div>
-        </div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-      </section>
-
-      <!-- Other Features Slider -->
-      <section id="otherFeaturesSection" class="video-swiper">
-        <h2 id="titleOtherFeatures"></h2>
-        <h3 id="activeOtherVideoTitle"></h3>
-        <div class="swiper-container" id="otherFeaturesSwiper">
-          <div class="swiper-wrapper"></div>
-          <div class="swiper-pagination" id="otherFeaturesPagination"></div>
-          <div class="swiper-button-prev" id="otherFeaturesPrev"></div>
-          <div class="swiper-button-next" id="otherFeaturesNext"></div>
-        </div>
-      </section>
-    </div>
-
-    <footer>
-      <div class="footer-content">
-        <p>
-          © <span id="currentYear"></span> FightersTech.
-          <span id="footerRights">Todos los derechos reservados.</span>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="hero-content">
+        <div class="hero-badge">Available Now</div>
+        <h1 class="hero-title" id="heroTitle">
+          <span class="word" data-text="Train.">Train.</span>
+          <span class="word" data-text="Fight.">Fight.</span>
+          <span class="word" data-text="Compete.">Compete.</span>
+        </h1>
+        <p class="hero-subtitle" id="heroSubtitle">
+          The ultimate platform for the Fighting Game Community. Find matchups,
+          track tournaments, and level up your game.
         </p>
-        <nav>
-          <a href="#" id="linkLegal">Aviso Legal</a>
-          <a href="#" id="linkPrivacy">Política de Privacidad</a>
-          <a href="#" id="linkTerms">Términos y Condiciones</a>
-          <a href="#" id="linkCookies">Política de Cookies</a>
-          <a href="#" id="linkConduct"
-            >Código de Conducta y Directivas de la comunidad</a
-          >
-          <a href="mailto:info@fighterstech.com" id="linkContact">Contacto</a>
-        </nav>
-        <div class="social-icons">
+        <div class="store-buttons">
           <a
-            href="https://twitter.com/fighterstech"
+            href="https://apps.apple.com/es/app/fighterstech/id6741810411?l=en-GB"
+            class="store-btn"
+            id="appleLink"
             target="_blank"
             rel="noopener noreferrer"
-            >Twitter</a
           >
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
+              />
+            </svg>
+            <div class="store-btn-content">
+              <span class="store-btn-label">Download on the</span>
+              <span class="store-btn-title">App Store</span>
+            </div>
+          </a>
           <a
-            href="https://instagram.com/fighterstech"
+            href="https://play.google.com/store/apps/details?id=com.xiscoteon.fighterstech"
+            class="store-btn"
+            id="googleLink"
             target="_blank"
             rel="noopener noreferrer"
-            >Instagram</a
           >
-          <a
-            href="https://www.tiktok.com/@fighterstech"
-            target="_blank"
-            rel="noopener noreferrer"
-            >TikTok</a
-          >
-          <a
-            href="https://bsky.app/profile/fighterstech.bsky.social"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Bluesky</a
-          >
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"
+              />
+            </svg>
+            <div class="store-btn-content">
+              <span class="store-btn-label">Get it on</span>
+              <span class="store-btn-title">Google Play</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="scroll-indicator">
+        <span>Scroll</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+          <path d="M12 5v14M19 12l-7 7-7-7" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- Main Features Section -->
+    <section class="section video-section" id="mainFeaturesSection">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-label" id="featuresLabel">Features</span>
+          <h2 class="section-title" id="titleMainFeatures">
+            Main <span>Features</span>
+          </h2>
+          <p class="section-description" id="featuresDesc">
+            Discover everything FightersTech has to offer for competitive
+            players and tournament organizers.
+          </p>
+        </div>
+
+        <div class="features-grid fade-in">
+          <div class="feature-card">
+            <div class="feature-icon">🏆</div>
+            <h3>Tournament Notifications</h3>
+            <p>
+              Never miss a tournament again. Get daily notifications for
+              upcoming events in your favorite fighting games.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎮</div>
+            <h3>Game Profiles</h3>
+            <p>
+              Create detailed profiles for each game you play. Track your
+              progress, rank, and match history.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚔️</div>
+            <h3>Find Matchups</h3>
+            <p>
+              Connect with players at your skill level. Search for opponents,
+              set up matches, and improve your game.
+            </p>
+          </div>
+        </div>
+
+        <div class="video-container fade-in" style="margin-top: 64px">
+          <div class="swiper-container" id="videoSwiper">
+            <div class="swiper-wrapper"></div>
+            <div class="swiper-button-prev" id="videoSwiperPrev"></div>
+            <div class="swiper-button-next" id="videoSwiperNext"></div>
+          </div>
+          <div class="video-title">
+            <strong id="activeVideoTitle">Loading...</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- App Images Section -->
+    <section class="section app-showcase" id="appImagesSection">
+      <div class="container">
+        <div class="app-showcase-wrapper">
+          <div class="app-showcase-content fade-in">
+            <span class="section-label">App Gallery</span>
+            <h2 id="titleAppImages">See the <span>Action</span></h2>
+            <p>
+              Take a look at the FightersTech interface. Built for speed,
+              designed for competitors. Every screen is optimized for quick
+              access to the features you need most.
+            </p>
+            <ul class="feature-list">
+              <li>Intuitive tournament browsing</li>
+              <li>Player profile management</li>
+              <li>Daily tournament notifications</li>
+              <li>Discord integration</li>
+              <li>Social sharing features</li>
+            </ul>
+          </div>
+
+          <div class="app-showcase-slider fade-in">
+            <div class="phone-frame">
+              <div class="swipe-hint" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </div>
+              <div class="phone-screen">
+                <div class="swiper-container app-images" id="appImagesSwiper">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                      <img
+                        src="img/01_en.jpg"
+                        alt="Screenshot 1"
+                        id="screenshot1"
+                      />
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        src="img/02_en.jpg"
+                        alt="Screenshot 2"
+                        id="screenshot2"
+                      />
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        src="img/03_en.jpg"
+                        alt="Screenshot 3"
+                        id="screenshot3"
+                      />
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        src="img/04_en.jpg"
+                        alt="Screenshot 4"
+                        id="screenshot4"
+                      />
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        src="img/05_en.jpg"
+                        alt="Screenshot 5"
+                        id="screenshot5"
+                      />
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        src="img/06_en.jpg"
+                        alt="Screenshot 6"
+                        id="screenshot6"
+                      />
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        src="img/07_en.jpg"
+                        alt="Screenshot 7"
+                        id="screenshot7"
+                      />
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        src="img/08_en.jpg"
+                        alt="Screenshot 8"
+                        id="screenshot8"
+                      />
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        src="img/09_en.jpg"
+                        alt="Screenshot 9"
+                        id="screenshot9"
+                      />
+                    </div>
+                  </div>
+                  <div class="swiper-pagination"></div>
+                </div>
+              </div>
+            </div>
+            <div class="swipe-instruction">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M7 11l5-5 5 5M12 4v12" />
+              </svg>
+              <span id="swipeText">Swipe or drag to explore</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Other Features Section -->
+    <section class="section video-section" id="otherFeaturesSection">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-label">More</span>
+          <h2 class="section-title" id="titleOtherFeatures">
+            Other <span>Features</span>
+          </h2>
+          <p class="section-description">
+            Explore additional tools and features that make FightersTech the
+            complete platform for fighting game enthusiasts.
+          </p>
+        </div>
+
+        <div class="video-container fade-in">
+          <div class="swiper-container" id="otherFeaturesSwiper">
+            <div class="swiper-wrapper"></div>
+            <div class="swiper-button-prev" id="otherFeaturesPrev"></div>
+            <div class="swiper-button-next" id="otherFeaturesNext"></div>
+          </div>
+          <div class="video-title">
+            <strong id="activeOtherVideoTitle">Loading...</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+      <div class="container">
+        <div class="cta-content fade-in">
+          <h2>Ready to <span>Join the Fight?</span></h2>
+          <p>
+            Download FightersTech today and become part of the ultimate Fighting
+            Game Community platform.
+          </p>
+          <div class="store-buttons">
+            <a
+              href="https://apps.apple.com/es/app/fighterstech/id6741810411?l=en-GB"
+              class="store-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
+                />
+              </svg>
+              <div class="store-btn-content">
+                <span class="store-btn-label">Download on the</span>
+                <span class="store-btn-title">App Store</span>
+              </div>
+            </a>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.xiscoteon.fighterstech"
+              class="store-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"
+                />
+              </svg>
+              <div class="store-btn-content">
+                <span class="store-btn-label">Get it on</span>
+                <span class="store-btn-title">Google Play</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img
+              src="https://legal.fighterstech.com/fighterstech.png"
+              alt="FightersTech Logo"
+            />
+            <h3>FightersTech</h3>
+            <p>
+              The ultimate platform for the Fighting Game Community. Train,
+              fight, and compete at your best.
+            </p>
+            <div class="social-links">
+              <a
+                href="https://twitter.com/fighterstech"
+                class="social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://instagram.com/fighterstech"
+                class="social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://www.tiktok.com/@fighterstech"
+                class="social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TikTok"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://bsky.app/profile/fighterstech.bsky.social"
+                class="social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Bluesky"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.599.9 2.15.508 2.48.172 2.9 0 3.36c-.172.46-.1.982.1 1.42.2.44.56.8 1.02 1.02.2.1.4.18.62.22-.22 2.02.28 4.18 1.52 6.06 1.76 2.7 4.78 4.76 8.74 4.76s7-2.06 8.76-4.76c1.24-1.88 1.74-4.04 1.52-6.06.22-.04.42-.12.62-.22.46-.22.82-.58 1.02-1.02.2-.44.26-.96.1-1.42-.18-.46-.52-.88-.92-1.2-.66-.56-1.66-1.2-4.3.7-2.76 1.94-5.72 5.88-6.8 8z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-column">
+            <h4>Product</h4>
+            <ul class="footer-links">
+              <li><a href="#mainFeaturesSection">Features</a></li>
+              <li><a href="#appImagesSection">App Gallery</a></li>
+              <li>
+                <a
+                  href="https://apps.apple.com/es/app/fighterstech/id6741810411?l=en-GB"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >App Store</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.xiscoteon.fighterstech"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Google Play</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4>Legal</h4>
+            <ul class="footer-links">
+              <li><a href="#" id="linkLegal">Legal Notice</a></li>
+              <li><a href="#" id="linkPrivacy">Privacy Policy</a></li>
+              <li><a href="#" id="linkTerms">Terms of Service</a></li>
+              <li><a href="#" id="linkCookies">Cookie Policy</a></li>
+              <li><a href="#" id="linkConduct">Code of Conduct</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4>Contact</h4>
+            <ul class="footer-links">
+              <li>
+                <a href="mailto:info@fighterstech.com" id="linkContact"
+                  >Contact Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://twitter.com/fighterstech"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Support</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            © <span id="currentYear"></span> FightersTech.
+            <span id="footerRights">All rights reserved.</span>
+          </p>
         </div>
       </div>
     </footer>
 
     <script>
+      // ========================================
+      // UTILITY FUNCTIONS
+      // ========================================
+
       // Smooth scroll helper
       function scrollToSection(id) {
         document
@@ -528,6 +1942,53 @@
       document.getElementById("currentYear").textContent =
         new Date().getFullYear();
 
+      // Header scroll effect
+      const header = document.getElementById("header");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+
+      // Mobile menu toggle
+      const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+      const mainMenu = document.getElementById("mainMenu");
+
+      mobileMenuToggle.addEventListener("click", () => {
+        mainMenu.classList.toggle("active");
+        mobileMenuToggle.classList.toggle("active");
+      });
+
+      // Close mobile menu when clicking a link
+      document.querySelectorAll(".nav-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          mainMenu.classList.remove("active");
+          mobileMenuToggle.classList.remove("active");
+        });
+      });
+
+      // Fade in animation on scroll
+      const fadeElements = document.querySelectorAll(".fade-in");
+      const fadeObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              fadeObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+      );
+
+      fadeElements.forEach((el) => fadeObserver.observe(el));
+
+      // ========================================
+      // LANGUAGE & CONTENT
+      // ========================================
+
       // Global language variable; default is English
       let currentLang = "en";
       const userLang = navigator.language || navigator.userLanguage;
@@ -535,7 +1996,7 @@
         currentLang = "es";
       }
 
-      // Translations + video arrays, including promo video placeholder
+      // Translations + video arrays
       const translations = {
         es: {
           menuMainFeatures: "Características",
@@ -544,7 +2005,6 @@
           mainFeaturesTitle: "Características Principales",
           appImagesTitle: "Imágenes de la App",
           otherFeaturesTitle: "Otras Funcionalidades",
-          appleAlert: "Enlace a App Store no disponible aún",
           headerTitle: "FightersTech",
           eslogan: "Entrena. Lucha. Compite.",
           footerRights: "Todos los derechos reservados.",
@@ -556,6 +2016,18 @@
           linkContact: "Contacto",
           appleAlt: "Disponible en App Store",
           googleAlt: "Disponible en Play Store",
+          heroSubtitle:
+            "La plataforma definitiva para la comunidad de juegos de lucha. Encuentra enfrentamientos, sigue torneos y mejora tu juego.",
+          featuresLabel: "Características",
+          featuresDesc:
+            "Descubre todo lo que FightersTech ofrece para jugadores competitivos y organizadores de torneos.",
+          ctaTitle: "¿Listo para unirte a la lucha?",
+          ctaDesc:
+            "Descarga FightersTech hoy y forma parte de la plataforma definitiva para la comunidad de juegos de lucha.",
+          availableNow: "Disponible Ahora",
+          scrollText: "Desplázate",
+          downloadOn: "Descargar en",
+          getItOn: "Disponible en",
           legalUrls: {
             linkLegal: "https://legal.fighterstech.com/es/",
             linkPrivacy: "https://legal.fighterstech.com/es/privacy-policy/",
@@ -620,7 +2092,6 @@
                 title: "Tutoriales FightersTech - Notificaciones de torneos",
               },
             ],
-            // Fill these with your “other” video IDs & titles
             mobileOtherVideos: [
               {
                 id: "WReOhnLcwsI",
@@ -674,10 +2145,8 @@
           menuAppImages: "App Images",
           menuOtherFeatures: "Other Features",
           mainFeaturesTitle: "Main Features",
-          mainFeaturesTitle: "Main Features",
           appImagesTitle: "App Images",
           otherFeaturesTitle: "Other Features",
-          appleAlert: "App Store link not available yet",
           headerTitle: "FightersTech",
           eslogan: "Train. Fight. Compete.",
           footerRights: "All rights reserved.",
@@ -689,6 +2158,18 @@
           linkContact: "Contact",
           appleAlt: "Available on the App Store",
           googleAlt: "Available on Play Store",
+          heroSubtitle:
+            "The ultimate platform for the Fighting Game Community. Find matchups, track tournaments, and level up your game.",
+          featuresLabel: "Features",
+          featuresDesc:
+            "Discover everything FightersTech has to offer for competitive players and tournament organizers.",
+          ctaTitle: "Ready to Join the Fight?",
+          ctaDesc:
+            "Download FightersTech today and become part of the ultimate Fighting Game Community platform.",
+          availableNow: "Available Now",
+          scrollText: "Scroll",
+          downloadOn: "Download on the",
+          getItOn: "Get it on",
           legalUrls: {
             linkLegal: "https://legal.fighterstech.com/en/",
             linkPrivacy: "https://legal.fighterstech.com/en/privacy-policy/",
@@ -754,18 +2235,12 @@
               },
             ],
             mobileOtherVideos: [
-              {
-                id: "DqD7IKQrpeU",
-                title: "Quick Features - Game Order",
-              },
+              { id: "DqD7IKQrpeU", title: "Quick Features - Game Order" },
               {
                 id: "wN0_XOfZWKs",
                 title: "Quick Features - Link Discord Account",
               },
-              {
-                id: "Gt-_QeyyOQY",
-                title: "Quick Features - Block Users",
-              },
+              { id: "Gt-_QeyyOQY", title: "Quick Features - Block Users" },
               {
                 id: "mZcjf6B4lhM",
                 title: "Quick Features - Sharing in other social apps",
@@ -776,18 +2251,12 @@
               },
             ],
             desktopOtherVideos: [
-              {
-                id: "DqD7IKQrpeU",
-                title: "Quick Features - Game Order",
-              },
+              { id: "DqD7IKQrpeU", title: "Quick Features - Game Order" },
               {
                 id: "wN0_XOfZWKs",
                 title: "Quick Features - Link Discord Account",
               },
-              {
-                id: "Gt-_QeyyOQY",
-                title: "Quick Features - Block Users",
-              },
+              { id: "Gt-_QeyyOQY", title: "Quick Features - Block Users" },
               {
                 id: "mZcjf6B4lhM",
                 title: "Quick Features - Sharing in other social apps",
@@ -805,9 +2274,12 @@
         currentLang = lang;
         const t = translations[lang];
 
-        // Header & footer
-        document.getElementById("headerTitle").textContent = t.headerTitle;
-        document.getElementById("eslogan").textContent = t.eslogan;
+        // Update language toggle buttons
+        document.querySelectorAll(".lang-btn").forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.lang === lang);
+        });
+
+        // Header & footer text
         document.getElementById("footerRights").textContent = t.footerRights;
         document.getElementById("linkLegal").textContent = t.linkLegal;
         document.getElementById("linkLegal").href = t.legalUrls.linkLegal;
@@ -820,29 +2292,159 @@
         document.getElementById("linkConduct").textContent = t.linkConduct;
         document.getElementById("linkConduct").href = t.legalUrls.linkConduct;
         document.getElementById("linkContact").textContent = t.linkContact;
-        document.querySelector(".apple-badge").alt = t.appleAlt;
-        document.querySelector(".google-badge").alt = t.googleAlt;
-        // Al final de setLanguage(lang):
-        // Actualizar títulos de secciones
-        document.getElementById("titleMainFeatures").textContent =
-          t.mainFeaturesTitle;
-        document.getElementById("titleAppImages").textContent =
-          t.appImagesTitle;
-        document.getElementById("titleOtherFeatures").textContent =
-          t.otherFeaturesTitle;
-        // Menú principal
+
+        // Hero section
+        document.getElementById("heroSubtitle").textContent = t.heroSubtitle;
+        document.querySelector(".hero-badge").textContent = t.availableNow;
+        document.querySelector(".scroll-indicator span").textContent =
+          t.scrollText;
+        document.querySelectorAll(".store-btn-label")[0].textContent =
+          t.downloadOn;
+        document.querySelectorAll(".store-btn-label")[1].textContent =
+          t.getItOn;
+
+        // Hero title - translate the three words
+        const heroWords = document.querySelectorAll("#heroTitle .word");
+        if (lang === "es") {
+          heroWords[0].textContent = "Entrena.";
+          heroWords[0].setAttribute("data-text", "Entrena.");
+          heroWords[1].textContent = "Lucha.";
+          heroWords[1].setAttribute("data-text", "Lucha.");
+          heroWords[2].textContent = "Compite.";
+          heroWords[2].setAttribute("data-text", "Compite.");
+        } else {
+          heroWords[0].textContent = "Train.";
+          heroWords[0].setAttribute("data-text", "Train.");
+          heroWords[1].textContent = "Fight.";
+          heroWords[1].setAttribute("data-text", "Fight.");
+          heroWords[2].textContent = "Compete.";
+          heroWords[2].setAttribute("data-text", "Compete.");
+        }
+
+        // Section titles
+        document.getElementById("titleMainFeatures").innerHTML =
+          t.mainFeaturesTitle.replace(/(Features)/, "<span>$1</span>");
+        document.getElementById("titleAppImages").innerHTML =
+          t.appImagesTitle.replace(/(Action|la App)/, "<span>$1</span>");
+        document.getElementById("titleOtherFeatures").innerHTML =
+          t.otherFeaturesTitle.replace(
+            /(Features|Funcionalidades)/,
+            "<span>$1</span>",
+          );
+
+        // Menu items
         document.getElementById("menuMainFeatures").textContent =
           t.menuMainFeatures;
         document.getElementById("menuAppImages").textContent = t.menuAppImages;
         document.getElementById("menuOtherFeatures").textContent =
           t.menuOtherFeatures;
 
+        // Labels
+        document.querySelector(".section-label").textContent = t.featuresLabel;
+        document.querySelectorAll(".section-label")[1].textContent =
+          lang === "es" ? "Galería" : "App Gallery";
+        document.querySelectorAll(".section-label")[2].textContent =
+          lang === "es" ? "Más" : "More";
+        document.querySelectorAll(".section-description")[0].textContent =
+          t.featuresDesc;
+        document.querySelectorAll(".section-description")[1].textContent =
+          lang === "es"
+            ? "Explora herramientas adicionales que hacen de FightersTech la plataforma completa para los entusiastas de los juegos de lucha."
+            : "Explore additional tools and features that make FightersTech the complete platform for fighting game enthusiasts.";
+
+        // CTA section
+        document.querySelector(".cta-content h2").innerHTML =
+          lang === "es"
+            ? "¿Listo para <span>unirte a la lucha?</span>"
+            : "Ready to <span>Join the Fight?</span>";
+        document.querySelector(".cta-content p").textContent =
+          lang === "es"
+            ? "Descarga FightersTech hoy y forma parte de la plataforma definitiva para la comunidad de juegos de lucha."
+            : t.ctaDesc;
+
+        // App showcase content
+        const appShowcaseTitle = document.querySelector(
+          ".app-showcase-content h2",
+        );
+        appShowcaseTitle.innerHTML =
+          lang === "es"
+            ? "Ve la <span>Acción</span>"
+            : "See the <span>Action</span>";
+
+        // Swipe instruction text
+        const swipeText = document.getElementById("swipeText");
+        if (swipeText) {
+          swipeText.textContent =
+            lang === "es"
+              ? "Desliza o arrastra para explorar"
+              : "Swipe or drag to explore";
+        }
+
+        const appShowcaseText = document.querySelector(
+          ".app-showcase-content p",
+        );
+        appShowcaseText.textContent =
+          lang === "es"
+            ? "Echa un vistazo a la interfaz de FightersTech. Construido para la velocidad, diseñado para competidores. Cada pantalla está optimizada para un acceso rápido a las funciones que más necesitas."
+            : "Take a look at the FightersTech interface. Built for speed, designed for competitors. Every screen is optimized for quick access to the features you need most.";
+
+        // Update feature list
+        const featureList = document.querySelectorAll(".feature-list li");
+        const featureTexts =
+          lang === "es"
+            ? [
+                "Navegación intuitiva de torneos",
+                "Gestión de perfiles de jugador",
+                "Notificaciones diarias",
+                "Integración con Discord",
+                "Funciones de compartir en redes",
+              ]
+            : [
+                "Intuitive tournament browsing",
+                "Player profile management",
+                "Daily tournament notifications",
+                "Discord integration",
+                "Social sharing features",
+              ];
+        featureList.forEach((li, i) => {
+          if (featureTexts[i]) li.textContent = featureTexts[i];
+        });
+
+        // Update feature cards
+        const featureCards = document.querySelectorAll(".feature-card");
+        if (lang === "es") {
+          featureCards[0].querySelector("h3").textContent =
+            "Notificaciones de Torneos";
+          featureCards[0].querySelector("p").textContent =
+            "Nunca te pierdas un torneo de nuevo. Recibe notificaciones diarias de próximos eventos en tus juegos de lucha favoritos.";
+          featureCards[1].querySelector("h3").textContent = "Perfiles de Juego";
+          featureCards[1].querySelector("p").textContent =
+            "Crea perfiles detallados para cada juego que juegues. Sigue tu progreso, rango e historial de enfrentamientos.";
+          featureCards[2].querySelector("h3").textContent =
+            "Encontrar Enfrentamientos";
+          featureCards[2].querySelector("p").textContent =
+            "Conecta con jugadores de tu nivel. Busca oponentes, organiza enfrentamientos y mejora tu juego.";
+        } else {
+          featureCards[0].querySelector("h3").textContent =
+            "Tournament Notifications";
+          featureCards[0].querySelector("p").textContent =
+            "Never miss a tournament again. Get daily notifications for upcoming events in your favorite fighting games.";
+          featureCards[1].querySelector("h3").textContent = "Game Profiles";
+          featureCards[1].querySelector("p").textContent =
+            "Create detailed profiles for each game you play. Track your progress, rank, and match history.";
+          featureCards[2].querySelector("h3").textContent = "Find Matchups";
+          featureCards[2].querySelector("p").textContent =
+            "Connect with players at your skill level. Search for opponents, set up matches, and improve your game.";
+        }
+
         // Screenshots
         for (let i = 1; i <= 9; i++) {
           const key = "screenshot" + i;
-          document.getElementById(key).alt = t.screenshots[key];
-          document.getElementById(key).src =
-            t.screenshots["screenShot" + i + "Link"];
+          const img = document.getElementById(key);
+          if (img) {
+            img.alt = t.screenshots[key];
+            img.src = t.screenshots["screenShot" + i + "Link"];
+          }
         }
 
         // Choose mobile vs desktop
@@ -865,9 +2467,7 @@
           slide.setAttribute("data-title", v.title);
           const cls = isMobile ? "mobile-video" : "";
           slide.innerHTML = `
-            <div class="video-slide-content">
-              <iframe class="${cls}" src="https://www.youtube.com/embed/${v.id}?rel=0" frameborder="0" allowfullscreen></iframe>
-            </div>`;
+            <iframe class="${cls}" src="https://www.youtube.com/embed/${v.id}?rel=0" frameborder="0" allowfullscreen></iframe>`;
           wrapper.appendChild(slide);
         });
 
@@ -882,49 +2482,63 @@
           slide.setAttribute("data-title", v.title);
           const cls = isMobile ? "mobile-video" : "";
           slide.innerHTML = `
-            <div class="video-slide-content">
-              <iframe class="${cls}" src="https://www.youtube.com/embed/${v.id}?rel=0" frameborder="0" allowfullscreen></iframe>
-            </div>`;
+            <iframe class="${cls}" src="https://www.youtube.com/embed/${v.id}?rel=0" frameborder="0" allowfullscreen></iframe>`;
           otherWrapper.appendChild(slide);
         });
 
         // Update swipers
         if (window.videoSwiper) {
           window.videoSwiper.update();
+          window.videoSwiper.slideTo(0);
           updateActiveVideoTitle();
         }
         if (window.otherSwiper) {
           window.otherSwiper.update();
+          window.otherSwiper.slideTo(0);
           updateActiveOtherVideoTitle();
         }
       }
 
       function updateActiveVideoTitle() {
+        if (!window.videoSwiper || !window.videoSwiper.slides.length) return;
         const slide = window.videoSwiper.slides[window.videoSwiper.activeIndex];
         document.getElementById("activeVideoTitle").textContent =
           slide.getAttribute("data-title");
       }
+
       function updateActiveOtherVideoTitle() {
+        if (!window.otherSwiper || !window.otherSwiper.slides.length) return;
         const slide = window.otherSwiper.slides[window.otherSwiper.activeIndex];
         document.getElementById("activeOtherVideoTitle").textContent =
           slide.getAttribute("data-title");
       }
 
+      // ========================================
+      // SWIPER INITIALIZATION
+      // ========================================
+
       document.addEventListener("DOMContentLoaded", function () {
         // App Images swiper
-        new Swiper(".app-images", {
-          effect: "fade",
-          fadeEffect: { crossFade: true },
+        new Swiper("#appImagesSwiper", {
+          effect: "slide",
           slidesPerView: 1,
-          loop: false,
+          loop: true,
+          speed: 400,
+          grabCursor: true,
+          autoplay: {
+            delay: 4000,
+            disableOnInteraction: true,
+            pauseOnMouseEnter: true,
+          },
           pagination: {
             el: ".swiper-pagination",
             clickable: true,
           },
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
+          touchRatio: 1.5,
+          touchAngle: 45,
+          simulateTouch: true,
+          allowTouchMove: true,
+          threshold: 5,
         });
 
         // Main features swiper
@@ -934,7 +2548,7 @@
           slidesPerView: 1,
           loop: false,
           pagination: {
-            el: "#videoSwiperPagination",
+            el: ".swiper-pagination",
             clickable: true,
           },
           navigation: {
@@ -942,6 +2556,7 @@
             prevEl: "#videoSwiperPrev",
           },
         });
+
         // Other features swiper
         window.otherSwiper = new Swiper("#otherFeaturesSwiper", {
           effect: "fade",
@@ -949,7 +2564,7 @@
           slidesPerView: 1,
           loop: false,
           pagination: {
-            el: "#otherFeaturesPagination",
+            el: ".swiper-pagination",
             clickable: true,
           },
           navigation: {
@@ -960,11 +2575,16 @@
 
         // Populate and set titles
         setLanguage(currentLang);
-        updateActiveVideoTitle();
-        updateActiveOtherVideoTitle();
 
+        // Add event listeners for slide changes
         window.videoSwiper.on("slideChange", updateActiveVideoTitle);
         window.otherSwiper.on("slideChange", updateActiveOtherVideoTitle);
+
+        // Initial title updates
+        setTimeout(() => {
+          updateActiveVideoTitle();
+          updateActiveOtherVideoTitle();
+        }, 100);
       });
     </script>
   </body>
