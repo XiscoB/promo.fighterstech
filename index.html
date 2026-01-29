@@ -99,29 +99,29 @@
          CSS VARIABLES & DESIGN SYSTEM
          ======================================== */
       :root {
-        /* Colors - Gaming/Dark Theme */
-        --bg-primary: #0a0a0f;
-        --bg-secondary: #12121a;
-        --bg-tertiary: #1a1a25;
-        --bg-card: rgba(26, 26, 37, 0.6);
-        --bg-card-hover: rgba(26, 26, 37, 0.8);
+        /* Colors - FightersTech App Theme */
+        --bg-primary: #001a33;
+        --bg-secondary: #00284e;
+        --bg-tertiary: #003366;
+        --bg-card: rgba(0, 51, 102, 0.6);
+        --bg-card-hover: rgba(0, 51, 102, 0.8);
 
-        /* Accent Colors */
-        --accent-cyan: #00d4ff;
-        --accent-orange: #ff6b35;
-        --accent-purple: #a855f7;
+        /* Accent Colors - Based on App */
+        --accent-gold: #fcaf01;
+        --accent-green: #00c853;
+        --accent-blue: #1e90ff;
         --accent-gradient: linear-gradient(
           135deg,
-          var(--accent-orange) 0%,
-          var(--accent-cyan) 100%
+          var(--accent-gold) 0%,
+          var(--accent-blue) 100%
         );
-        --accent-glow-cyan: 0 0 30px rgba(0, 212, 255, 0.3);
-        --accent-glow-orange: 0 0 30px rgba(255, 107, 53, 0.3);
+        --accent-glow-gold: 0 0 30px rgba(252, 175, 1, 0.3);
+        --accent-glow-green: 0 0 30px rgba(0, 200, 83, 0.3);
 
         /* Text Colors */
         --text-primary: #ffffff;
-        --text-secondary: rgba(255, 255, 255, 0.7);
-        --text-muted: rgba(255, 255, 255, 0.5);
+        --text-secondary: rgba(255, 255, 255, 0.8);
+        --text-muted: rgba(255, 255, 255, 0.6);
 
         /* Typography */
         --font-display: "Chakra Petch", sans-serif;
@@ -168,7 +168,7 @@
 
       /* Selection Color */
       ::selection {
-        background: var(--accent-cyan);
+        background: var(--accent-gold);
         color: var(--bg-primary);
       }
 
@@ -182,8 +182,8 @@
         width: 100%;
         height: 100%;
         background-image:
-          linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+          linear-gradient(rgba(252, 175, 1, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(252, 175, 1, 0.03) 1px, transparent 1px);
         background-size: 50px 50px;
         pointer-events: none;
         z-index: 0;
@@ -203,19 +203,19 @@
       .bg-glow-1 {
         top: -200px;
         right: -200px;
-        background: var(--accent-cyan);
+        background: var(--accent-gold);
       }
 
       .bg-glow-2 {
         bottom: 20%;
         left: -300px;
-        background: var(--accent-orange);
+        background: var(--accent-green);
       }
 
       .bg-glow-3 {
         top: 50%;
         right: 10%;
-        background: var(--accent-purple);
+        background: var(--accent-blue);
         opacity: 0.1;
       }
 
@@ -240,15 +240,16 @@
         right: 0;
         z-index: 1000;
         padding: 16px 0;
-        background: rgba(10, 10, 15, 0.8);
+        background: rgba(0, 40, 78, 0.9);
         backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid rgba(252, 175, 1, 0.1);
         transition: var(--transition-medium);
       }
 
       header.scrolled {
         padding: 12px 0;
-        background: rgba(10, 10, 15, 0.95);
+        background: rgba(0, 40, 78, 0.98);
+        border-bottom: 1px solid rgba(252, 175, 1, 0.2);
       }
 
       .header-inner {
@@ -271,7 +272,7 @@
         width: 48px;
         height: 48px;
         border-radius: var(--radius-sm);
-        box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        box-shadow: 0 0 20px rgba(252, 175, 1, 0.2);
       }
 
       .logo-text {
@@ -314,7 +315,7 @@
       .lang-btn.active {
         background: var(--accent-gradient);
         color: var(--text-primary);
-        box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        box-shadow: 0 4px 15px rgba(252, 175, 1, 0.3);
       }
 
       /* Mobile Menu Toggle */
@@ -358,7 +359,7 @@
         bottom: 0;
         background: radial-gradient(
           ellipse at center top,
-          rgba(0, 212, 255, 0.08) 0%,
+          rgba(252, 175, 1, 0.08) 0%,
           transparent 50%
         );
         pointer-events: none;
@@ -377,12 +378,12 @@
         gap: 8px;
         padding: 8px 20px;
         background: var(--bg-card);
-        border: 1px solid rgba(0, 212, 255, 0.2);
+        border: 1px solid rgba(252, 175, 1, 0.2);
         border-radius: var(--radius-xl);
         font-family: var(--font-display);
         font-size: 0.875rem;
         font-weight: 500;
-        color: var(--accent-cyan);
+        color: var(--accent-gold);
         margin-bottom: 32px;
         animation: fadeInUp 0.6s ease;
       }
@@ -391,9 +392,9 @@
         content: "";
         width: 8px;
         height: 8px;
-        background: var(--accent-cyan);
+        background: var(--accent-gold);
         border-radius: 50%;
-        box-shadow: 0 0 10px var(--accent-cyan);
+        box-shadow: 0 0 10px var(--accent-gold);
         animation: pulse 2s infinite;
       }
 
@@ -487,7 +488,7 @@
       .store-btn:hover {
         transform: translateY(-4px);
         border-color: transparent;
-        box-shadow: var(--accent-glow-cyan);
+        box-shadow: var(--accent-glow-gold);
       }
 
       .store-btn:hover::before {
@@ -600,13 +601,13 @@
       .section-label {
         display: inline-block;
         padding: 6px 16px;
-        background: rgba(0, 212, 255, 0.1);
-        border: 1px solid rgba(0, 212, 255, 0.2);
+        background: rgba(252, 175, 1, 0.1);
+        border: 1px solid rgba(252, 175, 1, 0.2);
         border-radius: var(--radius-xl);
         font-family: var(--font-display);
         font-size: 0.875rem;
         font-weight: 600;
-        color: var(--accent-cyan);
+        color: var(--accent-gold);
         text-transform: uppercase;
         letter-spacing: 0.05em;
         margin-bottom: 16px;
@@ -633,18 +634,20 @@
       .features-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 24px;
+        gap: 32px;
         margin-top: 48px;
+        margin-bottom: 48px;
       }
 
       .feature-card {
-        background: var(--bg-card);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(252, 175, 1, 0.15);
         border-radius: var(--radius-lg);
         padding: 32px;
         transition: var(--transition-medium);
         position: relative;
         overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       }
 
       .feature-card::before {
@@ -653,17 +656,19 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 2px;
+        height: 3px;
         background: var(--accent-gradient);
         transform: scaleX(0);
         transition: var(--transition-medium);
       }
 
       .feature-card:hover {
-        background: var(--bg-card-hover);
-        border-color: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(252, 175, 1, 0.4);
         transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        box-shadow:
+          0 20px 40px rgba(0, 0, 0, 0.4),
+          0 0 30px rgba(252, 175, 1, 0.1);
       }
 
       .feature-card:hover::before {
@@ -677,10 +682,42 @@
         align-items: center;
         justify-content: center;
         background: var(--bg-tertiary);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: var(--radius-md);
         margin-bottom: 20px;
-        font-size: 1.5rem;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--text-secondary);
+        transition: var(--transition-medium);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-icon::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--accent-gradient);
+        opacity: 0;
+        transition: var(--transition-medium);
+      }
+
+      .feature-icon svg {
+        width: 28px;
+        height: 28px;
+        fill: currentColor;
+        position: relative;
+        z-index: 1;
+      }
+
+      .feature-card:hover .feature-icon {
+        border-color: transparent;
+        color: var(--text-primary);
+      }
+
+      .feature-card:hover .feature-icon::before {
+        opacity: 1;
       }
 
       .feature-card h3 {
@@ -715,7 +752,7 @@
         background: linear-gradient(
           90deg,
           transparent,
-          rgba(0, 212, 255, 0.3),
+          rgba(252, 175, 1, 0.3),
           transparent
         );
       }
@@ -767,7 +804,7 @@
         background: var(--accent-gradient);
         border-color: transparent;
         transform: scale(1.1);
-        box-shadow: var(--accent-glow-cyan);
+        box-shadow: var(--accent-glow-gold);
       }
 
       .swiper-button-prev::after,
@@ -808,8 +845,8 @@
       }
 
       .swiper-pagination-bullet-active {
-        background: var(--accent-cyan);
-        box-shadow: 0 0 10px var(--accent-cyan);
+        background: var(--accent-gold);
+        box-shadow: 0 0 10px var(--accent-gold);
         transform: scale(1.2);
       }
 
@@ -889,9 +926,9 @@
         justify-content: center;
         width: 24px;
         height: 24px;
-        background: rgba(0, 212, 255, 0.1);
+        background: rgba(252, 175, 1, 0.1);
         border-radius: 50%;
-        color: var(--accent-cyan);
+        color: var(--accent-gold);
         font-size: 0.75rem;
         font-weight: 700;
       }
@@ -908,7 +945,7 @@
         box-shadow:
           0 0 0 1px rgba(255, 255, 255, 0.1),
           0 25px 50px -12px rgba(0, 0, 0, 0.5),
-          0 0 60px rgba(0, 212, 255, 0.1);
+          0 0 60px rgba(252, 175, 1, 0.1);
         max-width: 380px;
         margin: 0 auto;
       }
@@ -992,7 +1029,7 @@
       }
 
       .app-gallery-pagination .swiper-pagination-bullet-active {
-        background: var(--accent-cyan);
+        background: var(--accent-gold);
         transform: scale(1.3);
       }
 
@@ -1029,8 +1066,8 @@
       .swipe-hint svg {
         width: 32px;
         height: 32px;
-        color: var(--accent-cyan);
-        filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
+        color: var(--accent-gold);
+        filter: drop-shadow(0 0 10px rgba(252, 175, 1, 0.5));
       }
 
       .swipe-instruction {
@@ -1080,12 +1117,12 @@
         background:
           radial-gradient(
             ellipse at 30% 50%,
-            rgba(0, 212, 255, 0.08) 0%,
+            rgba(252, 175, 1, 0.08) 0%,
             transparent 50%
           ),
           radial-gradient(
             ellipse at 70% 50%,
-            rgba(255, 107, 53, 0.08) 0%,
+            rgba(0, 200, 83, 0.08) 0%,
             transparent 50%
           );
         pointer-events: none;
@@ -1183,14 +1220,14 @@
       }
 
       .footer-links a:hover {
-        color: var(--accent-cyan);
+        color: var(--accent-gold);
       }
 
       .footer-links a::before {
         content: "";
         width: 0;
         height: 1px;
-        background: var(--accent-cyan);
+        background: var(--accent-gold);
         transition: var(--transition-fast);
       }
 
@@ -1217,14 +1254,36 @@
         color: var(--text-secondary);
         text-decoration: none;
         transition: var(--transition-medium);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .social-link::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--accent-gradient);
+        opacity: 0;
+        transition: var(--transition-medium);
       }
 
       .social-link:hover {
-        background: var(--accent-gradient);
-        border-color: transparent;
-        color: var(--text-primary);
         transform: translateY(-4px);
-        box-shadow: var(--accent-glow-cyan);
+        border-color: transparent;
+        box-shadow: var(--accent-glow-gold);
+        color: var(--text-primary);
+      }
+
+      .social-link:hover::before {
+        opacity: 1;
+      }
+
+      .social-link svg {
+        position: relative;
+        z-index: 1;
       }
 
       .social-link svg {
@@ -1274,8 +1333,8 @@
       }
 
       .nav-link:hover {
-        color: var(--text-primary);
-        background: rgba(255, 255, 255, 0.05);
+        color: var(--accent-gold);
+        background: rgba(252, 175, 1, 0.1);
       }
 
       /* ========================================
@@ -1571,7 +1630,18 @@
 
         <div class="features-grid fade-in">
           <div class="feature-card">
-            <div class="feature-icon">🏆</div>
+            <div class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="28"
+                height="28"
+              >
+                <path
+                  d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.74 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.74 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"
+                />
+              </svg>
+            </div>
             <h3>Tournament Notifications</h3>
             <p>
               Never miss a tournament again. Get daily notifications for
@@ -1579,7 +1649,35 @@
             </p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🎮</div>
+            <div class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <!-- Body -->
+                <path
+                  d="M6 9h12a4 4 0 0 1 4 4v1a3 3 0 0 1-3 3h-2l-2-2H9l-2 2H5a3 3 0 0 1-3-3v-1a4 4 0 0 1 4-4z"
+                />
+
+                <!-- D-pad (lighter via opacity) -->
+                <g opacity="0.6">
+                  <line x1="8" y1="11.5" x2="8" y2="14.5" />
+                  <line x1="6.5" y1="13" x2="9.5" y2="13" />
+                </g>
+
+                <!-- Buttons (outline, lighter via opacity) -->
+                <g opacity="0.6">
+                  <circle cx="15.5" cy="12.5" r="0.9" />
+                  <circle cx="17.5" cy="13.5" r="0.9" />
+                  <circle cx="14.5" cy="13.5" r="0.9" />
+                  <circle cx="16.5" cy="14.5" r="0.9" />
+                </g>
+              </svg>
+            </div>
             <h3>Game Profiles</h3>
             <p>
               Create detailed profiles for each game you play. Track your
@@ -1587,7 +1685,24 @@
             </p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">⚔️</div>
+            <div class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <!-- Sword 1 -->
+                <line x1="5" y1="19" x2="19" y2="5" />
+                <line x1="7" y1="17" x2="5" y2="15" />
+
+                <!-- Sword 2 -->
+                <line x1="19" y1="19" x2="5" y2="5" />
+                <line x1="17" y1="17" x2="19" y2="15" />
+              </svg>
+            </div>
             <h3>Find Matchups</h3>
             <p>
               Connect with players at your skill level. Search for opponents,
@@ -2498,7 +2613,8 @@
         if (footerColumns.length >= 3) {
           // Product column
           footerColumns[0].querySelector("h4").textContent = t.footer.product;
-          const productLinks = footerColumns[0].querySelectorAll(".footer-links a");
+          const productLinks =
+            footerColumns[0].querySelectorAll(".footer-links a");
           productLinks[0].textContent = t.footer.features;
           productLinks[1].textContent = t.footer.appGallery;
           // App Store and Google Play don't need translation
@@ -2508,7 +2624,8 @@
 
           // Contact column
           footerColumns[2].querySelector("h4").textContent = t.footer.contact;
-          const contactLinks = footerColumns[2].querySelectorAll(".footer-links a");
+          const contactLinks =
+            footerColumns[2].querySelectorAll(".footer-links a");
           contactLinks[0].textContent = t.footer.contactUs;
           contactLinks[1].textContent = t.footer.support;
         }
@@ -2525,12 +2642,14 @@
 
         // Choose mobile vs desktop based on screen size
         const videoView = getVideoView();
-        const mainVideos = videoView === "mobile"
-          ? t.videoSwiper.mobileVideos
-          : t.videoSwiper.desktopVideos;
-        const otherVideos = videoView === "mobile"
-          ? t.videoSwiper.mobileOtherVideos
-          : t.videoSwiper.desktopOtherVideos;
+        const mainVideos =
+          videoView === "mobile"
+            ? t.videoSwiper.mobileVideos
+            : t.videoSwiper.desktopVideos;
+        const otherVideos =
+          videoView === "mobile"
+            ? t.videoSwiper.mobileOtherVideos
+            : t.videoSwiper.desktopOtherVideos;
 
         // Populate main features slider
         const wrapper = document
