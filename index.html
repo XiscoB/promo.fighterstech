@@ -2127,6 +2127,9 @@
 
       // Global language variable; default is English
       let currentLang = "en";
+      let translations = {};
+      let translationsLoaded = false;
+
       const userLang = navigator.language || navigator.userLanguage;
       if (userLang && userLang.substring(0, 2).toLowerCase() === "es") {
         currentLang = "es";
@@ -2139,463 +2142,133 @@
 
       // Listen for resize to update video format
       window.addEventListener("resize", () => {
-        setLanguage(currentLang);
+        if (translationsLoaded) {
+          setLanguage(currentLang);
+        }
       });
 
-      // Translations + video arrays
-      const translations = {
-        es: {
-          menuMainFeatures: "Características",
-          menuAppImages: "Imágenes",
-          menuOtherFeatures: "Otras Funcionalidades",
-          mainFeaturesTitle: "Características Principales",
-          appImagesTitle: "Imágenes de la App",
-          otherFeaturesTitle: "Otras Funcionalidades",
-          headerTitle: "FightersTech",
-          eslogan: "Entrena. Lucha. Compite.",
-          footerRights: "Todos los derechos reservados.",
-          linkLegal: "Aviso Legal",
-          linkPrivacy: "Política de Privacidad",
-          linkTerms: "Términos de Servicio",
-          linkCookies: "Política de Cookies",
-          linkConduct: "Código de Conducta y Directivas de la comunidad",
-          linkContact: "Contacto",
-          appleAlt: "Disponible en App Store",
-          googleAlt: "Disponible en Play Store",
-          heroSubtitle:
-            "La plataforma definitiva para la comunidad de juegos de lucha. Encuentra enfrentamientos, sigue torneos y mejora tu juego.",
-          footerDesc:
-            "La plataforma definitiva para la comunidad de juegos de lucha. Entrena, lucha y compite al máximo.",
-          featuresLabel: "Características",
-          featuresDesc:
-            "Descubre todo lo que FightersTech ofrece para jugadores competitivos y organizadores de torneos.",
-          ctaTitle: "¿Listo para unirte a la lucha?",
-          ctaDesc:
-            "Descarga FightersTech hoy y forma parte de la plataforma definitiva para la comunidad de juegos de lucha.",
-          availableNow: "Disponible Ahora",
-          scrollText: "Desplázate",
-          downloadOn: "Descargar en",
-          getItOn: "Disponible en",
-          appGalleryLabel: "Galería",
-          moreLabel: "Más",
-          otherFeaturesDesc:
-            "Explora herramientas adicionales que hacen de FightersTech la plataforma completa para los entusiastas de los juegos de lucha.",
-          appShowcaseTitle: "Ve la Acción",
-          appShowcaseDesc:
-            "Echa un vistazo a la interfaz de FightersTech. Construido para la velocidad, diseñado para competidores. Cada pantalla está optimizada para un acceso rápido a las funciones que más necesitas.",
-          swipeInstruction: "Desliza o arrastra para explorar",
-          featureList: [
-            "Navegación intuitiva de torneos",
-            "Gestión de perfiles de jugador",
-            "Notificaciones diarias",
-            "Integración con Discord",
-            "Funciones de compartir en redes",
-          ],
-          featureCards: [
-            {
-              title: "Notificaciones de Torneos",
-              desc: "Nunca te pierdas un torneo de nuevo. Recibe notificaciones diarias de próximos eventos en tus juegos de lucha favoritos.",
-            },
-            {
-              title: "Perfiles de Juego",
-              desc: "Crea perfiles detallados para cada juego que juegues. Sigue tu progreso, rango e historial de enfrentamientos.",
-            },
-            {
-              title: "Encontrar Enfrentamientos",
-              desc: "Conecta con jugadores de tu nivel. Busca oponentes, organiza enfrentamientos y mejora tu juego.",
-            },
-          ],
-          footer: {
-            product: "Producto",
-            features: "Características",
-            appGallery: "Galería",
-            legal: "Legal",
-            contact: "Contacto",
-            contactUs: "Contáctanos",
-            support: "Soporte",
-          },
-          legalUrls: {
-            linkLegal: "https://legal.fighterstech.com/es/",
-            linkPrivacy: "https://legal.fighterstech.com/es/privacy-policy/",
-            linkTerms: "https://legal.fighterstech.com/es/terms-of-service/",
-            linkCookies: "https://legal.fighterstech.com/es/cookies-policy/",
-            linkConduct: "https://legal.fighterstech.com/es/conduct/",
-          },
-          screenshots: {
-            screenshot1: "Captura de pantalla 1",
-            screenShot1Link: "img/01_es.jpg",
-            screenshot2: "Captura de pantalla 2",
-            screenShot2Link: "img/02_es.jpg",
-            screenshot3: "Captura de pantalla 3",
-            screenShot3Link: "img/03_es.jpg",
-            screenshot4: "Captura de pantalla 4",
-            screenShot4Link: "img/04_es.jpg",
-            screenshot5: "Captura de pantalla 5",
-            screenShot5Link: "img/05_es.jpg",
-            screenshot6: "Captura de pantalla 6",
-            screenShot6Link: "img/06_es.jpg",
-            screenshot7: "Captura de pantalla 7",
-            screenShot7Link: "img/07_es.jpg",
-            screenshot8: "Captura de pantalla 8",
-            screenShot8Link: "img/08_es.jpg",
-            screenshot9: "Captura de pantalla 9",
-            screenShot9Link: "img/09_es.jpg",
-          },
-          videoSwiper: {
-            mobileVideos: [
-              {
-                id: "L3y-TKoFLac",
-                title: "FightersTech - Promo - Notificaciones de torneos",
-              },
-              {
-                id: "kBUb80-_1q8",
-                title: "Tutoriales FightersTech - Crear perfil en un juego",
-              },
-              {
-                id: "UhyUUrff7fo",
-                title: "Tutoriales FightersTech - Buscar enfrentamientos",
-              },
-              {
-                id: "oMRXMtoeXz4",
-                title: "Tutoriales FightersTech - Notificaciones de torneos",
-              },
-            ],
-            desktopVideos: [
-              {
-                id: "L3y-TKoFLac",
-                title: "FightersTech - Promo - Notificaciones de torneos",
-              },
-              {
-                id: "kBUb80-_1q8",
-                title: "Tutoriales FightersTech - Crear perfil en un juego",
-              },
-              {
-                id: "UhyUUrff7fo",
-                title: "Tutoriales FightersTech - Buscar enfrentamientos",
-              },
-              {
-                id: "oMRXMtoeXz4",
-                title: "Tutoriales FightersTech - Notificaciones de torneos",
-              },
-            ],
-            mobileOtherVideos: [
-              {
-                id: "WReOhnLcwsI",
-                title: "Funcionalidades rápidas - Ordenar juegos",
-              },
-              {
-                id: "psTcdC6eMxo",
-                title: "Funcionalidades rápidas - Vincular cuenta de Discord",
-              },
-              {
-                id: "NdsL6khpMT0",
-                title: "Funcionalidades rápidas - Bloquear usuarios",
-              },
-              {
-                id: "8IrUcP-Ntco",
-                title: "Funcionalidades rápidas - Compartir en otras redes",
-              },
-              {
-                id: "VJMd9pxKzLk",
-                title:
-                  "Funcionalidades rápidas - Gestionar notificaciones locales",
-              },
-            ],
-            desktopOtherVideos: [
-              {
-                id: "WReOhnLcwsI",
-                title: "Funcionalidades rápidas - Ordenar juegos",
-              },
-              {
-                id: "psTcdC6eMxo",
-                title: "Funcionalidades rápidas - Vincular cuenta de Discord",
-              },
-              {
-                id: "NdsL6khpMT0",
-                title: "Funcionalidades rápidas - Bloquear usuarios",
-              },
-              {
-                id: "8IrUcP-Ntco",
-                title: "Funcionalidades rápidas - Compartir en otras redes",
-              },
-              {
-                id: "VJMd9pxKzLk",
-                title:
-                  "Funcionalidades rápidas - Gestionar notificaciones locales",
-              },
-            ],
-          },
-        },
-        en: {
-          menuMainFeatures: "Features",
-          menuAppImages: "App Images",
-          menuOtherFeatures: "Other Features",
-          mainFeaturesTitle: "Main Features",
-          appImagesTitle: "App Images",
-          otherFeaturesTitle: "Other Features",
-          headerTitle: "FightersTech",
-          eslogan: "Train. Fight. Compete.",
-          footerRights: "All rights reserved.",
-          linkLegal: "Legal Notice",
-          linkPrivacy: "Privacy Policy",
-          linkTerms: "Terms and Conditions",
-          linkCookies: "Cookie Policy",
-          linkConduct: "Code of Conduct",
-          linkContact: "Contact",
-          appleAlt: "Available on the App Store",
-          googleAlt: "Available on Play Store",
-          heroSubtitle:
-            "The ultimate platform for the Fighting Game Community. Find matchups, track tournaments, and level up your game.",
-          footerDesc:
-            "The ultimate platform for the Fighting Game Community. Train, fight, and compete at your best.",
-          featuresLabel: "Features",
-          featuresDesc:
-            "Discover everything FightersTech has to offer for competitive players and tournament organizers.",
-          ctaTitle: "Ready to Join the Fight?",
-          ctaDesc:
-            "Download FightersTech today and become part of the ultimate Fighting Game Community platform.",
-          availableNow: "Available Now",
-          scrollText: "Scroll",
-          downloadOn: "Download on the",
-          getItOn: "Get it on",
-          appGalleryLabel: "App Gallery",
-          moreLabel: "More",
-          otherFeaturesDesc:
-            "Explore additional tools and features that make FightersTech the complete platform for fighting game enthusiasts.",
-          appShowcaseTitle: "See the Action",
-          appShowcaseDesc:
-            "Take a look at the FightersTech interface. Built for speed, designed for competitors. Every screen is optimized for quick access to the features you need most.",
-          swipeInstruction: "Swipe or drag to explore",
-          featureList: [
-            "Intuitive tournament browsing",
-            "Player profile management",
-            "Daily tournament notifications",
-            "Discord integration",
-            "Social sharing features",
-          ],
-          featureCards: [
-            {
-              title: "Tournament Notifications",
-              desc: "Never miss a tournament again. Get daily notifications for upcoming events in your favorite fighting games.",
-            },
-            {
-              title: "Game Profiles",
-              desc: "Create detailed profiles for each game you play. Track your progress, rank, and match history.",
-            },
-            {
-              title: "Find Matchups",
-              desc: "Connect with players at your skill level. Search for opponents, set up matches, and improve your game.",
-            },
-          ],
-          footer: {
-            product: "Product",
-            features: "Features",
-            appGallery: "App Gallery",
-            legal: "Legal",
-            contact: "Contact",
-            contactUs: "Contact Us",
-            support: "Support",
-          },
-          legalUrls: {
-            linkLegal: "https://legal.fighterstech.com/en/",
-            linkPrivacy: "https://legal.fighterstech.com/en/privacy-policy/",
-            linkTerms: "https://legal.fighterstech.com/en/terms-of-service/",
-            linkCookies: "https://legal.fighterstech.com/en/cookies-policy/",
-            linkConduct: "https://legal.fighterstech.com/en/conduct/",
-          },
-          screenshots: {
-            screenshot1: "Screenshot 1",
-            screenShot1Link: "img/01_en.jpg",
-            screenshot2: "Screenshot 2",
-            screenShot2Link: "img/02_en.jpg",
-            screenshot3: "Screenshot 3",
-            screenShot3Link: "img/03_en.jpg",
-            screenshot4: "Screenshot 4",
-            screenShot4Link: "img/04_en.jpg",
-            screenshot5: "Screenshot 5",
-            screenShot5Link: "img/05_en.jpg",
-            screenshot6: "Screenshot 6",
-            screenShot6Link: "img/06_en.jpg",
-            screenshot7: "Screenshot 7",
-            screenShot7Link: "img/07_en.jpg",
-            screenshot8: "Screenshot 8",
-            screenShot8Link: "img/08_en.jpg",
-            screenshot9: "Screenshot 9",
-            screenShot9Link: "img/09_en.jpg",
-          },
-          videoSwiper: {
-            mobileVideos: [
-              {
-                id: "kqk9hnAPGs8",
-                title: "FightersTech - Promo - Tournament Notifications",
-              },
-              {
-                id: "ps-_JYRVj_o",
-                title: "FightersTech Tutorials - Create a game profile",
-              },
-              {
-                id: "kVKoGtZGB6I",
-                title: "FightersTech Tutorials - Find matchups",
-              },
-              {
-                id: "Wkk7CATkGVs",
-                title: "FightersTech Tutorials - Tournament Notifications",
-              },
-            ],
-            desktopVideos: [
-              {
-                id: "kqk9hnAPGs8",
-                title: "FightersTech - Promo - Tournament Notifications",
-              },
-              {
-                id: "ps-_JYRVj_o",
-                title: "FightersTech Tutorials - Create a game profile",
-              },
-              {
-                id: "kVKoGtZGB6I",
-                title: "FightersTech Tutorials - Find matchups",
-              },
-              {
-                id: "Wkk7CATkGVs",
-                title: "FightersTech Tutorials - Tournament Notifications",
-              },
-            ],
-            mobileOtherVideos: [
-              { id: "DqD7IKQrpeU", title: "Quick Features - Game Order" },
-              {
-                id: "wN0_XOfZWKs",
-                title: "Quick Features - Link Discord Account",
-              },
-              { id: "Gt-_QeyyOQY", title: "Quick Features - Block Users" },
-              {
-                id: "mZcjf6B4lhM",
-                title: "Quick Features - Sharing in other social apps",
-              },
-              {
-                id: "_FImH9v2_j4",
-                title: "Quick Features - Manage local notifications",
-              },
-            ],
-            desktopOtherVideos: [
-              { id: "DqD7IKQrpeU", title: "Quick Features - Game Order" },
-              {
-                id: "wN0_XOfZWKs",
-                title: "Quick Features - Link Discord Account",
-              },
-              { id: "Gt-_QeyyOQY", title: "Quick Features - Block Users" },
-              {
-                id: "mZcjf6B4lhM",
-                title: "Quick Features - Sharing in other social apps",
-              },
-              {
-                id: "_FImH9v2_j4",
-                title: "Quick Features - Manage local notifications",
-              },
-            ],
-          },
-        },
-      };
+      // Load translations from JSON file
+      async function loadTranslationFile(lang) {
+        try {
+          const response = await fetch(`lang/${lang}.json`);
+          if (!response.ok) throw new Error(`Failed to load ${lang}.json`);
+          return await response.json();
+        } catch (error) {
+          console.warn(`Error loading translation for ${lang}:`, error);
+          return null;
+        }
+      }
+
+      // Initialize translations - load fallback (en) first, then target language
+      async function initTranslations() {
+        // Load English as fallback
+        const enTranslations = await loadTranslationFile("en");
+        if (enTranslations) {
+          translations["en"] = enTranslations;
+        }
+
+        // If target language is not English, load it too
+        if (currentLang !== "en") {
+          const targetTranslations = await loadTranslationFile(currentLang);
+          if (targetTranslations) {
+            translations[currentLang] = targetTranslations;
+          } else {
+            // Fallback to English if target fails to load
+            currentLang = "en";
+          }
+        }
+
+        translationsLoaded = true;
+        setLanguage(currentLang);
+      }
 
       function setLanguage(lang) {
         currentLang = lang;
         const t = translations[lang];
+        if (!t) return;
 
         // Update language toggle buttons
         document.querySelectorAll(".lang-btn").forEach((btn) => {
           btn.classList.toggle("active", btn.dataset.lang === lang);
         });
 
+        // Update HTML lang attribute
+        document.documentElement.lang = lang;
+
         // Header & footer text
-        document.getElementById("footerRights").textContent = t.footerRights;
-        document.querySelector(".footer-brand p").textContent = t.footerDesc;
-        document.getElementById("linkLegal").textContent = t.linkLegal;
+        document.getElementById("footerRights").textContent = t.footer.rights;
+        document.querySelector(".footer-brand p").textContent = t.footer.brand.description;
+
+        // Legal links
+        document.getElementById("linkLegal").textContent = t.footer.columns.legal.links.legalNotice;
         document.getElementById("linkLegal").href = t.legalUrls.linkLegal;
-        document.getElementById("linkPrivacy").textContent = t.linkPrivacy;
+        document.getElementById("linkPrivacy").textContent = t.footer.columns.legal.links.privacyPolicy;
         document.getElementById("linkPrivacy").href = t.legalUrls.linkPrivacy;
-        document.getElementById("linkTerms").textContent = t.linkTerms;
+        document.getElementById("linkTerms").textContent = t.footer.columns.legal.links.termsOfService;
         document.getElementById("linkTerms").href = t.legalUrls.linkTerms;
-        document.getElementById("linkCookies").textContent = t.linkCookies;
+        document.getElementById("linkCookies").textContent = t.footer.columns.legal.links.cookiePolicy;
         document.getElementById("linkCookies").href = t.legalUrls.linkCookies;
-        document.getElementById("linkConduct").textContent = t.linkConduct;
+        document.getElementById("linkConduct").textContent = t.footer.columns.legal.links.codeOfConduct;
         document.getElementById("linkConduct").href = t.legalUrls.linkConduct;
-        document.getElementById("linkContact").textContent = t.linkContact;
+        document.getElementById("linkContact").textContent = t.footer.columns.contact.links.contactUs;
 
         // Hero section
-        document.getElementById("heroSubtitle").textContent = t.heroSubtitle;
-        document.querySelector(".hero-badge").textContent = t.availableNow;
-        document.querySelector(".scroll-indicator span").textContent =
-          t.scrollText;
-        document.querySelectorAll(".store-btn-label")[0].textContent =
-          t.downloadOn;
-        document.querySelectorAll(".store-btn-label")[1].textContent =
-          t.getItOn;
+        document.getElementById("heroSubtitle").textContent = t.hero.subtitle;
+        document.querySelector(".hero-badge").textContent = t.hero.badge;
+        document.querySelector(".scroll-indicator span").textContent = t.hero.scrollText;
+        document.querySelectorAll(".store-btn-label")[0].textContent = t.hero.storeButtons.apple.label;
+        document.querySelectorAll(".store-btn-label")[1].textContent = t.hero.storeButtons.google.label;
+        document.querySelectorAll(".store-btn-title")[0].textContent = t.hero.storeButtons.apple.title;
+        document.querySelectorAll(".store-btn-title")[1].textContent = t.hero.storeButtons.google.title;
 
         // Hero title - translate the three words
         const heroWords = document.querySelectorAll("#heroTitle .word");
-        if (lang === "es") {
-          heroWords[0].textContent = "Entrena.";
-          heroWords[0].setAttribute("data-text", "Entrena.");
-          heroWords[1].textContent = "Lucha.";
-          heroWords[1].setAttribute("data-text", "Lucha.");
-          heroWords[2].textContent = "Compite.";
-          heroWords[2].setAttribute("data-text", "Compite.");
-        } else {
-          heroWords[0].textContent = "Train.";
-          heroWords[0].setAttribute("data-text", "Train.");
-          heroWords[1].textContent = "Fight.";
-          heroWords[1].setAttribute("data-text", "Fight.");
-          heroWords[2].textContent = "Compete.";
-          heroWords[2].setAttribute("data-text", "Compete.");
-        }
+        heroWords[0].textContent = t.hero.words[0];
+        heroWords[0].setAttribute("data-text", t.hero.words[0]);
+        heroWords[1].textContent = t.hero.words[1];
+        heroWords[1].setAttribute("data-text", t.hero.words[1]);
+        heroWords[2].textContent = t.hero.words[2];
+        heroWords[2].setAttribute("data-text", t.hero.words[2]);
 
         // Section titles
-        document.getElementById("titleMainFeatures").textContent =
-          t.mainFeaturesTitle;
-        document.getElementById("titleOtherFeatures").textContent =
-          t.otherFeaturesTitle;
+        document.getElementById("titleMainFeatures").textContent = t.sections.mainFeatures.title;
+        document.getElementById("titleOtherFeatures").textContent = t.sections.otherFeatures.title;
 
         // Menu items
-        document.getElementById("menuMainFeatures").textContent =
-          t.menuMainFeatures;
-        document.getElementById("menuAppImages").textContent = t.menuAppImages;
-        document.getElementById("menuOtherFeatures").textContent =
-          t.menuOtherFeatures;
+        document.getElementById("menuMainFeatures").textContent = t.nav.menuMainFeatures;
+        document.getElementById("menuAppImages").textContent = t.nav.menuAppImages;
+        document.getElementById("menuOtherFeatures").textContent = t.nav.menuOtherFeatures;
 
-        // Labels
-        document.querySelector(".section-label").textContent = t.featuresLabel;
-        document.querySelectorAll(".section-label")[1].textContent =
-          t.appGalleryLabel;
-        document.querySelectorAll(".section-label")[2].textContent =
-          t.moreLabel;
-        document.querySelectorAll(".section-description")[0].textContent =
-          t.featuresDesc;
-        document.querySelectorAll(".section-description")[1].textContent =
-          t.otherFeaturesDesc;
+        // Section labels and descriptions
+        const sectionLabels = document.querySelectorAll(".section-label");
+        sectionLabels[0].textContent = t.sections.mainFeatures.label;
+        sectionLabels[1].textContent = t.sections.appGallery.label;
+        sectionLabels[2].textContent = t.sections.otherFeatures.label;
+
+        const sectionDescriptions = document.querySelectorAll(".section-description");
+        sectionDescriptions[0].textContent = t.sections.mainFeatures.description;
+        sectionDescriptions[1].textContent = t.sections.otherFeatures.description;
 
         // CTA section
-        document.querySelector(".cta-content h2").textContent = t.ctaTitle;
-        document.querySelector(".cta-content p").textContent = t.ctaDesc;
+        document.querySelector(".cta-content h2").textContent = t.sections.cta.title;
+        document.querySelector(".cta-content p").textContent = t.sections.cta.description;
 
         // App showcase content
-        const appShowcaseTitle = document.querySelector(
-          ".app-showcase-content h2",
-        );
-        appShowcaseTitle.textContent = t.appShowcaseTitle;
+        const appShowcaseTitle = document.querySelector(".app-showcase-content h2");
+        appShowcaseTitle.textContent = t.sections.appGallery.title;
 
         // Swipe instruction text
         const swipeText = document.getElementById("swipeText");
         if (swipeText) {
-          swipeText.textContent = t.swipeInstruction;
+          swipeText.textContent = t.sections.appGallery.swipeInstruction;
         }
 
-        const appShowcaseText = document.querySelector(
-          ".app-showcase-content p",
-        );
-        appShowcaseText.textContent = t.appShowcaseDesc;
+        const appShowcaseText = document.querySelector(".app-showcase-content p");
+        appShowcaseText.textContent = t.sections.appGallery.description;
 
         // Update feature list
         const featureList = document.querySelectorAll(".feature-list li");
-        t.featureList.forEach((text, i) => {
+        t.sections.appGallery.featureList.forEach((text, i) => {
           if (featureList[i]) featureList[i].textContent = text;
         });
 
@@ -2604,80 +2277,70 @@
         featureCards.forEach((card, i) => {
           if (t.featureCards[i]) {
             card.querySelector("h3").textContent = t.featureCards[i].title;
-            card.querySelector("p").textContent = t.featureCards[i].desc;
+            card.querySelector("p").textContent = t.featureCards[i].description;
           }
         });
 
-        // Update footer
+        // Update footer columns
         const footerColumns = document.querySelectorAll(".footer-column");
         if (footerColumns.length >= 3) {
           // Product column
-          footerColumns[0].querySelector("h4").textContent = t.footer.product;
-          const productLinks =
-            footerColumns[0].querySelectorAll(".footer-links a");
-          productLinks[0].textContent = t.footer.features;
-          productLinks[1].textContent = t.footer.appGallery;
+          footerColumns[0].querySelector("h4").textContent = t.footer.columns.product.title;
+          const productLinks = footerColumns[0].querySelectorAll(".footer-links a");
+          productLinks[0].textContent = t.footer.columns.product.links.features;
+          productLinks[1].textContent = t.footer.columns.product.links.appGallery;
           // App Store and Google Play don't need translation
 
-          // Legal column - already translated via linkLegal, etc.
-          footerColumns[1].querySelector("h4").textContent = t.footer.legal;
+          // Legal column
+          footerColumns[1].querySelector("h4").textContent = t.footer.columns.legal.title;
 
           // Contact column
-          footerColumns[2].querySelector("h4").textContent = t.footer.contact;
-          const contactLinks =
-            footerColumns[2].querySelectorAll(".footer-links a");
-          contactLinks[0].textContent = t.footer.contactUs;
-          contactLinks[1].textContent = t.footer.support;
+          footerColumns[2].querySelector("h4").textContent = t.footer.columns.contact.title;
+          const contactLinks = footerColumns[2].querySelectorAll(".footer-links a");
+          contactLinks[0].textContent = t.footer.columns.contact.links.contactUs;
+          contactLinks[1].textContent = t.footer.columns.contact.links.support;
         }
 
         // Screenshots
         for (let i = 1; i <= 9; i++) {
           const key = "screenshot" + i;
           const img = document.getElementById(key);
-          if (img) {
-            img.alt = t.screenshots[key];
-            img.src = t.screenshots["screenShot" + i + "Link"];
+          if (img && t.screenshots[key]) {
+            img.alt = t.screenshots[key].alt;
+            img.src = t.screenshots[key].src;
           }
         }
 
         // Choose mobile vs desktop based on screen size
         const videoView = getVideoView();
-        const mainVideos =
-          videoView === "mobile"
-            ? t.videoSwiper.mobileVideos
-            : t.videoSwiper.desktopVideos;
-        const otherVideos =
-          videoView === "mobile"
-            ? t.videoSwiper.mobileOtherVideos
-            : t.videoSwiper.desktopOtherVideos;
+        const mainVideos = videoView === "mobile"
+          ? t.videoSwiper.mobileVideos
+          : t.videoSwiper.desktopVideos;
+        const otherVideos = videoView === "mobile"
+          ? t.videoSwiper.mobileOtherVideos
+          : t.videoSwiper.desktopOtherVideos;
 
         // Populate main features slider
-        const wrapper = document
-          .getElementById("videoSwiper")
-          .querySelector(".swiper-wrapper");
+        const wrapper = document.getElementById("videoSwiper").querySelector(".swiper-wrapper");
         wrapper.innerHTML = "";
         mainVideos.forEach((v) => {
           const slide = document.createElement("div");
           slide.className = "swiper-slide";
           slide.setAttribute("data-title", v.title);
           const cls = videoView === "mobile" ? "mobile-video" : "";
-          slide.innerHTML = `
-            <iframe class="${cls}" src="https://www.youtube.com/embed/${v.id}?rel=0" frameborder="0" allowfullscreen></iframe>`;
+          slide.innerHTML = `<iframe class="${cls}" src="https://www.youtube.com/embed/${v.id}?rel=0" frameborder="0" allowfullscreen></iframe>`;
           wrapper.appendChild(slide);
         });
 
         // Populate other features slider
-        const otherWrapper = document
-          .getElementById("otherFeaturesSwiper")
-          .querySelector(".swiper-wrapper");
+        const otherWrapper = document.getElementById("otherFeaturesSwiper").querySelector(".swiper-wrapper");
         otherWrapper.innerHTML = "";
         otherVideos.forEach((v) => {
           const slide = document.createElement("div");
           slide.className = "swiper-slide";
           slide.setAttribute("data-title", v.title);
           const cls = videoView === "mobile" ? "mobile-video" : "";
-          slide.innerHTML = `
-            <iframe class="${cls}" src="https://www.youtube.com/embed/${v.id}?rel=0" frameborder="0" allowfullscreen></iframe>`;
+          slide.innerHTML = `<iframe class="${cls}" src="https://www.youtube.com/embed/${v.id}?rel=0" frameborder="0" allowfullscreen></iframe>`;
           otherWrapper.appendChild(slide);
         });
 
@@ -2712,7 +2375,7 @@
       // SWIPER INITIALIZATION
       // ========================================
 
-      document.addEventListener("DOMContentLoaded", function () {
+      document.addEventListener("DOMContentLoaded", async function () {
         // App Images swiper
         new Swiper("#appImagesSwiper", {
           effect: "slide",
@@ -2760,8 +2423,8 @@
           },
         });
 
-        // Populate and set titles
-        setLanguage(currentLang);
+        // Initialize translations (loads JSON files and applies them)
+        await initTranslations();
 
         // Add event listeners for slide changes
         window.videoSwiper.on("slideChange", updateActiveVideoTitle);

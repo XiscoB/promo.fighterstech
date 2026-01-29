@@ -28,11 +28,16 @@ promo.fighterstech/
 ├── .nojekyll               # Prevents Jekyll processing on GitHub Pages
 ├── favicon.ico             # Site favicon
 ├── app-ads.txt             # Google AdSense/AdMob configuration
+├── AGENTS.md               # This file - agent guidance
 ├── assets/
 │   └── kickstarter.png     # Kickstarter campaign image
 ├── img/                    # App screenshots (bilingual)
 │   ├── 01_en.jpg ... 09_en.jpg   # English versions
 │   ├── 01_es.jpg ... 09_es.jpg   # Spanish versions
+├── lang/                   # Translation files (JSON)
+│   ├── README.md           # Translation system documentation
+│   ├── en.json             # English translations
+│   └── es.json             # Spanish translations
 ├── kickstarter/
 │   └── index.html          # Kickstarter campaign page (redesigned)
 └── redkings/
@@ -129,15 +134,49 @@ The site uses a **dark, gaming-inspired aesthetic** suitable for the Fighting Ga
 
 ## Internationalization (i18n)
 
-Translations are stored in a JavaScript object `translations` with keys for:
-- Menu items (`menuMainFeatures`, `menuAppImages`, etc.)
-- Section titles (`mainFeaturesTitle`, `appImagesTitle`, etc.)
-- Footer text (`footerRights`, `linkLegal`, etc.)
-- Legal URLs (pointing to legal.fighterstech.com)
-- Screenshot alt texts and paths
-- YouTube video metadata (different video IDs for EN/ES)
+Translations are stored in separate JSON files in the `lang/` folder:
+- `lang/en.json` - English translations (fallback language)
+- `lang/es.json` - Spanish translations
 
-Language detection is automatic based on `navigator.language`.
+### Translation Structure
+
+Each JSON file follows a hierarchical structure organized by sections:
+
+```json
+{
+  "_meta": { "language": "English", "code": "en", "fallback": true },
+  "nav": { "menuMainFeatures": "Features", ... },
+  "hero": { "title": "Train. Fight. Compete.", ... },
+  "sections": { "mainFeatures": {...}, "appGallery": {...}, ... },
+  "featureCards": [...],
+  "footer": { "brand": {...}, "columns": {...} },
+  "legalUrls": { ... },
+  "screenshots": { ... },
+  "videoSwiper": { "mobileVideos": [...], "desktopVideos": [...], ... }
+}
+```
+
+### How it Works
+
+1. **Loading**: The `index.html` fetches the appropriate JSON file based on user language
+2. **Fallback**: If a translation key is missing, it falls back to English
+3. **Language Detection**: Automatic based on `navigator.language`
+4. **Switching**: Users can switch languages via the ES/EN toggle in the header
+
+### Adding a New Language
+
+1. Copy `lang/en.json` to `lang/{code}.json` (e.g., `fr.json` for French)
+2. Translate all text values, keeping keys unchanged
+3. Update `_meta` section with language info
+4. Add the language option to the language toggle in `index.html`
+5. Update `lang/README.md` with the new language
+
+### Translation Guidelines
+
+- Keep keys in English (e.g., `menuMainFeatures`, not `menuCaracteristicas`)
+- Maintain the same JSON structure
+- Test that all links and video IDs work for the new language
+- Ensure screenshot paths point to the correct language-specific images
 
 ## Code Organization
 
@@ -178,7 +217,8 @@ Share the same design system as the main page with simplified layouts:
 1. **HTML**: Edit the relevant `.html` file directly
 2. **CSS**: Styles are inline within `<style>` tags in each file
 3. **JavaScript**: Scripts are inline within `<script>` tags at the bottom of each file
-4. **Images**: Add to `img/` directory, update references in translation objects for bilingual support
+4. **Images**: Add to `img/` directory, update references in translation files for bilingual support
+5. **Translations**: Edit files in `lang/` folder - update all language files when adding new text
 
 ### Adding New Videos
 
