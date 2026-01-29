@@ -618,9 +618,6 @@
         font-weight: 700;
         line-height: 1.2;
         margin-bottom: 16px;
-      }
-
-      .section-title span {
         background: var(--accent-gradient);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -775,8 +772,31 @@
 
       .swiper-button-prev::after,
       .swiper-button-next::after {
-        font-size: 1.25rem;
+        font-size: 0.875rem;
         font-weight: 700;
+      }
+
+      /* Smaller video slider navigation buttons */
+      #videoSwiper .swiper-button-prev,
+      #videoSwiper .swiper-button-next,
+      #otherFeaturesSwiper .swiper-button-prev,
+      #otherFeaturesSwiper .swiper-button-next {
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+      }
+
+      #videoSwiper .swiper-button-prev::after,
+      #videoSwiper .swiper-button-next::after,
+      #otherFeaturesSwiper .swiper-button-prev::after,
+      #otherFeaturesSwiper .swiper-button-next::after {
+        font-size: 0.75rem;
+        transform: scale(0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
       }
 
       .swiper-pagination-bullet {
@@ -834,9 +854,6 @@
         font-weight: 700;
         line-height: 1.2;
         margin-bottom: 24px;
-      }
-
-      .app-showcase-content h2 span {
         background: var(--accent-gradient);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -896,19 +913,6 @@
         margin: 0 auto;
       }
 
-      .phone-frame::before {
-        content: "";
-        position: absolute;
-        top: 28px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 120px;
-        height: 32px;
-        background: var(--bg-primary);
-        border-radius: 16px;
-        z-index: 10;
-      }
-
       .phone-screen {
         border-radius: 36px;
         overflow: hidden;
@@ -955,20 +959,47 @@
         cursor: grabbing;
       }
 
-      .phone-screen .swiper-pagination {
-        bottom: 20px !important;
+      /* Pagination dots below phone frame */
+      .app-showcase-slider {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        width: 100%;
       }
 
-      .phone-screen .swiper-pagination-bullet {
-        background: rgba(255, 255, 255, 0.5);
+      .app-showcase-slider .phone-frame {
+        width: 100%;
+        max-width: 380px;
+      }
+
+      .app-gallery-pagination {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        width: auto !important;
+        margin-top: 8px;
+      }
+
+      .app-gallery-pagination .swiper-pagination-bullet {
+        background: var(--text-muted);
+        opacity: 1;
         width: 10px;
         height: 10px;
         margin: 0 6px !important;
+        display: inline-block;
       }
 
-      .phone-screen .swiper-pagination-bullet-active {
+      .app-gallery-pagination .swiper-pagination-bullet-active {
         background: var(--accent-cyan);
         transform: scale(1.3);
+      }
+
+      .swipe-instruction {
+        margin-top: 0;
+        width: 100%;
+        text-align: center;
       }
 
       /* Swipe hint animation */
@@ -1072,9 +1103,6 @@
         font-size: clamp(2rem, 5vw, 3.5rem);
         font-weight: 700;
         margin-bottom: 24px;
-      }
-
-      .cta-content h2 span {
         background: var(--accent-gradient);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -1391,13 +1419,6 @@
           max-width: 280px;
         }
 
-        .phone-frame::before {
-          top: 20px;
-          width: 100px;
-          height: 26px;
-          border-radius: 13px;
-        }
-
         .phone-screen {
           border-radius: 28px;
         }
@@ -1575,7 +1596,7 @@
           </div>
         </div>
 
-        <div class="video-container fade-in" style="margin-top: 64px">
+        <div class="video-container fade-in">
           <div class="swiper-container" id="videoSwiper">
             <div class="swiper-wrapper"></div>
             <div class="swiper-button-prev" id="videoSwiperPrev"></div>
@@ -1688,10 +1709,10 @@
                       />
                     </div>
                   </div>
-                  <div class="swiper-pagination"></div>
                 </div>
               </div>
             </div>
+            <div class="swiper-pagination app-gallery-pagination"></div>
             <div class="swipe-instruction">
               <svg
                 viewBox="0 0 24 24"
@@ -1996,6 +2017,16 @@
         currentLang = "es";
       }
 
+      // Video view state (mobile/desktop) - auto-detect based on screen width
+      function getVideoView() {
+        return window.innerWidth < 768 ? "mobile" : "desktop";
+      }
+
+      // Listen for resize to update video format
+      window.addEventListener("resize", () => {
+        setLanguage(currentLang);
+      });
+
       // Translations + video arrays
       const translations = {
         es: {
@@ -2018,6 +2049,8 @@
           googleAlt: "Disponible en Play Store",
           heroSubtitle:
             "La plataforma definitiva para la comunidad de juegos de lucha. Encuentra enfrentamientos, sigue torneos y mejora tu juego.",
+          footerDesc:
+            "La plataforma definitiva para la comunidad de juegos de lucha. Entrena, lucha y compite al máximo.",
           featuresLabel: "Características",
           featuresDesc:
             "Descubre todo lo que FightersTech ofrece para jugadores competitivos y organizadores de torneos.",
@@ -2028,6 +2061,44 @@
           scrollText: "Desplázate",
           downloadOn: "Descargar en",
           getItOn: "Disponible en",
+          appGalleryLabel: "Galería",
+          moreLabel: "Más",
+          otherFeaturesDesc:
+            "Explora herramientas adicionales que hacen de FightersTech la plataforma completa para los entusiastas de los juegos de lucha.",
+          appShowcaseTitle: "Ve la Acción",
+          appShowcaseDesc:
+            "Echa un vistazo a la interfaz de FightersTech. Construido para la velocidad, diseñado para competidores. Cada pantalla está optimizada para un acceso rápido a las funciones que más necesitas.",
+          swipeInstruction: "Desliza o arrastra para explorar",
+          featureList: [
+            "Navegación intuitiva de torneos",
+            "Gestión de perfiles de jugador",
+            "Notificaciones diarias",
+            "Integración con Discord",
+            "Funciones de compartir en redes",
+          ],
+          featureCards: [
+            {
+              title: "Notificaciones de Torneos",
+              desc: "Nunca te pierdas un torneo de nuevo. Recibe notificaciones diarias de próximos eventos en tus juegos de lucha favoritos.",
+            },
+            {
+              title: "Perfiles de Juego",
+              desc: "Crea perfiles detallados para cada juego que juegues. Sigue tu progreso, rango e historial de enfrentamientos.",
+            },
+            {
+              title: "Encontrar Enfrentamientos",
+              desc: "Conecta con jugadores de tu nivel. Busca oponentes, organiza enfrentamientos y mejora tu juego.",
+            },
+          ],
+          footer: {
+            product: "Producto",
+            features: "Características",
+            appGallery: "Galería",
+            legal: "Legal",
+            contact: "Contacto",
+            contactUs: "Contáctanos",
+            support: "Soporte",
+          },
           legalUrls: {
             linkLegal: "https://legal.fighterstech.com/es/",
             linkPrivacy: "https://legal.fighterstech.com/es/privacy-policy/",
@@ -2160,6 +2231,8 @@
           googleAlt: "Available on Play Store",
           heroSubtitle:
             "The ultimate platform for the Fighting Game Community. Find matchups, track tournaments, and level up your game.",
+          footerDesc:
+            "The ultimate platform for the Fighting Game Community. Train, fight, and compete at your best.",
           featuresLabel: "Features",
           featuresDesc:
             "Discover everything FightersTech has to offer for competitive players and tournament organizers.",
@@ -2170,6 +2243,44 @@
           scrollText: "Scroll",
           downloadOn: "Download on the",
           getItOn: "Get it on",
+          appGalleryLabel: "App Gallery",
+          moreLabel: "More",
+          otherFeaturesDesc:
+            "Explore additional tools and features that make FightersTech the complete platform for fighting game enthusiasts.",
+          appShowcaseTitle: "See the Action",
+          appShowcaseDesc:
+            "Take a look at the FightersTech interface. Built for speed, designed for competitors. Every screen is optimized for quick access to the features you need most.",
+          swipeInstruction: "Swipe or drag to explore",
+          featureList: [
+            "Intuitive tournament browsing",
+            "Player profile management",
+            "Daily tournament notifications",
+            "Discord integration",
+            "Social sharing features",
+          ],
+          featureCards: [
+            {
+              title: "Tournament Notifications",
+              desc: "Never miss a tournament again. Get daily notifications for upcoming events in your favorite fighting games.",
+            },
+            {
+              title: "Game Profiles",
+              desc: "Create detailed profiles for each game you play. Track your progress, rank, and match history.",
+            },
+            {
+              title: "Find Matchups",
+              desc: "Connect with players at your skill level. Search for opponents, set up matches, and improve your game.",
+            },
+          ],
+          footer: {
+            product: "Product",
+            features: "Features",
+            appGallery: "App Gallery",
+            legal: "Legal",
+            contact: "Contact",
+            contactUs: "Contact Us",
+            support: "Support",
+          },
           legalUrls: {
             linkLegal: "https://legal.fighterstech.com/en/",
             linkPrivacy: "https://legal.fighterstech.com/en/privacy-policy/",
@@ -2281,6 +2392,7 @@
 
         // Header & footer text
         document.getElementById("footerRights").textContent = t.footerRights;
+        document.querySelector(".footer-brand p").textContent = t.footerDesc;
         document.getElementById("linkLegal").textContent = t.linkLegal;
         document.getElementById("linkLegal").href = t.legalUrls.linkLegal;
         document.getElementById("linkPrivacy").textContent = t.linkPrivacy;
@@ -2322,15 +2434,10 @@
         }
 
         // Section titles
-        document.getElementById("titleMainFeatures").innerHTML =
-          t.mainFeaturesTitle.replace(/(Features)/, "<span>$1</span>");
-        document.getElementById("titleAppImages").innerHTML =
-          t.appImagesTitle.replace(/(Action|la App)/, "<span>$1</span>");
-        document.getElementById("titleOtherFeatures").innerHTML =
-          t.otherFeaturesTitle.replace(
-            /(Features|Funcionalidades)/,
-            "<span>$1</span>",
-          );
+        document.getElementById("titleMainFeatures").textContent =
+          t.mainFeaturesTitle;
+        document.getElementById("titleOtherFeatures").textContent =
+          t.otherFeaturesTitle;
 
         // Menu items
         document.getElementById("menuMainFeatures").textContent =
@@ -2342,99 +2449,68 @@
         // Labels
         document.querySelector(".section-label").textContent = t.featuresLabel;
         document.querySelectorAll(".section-label")[1].textContent =
-          lang === "es" ? "Galería" : "App Gallery";
+          t.appGalleryLabel;
         document.querySelectorAll(".section-label")[2].textContent =
-          lang === "es" ? "Más" : "More";
+          t.moreLabel;
         document.querySelectorAll(".section-description")[0].textContent =
           t.featuresDesc;
         document.querySelectorAll(".section-description")[1].textContent =
-          lang === "es"
-            ? "Explora herramientas adicionales que hacen de FightersTech la plataforma completa para los entusiastas de los juegos de lucha."
-            : "Explore additional tools and features that make FightersTech the complete platform for fighting game enthusiasts.";
+          t.otherFeaturesDesc;
 
         // CTA section
-        document.querySelector(".cta-content h2").innerHTML =
-          lang === "es"
-            ? "¿Listo para <span>unirte a la lucha?</span>"
-            : "Ready to <span>Join the Fight?</span>";
-        document.querySelector(".cta-content p").textContent =
-          lang === "es"
-            ? "Descarga FightersTech hoy y forma parte de la plataforma definitiva para la comunidad de juegos de lucha."
-            : t.ctaDesc;
+        document.querySelector(".cta-content h2").textContent = t.ctaTitle;
+        document.querySelector(".cta-content p").textContent = t.ctaDesc;
 
         // App showcase content
         const appShowcaseTitle = document.querySelector(
           ".app-showcase-content h2",
         );
-        appShowcaseTitle.innerHTML =
-          lang === "es"
-            ? "Ve la <span>Acción</span>"
-            : "See the <span>Action</span>";
+        appShowcaseTitle.textContent = t.appShowcaseTitle;
 
         // Swipe instruction text
         const swipeText = document.getElementById("swipeText");
         if (swipeText) {
-          swipeText.textContent =
-            lang === "es"
-              ? "Desliza o arrastra para explorar"
-              : "Swipe or drag to explore";
+          swipeText.textContent = t.swipeInstruction;
         }
 
         const appShowcaseText = document.querySelector(
           ".app-showcase-content p",
         );
-        appShowcaseText.textContent =
-          lang === "es"
-            ? "Echa un vistazo a la interfaz de FightersTech. Construido para la velocidad, diseñado para competidores. Cada pantalla está optimizada para un acceso rápido a las funciones que más necesitas."
-            : "Take a look at the FightersTech interface. Built for speed, designed for competitors. Every screen is optimized for quick access to the features you need most.";
+        appShowcaseText.textContent = t.appShowcaseDesc;
 
         // Update feature list
         const featureList = document.querySelectorAll(".feature-list li");
-        const featureTexts =
-          lang === "es"
-            ? [
-                "Navegación intuitiva de torneos",
-                "Gestión de perfiles de jugador",
-                "Notificaciones diarias",
-                "Integración con Discord",
-                "Funciones de compartir en redes",
-              ]
-            : [
-                "Intuitive tournament browsing",
-                "Player profile management",
-                "Daily tournament notifications",
-                "Discord integration",
-                "Social sharing features",
-              ];
-        featureList.forEach((li, i) => {
-          if (featureTexts[i]) li.textContent = featureTexts[i];
+        t.featureList.forEach((text, i) => {
+          if (featureList[i]) featureList[i].textContent = text;
         });
 
         // Update feature cards
         const featureCards = document.querySelectorAll(".feature-card");
-        if (lang === "es") {
-          featureCards[0].querySelector("h3").textContent =
-            "Notificaciones de Torneos";
-          featureCards[0].querySelector("p").textContent =
-            "Nunca te pierdas un torneo de nuevo. Recibe notificaciones diarias de próximos eventos en tus juegos de lucha favoritos.";
-          featureCards[1].querySelector("h3").textContent = "Perfiles de Juego";
-          featureCards[1].querySelector("p").textContent =
-            "Crea perfiles detallados para cada juego que juegues. Sigue tu progreso, rango e historial de enfrentamientos.";
-          featureCards[2].querySelector("h3").textContent =
-            "Encontrar Enfrentamientos";
-          featureCards[2].querySelector("p").textContent =
-            "Conecta con jugadores de tu nivel. Busca oponentes, organiza enfrentamientos y mejora tu juego.";
-        } else {
-          featureCards[0].querySelector("h3").textContent =
-            "Tournament Notifications";
-          featureCards[0].querySelector("p").textContent =
-            "Never miss a tournament again. Get daily notifications for upcoming events in your favorite fighting games.";
-          featureCards[1].querySelector("h3").textContent = "Game Profiles";
-          featureCards[1].querySelector("p").textContent =
-            "Create detailed profiles for each game you play. Track your progress, rank, and match history.";
-          featureCards[2].querySelector("h3").textContent = "Find Matchups";
-          featureCards[2].querySelector("p").textContent =
-            "Connect with players at your skill level. Search for opponents, set up matches, and improve your game.";
+        featureCards.forEach((card, i) => {
+          if (t.featureCards[i]) {
+            card.querySelector("h3").textContent = t.featureCards[i].title;
+            card.querySelector("p").textContent = t.featureCards[i].desc;
+          }
+        });
+
+        // Update footer
+        const footerColumns = document.querySelectorAll(".footer-column");
+        if (footerColumns.length >= 3) {
+          // Product column
+          footerColumns[0].querySelector("h4").textContent = t.footer.product;
+          const productLinks = footerColumns[0].querySelectorAll(".footer-links a");
+          productLinks[0].textContent = t.footer.features;
+          productLinks[1].textContent = t.footer.appGallery;
+          // App Store and Google Play don't need translation
+
+          // Legal column - already translated via linkLegal, etc.
+          footerColumns[1].querySelector("h4").textContent = t.footer.legal;
+
+          // Contact column
+          footerColumns[2].querySelector("h4").textContent = t.footer.contact;
+          const contactLinks = footerColumns[2].querySelectorAll(".footer-links a");
+          contactLinks[0].textContent = t.footer.contactUs;
+          contactLinks[1].textContent = t.footer.support;
         }
 
         // Screenshots
@@ -2447,12 +2523,12 @@
           }
         }
 
-        // Choose mobile vs desktop
-        const isMobile = window.innerWidth < 768;
-        const mainVideos = isMobile
+        // Choose mobile vs desktop based on screen size
+        const videoView = getVideoView();
+        const mainVideos = videoView === "mobile"
           ? t.videoSwiper.mobileVideos
           : t.videoSwiper.desktopVideos;
-        const otherVideos = isMobile
+        const otherVideos = videoView === "mobile"
           ? t.videoSwiper.mobileOtherVideos
           : t.videoSwiper.desktopOtherVideos;
 
@@ -2465,7 +2541,7 @@
           const slide = document.createElement("div");
           slide.className = "swiper-slide";
           slide.setAttribute("data-title", v.title);
-          const cls = isMobile ? "mobile-video" : "";
+          const cls = videoView === "mobile" ? "mobile-video" : "";
           slide.innerHTML = `
             <iframe class="${cls}" src="https://www.youtube.com/embed/${v.id}?rel=0" frameborder="0" allowfullscreen></iframe>`;
           wrapper.appendChild(slide);
@@ -2480,22 +2556,22 @@
           const slide = document.createElement("div");
           slide.className = "swiper-slide";
           slide.setAttribute("data-title", v.title);
-          const cls = isMobile ? "mobile-video" : "";
+          const cls = videoView === "mobile" ? "mobile-video" : "";
           slide.innerHTML = `
             <iframe class="${cls}" src="https://www.youtube.com/embed/${v.id}?rel=0" frameborder="0" allowfullscreen></iframe>`;
           otherWrapper.appendChild(slide);
         });
 
-        // Update swipers
+        // Update swipers with delay to ensure slides are populated
         if (window.videoSwiper) {
           window.videoSwiper.update();
           window.videoSwiper.slideTo(0);
-          updateActiveVideoTitle();
+          setTimeout(updateActiveVideoTitle, 100);
         }
         if (window.otherSwiper) {
           window.otherSwiper.update();
           window.otherSwiper.slideTo(0);
-          updateActiveOtherVideoTitle();
+          setTimeout(updateActiveOtherVideoTitle, 100);
         }
       }
 
@@ -2531,7 +2607,7 @@
             pauseOnMouseEnter: true,
           },
           pagination: {
-            el: ".swiper-pagination",
+            el: ".app-gallery-pagination",
             clickable: true,
           },
           touchRatio: 1.5,
@@ -2547,10 +2623,6 @@
           fadeEffect: { crossFade: true },
           slidesPerView: 1,
           loop: false,
-          pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-          },
           navigation: {
             nextEl: "#videoSwiperNext",
             prevEl: "#videoSwiperPrev",
@@ -2563,10 +2635,6 @@
           fadeEffect: { crossFade: true },
           slidesPerView: 1,
           loop: false,
-          pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-          },
           navigation: {
             nextEl: "#otherFeaturesNext",
             prevEl: "#otherFeaturesPrev",
