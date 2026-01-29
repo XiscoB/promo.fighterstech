@@ -29,6 +29,7 @@ promo.fighterstech/
 ├── favicon.ico             # Site favicon
 ├── app-ads.txt             # Google AdSense/AdMob configuration
 ├── AGENTS.md               # This file - agent guidance
+├── STYLES.md               # CSS design system documentation
 ├── assets/
 │   └── kickstarter.png     # Kickstarter campaign image
 ├── img/                    # App screenshots (bilingual)
@@ -45,6 +46,8 @@ promo.fighterstech/
 ```
 
 ## Design System
+
+> **📖 See `STYLES.md`** for complete CSS documentation, design tokens, component patterns, and usage examples.
 
 ### Visual Identity
 
@@ -215,10 +218,19 @@ Share the same design system as the main page with simplified layouts:
 ### Making Changes
 
 1. **HTML**: Edit the relevant `.html` file directly
-2. **CSS**: Styles are inline within `<style>` tags in each file
+2. **CSS**: Styles are inline within `<style>` tags in each file (see `STYLES.md` for design system reference)
 3. **JavaScript**: Scripts are inline within `<script>` tags at the bottom of each file
 4. **Images**: Add to `img/` directory, update references in translation files for bilingual support
 5. **Translations**: Edit files in `lang/` folder - update all language files when adding new text
+
+### Design System Reference
+
+Before making style changes, consult `STYLES.md` which documents:
+- All CSS variables (colors, spacing, typography)
+- Component patterns (cards, buttons, sections)
+- Animation guidelines
+- Responsive breakpoints
+- Common CSS patterns
 
 ### Adding New Videos
 
