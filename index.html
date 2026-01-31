@@ -249,10 +249,29 @@
         overflow-x: hidden;
       }
 
-      /* Selection Color */
+      /* Text selection styling */
       ::selection {
+        background-color: var(--accent-gold);
+        color: #000000;
+      }
+
+      ::-moz-selection {
+        background-color: var(--accent-gold);
+        color: #000000;
+      }
+
+      /* Fix selection for gradient text - ensure text remains visible */
+      .hero-title .word::selection,
+      .hero-title .word::-moz-selection,
+      .section-title::selection,
+      .section-title::-moz-selection,
+      .cta-content h2::selection,
+      .cta-content h2::-moz-selection,
+      .app-showcase-content h2::selection,
+      .app-showcase-content h2::-moz-selection {
         background: var(--accent-gold);
-        color: var(--bg-primary);
+        -webkit-text-fill-color: #000000;
+        color: #000000;
       }
 
       /* ========================================
