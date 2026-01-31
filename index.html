@@ -383,6 +383,18 @@
         font-weight: 700;
         color: var(--text-primary);
         letter-spacing: -0.02em;
+        transition: color var(--transition-fast), text-shadow var(--transition-fast);
+      }
+
+      .logo:hover .logo-text {
+        color: var(--accent-gold);
+        text-shadow: 0 0 20px rgba(252, 175, 1, 0.5);
+      }
+
+      .logo:hover img {
+        box-shadow: 0 0 30px rgba(252, 175, 1, 0.4);
+        transform: scale(1.05);
+        transition: all var(--transition-fast);
       }
 
       /* Language Toggle */
