@@ -23,26 +23,26 @@ This is the **FightersTech promotional landing page** - a static website for the
 
 ```
 promo.fighterstech/
-├── index.html              # Main landing page (homepage) - redesigned with professional SaaS aesthetic
-├── CNAME                   # GitHub Pages custom domain config
+├── index.html              # Main landing page (homepage) - ~77KB inline CSS/JS
+├── CNAME                   # GitHub Pages custom domain config (promo.fighterstech.com)
 ├── .nojekyll               # Prevents Jekyll processing on GitHub Pages
 ├── favicon.ico             # Site favicon
 ├── app-ads.txt             # Google AdSense/AdMob configuration
 ├── AGENTS.md               # This file - agent guidance
 ├── STYLES.md               # CSS design system documentation
 ├── assets/
-│   └── kickstarter.png     # Kickstarter campaign image
-├── img/                    # App screenshots (bilingual)
+│   └── kickstarter.png     # Kickstarter campaign image asset
+├── img/                    # App screenshots (bilingual - 18 total)
 │   ├── 01_en.jpg ... 09_en.jpg   # English versions
 │   ├── 01_es.jpg ... 09_es.jpg   # Spanish versions
 ├── lang/                   # Translation files (JSON)
 │   ├── README.md           # Translation system documentation
-│   ├── en.json             # English translations
+│   ├── en.json             # English translations (fallback)
 │   └── es.json             # Spanish translations
 ├── kickstarter/
-│   └── index.html          # Kickstarter campaign page (redesigned)
+│   └── index.html          # Kickstarter campaign placeholder page
 └── redkings/
-    └── index.html          # RedKingsFG collaboration page (redesigned)
+    └── index.html          # RedKingsFG collaboration placeholder page
 ```
 
 ## Design System
@@ -51,20 +51,21 @@ promo.fighterstech/
 
 ### Visual Identity
 
-The site uses a **dark, gaming-inspired aesthetic** suitable for the Fighting Game Community:
+The site uses a **dark, gaming-inspired aesthetic** with a navy blue base and gold/green accents:
 
 #### Color Palette
 | Token | Value | Usage |
 |-------|-------|-------|
-| `--bg-primary` | `#0a0a0f` | Main background |
-| `--bg-secondary` | `#12121a` | Section backgrounds |
-| `--bg-tertiary` | `#1a1a25` | Cards, elevated surfaces |
-| `--accent-cyan` | `#00d4ff` | Primary accent, links, glows |
-| `--accent-orange` | `#ff6b35` | Secondary accent, CTAs |
-| `--accent-purple` | `#a855f7` | Tertiary accent, collaborations |
+| `--bg-primary` | `#001a33` | Main page background |
+| `--bg-secondary` | `#00284e` | Section backgrounds (alternating) |
+| `--bg-tertiary` | `#003366` | Cards, buttons, elevated surfaces |
+| `--bg-card` | `rgba(0, 51, 102, 0.6)` | Card backgrounds with transparency |
+| `--accent-gold` | `#fcaf01` | Primary accent, CTAs, highlights |
+| `--accent-green` | `#00c853` | Secondary accent, success states |
+| `--accent-blue` | `#1e90ff` | Tertiary accent, links |
 | `--text-primary` | `#ffffff` | Headlines, primary text |
-| `--text-secondary` | `rgba(255,255,255,0.7)` | Body text |
-| `--text-muted` | `rgba(255,255,255,0.5)` | Captions, footers |
+| `--text-secondary` | `rgba(255, 255, 255, 0.8)` | Body text |
+| `--text-muted` | `rgba(255, 255, 255, 0.6)` | Captions, subtle text |
 
 #### Typography
 - **Display Font**: Chakra Petch (condensed, gaming-inspired)
@@ -72,10 +73,10 @@ The site uses a **dark, gaming-inspired aesthetic** suitable for the Fighting Ga
 - Headlines use gradient text effects with `-webkit-background-clip: text`
 
 #### Visual Effects
-- **Background Grid**: Subtle cyan grid overlay (50px)
-- **Glow Effects**: Blurred gradient orbs positioned absolutely
+- **Background Grid**: Subtle golden grid overlay (50px)
+- **Glow Effects**: Blurred gradient orbs positioned absolutely (gold, green, blue)
 - **Glassmorphism**: Cards use `backdrop-filter: blur()` with semi-transparent backgrounds
-- **Gradients**: Primary gradient is orange → cyan (135deg)
+- **Gradients**: Primary gradient is gold → blue (135deg)
 
 ### Components
 
@@ -93,11 +94,12 @@ The site uses a **dark, gaming-inspired aesthetic** suitable for the Fighting Ga
 - Swiper.js carousels with fade transitions
 - Custom navigation buttons (circular with gradient on hover)
 - Video titles displayed below the carousel
+- Mobile vs desktop video formats (9:16 vs 16:9 aspect ratios)
 
 ## Key Features
 
 1. **Bilingual Support**: Full English (EN) and Spanish (ES) localization with styled language switcher
-2. **Responsive Design**: Mobile-first approach with breakpoints at 768px and 480px
+2. **Responsive Design**: Mobile-first approach with breakpoints at 1024px, 768px, and 480px
 3. **Video Carousels**: Three Swiper.js sliders:
    - Main Features (tutorial/promo videos)
    - App Images (screenshot gallery in phone frame)
@@ -110,7 +112,7 @@ The site uses a **dark, gaming-inspired aesthetic** suitable for the Fighting Ga
 
 ### Hero Section
 - Full viewport height with centered content
-- Animated "Train. Fight. Compete." headline with gradient text
+- Animated headline with gradient text (words: "Train. Fight. Compete.")
 - Store badges with icon + text layout
 - Scroll indicator at bottom
 
@@ -118,11 +120,11 @@ The site uses a **dark, gaming-inspired aesthetic** suitable for the Fighting Ga
 - Section label (badge style)
 - Gradient headline
 - Feature cards with icons in a 3-column grid
-- Video carousel below
+- Video carousel below with dynamic titles
 
 ### App Showcase Section
 - Two-column layout (content + phone mockup)
-- Phone frame with notch and rounded corners
+- Phone frame with rounded corners (48px border-radius)
 - Swiper fade carousel for screenshots
 - Feature checklist with custom bullet styling
 
@@ -161,10 +163,11 @@ Each JSON file follows a hierarchical structure organized by sections:
 
 ### How it Works
 
-1. **Loading**: The `index.html` fetches the appropriate JSON file based on user language
+1. **Loading**: The `index.html` fetches the appropriate JSON file based on user language (`navigator.language`)
 2. **Fallback**: If a translation key is missing, it falls back to English
-3. **Language Detection**: Automatic based on `navigator.language`
+3. **Language Detection**: Automatic based on browser language; defaults to English
 4. **Switching**: Users can switch languages via the ES/EN toggle in the header
+5. **Video Adaptation**: Videos switch between mobile (9:16) and desktop (16:9) formats based on screen width
 
 ### Adding a New Language
 
@@ -180,12 +183,13 @@ Each JSON file follows a hierarchical structure organized by sections:
 - Maintain the same JSON structure
 - Test that all links and video IDs work for the new language
 - Ensure screenshot paths point to the correct language-specific images
+- YouTube video IDs can be different per language for localized content
 
 ## Code Organization
 
 ### Main Page (`index.html`)
 
-**CSS Custom Properties** (CSS Variables) are defined in `:root` for the entire design system.
+**CSS Custom Properties** (CSS Variables) are defined in `:root` for the entire design system (~400 lines of CSS).
 
 **Sections** (in order):
 1. Background effects (grid, glow orbs)
@@ -197,9 +201,11 @@ Each JSON file follows a hierarchical structure organized by sections:
 7. CTA section
 8. Footer with grid layout
 
-**JavaScript**:
-- `setLanguage(lang)` - Updates all translatable content
+**JavaScript** (~400 lines):
+- `setLanguage(lang)` - Updates all translatable content dynamically
 - `updateActiveVideoTitle()` - Syncs video title with active slide
+- `initTranslations()` - Loads translation files with fallback handling
+- `getVideoView()` - Detects mobile vs desktop for video format
 - Swiper initialization on DOMContentLoaded
 - IntersectionObserver for fade-in animations
 - Header scroll effect
@@ -207,11 +213,14 @@ Each JSON file follows a hierarchical structure organized by sections:
 
 ### Subpages (`kickstarter/`, `redkings/`)
 
-Share the same design system as the main page with simplified layouts:
-- Centered placeholder content
-- Page icon/badge
+Share a similar design system with simplified layouts:
+- Centered placeholder content with page icon/badge
+- Language toggle (ES/EN) with inline translations
+- Navigation menu linking to main site sections
 - Back to home button
-- Same footer structure
+- Footer with social links and legal navigation
+
+Each subpage has inline JavaScript translation objects (not external JSON) for simpler maintenance.
 
 ## Development Guidelines
 
@@ -238,23 +247,31 @@ Before making style changes, consult `STYLES.md` which documents:
 2. Add video entry to both `translations.es.videoSwiper` and `translations.en.videoSwiper`
 3. Use different video IDs for different languages if content differs
 4. Specify appropriate array (`mobileVideos`/`desktopVideos` or `mobileOtherVideos`/`desktopOtherVideos`)
+5. Videos automatically adapt format based on screen width (window.innerWidth < 768)
 
 ### Adding New Screenshots
 
 1. Add image files to `img/` with naming pattern `XX_en.jpg` and `XX_es.jpg`
-2. Update translation objects with new screenshot metadata
-3. Add new `<div class="swiper-slide">` elements to the app-images section
+2. Update translation objects in `lang/en.json` and `lang/es.json` with new screenshot metadata
+3. Add new `<div class="swiper-slide">` elements to the app-images section in `index.html`
 
 ### Design Consistency
 
 When making changes, maintain:
 - Color variable usage (don't hardcode colors)
 - Typography hierarchy (Chakra Petch for headlines, Inter for body)
-- Border radius consistency (8px, 12px, 20px, 28px)
-- Transition timing (0.2s for fast, 0.3s for medium)
-- Spacing rhythm (8px base unit)
+- Border radius consistency (8px, 12px, 20px, 28px, 36px, 48px)
+- Transition timing (0.2s for fast, 0.3s for medium, 0.5s for slow)
+- Spacing rhythm (8px base unit, 120px section padding)
+- Z-index layering (background: 0, content: 1, header: 1000)
 
-## Deployment
+## Build and Deployment
+
+### No Build Step
+
+This project has **no build process**. It is a pure static HTML site.
+
+### Deployment
 
 This site is deployed via **GitHub Pages**:
 
@@ -263,15 +280,66 @@ This site is deployed via **GitHub Pages**:
 3. The `.nojekyll` file prevents Jekyll processing (allows files starting with underscores)
 4. The `CNAME` file configures the custom domain (promo.fighterstech.com)
 
-**No build step required** - changes are live immediately after push.
+**Changes are live immediately after push** - no build step required.
+
+### Local Development
+
+To preview locally:
+
+```bash
+# Using Python's built-in server
+python -m http.server 8000
+
+# Or using Node's npx
+npx serve .
+
+# Or using PHP
+php -S localhost:8000
+```
+
+Then open `http://localhost:8000` in your browser.
+
+## Testing Strategy
+
+There is **no automated testing setup**. Manual testing should verify:
+
+1. **Language switching** works correctly (ES/EN) - check all sections
+2. **Swiper carousels** function properly on both mobile and desktop
+3. **All external links** work (App Store, Google Play, social media)
+4. **Responsive layout** at various screen sizes (320px, 768px, 1024px, 1440px)
+5. **YouTube videos** load and play correctly in both formats
+6. **Smooth scroll** behavior works for anchor links
+7. **All hover effects** function as expected
+8. **Mobile menu toggle** works on small screens
+9. **Video format switching** - resize browser to verify mobile/desktop video swap
+
+### Testing Checklist for Changes
+
+- [ ] Test in both English and Spanish
+- [ ] Test on mobile viewport (375px width)
+- [ ] Test on tablet viewport (768px width)
+- [ ] Test on desktop viewport (1440px width)
+- [ ] Verify all carousels function correctly
+- [ ] Check all external links open correctly
+- [ ] Validate no console errors
 
 ## External Dependencies
 
-- `https://unpkg.com/swiper/swiper-bundle.min.css`
-- `https://unpkg.com/swiper/swiper-bundle.min.js`
-- `https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap`
-- `https://legal.fighterstech.com/fighterstech.png` (logo)
-- YouTube embed iframes
+| Resource | URL | Usage |
+|----------|-----|-------|
+| Swiper CSS | `https://unpkg.com/swiper/swiper-bundle.min.css` | Carousel styling |
+| Swiper JS | `https://unpkg.com/swiper/swiper-bundle.min.js` | Carousel functionality |
+| Google Fonts | `https://fonts.googleapis.com/css2?family=Chakra+Petch...` | Typography |
+| Logo CDN | `https://legal.fighterstech.com/fighterstech.png` | Brand logo |
+| YouTube | `https://www.youtube.com/embed/{id}` | Video embeds |
+
+## Security Considerations
+
+- All external links use `target="_blank"` with `rel="noopener noreferrer"`
+- YouTube embeds use `rel=0` parameter to show related videos from same channel only
+- No user input handling or server-side processing
+- Static site with no authentication or sensitive data
+- Ad configuration in `app-ads.txt` follows Google AdSense standards
 
 ## Legal and SEO Configuration
 
@@ -279,28 +347,26 @@ This site is deployed via **GitHub Pages**:
 - **Structured Data**: JSON-LD for Organization and WebSite schema
 - **Meta Tags**: Open Graph, Twitter Cards, viewport, description, keywords
 - **Robots**: `index, follow` for search engine crawling
+- **Canonical URLs**: Set to `https://promo.fighterstech.com/`
+- **Hreflang**: Alternate links for English and Spanish
 - **Ads**: `app-ads.txt` configured for Google AdSense/AdMob
-
-## Testing Considerations
-
-There is no automated testing setup. Manual testing should verify:
-
-1. Language switching works correctly (ES/EN) - check all sections
-2. Swiper carousels function properly on both mobile and desktop
-3. All external links work (App Store, Google Play, social media)
-4. Responsive layout at various screen sizes (320px, 768px, 1024px, 1440px)
-5. YouTube videos load and play correctly
-6. Smooth scroll behavior works
-7. All hover effects function as expected
-8. Mobile menu toggle works on small screens
-
-## Security Notes
-
-- All external links use `target="_blank"` with `rel="noopener noreferrer"`
-- YouTube embeds use `rel=0` parameter to show related videos from same channel only
-- No user input handling or server-side processing
 
 ## Related Projects
 
 - **Main App**: FightersTech mobile app (iOS/Android)
 - **Legal Site**: https://legal.fighterstech.com/ (separate repository)
+- **Kickstarter**: Future crowdfunding campaign (placeholder page)
+- **RedKingsFG**: Collaboration page for tournaments (placeholder page)
+
+## Tips for AI Agents
+
+1. **Always check `STYLES.md`** before modifying CSS - it contains the design system reference
+2. **Test both languages** when making content changes
+3. **Update both JSON files** (`en.json` and `es.json`) when adding new translatable content
+4. **Verify mobile layout** - the site is heavily used on mobile devices
+5. **Don't add build tools** - keep it simple as a static site
+6. **Use CSS variables** - never hardcode colors or spacing values
+7. **Maintain z-index layering** - background at 0, content at 1, header at 1000
+8. **Test hover states** - many elements have specific hover effects
+9. **Respect aspect ratios** - Phone frame uses `aspect-ratio: 9/19`
+10. **Keep animations subtle** - use defined transitions, avoid adding new ones without reason
