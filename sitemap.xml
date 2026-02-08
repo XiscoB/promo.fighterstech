@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- ============================================================
+       FightersTech Promo Site - XML Sitemap
+       Generated: 2026-01-31
+       Domain: promo.fighterstech.com
+       ============================================================ -->
+
+  <!-- HOME PAGE - Main Landing Page -->
+  <url>
+    <loc>https://promo.fighterstech.com/</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://promo.fighterstech.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://promo.fighterstech.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://promo.fighterstech.com/"/>
+    
+    <!-- App Screenshots for Image Search -->
+    <image:image>
+      <image:loc>https://promo.fighterstech.com/img/01_en.jpg</image:loc>
+      <image:title>FightersTech App - Tournament Discovery</image:title>
+      <image:caption>Browse tournaments in the FightersTech app</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://promo.fighterstech.com/img/02_en.jpg</image:loc>
+      <image:title>FightersTech App - Player Profiles</image:title>
+      <image:caption>Manage your player profile in FightersTech</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://promo.fighterstech.com/img/03_en.jpg</image:loc>
+      <image:title>FightersTech App - Match Results</image:title>
+      <image:caption>Track match results and statistics</image:caption>
+    </image:image>
+  </url>
+
+  <!-- REDKINGS PAGE - Collaboration/Tournament Page -->
+  <url>
+    <loc>https://promo.fighterstech.com/redkings/</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://promo.fighterstech.com/redkings/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://promo.fighterstech.com/redkings/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://promo.fighterstech.com/redkings/"/>
+  </url>
+
+</urlset>

@@ -1,0 +1,127 @@
+# ============================================================
+# FightersTech Promo Site - Crawler Access Policy
+# Domain: promo.fighterstech.com
+# Last Updated: 2026-01-31
+# ============================================================
+
+# Allow all crawlers access to root first
+User-agent: *
+Allow: /
+
+# ============================================================
+# SEARCH ENGINE CRAWLERS (Primary SEO)
+# ============================================================
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Googlebot-Image
+Allow: /img/
+Allow: /assets/
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: BingPreview
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+# ============================================================
+# AI INDEXING CRAWLERS (Allow - Content can be indexed)
+# ============================================================
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-Thought
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# ============================================================
+# AI TRAINING CRAWLERS (Block - Prevent model training)
+# ============================================================
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: Timpibot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# ============================================================
+# ARCHIVE/UTILITY CRAWLERS
+# ============================================================
+
+User-agent: ia_archiver
+Allow: /
+
+User-agent: Archive.org_bot
+Allow: /
+
+# ============================================================
+# SECURITY - BLOCK MALICIOUS OR UNWANTED BOTS
+# ============================================================
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: dotbot
+Disallow: /
+
+User-agent: Rogerbot
+Disallow: /
+
+User-agent: Screaming Frog SEO Spider
+Allow: /
+Crawl-delay: 5
+
+# ============================================================
+# SITEMAP REFERENCE
+# ============================================================
+Sitemap: https://promo.fighterstech.com/sitemap.xml
