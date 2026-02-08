@@ -6,8 +6,10 @@
   },
   "nav": {
     "menuMainFeatures": "Features",
+    "menuWhyFightersTech": "Why FightersTech",
     "menuAppImages": "App Images",
-    "menuOtherFeatures": "Other Features"
+    "menuOtherFeatures": "Other Features",
+    "downloadApp": "Download App"
   },
   "hero": {
     "title": "Train. Fight. Compete.",
@@ -32,19 +34,19 @@
     "mainFeatures": {
       "label": "Features",
       "title": "Main Features",
-      "description": "Discover everything FightersTech has to offer for competitive players and tournament organizers."
+      "description": "Discover the key features of FightersTech for competitive, casual players, and tournament organizers."
     },
     "appGallery": {
       "label": "App Gallery",
       "title": "See the Action",
-      "description": "Take a look at the FightersTech interface. Built for speed, designed for competitors. Every screen is optimized for quick access to the features you need most.",
+      "description": "Stop relying on the algorithm to find out about tournaments. FightersTech helps you organize your competitive activity and find exactly what you're looking for to improve.",
       "swipeInstruction": "Swipe or drag to explore",
       "featureList": [
-        "Intuitive tournament browsing",
-        "Player profile management",
-        "Daily tournament notifications",
-        "Discord integration",
-        "Social sharing features"
+        "Tournaments organized by game and location",
+        "Matchup training with other players",
+        "Competitive calendar for matches and events",
+        "Offline reminders and alarms so you don't miss anything",
+        "Discord integration for notifications"
       ]
     },
     "otherFeatures": {
@@ -52,23 +54,50 @@
       "title": "Other Features",
       "description": "Explore additional tools and features that make FightersTech the complete platform for fighting game enthusiasts."
     },
+    "whyFightersTech": {
+      "label": "Difference",
+      "title": "Why FightersTech?",
+      "description": "FightersTech was born from a real problem: important competitive information gets lost in algorithms, schedules, and noise. Everything here is designed for players who want to train, organize, and compete without depending on social media."
+    },
     "cta": {
       "title": "Ready to Join the Fight?",
-      "description": "Download FightersTech today and become part of the ultimate Fighting Game Community platform."
+      "description": "FightersTech is not another social network. It's a tool designed for competing. Download today and become part of the ultimate Fighting Game Community platform."
     }
   },
   "featureCards": [
     {
       "title": "Tournament Notifications",
-      "description": "Never miss a tournament again. Get daily notifications for upcoming events in your favorite fighting games."
+      "description": "Get alerts for tournaments based on your games and location. Optionally, on Discord too."
     },
     {
-      "title": "Game Profiles",
-      "description": "Create detailed profiles for each game you play. Track your progress, rank, and match history."
+      "title": "Player Profiles",
+      "description": "One profile per game to showcase your main and secondary characters, as well as your playstyle."
     },
     {
-      "title": "Find Matchups",
-      "description": "Connect with players at your skill level. Search for opponents, set up matches, and improve your game."
+      "title": "Improve Your Matches",
+      "description": "Find rivals at your level and analyze your matchups to improve with purpose."
+    },
+    {
+      "title": "Competitive Calendar",
+      "description": "Manage invites, matches, and tournaments in a unified calendar."
+    }
+  ],
+  "whyCards": [
+    {
+      "title": "No algorithm dependency",
+      "description": "Tournaments shouldn't depend on whether a social network decides to show them to you. On FightersTech, you receive information directly from organizers, based on your games and location."
+    },
+    {
+      "title": "Train with intention, not by chance",
+      "description": "It's not just about playing more, but playing better. Find players looking to practice the same matchups as you and focus your time on actually improving."
+    },
+    {
+      "title": "All your competitive calendar, in one place",
+      "description": "Matches, invitations, tournaments, and schedules. FightersTech helps you keep everything organized so you don't miss any important event."
+    },
+    {
+      "title": "Designed for the real scene",
+      "description": "Whether you play in your city or are traveling, FightersTech connects you with the local and online scene so you always know what's happening around you."
     }
   ],
   "footer": {
@@ -126,30 +155,66 @@
   },
   "videoSwiper": {
     "mobileVideos": [
-      { "id": "kqk9hnAPGs8", "title": "FightersTech - Promo - Tournament Notifications" },
-      { "id": "ps-_JYRVj_o", "title": "FightersTech Tutorials - Create a game profile" },
-      { "id": "kVKoGtZGB6I", "title": "FightersTech Tutorials - Find matchups" },
-      { "id": "Wkk7CATkGVs", "title": "FightersTech Tutorials - Tournament Notifications" }
+      {
+        "id": "kqk9hnAPGs8",
+        "title": "FightersTech - Promo - Tournament Notifications"
+      },
+      {
+        "id": "ps-_JYRVj_o",
+        "title": "FightersTech Tutorials - Create a game profile"
+      },
+      {
+        "id": "kVKoGtZGB6I",
+        "title": "FightersTech Tutorials - Find matchups"
+      },
+      {
+        "id": "Wkk7CATkGVs",
+        "title": "FightersTech Tutorials - Tournament Notifications"
+      }
     ],
     "desktopVideos": [
-      { "id": "kqk9hnAPGs8", "title": "FightersTech - Promo - Tournament Notifications" },
-      { "id": "ps-_JYRVj_o", "title": "FightersTech Tutorials - Create a game profile" },
-      { "id": "kVKoGtZGB6I", "title": "FightersTech Tutorials - Find matchups" },
-      { "id": "Wkk7CATkGVs", "title": "FightersTech Tutorials - Tournament Notifications" }
+      {
+        "id": "kqk9hnAPGs8",
+        "title": "FightersTech - Promo - Tournament Notifications"
+      },
+      {
+        "id": "ps-_JYRVj_o",
+        "title": "FightersTech Tutorials - Create a game profile"
+      },
+      {
+        "id": "kVKoGtZGB6I",
+        "title": "FightersTech Tutorials - Find matchups"
+      },
+      {
+        "id": "Wkk7CATkGVs",
+        "title": "FightersTech Tutorials - Tournament Notifications"
+      }
     ],
     "mobileOtherVideos": [
       { "id": "DqD7IKQrpeU", "title": "Quick Features - Game Order" },
       { "id": "wN0_XOfZWKs", "title": "Quick Features - Link Discord Account" },
       { "id": "Gt-_QeyyOQY", "title": "Quick Features - Block Users" },
-      { "id": "mZcjf6B4lhM", "title": "Quick Features - Sharing in other social apps" },
-      { "id": "_FImH9v2_j4", "title": "Quick Features - Manage local notifications" }
+      {
+        "id": "mZcjf6B4lhM",
+        "title": "Quick Features - Sharing in other social apps"
+      },
+      {
+        "id": "_FImH9v2_j4",
+        "title": "Quick Features - Manage local notifications"
+      }
     ],
     "desktopOtherVideos": [
       { "id": "DqD7IKQrpeU", "title": "Quick Features - Game Order" },
       { "id": "wN0_XOfZWKs", "title": "Quick Features - Link Discord Account" },
       { "id": "Gt-_QeyyOQY", "title": "Quick Features - Block Users" },
-      { "id": "mZcjf6B4lhM", "title": "Quick Features - Sharing in other social apps" },
-      { "id": "_FImH9v2_j4", "title": "Quick Features - Manage local notifications" }
+      {
+        "id": "mZcjf6B4lhM",
+        "title": "Quick Features - Sharing in other social apps"
+      },
+      {
+        "id": "_FImH9v2_j4",
+        "title": "Quick Features - Manage local notifications"
+      }
     ]
   }
 }

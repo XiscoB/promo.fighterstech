@@ -5,8 +5,10 @@
   },
   "nav": {
     "menuMainFeatures": "Características",
+    "menuWhyFightersTech": "¿Por qué FightersTech?",
     "menuAppImages": "Imágenes",
-    "menuOtherFeatures": "Otras Funcionalidades"
+    "menuOtherFeatures": "Otras Funcionalidades",
+    "downloadApp": "Descargar App"
   },
   "hero": {
     "title": "Entrena. Lucha. Compite.",
@@ -31,25 +33,30 @@
     "mainFeatures": {
       "label": "Características",
       "title": "Características Principales",
-      "description": "Descubre todo lo que FightersTech ofrece para jugadores competitivos y organizadores de torneos."
+      "description": "Descubre las funciones clave de FightersTech para jugadores  competitivos, casuales y organizadores de torneos."
     },
     "appGallery": {
       "label": "Galería",
       "title": "Ve la Acción",
-      "description": "Echa un vistazo a la interfaz de FightersTech. Construido para la velocidad, diseñado para competidores. Cada pantalla está optimizada para un acceso rápido a las funciones que más necesitas.",
+      "description": "Deja de depender del algoritmo para enterarte de torneos. FightersTech te ayuda a organizar tu actividad competitiva y a encontrar justo lo que estás buscando para mejorar.",
       "swipeInstruction": "Desliza o arrastra para explorar",
       "featureList": [
-        "Navegación intuitiva de torneos",
-        "Gestión de perfiles de jugador",
-        "Notificaciones diarias",
-        "Integración con Discord",
-        "Funciones de compartir en redes"
+        "Torneos organizados por juego y ubicación",
+        "Entrenamiento de matchups con otros jugadores",
+        "Agenda competitiva para partidas y eventos",
+        "Recordatorios y alarmas offline para no perderte nada",
+        "Integración con Discord para notificaciones"
       ]
     },
     "otherFeatures": {
       "label": "Más",
       "title": "Otras Funcionalidades",
       "description": "Explora herramientas adicionales que hacen de FightersTech la plataforma completa para los entusiastas de los juegos de lucha."
+    },
+    "whyFightersTech": {
+      "label": "Diferencia",
+      "title": "¿Por qué FightersTech?",
+      "description": "FightersTech nace de un problema real: la información importante para competir se pierde entre algoritmos, horarios y ruido. Aquí todo está pensado para jugadores que quieren entrenar, organizarse y competir sin depender de redes sociales."
     },
     "cta": {
       "title": "¿Listo para unirte a la lucha?",
@@ -59,15 +66,37 @@
   "featureCards": [
     {
       "title": "Notificaciones de Torneos",
-      "description": "Nunca te pierdas un torneo de nuevo. Recibe notificaciones diarias de próximos eventos en tus juegos de lucha favoritos."
+      "description": "Recibe avisos de torneos según tus juegos y ubicación. Opcionalmente, también en tu Discord."
     },
     {
-      "title": "Perfiles de Juego",
-      "description": "Crea perfiles detallados para cada juego que juegues. Sigue tu progreso, rango e historial de enfrentamientos."
+      "title": "Perfiles de Jugador",
+      "description": "Un perfil por juego para mostrar tus personajes principales, secundarios y tu estilo como jugador."
     },
     {
-      "title": "Encontrar Enfrentamientos",
-      "description": "Conecta con jugadores de tu nivel. Busca oponentes, organiza enfrentamientos y mejora tu juego."
+      "title": "Mejora tus Enfrentamientos",
+      "description": "Encuentra rivales a tu nivel y analiza tus matchups para mejorar de forma dirigida."
+    },
+    {
+      "title": "Agenda Competitiva",
+      "description": "Gestiona invitaciones, partidas y torneos en un calendario unificado."
+    }
+  ],
+  "whyCards": [
+    {
+      "title": "Sin depender del algoritmo",
+      "description": "Los torneos no deberían depender de si una red social decide enseñártelos. En FightersTech recibes la información directamente de los organizadores, según tu juego y tu ubicación."
+    },
+    {
+      "title": "Entrena con intención, no al azar",
+      "description": "No se trata solo de jugar más, sino de jugar mejor. Encuentra jugadores que buscan entrenar los mismos matchups que tú y enfoca tu tiempo en mejorar de verdad."
+    },
+    {
+      "title": "Todo tu calendario competitivo, en un solo sitio",
+      "description": "Partidas, invitaciones, torneos y horarios. FightersTech te ayuda a tenerlo todo organizado para que no se te pase ningún evento importante."
+    },
+    {
+      "title": "Diseñado para la escena real",
+      "description": "Da igual si juegas en tu ciudad o estás de viaje. FightersTech te conecta con la escena local y online para que siempre sepas qué está pasando a tu alrededor."
     }
   ],
   "footer": {

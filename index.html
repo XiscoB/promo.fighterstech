@@ -87,6 +87,8 @@
       name="twitter:image:alt"
       content="FightersTech - FGC Tournament App"
     />
+    <meta name="apple-itunes-app" content="app-id=6741810411" />
+    <meta name="google-play-app" content="app-id=com.xiscoteon.fighterstech" />
 
     <!-- Performance: Preconnect to external origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -383,7 +385,9 @@
         font-weight: 700;
         color: var(--text-primary);
         letter-spacing: -0.02em;
-        transition: color var(--transition-fast), text-shadow var(--transition-fast);
+        transition:
+          color var(--transition-fast),
+          text-shadow var(--transition-fast);
       }
 
       .logo:hover .logo-text {
@@ -746,11 +750,17 @@
 
       /* Feature Cards */
       .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 32px;
         margin-top: 48px;
         margin-bottom: 48px;
+      }
+
+      .features-grid .feature-card {
+        flex: 0 1 360px;
+        max-width: 360px;
       }
 
       .feature-card {
@@ -846,6 +856,202 @@
         color: var(--text-secondary);
         font-size: 0.9375rem;
         line-height: 1.7;
+      }
+
+      /* ========================================
+         WHY FIGHTERSTECH SECTION - BENTO GRID STYLE
+         ======================================== */
+      .why-section {
+        background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(0, 40, 78, 0.5) 50%, var(--bg-primary) 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .why-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        opacity: 0.5;
+      }
+
+      /* Decorative background elements */
+      .why-section::after {
+        content: "";
+        position: absolute;
+        top: 10%;
+        right: -10%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(252, 175, 1, 0.08) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        margin-top: 64px;
+        position: relative;
+      }
+
+      /* Bento Grid Items */
+      .why-card-bento {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius-lg);
+        padding: 40px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1;
+      }
+
+      /* Card variants with different accent colors */
+      .why-card-bento:nth-child(1) {
+        background: linear-gradient(135deg, rgba(252, 175, 1, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+        border-color: rgba(252, 175, 1, 0.2);
+      }
+
+      .why-card-bento:nth-child(2) {
+        background: linear-gradient(135deg, rgba(0, 200, 83, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+        border-color: rgba(0, 200, 83, 0.15);
+      }
+
+      .why-card-bento:nth-child(3) {
+        background: linear-gradient(135deg, rgba(30, 144, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+        border-color: rgba(30, 144, 255, 0.15);
+      }
+
+      .why-card-bento:nth-child(4) {
+        background: linear-gradient(135deg, rgba(252, 175, 1, 0.06) 0%, rgba(0, 200, 83, 0.04) 100%);
+        border-color: rgba(252, 175, 1, 0.15);
+      }
+
+      /* Title styling - prominent headlines */
+      .why-card-bento h3 {
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+        line-height: 1.3;
+        transition: all 0.4s ease;
+      }
+
+      /* Different title colors per card */
+      .why-card-bento:nth-child(1) h3 {
+        background: linear-gradient(135deg, var(--accent-gold) 0%, rgba(252, 175, 1, 0.7) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .why-card-bento:nth-child(2) h3 {
+        background: linear-gradient(135deg, var(--accent-green) 0%, rgba(0, 200, 83, 0.7) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .why-card-bento:nth-child(3) h3 {
+        background: linear-gradient(135deg, var(--accent-blue) 0%, rgba(30, 144, 255, 0.7) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .why-card-bento:nth-child(4) h3 {
+        background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-green) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Hover effects */
+      .why-card-bento:hover {
+        transform: translateY(-8px) scale(1.02);
+        border-color: rgba(252, 175, 1, 0.4);
+        box-shadow: 
+          0 25px 50px -12px rgba(0, 0, 0, 0.5),
+          0 0 40px rgba(252, 175, 1, 0.15);
+      }
+
+      .why-card-bento:hover h3 {
+        transform: scale(1.02);
+      }
+
+      .why-card-bento:nth-child(2):hover {
+        border-color: rgba(0, 200, 83, 0.4);
+        box-shadow: 
+          0 25px 50px -12px rgba(0, 0, 0, 0.5),
+          0 0 40px rgba(0, 200, 83, 0.15);
+      }
+
+      .why-card-bento:nth-child(3):hover {
+        border-color: rgba(30, 144, 255, 0.4);
+        box-shadow: 
+          0 25px 50px -12px rgba(0, 0, 0, 0.5),
+          0 0 40px rgba(30, 144, 255, 0.15);
+      }
+
+      /* Glow effect on hover */
+      .why-card-bento::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 50% 0%, rgba(252, 175, 1, 0.15) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+      }
+
+      .why-card-bento:hover::after {
+        opacity: 1;
+      }
+
+      .why-card-bento p {
+        color: var(--text-secondary);
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      /* Section transition indicator */
+      .section-transition {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(252, 175, 1, 0.5), transparent);
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 1024px) {
+        .why-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .why-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+        
+        .why-card-bento {
+          padding: 28px;
+        }
+        
+        .why-card-bento h3 {
+          font-size: 1.35rem;
+        }
       }
 
       /* ========================================
@@ -1451,6 +1657,44 @@
         background: rgba(252, 175, 1, 0.1);
       }
 
+      /* Header CTA Button */
+      .header-cta {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .header-download-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        background: var(--accent-gradient);
+        border: none;
+        border-radius: var(--radius-md);
+        color: var(--text-primary);
+        font-family: var(--font-display);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(252, 175, 1, 0.3);
+        white-space: nowrap;
+      }
+
+      .header-download-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(252, 175, 1, 0.4);
+        filter: brightness(1.1);
+      }
+
+      .header-download-btn svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+      }
+
       /* ========================================
          ANIMATIONS
          ======================================== */
@@ -1512,6 +1756,16 @@
           background: var(--bg-secondary);
           padding: 20px;
           border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .header-download-btn {
+          padding: 8px 14px;
+          font-size: 0.8rem;
+        }
+
+        .header-download-btn svg {
+          width: 16px;
+          height: 16px;
         }
 
         .main-menu.active {
@@ -1627,6 +1881,14 @@
               >
             </li>
             <li>
+              <a
+                href="#whyFightersTechSection"
+                class="nav-link"
+                id="menuWhyFightersTech"
+                >Why FightersTech</a
+              >
+            </li>
+            <li>
               <a href="#appImagesSection" class="nav-link" id="menuAppImages"
                 >App Images</a
               >
@@ -1642,7 +1904,14 @@
           </ul>
         </nav>
 
-        <div style="display: flex; align-items: center; gap: 16px">
+        <div class="header-cta">
+          <a href="#hero" class="header-download-btn" id="headerDownloadBtn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 16.5l4-4h-3v-9h-2v9H8l4 4zm9-13v18H3v-18h18zm-2 2H5v14h14V5.5z"/>
+            </svg>
+            <span id="headerDownloadText">Download App</span>
+          </a>
+
           <div class="lang-toggle">
             <button
               class="lang-btn active"
@@ -1737,8 +2006,7 @@
             Main <span>Features</span>
           </h2>
           <p class="section-description" id="featuresDesc">
-            Discover everything FightersTech has to offer for competitive
-            players and tournament organizers.
+            Everything you need to compete, in one app.
           </p>
         </div>
 
@@ -1756,10 +2024,9 @@
                 />
               </svg>
             </div>
-            <h3>Tournament Notifications</h3>
-            <p>
-              Never miss a tournament again. Get daily notifications for
-              upcoming events in your favorite fighting games.
+            <h3 id="featureCard1Title">Tournament Notifications</h3>
+            <p id="featureCard1Desc">
+              Get alerts for tournaments based on your games and location. Optionally, on Discord too.
             </p>
           </div>
           <div class="feature-card">
@@ -1792,10 +2059,9 @@
                 </g>
               </svg>
             </div>
-            <h3>Game Profiles</h3>
-            <p>
-              Create detailed profiles for each game you play. Track your
-              progress, rank, and match history.
+            <h3 id="featureCard2Title">Player Profiles</h3>
+            <p id="featureCard2Desc">
+              One profile per game with your main characters and actual performance stats.
             </p>
           </div>
           <div class="feature-card">
@@ -1817,10 +2083,30 @@
                 <line x1="17" y1="17" x2="19" y2="15" />
               </svg>
             </div>
-            <h3>Find Matchups</h3>
-            <p>
-              Connect with players at your skill level. Search for opponents,
-              set up matches, and improve your game.
+            <h3 id="featureCard3Title">Improve Your Matches</h3>
+            <p id="featureCard3Desc">
+              Find rivals at your level and analyze your matchups to improve with purpose.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+            </div>
+            <h3 id="featureCard4Title">Competitive Calendar</h3>
+            <p id="featureCard4Desc">
+              Manage invites, matches, and tournaments in a unified calendar.
             </p>
           </div>
         </div>
@@ -1836,6 +2122,58 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- Why FightersTech Section -->
+    <section class="section why-section" id="whyFightersTechSection">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-label" id="whyLabel">Difference</span>
+          <h2 class="section-title" id="titleWhyFightersTech">
+            Why <span>FightersTech?</span>
+          </h2>
+          <p class="section-description" id="whyDesc">
+            FightersTech was born from a real problem: important competitive
+            information gets lost in algorithms, schedules, and noise.
+          </p>
+        </div>
+
+        <div class="why-grid fade-in" id="whyCardsGrid">
+          <!-- Card 1: Algorithm -->
+          <div class="why-card-bento">
+            <h3 id="whyCard1Title">No algorithm dependency</h3>
+            <p id="whyCard1Desc">
+              Tournaments shouldn't depend on whether a social network decides
+              to show them to you. On FightersTech, you receive information directly from organizers.
+            </p>
+          </div>
+
+          <!-- Card 2: Intentional Training -->
+          <div class="why-card-bento">
+            <h3 id="whyCard2Title">Train with intention</h3>
+            <p id="whyCard2Desc">
+              It's not just about playing more, but playing better. Find players looking to practice the same matchups as you.
+            </p>
+          </div>
+
+          <!-- Card 3: All in One -->
+          <div class="why-card-bento">
+            <h3 id="whyCard3Title">All in one place</h3>
+            <p id="whyCard3Desc">
+              Matches, invitations, tournaments, and schedules. FightersTech helps you keep everything organized so you don't miss anything.
+            </p>
+          </div>
+
+          <!-- Card 4: Real Scene -->
+          <div class="why-card-bento">
+            <h3 id="whyCard4Title">Designed for the real scene</h3>
+            <p id="whyCard4Desc">
+              Whether you play in your city or are traveling, FightersTech connects you with the local and online fighting game community.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="section-transition"></div>
     </section>
 
     <!-- App Images Section -->
@@ -2365,16 +2703,25 @@
         // Menu items
         document.getElementById("menuMainFeatures").textContent =
           t.nav.menuMainFeatures;
+        document.getElementById("menuWhyFightersTech").textContent =
+          t.nav.menuWhyFightersTech;
         document.getElementById("menuAppImages").textContent =
           t.nav.menuAppImages;
         document.getElementById("menuOtherFeatures").textContent =
           t.nav.menuOtherFeatures;
 
+        // Header download button
+        const headerDownloadText = document.getElementById("headerDownloadText");
+        if (headerDownloadText && t.nav.downloadApp) {
+          headerDownloadText.textContent = t.nav.downloadApp;
+        }
+
         // Section labels and descriptions
         const sectionLabels = document.querySelectorAll(".section-label");
         sectionLabels[0].textContent = t.sections.mainFeatures.label;
-        sectionLabels[1].textContent = t.sections.appGallery.label;
-        sectionLabels[2].textContent = t.sections.otherFeatures.label;
+        sectionLabels[1].textContent = t.sections.whyFightersTech.label;
+        sectionLabels[2].textContent = t.sections.appGallery.label;
+        sectionLabels[3].textContent = t.sections.otherFeatures.label;
 
         const sectionDescriptions = document.querySelectorAll(
           ".section-description",
@@ -2382,6 +2729,8 @@
         sectionDescriptions[0].textContent =
           t.sections.mainFeatures.description;
         sectionDescriptions[1].textContent =
+          t.sections.whyFightersTech.description;
+        sectionDescriptions[2].textContent =
           t.sections.otherFeatures.description;
 
         // CTA section
@@ -2413,14 +2762,36 @@
           if (featureList[i]) featureList[i].textContent = text;
         });
 
-        // Update feature cards
-        const featureCards = document.querySelectorAll(".feature-card");
-        featureCards.forEach((card, i) => {
+        // Update main feature cards (first 4)
+        const mainFeatureCards = document.querySelectorAll("#mainFeaturesSection .feature-card");
+        mainFeatureCards.forEach((card, i) => {
           if (t.featureCards[i]) {
             card.querySelector("h3").textContent = t.featureCards[i].title;
             card.querySelector("p").textContent = t.featureCards[i].description;
           }
         });
+
+        // Update Why FightersTech cards (bento grid)
+        const whyCards = document.querySelectorAll(".why-card-bento");
+        whyCards.forEach((card, i) => {
+          if (t.whyCards[i]) {
+            card.querySelector("h3").textContent = t.whyCards[i].title;
+            card.querySelector("p").textContent = t.whyCards[i].description;
+          }
+        });
+
+        // Update Why FightersTech section title
+        const whyTitle = document.getElementById("titleWhyFightersTech");
+        if (whyTitle && t.sections.whyFightersTech.title) {
+          // Preserve the span wrapper for styling
+          const titleText = t.sections.whyFightersTech.title;
+          const parts = titleText.split(" ");
+          if (parts.length > 1) {
+            whyTitle.innerHTML = `${parts.slice(0, -1).join(" ")} <span>${parts[parts.length - 1]}</span>`;
+          } else {
+            whyTitle.textContent = titleText;
+          }
+        }
 
         // Update footer columns
         const footerColumns = document.querySelectorAll(".footer-column");
