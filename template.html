@@ -70,8 +70,8 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@fighterstech" />
-    <meta name="twitter:creator" content="@fighterstech" />
+    <meta name="twitter:site" content="{{seo.twitterHandle}}" />
+    <meta name="twitter:creator" content="{{seo.twitterHandle}}" />
     <meta
       name="twitter:title"
       content="FightersTech - Train. Fight. Compete."
@@ -119,7 +119,7 @@
         "url": "https://promo.fighterstech.com/",
         "logo": "https://legal.fighterstech.com/fighterstech.png",
         "sameAs": [
-          "https://twitter.com/fighterstech",
+          "{{footer.columns.contact.links.twitterUrl}}",
           "https://instagram.com/fighterstech",
           "https://www.tiktok.com/@fighterstech",
           "https://bsky.app/profile/fighterstech.bsky.social"
@@ -1956,6 +1956,15 @@
                 class="nav-link"
                 id="menuMainFeatures"
                 >{{nav.menuMainFeatures}}</a>
+            </li>
+            <li>
+              <a href="#whyFightersTechSection" class="nav-link" id="menuWhyFightersTech">{{nav.menuWhyFightersTech}}</a>
+            </li>
+            <li>
+              <a href="#appGallerySection" class="nav-link" id="menuAppGallery">{{nav.menuAppGallery}}</a>
+            </li>
+          </ul>
+        </nav>
 
           <div class="lang-toggle">
             <a href="/es/" class="lang-btn {{active_es}}">ES</a>
@@ -2244,63 +2253,63 @@
                   <div class="swiper-wrapper">
                     <div class="swiper-slide">
                       <img loading="lazy" decoding="async"
-                        src="img/01_en.webp"
+                        src="/img/01_en.webp"
                         alt="Screenshot 1"
                         id="screenshot1"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img loading="lazy" decoding="async"
-                        src="img/02_en.webp"
+                        src="/img/02_en.webp"
                         alt="Screenshot 2"
                         id="screenshot2"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img loading="lazy" decoding="async"
-                        src="img/03_en.webp"
+                        src="/img/03_en.webp"
                         alt="Screenshot 3"
                         id="screenshot3"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img loading="lazy" decoding="async"
-                        src="img/04_en.webp"
+                        src="/img/04_en.webp"
                         alt="Screenshot 4"
                         id="screenshot4"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img loading="lazy" decoding="async"
-                        src="img/05_en.webp"
+                        src="/img/05_en.webp"
                         alt="Screenshot 5"
                         id="screenshot5"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img loading="lazy" decoding="async"
-                        src="img/06_en.webp"
+                        src="/img/06_en.webp"
                         alt="Screenshot 6"
                         id="screenshot6"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img loading="lazy" decoding="async"
-                        src="img/07_en.webp"
+                        src="/img/07_en.webp"
                         alt="Screenshot 7"
                         id="screenshot7"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img loading="lazy" decoding="async"
-                        src="img/08_en.webp"
+                        src="/img/08_en.webp"
                         alt="Screenshot 8"
                         id="screenshot8"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img loading="lazy" decoding="async"
-                        src="img/09_en.webp"
+                        src="/img/09_en.webp"
                         alt="Screenshot 9"
                         id="screenshot9"
                       />
@@ -2423,7 +2432,7 @@
             </p>
             <div class="social-links">
               <a
-                href="https://twitter.com/fighterstech"
+                href="{{footer.columns.contact.links.twitterUrl}}"
                 class="social-link"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -2523,7 +2532,7 @@
               </li>
               <li>
                 <a
-                  href="https://twitter.com/fighterstech"
+                  href="{{footer.columns.contact.links.twitterUrl}}"
                   target="_blank"
                   rel="noopener noreferrer"
                   >{{footer.columns.contact.links.support}}</a
