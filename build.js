@@ -9,7 +9,7 @@ if (!fs.existsSync(distDir)) {
 // 1. Copiar assets estáticos y archivos de configuración a /dist
 const staticItems = [
   'assets', 'img', 'lang', 'redkings', '.well-known',
-  'robots.txt', 'sitemap.xml', 'favicon.ico', 'CNAME', 'app-ads.txt', '.nojekyll'
+  'robots.txt', 'sitemap.xml', 'favicon.ico', 'CNAME', 'app-ads.txt', '.nojekyll', 'google92ad45d1abd0d250.html'
 ];
 
 staticItems.forEach(item => {
