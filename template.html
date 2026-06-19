@@ -445,6 +445,38 @@
         box-shadow: 0 4px 15px rgba(252, 175, 1, 0.3);
       }
 
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .nav-download-btn {
+        display: none;
+        padding: 8px 20px;
+        background: var(--accent-gradient);
+        color: var(--text-primary);
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        border-radius: var(--radius-xl);
+        box-shadow: 0 4px 15px rgba(252, 175, 1, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .nav-download-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(252, 175, 1, 0.5);
+      }
+
+      @media (min-width: 768px) {
+        .nav-download-btn {
+          display: block;
+        }
+      }
+
       /* Mobile Menu Toggle */
       .mobile-menu-toggle {
         display: none;
@@ -1935,6 +1967,120 @@
           border-radius: 28px;
         }
       }
+      /* Testimonials Section */
+      .testimonials-section {
+        background: var(--bg-secondary);
+        position: relative;
+        overflow: hidden;
+      }
+      .testimonials-swiper {
+        margin-top: 40px;
+        padding-bottom: 50px;
+      }
+      .testimonials-swiper .swiper-slide {
+        height: auto;
+      }
+      .testimonials-swiper .testimonial-card {
+        height: 100%;
+      }
+      .testimonial-card {
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%), var(--bg-tertiary);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        border-radius: 24px;
+        padding: 32px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+      }
+      .testimonial-card::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        border-radius: 24px;
+        background: radial-gradient(circle at top right, rgba(252, 175, 1, 0.2), transparent 70%);
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      .testimonial-card:hover,
+      .swiper-slide-active .testimonial-card {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(252, 175, 1, 0.15);
+        border-color: rgba(252, 175, 1, 0.4);
+      }
+      .testimonial-card:hover::before,
+      .swiper-slide-active .testimonial-card::before {
+        opacity: 1;
+      }
+      .testimonial-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .testimonial-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--accent-gradient);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--bg-primary);
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+      .testimonial-meta {
+        display: flex;
+        flex-direction: column;
+      }
+      .testimonial-name {
+        font-weight: bold;
+        color: var(--text-primary);
+        font-size: 1.1rem;
+      }
+      .testimonial-handle {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+      .testimonial-source {
+        color: var(--text-muted);
+        transition: color 0.3s ease;
+      }
+      .testimonial-source:hover {
+        color: var(--text-primary);
+      }
+      .testimonial-source svg {
+        width: 20px;
+        height: 20px;
+        fill: currentColor;
+      }
+      .testimonial-text {
+        color: var(--text-secondary);
+        line-height: 1.6;
+        font-size: 1rem;
+        font-style: italic;
+      }
+      .testimonial-text::before {
+        content: '"';
+        color: var(--accent-gold);
+        font-size: 1.5rem;
+        margin-right: 4px;
+      }
+      .testimonial-text::after {
+        content: '"';
+        color: var(--accent-gold);
+        font-size: 1.5rem;
+        margin-left: 4px;
+      }
     </style>
   </head>
   <body>
@@ -1968,11 +2114,16 @@
               <a href="#whyFightersTechSection" class="nav-link" id="menuWhyFightersTech">{{nav.menuWhyFightersTech}}</a>
             </li>
             <li>
-              <a href="#appGallerySection" class="nav-link" id="menuAppGallery">{{nav.menuAppImages}}</a>
+              <a href="#appImagesSection" class="nav-link" id="menuAppGallery">{{nav.menuAppImages}}</a>
+            </li>
+            <li>
+              <a href="#testimonialsSection" class="nav-link" id="menuTestimonials">{{nav.menuTestimonials}}</a>
             </li>
           </ul>
         </nav>
 
+        <div class="header-actions">
+          <a href="#ctaSection" class="nav-download-btn">{{nav.downloadApp}}</a>
           <div class="lang-toggle">
             <a href="/es/" class="lang-btn {{active_es}}">ES</a>
             <a href="/" class="lang-btn {{active_en}}">EN</a>
@@ -2368,8 +2519,26 @@
       </div>
     </section>
 
+    <!-- Testimonials Section -->
+    <section class="section testimonials-section" id="testimonialsSection">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-label">{{sections.testimonials.label}}</span>
+          <h2 class="section-title">{{sections.testimonials.title}}</h2>
+          <p class="section-description">{{sections.testimonials.description}}</p>
+        </div>
+      </div>
+
+      <div class="swiper-container testimonials-swiper fade-in" id="testimonialsSwiper" style="margin: 40px auto 0;">
+        <div class="swiper-wrapper">
+          {{testimonialsHtml}}
+        </div>
+        <div class="swiper-pagination testimonials-pagination" style="position: relative; margin-top: 32px; bottom: 0 !important; display: flex; justify-content: center;"></div>
+      </div>
+    </section>
+
     <!-- CTA Section -->
-    <section class="section cta-section">
+    <section class="section cta-section" id="ctaSection">
       <div class="container">
         <div class="cta-content fade-in">
           <h2>{{sections.cta.title}}</h2>
@@ -2499,6 +2668,7 @@
               <li><a href="#mainFeaturesSection">{{footer.columns.product.links.features}}</a></li>
               <li><a href="#whyFightersTechSection" id="linkWhyFightersTech">{{footer.columns.product.links.whyFightersTech}}</a></li>
               <li><a href="#appImagesSection">{{footer.columns.product.links.appGallery}}</a></li>
+              <li><a href="#testimonialsSection">{{footer.columns.product.links.testimonials}}</a></li>
               <li>
                 <a
                   href="https://apps.apple.com/es/app/fighterstech/id6741810411?l=en-GB"
@@ -2656,6 +2826,21 @@
           loop: false,
           navigation: { nextEl: "#otherFeaturesNext", prevEl: "#otherFeaturesPrev" },
           on: { slideChange: updateActiveOtherVideoTitle }
+        });
+
+        new Swiper("#testimonialsSwiper", {
+          slidesPerView: 1.2,
+          centeredSlides: true,
+          spaceBetween: 24,
+          loop: true,
+          autoplay: { delay: 4000, disableOnInteraction: true, pauseOnMouseEnter: true },
+          pagination: { el: ".testimonials-pagination", clickable: true },
+          grabCursor: true,
+          breakpoints: {
+            768: { slidesPerView: 2.5, centeredSlides: false },
+            1024: { slidesPerView: 3.5, centeredSlides: false },
+            1440: { slidesPerView: 4.5, centeredSlides: false }
+          }
         });
 
         // The slides are rendered statically now via build.js so we just call update once

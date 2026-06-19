@@ -101,6 +101,32 @@ function buildHtml(lang, data, outputDir) {
   html = html.replace('{{mainVideosHtml}}', mainVideosHtml);
   html = html.replace('{{otherVideosHtml}}', otherVideosHtml);
 
+  // Generar HTML de los Testimonios (Swiper)
+  let testimonialsHtml = '';
+  if (data.sections && data.sections.testimonials && data.sections.testimonials.reviews) {
+    data.sections.testimonials.reviews.forEach((review) => {
+      const initial = review.name ? review.name.charAt(0).toUpperCase() : 'F';
+      testimonialsHtml += `<div class="swiper-slide">
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">${initial}</div>
+                <div class="testimonial-meta">
+                  <span class="testimonial-name">${review.name}</span>
+                  <span class="testimonial-handle">${review.handle}</span>
+                </div>
+              </div>
+              <a href="${review.sourceUrl}" target="_blank" rel="noopener noreferrer" class="testimonial-source" aria-label="View Source">
+                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+            </div>
+            <p class="testimonial-text">${review.text}</p>
+          </div>
+        </div>`;
+    });
+  }
+  html = html.replace('{{testimonialsHtml}}', testimonialsHtml);
+
   html = html.replace(/<html lang="[^"]*">/, `<html lang="${lang}">`);
   html = html.replaceAll('{{active_en}}', lang === 'en' ? 'active' : '');
   html = html.replaceAll('{{active_es}}', lang === 'es' ? 'active' : '');
@@ -154,3 +180,34 @@ buildHtml('en', enData, distDir);
 
 // Generar versión Español (Carpeta /dist/es/)
 buildHtml('es', esData, path.join(distDir, 'es'));
+
+// Generar llms.txt para AI Bots (Perplexity, ChatGPT, etc)
+// Leer el archivo base rico en contexto semántico
+let llmsTxtBase = '';
+try {
+  llmsTxtBase = fs.readFileSync(path.join(__dirname, '.well-known', 'llms.txt'), 'utf8');
+} catch (err) {
+  try {
+    // Fallback por si está en la raíz
+    llmsTxtBase = fs.readFileSync(path.join(__dirname, 'llms.txt'), 'utf8');
+  } catch (err2) {
+    console.warn('⚠️ No se encontró llms.txt base. Se creará uno vacío.');
+  }
+}
+
+const testimonialsSection = `
+# ------------------------------------------------------------
+# WHAT THE COMMUNITY IS SAYING (LIVE REVIEWS)
+# ------------------------------------------------------------
+${enData.sections.testimonials.reviews.map(r => `> "${r.text}"\n> — **${r.name}** (${r.handle})\n> Source: ${r.sourceUrl}`).join('\n\n')}
+`;
+
+const llmsTxt = llmsTxtBase + '\n' + testimonialsSection;
+
+const wellKnownDir = path.join(distDir, '.well-known');
+if (!fs.existsSync(wellKnownDir)) {
+  fs.mkdirSync(wellKnownDir, { recursive: true });
+}
+fs.writeFileSync(path.join(distDir, 'llms.txt'), llmsTxt);
+fs.writeFileSync(path.join(wellKnownDir, 'llms.txt'), llmsTxt);
+console.log('✅ llms.txt generado en: /dist/llms.txt y /dist/.well-known/llms.txt');
