@@ -213,7 +213,7 @@
         --font-body: "Inter", sans-serif;
 
         /* Spacing */
-        --section-padding: 120px;
+        --section-padding: 96px;
         --container-max: 1280px;
 
         /* Transitions */
@@ -377,6 +377,9 @@
         height: 48px;
         border-radius: var(--radius-sm);
         box-shadow: 0 0 20px rgba(252, 175, 1, 0.2);
+        transition:
+          box-shadow var(--transition-fast),
+          transform var(--transition-fast);
       }
 
       .logo-text {
@@ -398,7 +401,6 @@
       .logo:hover img {
         box-shadow: 0 0 30px rgba(252, 175, 1, 0.4);
         transform: scale(1.05);
-        transition: all var(--transition-fast);
       }
 
       /* Language Toggle */
@@ -750,17 +752,20 @@
 
       /* Feature Cards */
       .features-grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         gap: 32px;
         margin-top: 48px;
         margin-bottom: 48px;
       }
 
       .features-grid .feature-card {
-        flex: 0 1 360px;
-        max-width: 360px;
+        max-width: none;
+      }
+
+      /* Center the last card when it sits alone on a row */
+      .features-grid .feature-card:nth-last-child(1):nth-child(4) {
+        grid-column: 2;
       }
 
       .feature-card {
@@ -906,7 +911,11 @@
         padding: 40px;
         position: relative;
         overflow: hidden;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition:
+          transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+          border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+          box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+          background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 1;
       }
 
@@ -938,7 +947,7 @@
         font-weight: 600;
         margin-bottom: 16px;
         line-height: 1.3;
-        transition: all 0.4s ease;
+        transition: transform 0.4s ease;
       }
 
       /* Different title colors per card */
@@ -1678,7 +1687,10 @@
         font-weight: 600;
         text-decoration: none;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          filter 0.3s ease;
         box-shadow: 0 4px 15px rgba(252, 175, 1, 0.3);
         white-space: nowrap;
       }
@@ -1715,6 +1727,14 @@
          RESPONSIVE STYLES
          ======================================== */
       @media (max-width: 1024px) {
+        .features-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .features-grid .feature-card:nth-last-child(1):nth-child(4) {
+          grid-column: auto;
+        }
+
         .app-showcase-wrapper {
           grid-template-columns: 1fr;
           gap: 48px;
@@ -1819,6 +1839,10 @@
           margin-left: 4px;
         }
 
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
         .hero {
           padding: 120px 20px 60px;
         }
@@ -1919,6 +1943,66 @@
           border-radius: 28px;
         }
       }
+
+      /* ========================================
+         ACCESSIBILITY & INTERACTION STATES
+         ======================================== */
+
+      /* Visible focus indicator for keyboard navigation */
+      a:focus-visible,
+      button:focus-visible,
+      .store-btn:focus-visible,
+      .header-download-btn:focus-visible,
+      .nav-link:focus-visible,
+      .lang-btn:focus-visible,
+      .social-link:focus-visible,
+      .footer-links a:focus-visible,
+      .swiper-button-prev:focus-visible,
+      .swiper-button-next:focus-visible,
+      .feature-card:focus-visible,
+      .why-card-bento:focus-visible {
+        outline: 2px solid var(--accent-gold);
+        outline-offset: 3px;
+      }
+
+      /* Active/pressed feedback */
+      .store-btn:active {
+        transform: translateY(-2px) scale(0.98);
+      }
+
+      .header-download-btn:active {
+        transform: translateY(0) scale(0.98);
+      }
+
+      .social-link:active {
+        transform: translateY(-2px) scale(0.95);
+      }
+
+      .feature-card:active {
+        transform: translateY(-4px) scale(0.99);
+      }
+
+      .why-card-bento:active {
+        transform: translateY(-4px) scale(1);
+      }
+
+      /* Respect reduced motion preferences */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+
+        .bg-glow,
+        .bg-grid,
+        .hero-badge::before {
+          animation: none !important;
+        }
+      }
     </style>
   </head>
   <body>
@@ -2011,7 +2095,11 @@
     <section class="hero" id="hero">
       <div class="hero-content">
         <div class="hero-badge">Available Now</div>
-        <h1 class="hero-title" id="heroTitle">
+        <h1
+          class="hero-title"
+          id="heroTitle"
+          aria-label="Train. Fight. Compete."
+        >
           <span class="word" data-text="Train.">Train.</span>
           <span class="word" data-text="Fight.">Fight.</span>
           <span class="word" data-text="Compete.">Compete.</span>
@@ -2283,63 +2371,63 @@
                   <div class="swiper-wrapper">
                     <div class="swiper-slide">
                       <img
-                        src="img/01_en.jpg"
+                        src="img/01_es.webp"
                         alt="Screenshot 1"
                         id="screenshot1"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
-                        src="img/02_en.jpg"
+                        src="img/02_es.webp"
                         alt="Screenshot 2"
                         id="screenshot2"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
-                        src="img/03_en.jpg"
+                        src="img/03_es.webp"
                         alt="Screenshot 3"
                         id="screenshot3"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
-                        src="img/04_en.jpg"
+                        src="img/04_es.webp"
                         alt="Screenshot 4"
                         id="screenshot4"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
-                        src="img/05_en.jpg"
+                        src="img/05_es.webp"
                         alt="Screenshot 5"
                         id="screenshot5"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
-                        src="img/06_en.jpg"
+                        src="img/06_es.webp"
                         alt="Screenshot 6"
                         id="screenshot6"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
-                        src="img/07_en.jpg"
+                        src="img/07_es.webp"
                         alt="Screenshot 7"
                         id="screenshot7"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
-                        src="img/08_en.jpg"
+                        src="img/08_es.webp"
                         alt="Screenshot 8"
                         id="screenshot8"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
-                        src="img/09_en.jpg"
+                        src="img/09_es.webp"
                         alt="Screenshot 9"
                         id="screenshot9"
                       />
@@ -2763,6 +2851,9 @@
         heroWords[1].setAttribute("data-text", t.hero.words[1]);
         heroWords[2].textContent = t.hero.words[2];
         heroWords[2].setAttribute("data-text", t.hero.words[2]);
+        document
+          .getElementById("heroTitle")
+          .setAttribute("aria-label", t.hero.words.join(" "));
 
         // Section titles
         document.getElementById("titleMainFeatures").textContent =
