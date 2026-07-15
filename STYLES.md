@@ -51,6 +51,7 @@
       --accent-gold: #fcaf01;
       --accent-green: #00c853;
       --accent-blue: #1e90ff;
+      --accent-red: #ff4757;
       --accent-purple: #7c3aed;
       
       /* Text Colors */
@@ -189,6 +190,7 @@ Design tokens are the single source of truth for visual properties. **Always use
 | `--accent-gold` | Golden Yellow | `#fcaf01` | Primary CTAs, highlights, gold accents |
 | `--accent-green` | Bright Green | `#00c853` | Success states, secondary accents |
 | `--accent-blue` | Dodger Blue | `#1e90ff` | Tertiary accent, links, info states |
+| `--accent-red` | Coral Red | `#ff4757` | Fourth card accent (features, why sections) |
 | `--accent-purple` | Violet | `#7c3aed` | Optional accent variety |
 
 #### Text Colors (on Dark Backgrounds)
@@ -330,7 +332,11 @@ All spacing uses an 8px base unit. This creates visual rhythm and consistency.
   <div class="container">
     <div class="section-header">
       <span class="section-label">Label</span>
-      <h2 class="section-title">Section Title</h2>
+      <!-- data-title feeds the hover/touch gold bloom (::after content);
+           keep it in sync with the visible text (i18n JS does this).
+           The shimmer + bloom treatment is shared by .section-title,
+           .app-showcase-content h2 and .cta-content h2 -->
+      <h2 class="section-title" data-title="Section Title">Section Title</h2>
       <p class="section-description">Description text...</p>
     </div>
     <div class="section-content">
@@ -733,65 +739,136 @@ header.scrolled {
 
 #### Feature Card
 
+Each feature card carries its own accent from the app palette via the
+`--card-accent` / `--card-accent-rgb` custom properties. The default is gold;
+`nth-child(2)` is blue and `nth-child(3)` is green. Every hover effect
+(border, glow, icon, title) derives from those two variables.
+
 ```css
 .feature-card {
-  background: var(--bg-card);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  --card-accent: var(--accent-gold);
+  --card-accent-rgb: 252, 175, 1;
+  background: linear-gradient(
+    150deg,
+    rgba(var(--card-accent-rgb), 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 55%
+  );
+  border: 1px solid rgba(var(--card-accent-rgb), 0.18);
   border-radius: var(--radius-lg);
-  padding: var(--space-2xl);
+  padding: 32px;
   position: relative;
   overflow: hidden;
-  transition: var(--transition-medium);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
-/* Gradient line at top (hidden by default) */
+.features-grid .feature-card:nth-child(2) {
+  --card-accent: var(--accent-blue);
+  --card-accent-rgb: 30, 144, 255;
+}
+
+.features-grid .feature-card:nth-child(3) {
+  --card-accent: var(--accent-green);
+  --card-accent-rgb: 0, 200, 83;
+}
+
+/* Corner glow that wakes up on hover */
 .feature-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--accent-gradient);
-  transform: scaleX(0);
-  transition: var(--transition-medium);
+  inset: 0;
+  background: radial-gradient(
+    420px circle at 85% -10%,
+    rgba(var(--card-accent-rgb), 0.18) 0%,
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+/* Diagonal sheen sweeping across the card on hover */
+.feature-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 58%
+  );
+  transform: translateX(-130%);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
 }
 
 .feature-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-6px);
+  border-color: rgba(var(--card-accent-rgb), 0.45);
+  box-shadow: 0 0 44px rgba(var(--card-accent-rgb), 0.18);
 }
 
 .feature-card:hover::before {
-  transform: scaleX(1);
+  opacity: 1;
 }
 
-.feature-card-icon {
+.feature-card:hover::after {
+  transform: translateX(130%);
+}
+
+/* Icon chip tinted with the card accent; inverts on hover */
+.feature-icon {
   width: 56px;
   height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-tertiary);
+  background: rgba(var(--card-accent-rgb), 0.1);
+  border: 1px solid rgba(var(--card-accent-rgb), 0.28);
   border-radius: var(--radius-md);
-  margin-bottom: var(--space-lg);
-  transition: var(--transition-medium);
+  margin-bottom: 20px;
+  color: var(--card-accent);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.35s ease,
+    border-color 0.35s ease,
+    color 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
-.feature-card:hover .feature-card-icon {
-  background: var(--accent-gradient);
+.feature-icon svg {
+  width: 28px;
+  height: 28px;
+  /* No fill override: each SVG declares its own fill/stroke */
 }
 
-.feature-card-title {
+.feature-card:hover .feature-icon {
+  background: var(--card-accent);
+  border-color: transparent;
+  color: var(--bg-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 0 24px rgba(var(--card-accent-rgb), 0.45);
+}
+
+.feature-card h3 {
+  font-family: var(--font-display);
   font-size: 1.25rem;
-  margin-bottom: var(--space-sm);
+  font-weight: 600;
+  margin-bottom: 12px;
+  transition: color 0.35s ease;
 }
 
-.feature-card-description {
-  color: var(--text-muted);
-  font-size: 0.875rem;
+.feature-card:hover h3 {
+  color: var(--card-accent);
+}
+
+.feature-card p {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.7;
 }
 ```
 
@@ -1145,18 +1222,31 @@ All text must meet WCAG AA standards:
 
 ### Feature List with Checkmarks
 
+Cardless checklist: full-width rows separated by hairlines, check marker
+that inverts to solid gold on hover, row nudges right.
+
 ```css
 .feature-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
 }
 
 .feature-list li {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
+  gap: 14px;
+  width: 100%;
+  padding: 14px 0;
+  color: var(--text-secondary);
+  transition:
+    color 0.3s ease,
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Hairline divider between rows */
+.feature-list li + li {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .feature-list li::before {
@@ -1164,14 +1254,45 @@ All text must meet WCAG AA standards:
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   width: 24px;
   height: 24px;
   background: rgba(252, 175, 1, 0.1);
+  border: 1px solid rgba(252, 175, 1, 0.25);
   border-radius: 50%;
   color: var(--accent-gold);
   font-size: 0.75rem;
   font-weight: 700;
-  flex-shrink: 0;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.feature-list li:hover {
+  color: var(--text-primary);
+  transform: translateX(4px);
+}
+
+.feature-list li:hover::before {
+  background: var(--accent-gold);
+  border-color: transparent;
+  color: var(--bg-primary);
+  box-shadow: 0 0 16px rgba(252, 175, 1, 0.4);
+}
+
+/* ≤1024px: cap width, center the block, keep rows left-aligned */
+@media (max-width: 1024px) {
+  .feature-list {
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .feature-list li {
+    text-align: left;
+  }
 }
 ```
 
@@ -1313,15 +1434,15 @@ All text must meet WCAG AA standards:
   <div class="container">
     <div class="section-header">
       <span class="section-label">Features</span>
-      <h2 class="section-title">Everything you need</h2>
+      <h2 class="section-title" data-title="Everything you need">Everything you need</h2>
     </div>
     <div class="features-grid">
       <div class="feature-card">
-        <div class="feature-card-icon">
-          <!-- SVG Icon -->
+        <div class="feature-icon">
+          <!-- SVG Icon (declares its own fill/stroke) -->
         </div>
-        <h3 class="feature-card-title">Feature Name</h3>
-        <p class="feature-card-description">Feature description goes here</p>
+        <h3>Feature Name</h3>
+        <p>Feature description goes here</p>
       </div>
       <!-- Repeat for more features -->
     </div>

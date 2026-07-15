@@ -63,6 +63,7 @@ The site uses a **dark, gaming-inspired aesthetic** with a navy blue base and go
 | `--accent-gold` | `#fcaf01` | Primary accent, CTAs, highlights |
 | `--accent-green` | `#00c853` | Secondary accent, success states |
 | `--accent-blue` | `#1e90ff` | Tertiary accent, links |
+| `--accent-red` | `#ff4757` | Fourth card accent (features, why sections) |
 | `--text-primary` | `#ffffff` | Headlines, primary text |
 | `--text-secondary` | `rgba(255, 255, 255, 0.8)` | Body text |
 | `--text-muted` | `rgba(255, 255, 255, 0.6)` | Captions, subtle text |
@@ -71,6 +72,7 @@ The site uses a **dark, gaming-inspired aesthetic** with a navy blue base and go
 - **Display Font**: Chakra Petch (condensed, gaming-inspired)
 - **Body Font**: Inter (highly readable)
 - Headlines use gradient text effects with `-webkit-background-clip: text`
+- Section titles (`.section-title`) have an animated shimmer sweep and a gold bloom (`::after` fed by `data-title`) revealed on hover, press, and touch
 
 #### Visual Effects
 - **Background Grid**: Subtle golden grid overlay (50px)
@@ -86,7 +88,7 @@ The site uses a **dark, gaming-inspired aesthetic** with a navy blue base and go
 - **Navigation Links**: Subtle hover background with color transition
 
 #### Cards
-- Feature cards with top accent line (gradient on hover)
+- Feature cards with per-card palette accents (gold/blue/green), corner glow and sheen sweep on hover
 - Box shadows with glow effects on hover
 - Smooth transitions for all interactive states
 
@@ -126,7 +128,7 @@ The site uses a **dark, gaming-inspired aesthetic** with a navy blue base and go
 - Two-column layout (content + phone mockup)
 - Phone frame with rounded corners (48px border-radius)
 - Swiper fade carousel for screenshots
-- Feature checklist with custom bullet styling
+- Feature checklist: cardless rows with hairline dividers and check markers that invert to solid gold on hover
 
 ### CTA Section
 - Centered layout with radial gradient background
