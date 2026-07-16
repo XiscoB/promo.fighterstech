@@ -1,7 +1,7 @@
 # FightersTech Design System
 
 > **📖 Universal Design Reference**: This document describes a complete, reusable design system for building modern, gaming-inspired web experiences. It can be adapted for any website, app, or media project.
-> 
+>
 > **Current Implementation**: FightersTech promotional website (`index.html`)
 > **Aesthetic**: Dark gaming/SaaS with navy blue base and gold/green accents
 
@@ -32,106 +32,120 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Project</title>
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* ===== CSS VARIABLES (Design Tokens) ===== */
-    :root {
-      /* Background Colors - Navy Blue Theme */
-      --bg-primary: #001a33;
-      --bg-secondary: #00284e;
-      --bg-tertiary: #003366;
-      --bg-card: rgba(0, 51, 102, 0.6);
-      --bg-card-hover: rgba(0, 51, 102, 0.8);
-      
-      /* Accent Colors */
-      --accent-gold: #fcaf01;
-      --accent-green: #00c853;
-      --accent-blue: #1e90ff;
-      --accent-red: #ff4757;
-      --accent-purple: #7c3aed;
-      
-      /* Text Colors */
-      --text-primary: #ffffff;
-      --text-secondary: rgba(255, 255, 255, 0.8);
-      --text-muted: rgba(255, 255, 255, 0.6);
-      
-      /* Gradients */
-      --accent-gradient: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-blue) 100%);
-      
-      /* Typography */
-      --font-display: "Chakra Petch", sans-serif;
-      --font-body: "Inter", sans-serif;
-      
-      /* Spacing Scale (8px base) */
-      --space-xs: 4px;
-      --space-sm: 8px;
-      --space-md: 16px;
-      --space-lg: 24px;
-      --space-xl: 32px;
-      --space-2xl: 48px;
-      --space-3xl: 64px;
-      --space-4xl: 96px;
-      --space-5xl: 120px;
-      
-      /* Border Radius Scale */
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 20px;
-      --radius-xl: 28px;
-      --radius-2xl: 36px;
-      --radius-full: 9999px;
-      
-      /* Transitions */
-      --transition-fast: 0.2s ease;
-      --transition-medium: 0.3s ease;
-      --transition-slow: 0.5s ease;
-      
-      /* Layout */
-      --container-max: 1280px;
-      --section-padding: 120px;
-      
-      /* Z-Index Scale */
-      --z-background: 0;
-      --z-content: 1;
-      --z-sticky: 100;
-      --z-header: 1000;
-      --z-modal: 2000;
-      --z-tooltip: 3000;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Project</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ===== CSS VARIABLES (Design Tokens) ===== */
+      :root {
+        /* Background Colors - Navy Blue Theme */
+        --bg-primary: #001a33;
+        --bg-secondary: #00284e;
+        --bg-tertiary: #003366;
+        --bg-card: rgba(0, 51, 102, 0.6);
+        --bg-card-hover: rgba(0, 51, 102, 0.8);
 
-    /* ===== RESET & BASE ===== */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        /* Accent Colors */
+        --accent-gold: #fcaf01;
+        --accent-green: #00c853;
+        --accent-blue: #1e90ff;
+        --accent-red: #ff4757;
+        --accent-purple: #7c3aed;
 
-    html {
-      scroll-behavior: smooth;
-    }
+        /* Text Colors */
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.8);
+        --text-muted: rgba(255, 255, 255, 0.6);
 
-    body {
-      font-family: var(--font-body);
-      background-color: var(--bg-primary);
-      color: var(--text-secondary);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+        /* Gradients */
+        --accent-gradient: linear-gradient(
+          135deg,
+          var(--accent-gold) 0%,
+          var(--accent-blue) 100%
+        );
 
-    h1, h2, h3, h4, h5, h6 {
-      font-family: var(--font-display);
-      color: var(--text-primary);
-      line-height: 1.2;
-    }
-  </style>
-</head>
-<body>
-  <!-- Your content here -->
-</body>
+        /* Typography */
+        --font-display: "Chakra Petch", sans-serif;
+        --font-body: "Inter", sans-serif;
+
+        /* Spacing Scale (8px base) */
+        --space-xs: 4px;
+        --space-sm: 8px;
+        --space-md: 16px;
+        --space-lg: 24px;
+        --space-xl: 32px;
+        --space-2xl: 48px;
+        --space-3xl: 64px;
+        --space-4xl: 96px;
+        --space-5xl: 120px;
+
+        /* Border Radius Scale */
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 20px;
+        --radius-xl: 28px;
+        --radius-2xl: 36px;
+        --radius-full: 9999px;
+
+        /* Transitions */
+        --transition-fast: 0.2s ease;
+        --transition-medium: 0.3s ease;
+        --transition-slow: 0.5s ease;
+
+        /* Layout */
+        --container-max: 1280px;
+        --section-padding: 120px;
+
+        /* Z-Index Scale */
+        --z-background: 0;
+        --z-content: 1;
+        --z-sticky: 100;
+        --z-header: 1000;
+        --z-modal: 2000;
+        --z-tooltip: 3000;
+      }
+
+      /* ===== RESET & BASE ===== */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-body);
+        background-color: var(--bg-primary);
+        color: var(--text-secondary);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: var(--font-display);
+        color: var(--text-primary);
+        line-height: 1.2;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Your content here -->
+  </body>
 </html>
 ```
 
@@ -154,6 +168,7 @@
 ### When to Use This System
 
 **✅ Good for:**
+
 - Gaming websites and apps
 - SaaS landing pages
 - Tech/product showcases
@@ -161,6 +176,7 @@
 - Crypto/Web3 interfaces
 
 **❌ Not ideal for:**
+
 - Light/corporate themes (requires color inversion)
 - Editorial/content-heavy sites (typography is display-focused)
 - E-commerce (too gaming-focused)
@@ -175,32 +191,32 @@ Design tokens are the single source of truth for visual properties. **Always use
 
 #### Background Colors
 
-| Token | Value | Hex | Usage |
-|-------|-------|-----|-------|
-| `--bg-primary` | Navy Blue | `#001a33` | Page background |
-| `--bg-secondary` | Lighter Navy | `#00284e` | Section backgrounds (video/CTA/footer), mobile menu |
-| `--bg-tertiary` | Card Background | `#003366` | Buttons, elevated surfaces |
-| `--bg-card` | Semi-transparent | `rgba(0,51,102,0.6)` | Card backgrounds |
-| `--bg-card-hover` | More opaque | `rgba(0,51,102,0.8)` | Card hover states |
+| Token             | Value            | Hex                  | Usage                                               |
+| ----------------- | ---------------- | -------------------- | --------------------------------------------------- |
+| `--bg-primary`    | Navy Blue        | `#001a33`            | Page background                                     |
+| `--bg-secondary`  | Lighter Navy     | `#00284e`            | Section backgrounds (video/CTA/footer), mobile menu |
+| `--bg-tertiary`   | Card Background  | `#003366`            | Buttons, elevated surfaces                          |
+| `--bg-card`       | Semi-transparent | `rgba(0,51,102,0.6)` | Card backgrounds                                    |
+| `--bg-card-hover` | More opaque      | `rgba(0,51,102,0.8)` | Card hover states                                   |
 
 #### Accent Colors
 
-| Token | Value | Hex | Usage |
-|-------|-------|-----|-------|
-| `--accent-gold` | Golden Yellow | `#fcaf01` | Primary CTAs, highlights, gold accents |
-| `--accent-green` | Bright Green | `#00c853` | Success states, secondary accents |
-| `--accent-blue` | Dodger Blue | `#1e90ff` | Tertiary accent, links, info states |
-| `--accent-red` | Coral Red | `#ff4757` | Fourth card accent (features, why sections) |
-| `--accent-purple` | Violet | `#7c3aed` | Optional accent variety |
+| Token             | Value         | Hex       | Usage                                       |
+| ----------------- | ------------- | --------- | ------------------------------------------- |
+| `--accent-gold`   | Golden Yellow | `#fcaf01` | Primary CTAs, highlights, gold accents      |
+| `--accent-green`  | Bright Green  | `#00c853` | Success states, secondary accents           |
+| `--accent-blue`   | Dodger Blue   | `#1e90ff` | Tertiary accent, links, info states         |
+| `--accent-red`    | Coral Red     | `#ff4757` | Fourth card accent (features, why sections) |
+| `--accent-purple` | Violet        | `#7c3aed` | Optional accent variety                     |
 
 #### Text Colors (on Dark Backgrounds)
 
-| Token | Value | Opacity | Usage |
-|-------|-------|---------|-------|
-| `--text-primary` | White | 100% | Headlines, important text |
-| `--text-secondary` | White | 80% | Body text, descriptions |
-| `--text-muted` | White | 60% | Captions, metadata, disabled |
-| `--text-subtle` | White | 40% | Placeholder text |
+| Token              | Value | Opacity | Usage                        |
+| ------------------ | ----- | ------- | ---------------------------- |
+| `--text-primary`   | White | 100%    | Headlines, important text    |
+| `--text-secondary` | White | 80%     | Body text, descriptions      |
+| `--text-muted`     | White | 60%     | Captions, metadata, disabled |
+| `--text-subtle`    | White | 40%     | Placeholder text             |
 
 #### Opacity Modifiers for Colors
 
@@ -219,33 +235,34 @@ background: color-mix(in srgb, var(--bg-tertiary) 60%, transparent);
 
 All spacing uses an 8px base unit. This creates visual rhythm and consistency.
 
-| Token | Value | Pixels | Common Usage |
-|-------|-------|--------|--------------|
-| `--space-xs` | 0.25rem | 4px | Icon gaps, tight spacing |
-| `--space-sm` | 0.5rem | 8px | Component internal padding |
-| `--space-md` | 1rem | 16px | Default padding, gap |
-| `--space-lg` | 1.5rem | 24px | Card padding, section gaps |
-| `--space-xl` | 2rem | 32px | Component margins |
-| `--space-2xl` | 3rem | 48px | Section internal gaps |
-| `--space-3xl` | 4rem | 64px | Large section spacing |
-| `--space-4xl` | 6rem | 96px | Hero spacing |
-| `--space-5xl` | 7.5rem | 120px | Section vertical padding |
+| Token         | Value   | Pixels | Common Usage               |
+| ------------- | ------- | ------ | -------------------------- |
+| `--space-xs`  | 0.25rem | 4px    | Icon gaps, tight spacing   |
+| `--space-sm`  | 0.5rem  | 8px    | Component internal padding |
+| `--space-md`  | 1rem    | 16px   | Default padding, gap       |
+| `--space-lg`  | 1.5rem  | 24px   | Card padding, section gaps |
+| `--space-xl`  | 2rem    | 32px   | Component margins          |
+| `--space-2xl` | 3rem    | 48px   | Section internal gaps      |
+| `--space-3xl` | 4rem    | 64px   | Large section spacing      |
+| `--space-4xl` | 6rem    | 96px   | Hero spacing               |
+| `--space-5xl` | 7.5rem  | 120px  | Section vertical padding   |
 
 **Usage Guidelines:**
+
 - Component padding: `--space-sm` to `--space-lg`
 - Section gaps: `--space-xl` to `--space-3xl`
 - Vertical rhythm: `--space-5xl` for section padding
 
 ### Border Radius Scale
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--radius-sm` | 8px | Small buttons, tags, input fields |
-| `--radius-md` | 12px | Cards, modals, buttons |
-| `--radius-lg` | 20px | Feature cards, large containers |
-| `--radius-xl` | 28px | Pills, toggles, badges |
-| `--radius-2xl` | 36px | Phone frames, large UI elements |
-| `--radius-full` | 9999px | Circular buttons, avatars |
+| Token           | Value  | Usage                             |
+| --------------- | ------ | --------------------------------- |
+| `--radius-sm`   | 8px    | Small buttons, tags, input fields |
+| `--radius-md`   | 12px   | Cards, modals, buttons            |
+| `--radius-lg`   | 20px   | Feature cards, large containers   |
+| `--radius-xl`   | 28px   | Pills, toggles, badges            |
+| `--radius-2xl`  | 36px   | Phone frames, large UI elements   |
+| `--radius-full` | 9999px | Circular buttons, avatars         |
 
 ### Shadow & Glow Tokens
 
@@ -267,23 +284,23 @@ All spacing uses an 8px base unit. This creates visual rhythm and consistency.
 
 ### Transition Tokens
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--transition-fast` | `0.2s ease` | Hover states, quick feedback |
-| `--transition-medium` | `0.3s ease` | Most interactions, modals |
-| `--transition-slow` | `0.5s ease` | Page transitions, reveals |
+| Token                 | Value       | Usage                        |
+| --------------------- | ----------- | ---------------------------- |
+| `--transition-fast`   | `0.2s ease` | Hover states, quick feedback |
+| `--transition-medium` | `0.3s ease` | Most interactions, modals    |
+| `--transition-slow`   | `0.5s ease` | Page transitions, reveals    |
 
 ### Z-Index Scale
 
-| Token | Value | Layer |
-|-------|-------|-------|
-| `--z-background` | 0 | Background effects, grid |
-| `--z-content` | 1 | Main content |
-| `--z-sticky` | 100 | Sticky elements |
-| `--z-header` | 1000 | Fixed header/navigation |
-| `--z-modal` | 2000 | Modals, overlays |
-| `--z-tooltip` | 3000 | Tooltips, dropdowns |
-| `--z-toast` | 4000 | Toast notifications |
+| Token            | Value | Layer                    |
+| ---------------- | ----- | ------------------------ |
+| `--z-background` | 0     | Background effects, grid |
+| `--z-content`    | 1     | Main content             |
+| `--z-sticky`     | 100   | Sticky elements          |
+| `--z-header`     | 1000  | Fixed header/navigation  |
+| `--z-modal`      | 2000  | Modals, overlays         |
+| `--z-tooltip`    | 3000  | Tooltips, dropdowns      |
+| `--z-toast`      | 4000  | Toast notifications      |
 
 ---
 
@@ -294,9 +311,9 @@ All spacing uses an 8px base unit. This creates visual rhythm and consistency.
 ```css
 .container {
   width: 100%;
-  max-width: var(--container-max);  /* 1280px */
+  max-width: var(--container-max); /* 1280px */
   margin: 0 auto;
-  padding: 0 var(--space-lg);        /* 24px horizontal padding */
+  padding: 0 var(--space-lg); /* 24px horizontal padding */
   position: relative;
   z-index: var(--z-content);
 }
@@ -304,18 +321,18 @@ All spacing uses an 8px base unit. This creates visual rhythm and consistency.
 
 **Container Variants:**
 
-| Class | Max Width | Usage |
-|-------|-----------|-------|
-| `.container` | 1280px | Default content |
-| `.container-sm` | 768px | Narrow content, text-heavy |
-| `.container-lg` | 1440px | Wide layouts, galleries |
-| `.container-fluid` | 100% | Full-width sections |
+| Class              | Max Width | Usage                      |
+| ------------------ | --------- | -------------------------- |
+| `.container`       | 1280px    | Default content            |
+| `.container-sm`    | 768px     | Narrow content, text-heavy |
+| `.container-lg`    | 1440px    | Wide layouts, galleries    |
+| `.container-fluid` | 100%      | Full-width sections        |
 
 ### Section Pattern
 
 ```css
 .section {
-  padding: var(--section-padding) 0;  /* 120px vertical */
+  padding: var(--section-padding) 0; /* 120px vertical */
   position: relative;
 }
 
@@ -327,7 +344,7 @@ All spacing uses an 8px base unit. This creates visual rhythm and consistency.
 .app-showcase,
 .testimonials-section,
 footer {
-  background: var(--bg-secondary);  /* light sections */
+  background: var(--bg-secondary); /* light sections */
 }
 
 /* Dark variant so Other Features contrasts with its light neighbors */
@@ -370,7 +387,7 @@ footer {
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--space-xl);  /* 32px */
+  gap: var(--space-xl); /* 32px */
 }
 ```
 
@@ -384,7 +401,7 @@ footer {
 .footer-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: var(--space-2xl);  /* 48px */
+  gap: var(--space-2xl); /* 48px */
 }
 ```
 
@@ -397,7 +414,7 @@ footer {
 .two-column {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
-  gap: var(--space-3xl);  /* 64px */
+  gap: var(--space-3xl); /* 64px */
   align-items: center;
 }
 ```
@@ -418,30 +435,34 @@ footer {
 
 ### Font Families
 
-| Token | Font | Usage |
-|-------|------|-------|
-| `--font-display` | Chakra Petch | Headlines, buttons, labels, UI |
-| `--font-body` | Inter | Body text, paragraphs, descriptions |
+| Token            | Font         | Usage                               |
+| ---------------- | ------------ | ----------------------------------- |
+| `--font-display` | Chakra Petch | Headlines, buttons, labels, UI      |
+| `--font-body`    | Inter        | Body text, paragraphs, descriptions |
 
 **Google Fonts URL:**
+
 ```html
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
 ```
 
 ### Type Scale
 
-| Element | Font | Size | Weight | Line Height | Letter Spacing |
-|---------|------|------|--------|-------------|----------------|
-| H1 (Hero) | Display | 4rem (64px) | 700 | 1.1 | -0.02em |
-| H2 | Display | 2.5rem (40px) | 700 | 1.2 | -0.01em |
-| H3 | Display | 1.75rem (28px) | 600 | 1.3 | 0 |
-| H4 | Display | 1.25rem (20px) | 600 | 1.4 | 0 |
-| H5 | Display | 1rem (16px) | 600 | 1.4 | 0.02em |
-| Body Large | Body | 1.125rem (18px) | 400 | 1.6 | 0 |
-| Body | Body | 1rem (16px) | 400 | 1.6 | 0 |
-| Body Small | Body | 0.875rem (14px) | 400 | 1.5 | 0 |
-| Caption | Body | 0.75rem (12px) | 500 | 1.4 | 0.02em |
-| Label | Display | 0.75rem (12px) | 600 | 1 | 0.05em |
+| Element    | Font    | Size            | Weight | Line Height | Letter Spacing |
+| ---------- | ------- | --------------- | ------ | ----------- | -------------- |
+| H1 (Hero)  | Display | 4rem (64px)     | 700    | 1.1         | -0.02em        |
+| H2         | Display | 2.5rem (40px)   | 700    | 1.2         | -0.01em        |
+| H3         | Display | 1.75rem (28px)  | 600    | 1.3         | 0              |
+| H4         | Display | 1.25rem (20px)  | 600    | 1.4         | 0              |
+| H5         | Display | 1rem (16px)     | 600    | 1.4         | 0.02em         |
+| Body Large | Body    | 1.125rem (18px) | 400    | 1.6         | 0              |
+| Body       | Body    | 1rem (16px)     | 400    | 1.6         | 0              |
+| Body Small | Body    | 0.875rem (14px) | 400    | 1.5         | 0              |
+| Caption    | Body    | 0.75rem (12px)  | 500    | 1.4         | 0.02em         |
+| Label      | Display | 0.75rem (12px)  | 600    | 1           | 0.05em         |
 
 ### Typography Patterns
 
@@ -482,10 +503,15 @@ Usage: Apply to headlines, important words, or brand elements for emphasis.
 ### Primary Gradient
 
 ```css
---accent-gradient: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-blue) 100%);
+--accent-gradient: linear-gradient(
+  135deg,
+  var(--accent-gold) 0%,
+  var(--accent-blue) 100%
+);
 ```
 
 **Gradient Directions:**
+
 - `135deg` - Top-left to bottom-right (diagonal ↘)
 - `90deg` - Left to right (→)
 - `180deg` - Top to bottom (↓)
@@ -509,7 +535,7 @@ background: rgba(255, 255, 255, 0.1);
 background: rgba(0, 0, 0, 0.2);
 
 /* Color with transparency */
-background: rgba(252, 175, 1, 0.1);  /* Gold at 10% */
+background: rgba(252, 175, 1, 0.1); /* Gold at 10% */
 
 /* Using CSS color-mix (modern) */
 background: color-mix(in srgb, var(--accent-gold) 20%, transparent);
@@ -517,12 +543,12 @@ background: color-mix(in srgb, var(--accent-gold) 20%, transparent);
 
 ### State Colors
 
-| State | Color | Usage |
-|-------|-------|-------|
-| Success | `--accent-green` | Success messages, checkmarks |
-| Error | `#ef4444` (Red-500) | Error states, validation |
-| Warning | `#f59e0b` (Amber-500) | Warnings, alerts |
-| Info | `--accent-blue` | Information, links |
+| State   | Color                 | Usage                        |
+| ------- | --------------------- | ---------------------------- |
+| Success | `--accent-green`      | Success messages, checkmarks |
+| Error   | `#ef4444` (Red-500)   | Error states, validation     |
+| Warning | `#f59e0b` (Amber-500) | Warnings, alerts             |
+| Info    | `--accent-blue`       | Information, links           |
 
 ---
 
@@ -539,7 +565,7 @@ Creates a subtle grid pattern that adds texture without distraction.
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
+  background-image:
     linear-gradient(rgba(252, 175, 1, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(252, 175, 1, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
@@ -549,11 +575,13 @@ Creates a subtle grid pattern that adds texture without distraction.
 ```
 
 **Customization:**
+
 - Grid size: Change `background-size`
 - Opacity: Adjust alpha value (0.03 = 3%)
 - Color: Change RGB values in `rgba()`
 
 **HTML Structure:**
+
 ```html
 <div class="bg-grid"></div>
 ```
@@ -591,12 +619,13 @@ header.scrolled {
 ```
 
 **Header Structure:**
+
 ```html
 <header>
   <div class="container">
     <div class="header-content">
       <a href="/" class="logo">
-        <img src="logo.png" alt="Brand">
+        <img src="logo.png" alt="Brand" />
       </a>
       <nav class="main-nav">
         <a href="#features">Features</a>
@@ -682,7 +711,7 @@ header.scrolled {
 }
 
 .store-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: var(--accent-gradient);
@@ -759,7 +788,7 @@ Each feature card carries its own accent from the app palette via the
 
 /* Corner glow that wakes up on hover */
 .feature-card::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: radial-gradient(
@@ -774,7 +803,7 @@ Each feature card carries its own accent from the app palette via the
 
 /* Diagonal sheen sweeping across the card on hover */
 .feature-card::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
@@ -932,18 +961,18 @@ Each feature card carries its own accent from the app palette via the
 ```css
 .phone-frame {
   background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
-  border-radius: var(--radius-2xl);  /* 36px */
-  padding: var(--space-md);          /* 16px */
-  box-shadow: 
+  border-radius: var(--radius-2xl); /* 36px */
+  padding: var(--space-md); /* 16px */
+  box-shadow:
     0 25px 50px -12px rgba(0, 0, 0, 0.5),
     0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 .phone-screen {
   background: var(--bg-primary);
-  border-radius: var(--radius-lg);   /* 20px */
+  border-radius: var(--radius-lg); /* 20px */
   overflow: hidden;
-  aspect-ratio: 9 / 19;              /* Phone aspect ratio */
+  aspect-ratio: 9 / 19; /* Phone aspect ratio */
 }
 ```
 
@@ -957,7 +986,9 @@ Each feature card carries its own accent from the app palette via the
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 
 .fade-in.visible {
@@ -967,16 +998,20 @@ Each feature card carries its own accent from the app palette via the
 ```
 
 **JavaScript Usage:**
-```javascript
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1 });
 
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+```javascript
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  },
+  { threshold: 0.1 },
+);
+
+document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
 ```
 
 ### Stagger Animation
@@ -988,10 +1023,18 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   animation: fadeInUp 0.5s ease forwards;
 }
 
-.stagger-children > *:nth-child(1) { animation-delay: 0s; }
-.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
-.stagger-children > *:nth-child(3) { animation-delay: 0.2s; }
-.stagger-children > *:nth-child(4) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(1) {
+  animation-delay: 0s;
+}
+.stagger-children > *:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.stagger-children > *:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.stagger-children > *:nth-child(4) {
+  animation-delay: 0.3s;
+}
 
 @keyframes fadeInUp {
   to {
@@ -1005,8 +1048,13 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
 ```css
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 .pulse {
@@ -1018,9 +1066,19 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
 ```css
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-10px); }
-  60% { transform: translateY(-5px); }
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
 }
 
 .bounce {
@@ -1032,8 +1090,13 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
 ```css
 @keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .gradient-animate {
@@ -1046,7 +1109,9 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
 ```css
 .hover-lift {
-  transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+  transition:
+    transform var(--transition-medium),
+    box-shadow var(--transition-medium);
 }
 
 .hover-lift:hover {
@@ -1061,12 +1126,12 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
 ### Breakpoints
 
-| Name | Width | Target |
-|------|-------|--------|
-| Mobile | ≤ 480px | Small phones |
-| Mobile Large | ≤ 768px | Phones, small tablets |
-| Tablet | ≤ 1024px | Tablets, small laptops |
-| Desktop | > 1024px | Desktops, large screens |
+| Name         | Width    | Target                  |
+| ------------ | -------- | ----------------------- |
+| Mobile       | ≤ 480px  | Small phones            |
+| Mobile Large | ≤ 768px  | Phones, small tablets   |
+| Tablet       | ≤ 1024px | Tablets, small laptops  |
+| Desktop      | > 1024px | Desktops, large screens |
 
 ### Responsive Patterns
 
@@ -1100,14 +1165,18 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   :root {
     --section-padding: 80px;
   }
-  
-  h1 { font-size: 2.5rem; }
-  h2 { font-size: 1.75rem; }
-  
+
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+  }
+
   .container {
     padding: 0 var(--space-md);
   }
-  
+
   /* Hide desktop-only elements */
   .desktop-only {
     display: none;
@@ -1121,7 +1190,9 @@ On mobile, ensure interactive elements are at least 44px × 44px:
 
 ```css
 @media (max-width: 768px) {
-  button, a, .interactive {
+  button,
+  a,
+  .interactive {
     min-height: 44px;
     min-width: 44px;
   }
@@ -1136,12 +1207,13 @@ On mobile, ensure interactive elements are at least 44px × 44px:
 
 All text must meet WCAG AA standards:
 
-| Text Type | Minimum Contrast |
-|-----------|------------------|
-| Normal text | 4.5:1 |
-| Large text (18px+) | 3:1 |
+| Text Type          | Minimum Contrast |
+| ------------------ | ---------------- |
+| Normal text        | 4.5:1            |
+| Large text (18px+) | 3:1              |
 
 **Current values:**
+
 - `--text-primary` (white on navy): ~15:1 ✅
 - `--text-secondary` (80% white): ~12:1 ✅
 - `--text-muted` (60% white): ~8:1 ✅
@@ -1164,7 +1236,9 @@ All text must meet WCAG AA standards:
 
 ```css
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -1336,8 +1410,12 @@ that inverts to solid gold on hover, row nudges right.
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 ```
 
@@ -1355,7 +1433,9 @@ that inverts to solid gold on hover, row nudges right.
       <h1 class="hero-title">
         <span class="gradient-text">Train. Fight. Compete.</span>
       </h1>
-      <p class="hero-subtitle">The ultimate app for fighting game enthusiasts</p>
+      <p class="hero-subtitle">
+        The ultimate app for fighting game enthusiasts
+      </p>
       <div class="hero-actions">
         <a href="#" class="store-btn">
           <!-- Icon -->
@@ -1417,7 +1497,9 @@ that inverts to solid gold on hover, row nudges right.
   <div class="container">
     <div class="section-header">
       <span class="section-label">Features</span>
-      <h2 class="section-title" data-title="Everything you need">Everything you need</h2>
+      <h2 class="section-title" data-title="Everything you need">
+        Everything you need
+      </h2>
     </div>
     <div class="features-grid">
       <div class="feature-card">
@@ -1440,7 +1522,7 @@ that inverts to solid gold on hover, row nudges right.
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="logo.png" alt="Brand" class="footer-logo">
+        <img src="logo.png" alt="Brand" class="footer-logo" />
         <p class="footer-tagline">Tagline or description</p>
         <div class="social-links">
           <a href="#" class="social-link" aria-label="Twitter">
@@ -1563,13 +1645,16 @@ To adapt this design system for a different project:
 ### Google Fonts
 
 ```html
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
 ```
 
 ### Swiper.js (for carousels)
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 ```
 
@@ -1594,9 +1679,9 @@ project/
 
 ## Version History
 
-| Version | Date | Changes |
-|---------|------|---------|
-| 1.0 | 2024 | Initial design system documentation |
+| Version | Date | Changes                             |
+| ------- | ---- | ----------------------------------- |
+| 1.0     | 2024 | Initial design system documentation |
 
 ---
 

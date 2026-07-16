@@ -54,7 +54,7 @@ function buildHtml(lang, data, outputDir) {
     if (typeof value === 'string' || typeof value === 'number') {
       let finalValue = value;
       // Añadir <span> a la última palabra de los títulos
-      if (key.match(/^sections\.(mainFeatures|otherFeatures|whyFightersTech|appGallery)\.title$/)) {
+      if (key.match(/^sections\.(mainFeatures|otherFeatures|whyFightersTech|appGallery|testimonials)\.title$/)) {
         const parts = value.split(" ");
         if (parts.length > 1) {
           const lastWord = parts.pop();
@@ -73,58 +73,15 @@ function buildHtml(lang, data, outputDir) {
     }
   }
 
-  // Generar HTML de los Videos (Swiper) para móvil y escritorio
-  let mainVideosHtml = '';
-  data.videoSwiper.mobileVideos.forEach(v => {
-    mainVideosHtml += `<div class="swiper-slide mobile-video-slide" data-title="${v.title}">
-      <iframe loading="lazy" class="mobile-video" src="https://www.youtube.com/embed/${v.id}?rel=0" frameborder="0" allowfullscreen></iframe>
-    </div>`;
-  });
-  data.videoSwiper.desktopVideos.forEach(v => {
-    mainVideosHtml += `<div class="swiper-slide desktop-video-slide" data-title="${v.title}">
-      <iframe loading="lazy" src="https://www.youtube.com/embed/${v.id}?rel=0" frameborder="0" allowfullscreen></iframe>
-    </div>`;
-  });
-
-  let otherVideosHtml = '';
-  data.videoSwiper.mobileOtherVideos.forEach(v => {
-    otherVideosHtml += `<div class="swiper-slide mobile-video-slide" data-title="${v.title}">
-      <iframe loading="lazy" class="mobile-video" src="https://www.youtube.com/embed/${v.id}?rel=0" frameborder="0" allowfullscreen></iframe>
-    </div>`;
-  });
-  data.videoSwiper.desktopOtherVideos.forEach(v => {
-    otherVideosHtml += `<div class="swiper-slide desktop-video-slide" data-title="${v.title}">
-      <iframe loading="lazy" src="https://www.youtube.com/embed/${v.id}?rel=0" frameborder="0" allowfullscreen></iframe>
-    </div>`;
-  });
+  // Los sliders de vídeo y testimonios se dejan vacíos en el HTML estático;
+  // el runtime los rellena desde lang/*.json exactamente igual que index.html.
+  // Así el build output coincide con el comportamiento de la página original.
+  const mainVideosHtml = '';
+  const otherVideosHtml = '';
+  const testimonialsHtml = '';
 
   html = html.replace('{{mainVideosHtml}}', mainVideosHtml);
   html = html.replace('{{otherVideosHtml}}', otherVideosHtml);
-
-  // Generar HTML de los Testimonios (Swiper)
-  let testimonialsHtml = '';
-  if (data.sections && data.sections.testimonials && data.sections.testimonials.reviews) {
-    data.sections.testimonials.reviews.forEach((review) => {
-      const initial = review.name ? review.name.charAt(0).toUpperCase() : 'F';
-      testimonialsHtml += `<div class="swiper-slide">
-          <div class="testimonial-card">
-            <div class="testimonial-header">
-              <div class="testimonial-author">
-                <div class="testimonial-avatar">${initial}</div>
-                <div class="testimonial-meta">
-                  <span class="testimonial-name">${review.name}</span>
-                  <span class="testimonial-handle">${review.handle}</span>
-                </div>
-              </div>
-              <a href="${review.sourceUrl}" target="_blank" rel="noopener noreferrer" class="testimonial-source" aria-label="View Source">
-                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-              </a>
-            </div>
-            <p class="testimonial-text">${review.text}</p>
-          </div>
-        </div>`;
-    });
-  }
   html = html.replace('{{testimonialsHtml}}', testimonialsHtml);
 
   html = html.replace(/<html lang="[^"]*">/, `<html lang="${lang}">`);
