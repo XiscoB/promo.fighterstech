@@ -2365,8 +2365,23 @@
 
       .testimonials-pagination {
         bottom: 0 !important;
+        font-family: var(--font-display);
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        letter-spacing: 0.05em;
       }
 
+      .testimonials-pagination .swiper-pagination-current {
+        color: var(--accent-gold);
+        font-weight: 700;
+      }
+
+      .testimonials-pagination .swiper-pagination-total {
+        color: var(--text-muted);
+      }
+
+      /* Fallback bullet styles if pagination is switched back to bullets */
       .testimonials-pagination .swiper-pagination-bullet {
         width: 10px;
         height: 10px;
@@ -4394,10 +4409,15 @@
           spaceBetween: 24,
           grabCursor: true,
           speed: 500,
+          // Mobile-friendly touch settings: avoid passive event errors and
+          // make accidental swipes less likely to trigger link clicks.
+          threshold: 8,
+          touchRatio: 1.2,
+          simulateTouch: true,
+          touchStartPreventDefault: false,
           pagination: {
             el: ".testimonials-pagination",
-            clickable: true,
-            dynamicBullets: true,
+            type: "fraction",
           },
           navigation: {
             nextEl: ".testimonials-next",
@@ -4858,6 +4878,49 @@
           updateActiveVideoTitle();
           updateActiveOtherVideoTitle();
         }, 100);
+
+        // Guard testimonial links against accidental taps during swipe.
+        // Even with Swiper's preventClicks, some mobile browsers synthesize a
+        // click on the "View on X" link after a drag. We track the touch and
+        // cancel the click when the finger moved more than a few pixels.
+        const testimonialsSwiperEl = document.getElementById("testimonialsSwiper");
+        if (testimonialsSwiperEl) {
+          let touchStartX = 0;
+          let touchStartY = 0;
+          let didDrag = false;
+
+          testimonialsSwiperEl.addEventListener(
+            "touchstart",
+            (e) => {
+              const touch = e.touches[0];
+              if (!touch) return;
+              touchStartX = touch.clientX;
+              touchStartY = touch.clientY;
+              didDrag = false;
+            },
+            { passive: true }
+          );
+
+          testimonialsSwiperEl.addEventListener(
+            "touchmove",
+            (e) => {
+              const touch = e.touches[0];
+              if (!touch) return;
+              const dx = Math.abs(touch.clientX - touchStartX);
+              const dy = Math.abs(touch.clientY - touchStartY);
+              if (dx > 10 || dy > 10) didDrag = true;
+            },
+            { passive: true }
+          );
+
+          testimonialsSwiperEl.addEventListener("click", (e) => {
+            const link = e.target.closest(".testimonial-link");
+            if (link && didDrag) {
+              e.preventDefault();
+              didDrag = false;
+            }
+          });
+        }
 
         // Hero cursor trail (does not alter the aurora background)
         const hero = document.querySelector(".hero");
