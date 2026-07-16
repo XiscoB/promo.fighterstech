@@ -653,12 +653,20 @@
           display: none;
         }
 
+        /* Reintroduce text shimmer on mobile, but slower to reduce paint cost */
         .logo-text,
         .hero-title .word,
         .section-title,
         .app-showcase-content h2,
         .cta-content h2 {
-          animation: none !important;
+          animation-duration: 12s;
+        }
+
+        /* Tap feedback for elements that only had hover states */
+        .lang-btn:active {
+          background: var(--accent-gradient);
+          color: var(--text-primary);
+          box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
         }
 
         header,
