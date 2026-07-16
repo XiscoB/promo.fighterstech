@@ -3392,12 +3392,65 @@
           display: none;
         }
 
-        .logo-text,
+        /* Reintroduce text shimmer on mobile, but slower to reduce paint cost */
+        .logo-text {
+          animation-duration: 8s;
+        }
+
         .hero-title .word,
         .section-title,
         .app-showcase-content h2,
         .cta-content h2 {
-          animation: none !important;
+          animation-duration: 12s;
+        }
+
+        /* Tap feedback for elements that only had hover states */
+        .store-btn:active::before {
+          opacity: 1;
+        }
+
+        .store-btn:active .store-btn-label {
+          color: rgba(0, 26, 51, 0.75);
+        }
+
+        .store-btn:active .store-btn-title {
+          color: #001a33;
+        }
+
+        .store-btn:active svg {
+          transform: scale(1.1);
+        }
+
+        .feature-card:active {
+          border-color: rgba(var(--card-accent-rgb), 0.45);
+          box-shadow: 0 0 44px rgba(var(--card-accent-rgb), 0.18);
+        }
+
+        .feature-card:active::before {
+          opacity: 1;
+        }
+
+        .feature-card:active::after {
+          transform: translateX(130%);
+        }
+
+        .feature-card:active .feature-icon {
+          background: var(--card-accent);
+          border-color: transparent;
+          color: var(--bg-primary);
+          transform: translateY(-2px);
+          box-shadow: 0 0 24px rgba(var(--card-accent-rgb), 0.45);
+        }
+
+        .feature-card:active h3 {
+          color: var(--card-accent);
+        }
+
+        .lang-btn:active {
+          background: var(--accent-gradient);
+          color: #001a33;
+          box-shadow: 0 4px 15px rgba(252, 175, 1, 0.3);
+          transform: translateY(-1px);
         }
 
         header,
