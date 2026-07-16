@@ -226,8 +226,10 @@
         letter-spacing: 0.05em;
       }
 
-      .lang-btn:hover {
-        color: var(--text-primary);
+      @media (hover: hover) and (pointer: fine) {
+        .lang-btn:hover {
+          color: var(--text-primary);
+        }
       }
 
       .lang-btn.active {
@@ -283,9 +285,11 @@
         transition: var(--transition-fast);
       }
 
-      .nav-link:hover {
-        color: var(--text-primary);
-        background: rgba(255, 255, 255, 0.05);
+      @media (hover: hover) and (pointer: fine) {
+        .nav-link:hover {
+          color: var(--text-primary);
+          background: rgba(255, 255, 255, 0.05);
+        }
       }
 
       /* ========================================
@@ -408,9 +412,11 @@
         box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
       }
 
-      .btn-home:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
+      @media (hover: hover) and (pointer: fine) {
+        .btn-home:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
+        }
       }
 
       .btn-home svg {
@@ -419,8 +425,10 @@
         transition: var(--transition-fast);
       }
 
-      .btn-home:hover svg {
-        transform: translateX(-4px);
+      @media (hover: hover) and (pointer: fine) {
+        .btn-home:hover svg {
+          transform: translateX(-4px);
+        }
       }
 
       /* ========================================
@@ -469,12 +477,16 @@
         transition: var(--transition-fast);
       }
 
-      .footer-nav a:hover {
-        color: var(--text-primary);
+      @media (hover: hover) and (pointer: fine) {
+        .footer-nav a:hover {
+          color: var(--text-primary);
+        }
       }
 
-      .footer-nav a:hover::after {
-        width: 100%;
+      @media (hover: hover) and (pointer: fine) {
+        .footer-nav a:hover::after {
+          width: 100%;
+        }
       }
 
       .social-links {
@@ -496,12 +508,14 @@
         transition: var(--transition-medium);
       }
 
-      .social-link:hover {
-        background: var(--accent-gradient);
-        border-color: transparent;
-        color: var(--text-primary);
-        transform: translateY(-4px);
-        box-shadow: var(--accent-glow-cyan);
+      @media (hover: hover) and (pointer: fine) {
+        .social-link:hover {
+          background: var(--accent-gradient);
+          border-color: transparent;
+          color: var(--text-primary);
+          transform: translateY(-4px);
+          box-shadow: var(--accent-glow-cyan);
+        }
       }
 
       .social-link svg {
@@ -625,7 +639,35 @@
           font-size: 0.9375rem;
         }
       }
-    </style>
+
+      /* ========================================
+         MOBILE PERFORMANCE & INTERACTION GUARD
+         ======================================== */
+      @media (pointer: coarse), (max-width: 768px) {
+        .hero-aurora,
+        .aurora-blob-wrap {
+          display: none !important;
+        }
+
+        #heroTrail {
+          display: none;
+        }
+
+        .logo-text,
+        .hero-title .word,
+        .section-title,
+        .app-showcase-content h2,
+        .cta-content h2 {
+          animation: none !important;
+        }
+
+        header,
+        .swiper-button-prev,
+        .swiper-button-next {
+          backdrop-filter: none !important;
+        }
+      }
+</style>
     
     <script>
       // Redirect if urlToRedirect is set

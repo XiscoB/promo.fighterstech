@@ -407,12 +407,16 @@
         pointer-events: none;
       }
 
-      .logo:hover .logo-text {
-        animation-play-state: paused;
+      @media (hover: hover) and (pointer: fine) {
+        .logo:hover .logo-text {
+          animation-play-state: paused;
+        }
       }
 
-      .logo:hover .logo-text::after {
-        clip-path: inset(0 0 0 0);
+      @media (hover: hover) and (pointer: fine) {
+        .logo:hover .logo-text::after {
+          clip-path: inset(0 0 0 0);
+        }
       }
 
       .logo img {
@@ -429,9 +433,11 @@
         }
       }
 
-      .logo:hover img {
-        box-shadow: 0 0 40px rgba(252, 175, 1, 0.6);
-        transform: scale(1.08);
+      @media (hover: hover) and (pointer: fine) {
+        .logo:hover img {
+          box-shadow: 0 0 40px rgba(252, 175, 1, 0.6);
+          transform: scale(1.08);
+        }
       }
 
       /* Language Toggle */
@@ -465,11 +471,13 @@
         overflow: hidden;
       }
 
-      .lang-btn:hover {
-        background: var(--accent-gradient);
-        color: #001a33;
-        box-shadow: 0 4px 15px rgba(252, 175, 1, 0.3);
-        transform: translateY(-1px);
+      @media (hover: hover) and (pointer: fine) {
+        .lang-btn:hover {
+          background: var(--accent-gradient);
+          color: #001a33;
+          box-shadow: 0 4px 15px rgba(252, 175, 1, 0.3);
+          transform: translateY(-1px);
+        }
       }
 
       .lang-btn.active {
@@ -496,8 +504,10 @@
         z-index: 1;
       }
 
-      .lang-btn:hover::after {
-        left: 150%;
+      @media (hover: hover) and (pointer: fine) {
+        .lang-btn:hover::after {
+          left: 150%;
+        }
       }
 
       /* Mobile Menu Toggle */
@@ -554,6 +564,8 @@
         padding: 140px 24px 80px;
         position: relative;
         overflow: hidden;
+        /* El trail reacciona al pointer sin bloquear el scroll vertical */
+        touch-action: pan-y;
       }
 
       .hero::before {
@@ -816,10 +828,12 @@
         }
       }
 
-      .hero-badge:hover {
-        transform: translateY(-2px);
-        border-color: rgba(252, 175, 1, 0.5);
-        box-shadow: 0 0 24px rgba(252, 175, 1, 0.25);
+      @media (hover: hover) and (pointer: fine) {
+        .hero-badge:hover {
+          transform: translateY(-2px);
+          border-color: rgba(252, 175, 1, 0.5);
+          box-shadow: 0 0 24px rgba(252, 175, 1, 0.25);
+        }
       }
 
       .hero-badge::before {
@@ -905,12 +919,16 @@
         transition-delay: 0.24s;
       }
 
-      .hero-title:hover .word {
-        animation-play-state: paused;
+      @media (hover: hover) and (pointer: fine) {
+        .hero-title:hover .word {
+          animation-play-state: paused;
+        }
       }
 
-      .hero-title:hover .word::before {
-        clip-path: inset(0 0 0 0);
+      @media (hover: hover) and (pointer: fine) {
+        .hero-title:hover .word::before {
+          clip-path: inset(0 0 0 0);
+        }
       }
 
       .hero-title:active .word::before {
@@ -997,18 +1015,24 @@
         z-index: 1;
       }
 
-      .store-btn:hover {
-        transform: translateY(-4px);
-        border-color: transparent;
-        box-shadow: var(--accent-glow-gold);
+      @media (hover: hover) and (pointer: fine) {
+        .store-btn:hover {
+          transform: translateY(-4px);
+          border-color: transparent;
+          box-shadow: var(--accent-glow-gold);
+        }
       }
 
-      .store-btn:hover::before {
-        opacity: 1;
+      @media (hover: hover) and (pointer: fine) {
+        .store-btn:hover::before {
+          opacity: 1;
+        }
       }
 
-      .store-btn:hover::after {
-        left: 150%;
+      @media (hover: hover) and (pointer: fine) {
+        .store-btn:hover::after {
+          left: 150%;
+        }
       }
 
       .store-btn img {
@@ -1049,20 +1073,26 @@
         transition: color 0.3s ease;
       }
 
-      .store-btn:hover .store-btn-label {
-        color: rgba(0, 26, 51, 0.75);
+      @media (hover: hover) and (pointer: fine) {
+        .store-btn:hover .store-btn-label {
+          color: rgba(0, 26, 51, 0.75);
+        }
       }
 
-      .store-btn:hover .store-btn-title {
-        color: #001a33;
+      @media (hover: hover) and (pointer: fine) {
+        .store-btn:hover .store-btn-title {
+          color: #001a33;
+        }
       }
 
       .store-btn svg {
         transition: transform 0.3s ease;
       }
 
-      .store-btn:hover svg {
-        transform: scale(1.1);
+      @media (hover: hover) and (pointer: fine) {
+        .store-btn:hover svg {
+          transform: scale(1.1);
+        }
       }
 
       /* Scroll Indicator */
@@ -1171,10 +1201,12 @@
         pointer-events: none;
       }
 
-      .section-label:hover {
-        transform: translateY(-2px);
-        border-color: rgba(252, 175, 1, 0.5);
-        box-shadow: 0 0 24px rgba(252, 175, 1, 0.25);
+      @media (hover: hover) and (pointer: fine) {
+        .section-label:hover {
+          transform: translateY(-2px);
+          border-color: rgba(252, 175, 1, 0.5);
+          box-shadow: 0 0 24px rgba(252, 175, 1, 0.25);
+        }
       }
 
       .section-title {
@@ -1232,16 +1264,20 @@
         pointer-events: none;
       }
 
-      .section-title:hover,
-      .app-showcase-content h2:hover,
-      .cta-content h2:hover {
-        animation-play-state: paused;
+      @media (hover: hover) and (pointer: fine) {
+        .section-title:hover,
+        .app-showcase-content h2:hover,
+        .cta-content h2:hover {
+          animation-play-state: paused;
+        }
       }
 
-      .section-title:hover::after,
-      .app-showcase-content h2:hover::after,
-      .cta-content h2:hover::after {
-        clip-path: inset(0 0 0 0);
+      @media (hover: hover) and (pointer: fine) {
+        .section-title:hover::after,
+        .app-showcase-content h2:hover::after,
+        .cta-content h2:hover::after {
+          clip-path: inset(0 0 0 0);
+        }
       }
 
       .section-title:active,
@@ -1345,18 +1381,24 @@
         pointer-events: none;
       }
 
-      .feature-card:hover {
-        transform: translateY(-6px);
-        border-color: rgba(var(--card-accent-rgb), 0.45);
-        box-shadow: 0 0 44px rgba(var(--card-accent-rgb), 0.18);
+      @media (hover: hover) and (pointer: fine) {
+        .feature-card:hover {
+          transform: translateY(-6px);
+          border-color: rgba(var(--card-accent-rgb), 0.45);
+          box-shadow: 0 0 44px rgba(var(--card-accent-rgb), 0.18);
+        }
       }
 
-      .feature-card:hover::before {
-        opacity: 1;
+      @media (hover: hover) and (pointer: fine) {
+        .feature-card:hover::before {
+          opacity: 1;
+        }
       }
 
-      .feature-card:hover::after {
-        transform: translateX(130%);
+      @media (hover: hover) and (pointer: fine) {
+        .feature-card:hover::after {
+          transform: translateX(130%);
+        }
       }
 
       .feature-icon {
@@ -1386,12 +1428,14 @@
         z-index: 1;
       }
 
-      .feature-card:hover .feature-icon {
-        background: var(--card-accent);
-        border-color: transparent;
-        color: var(--bg-primary);
-        transform: translateY(-2px);
-        box-shadow: 0 0 24px rgba(var(--card-accent-rgb), 0.45);
+      @media (hover: hover) and (pointer: fine) {
+        .feature-card:hover .feature-icon {
+          background: var(--card-accent);
+          border-color: transparent;
+          color: var(--bg-primary);
+          transform: translateY(-2px);
+          box-shadow: 0 0 24px rgba(var(--card-accent-rgb), 0.45);
+        }
       }
 
       .feature-card h3 {
@@ -1403,8 +1447,10 @@
         transition: color 0.35s ease;
       }
 
-      .feature-card:hover h3 {
-        color: var(--card-accent);
+      @media (hover: hover) and (pointer: fine) {
+        .feature-card:hover h3 {
+          color: var(--card-accent);
+        }
       }
 
       .feature-card p {
@@ -1520,18 +1566,24 @@
         pointer-events: none;
       }
 
-      .why-card-bento:hover {
-        transform: translateY(-6px);
-        border-color: rgba(var(--card-accent-rgb), 0.45);
-        box-shadow: 0 0 44px rgba(var(--card-accent-rgb), 0.16);
+      @media (hover: hover) and (pointer: fine) {
+        .why-card-bento:hover {
+          transform: translateY(-6px);
+          border-color: rgba(var(--card-accent-rgb), 0.45);
+          box-shadow: 0 0 44px rgba(var(--card-accent-rgb), 0.16);
+        }
       }
 
-      .why-card-bento:hover::before {
-        opacity: 1;
+      @media (hover: hover) and (pointer: fine) {
+        .why-card-bento:hover::before {
+          opacity: 1;
+        }
       }
 
-      .why-card-bento:hover::after {
-        transform: translateX(130%);
+      @media (hover: hover) and (pointer: fine) {
+        .why-card-bento:hover::after {
+          transform: translateX(130%);
+        }
       }
 
       .why-card-bento h3 {
@@ -1626,6 +1678,8 @@
         overflow: hidden;
         position: relative;
         z-index: 1;
+        /* Permitir scroll vertical; Swiper gestiona el swipe horizontal */
+        touch-action: pan-y;
       }
 
       .swiper-slide {
@@ -1662,14 +1716,16 @@
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
       }
 
-      .swiper-button-prev:hover,
-      .swiper-button-next:hover {
-        background: var(--accent-gradient);
-        border-color: transparent;
-        transform: scale(1.1);
-        box-shadow:
-          0 8px 25px rgba(0, 0, 0, 0.4),
-          0 0 25px rgba(252, 175, 1, 0.35);
+      @media (hover: hover) and (pointer: fine) {
+        .swiper-button-prev:hover,
+        .swiper-button-next:hover {
+          background: var(--accent-gradient);
+          border-color: transparent;
+          transform: scale(1.1);
+          box-shadow:
+            0 8px 25px rgba(0, 0, 0, 0.4),
+            0 0 25px rgba(252, 175, 1, 0.35);
+        }
       }
 
       .swiper-button-prev::after,
@@ -1694,12 +1750,16 @@
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
       }
 
-      .swiper-button-prev:hover::after {
-        transform: translateX(-2px);
+      @media (hover: hover) and (pointer: fine) {
+        .swiper-button-prev:hover::after {
+          transform: translateX(-2px);
+        }
       }
 
-      .swiper-button-next:hover::after {
-        transform: translateX(2px);
+      @media (hover: hover) and (pointer: fine) {
+        .swiper-button-next:hover::after {
+          transform: translateX(2px);
+        }
       }
 
       .swiper-button-prev:active,
@@ -1871,16 +1931,20 @@
           box-shadow 0.3s ease;
       }
 
-      .feature-list li:hover {
-        color: var(--text-primary);
-        transform: translateX(4px);
+      @media (hover: hover) and (pointer: fine) {
+        .feature-list li:hover {
+          color: var(--text-primary);
+          transform: translateX(4px);
+        }
       }
 
-      .feature-list li:hover::before {
-        background: var(--accent-gold);
-        border-color: transparent;
-        color: var(--bg-primary);
-        box-shadow: 0 0 16px rgba(252, 175, 1, 0.4);
+      @media (hover: hover) and (pointer: fine) {
+        .feature-list li:hover::before {
+          background: var(--accent-gold);
+          border-color: transparent;
+          color: var(--bg-primary);
+          box-shadow: 0 0 16px rgba(252, 175, 1, 0.4);
+        }
       }
 
       .app-showcase-slider {
@@ -2127,18 +2191,24 @@
         pointer-events: none;
       }
 
-      .testimonial-card:hover {
-        transform: translateY(-6px);
-        border-color: rgba(252, 175, 1, 0.45);
-        box-shadow: 0 0 44px rgba(252, 175, 1, 0.16);
+      @media (hover: hover) and (pointer: fine) {
+        .testimonial-card:hover {
+          transform: translateY(-6px);
+          border-color: rgba(252, 175, 1, 0.45);
+          box-shadow: 0 0 44px rgba(252, 175, 1, 0.16);
+        }
       }
 
-      .testimonial-card:hover::before {
-        opacity: 1;
+      @media (hover: hover) and (pointer: fine) {
+        .testimonial-card:hover::before {
+          opacity: 1;
+        }
       }
 
-      .testimonial-card:hover::after {
-        transform: translateX(130%);
+      @media (hover: hover) and (pointer: fine) {
+        .testimonial-card:hover::after {
+          transform: translateX(130%);
+        }
       }
 
       /* Quotation mark leading the quote, always clear of the text */
@@ -2155,9 +2225,11 @@
           transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
       }
 
-      .testimonial-card:hover .testimonial-mark {
-        color: var(--accent-gold);
-        transform: translateY(-2px);
+      @media (hover: hover) and (pointer: fine) {
+        .testimonial-card:hover .testimonial-mark {
+          color: var(--accent-gold);
+          transform: translateY(-2px);
+        }
       }
 
       .testimonial-quote {
@@ -2210,8 +2282,10 @@
         transition: box-shadow 0.35s ease;
       }
 
-      .testimonial-card:hover .testimonial-avatar {
-        box-shadow: 0 0 18px rgba(252, 175, 1, 0.35);
+      @media (hover: hover) and (pointer: fine) {
+        .testimonial-card:hover .testimonial-avatar {
+          box-shadow: 0 0 18px rgba(252, 175, 1, 0.35);
+        }
       }
 
       .testimonial-info {
@@ -2232,8 +2306,10 @@
         transition: color 0.35s ease;
       }
 
-      .testimonial-card:hover .testimonial-name {
-        color: var(--accent-gold);
+      @media (hover: hover) and (pointer: fine) {
+        .testimonial-card:hover .testimonial-name {
+          color: var(--accent-gold);
+        }
       }
 
       .testimonial-handle {
@@ -2272,15 +2348,19 @@
         transition: transform 0.25s ease;
       }
 
-      .testimonial-link:hover {
-        background: var(--accent-gold);
-        border-color: transparent;
-        color: var(--bg-primary);
-        box-shadow: 0 0 18px rgba(252, 175, 1, 0.4);
+      @media (hover: hover) and (pointer: fine) {
+        .testimonial-link:hover {
+          background: var(--accent-gold);
+          border-color: transparent;
+          color: var(--bg-primary);
+          box-shadow: 0 0 18px rgba(252, 175, 1, 0.4);
+        }
       }
 
-      .testimonial-link:hover svg {
-        transform: translateX(3px);
+      @media (hover: hover) and (pointer: fine) {
+        .testimonial-link:hover svg {
+          transform: translateX(3px);
+        }
       }
 
       .testimonials-pagination {
@@ -2357,22 +2437,28 @@
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
       }
 
-      .testimonials-prev:hover,
-      .testimonials-next:hover {
-        background: var(--accent-gradient);
-        border-color: transparent;
-        box-shadow:
-          0 8px 25px rgba(0, 0, 0, 0.4),
-          0 0 25px rgba(252, 175, 1, 0.35);
-        transform: scale(1.12);
+      @media (hover: hover) and (pointer: fine) {
+        .testimonials-prev:hover,
+        .testimonials-next:hover {
+          background: var(--accent-gradient);
+          border-color: transparent;
+          box-shadow:
+            0 8px 25px rgba(0, 0, 0, 0.4),
+            0 0 25px rgba(252, 175, 1, 0.35);
+          transform: scale(1.12);
+        }
       }
 
-      .testimonials-prev:hover::after {
-        transform: translateX(-2px);
+      @media (hover: hover) and (pointer: fine) {
+        .testimonials-prev:hover::after {
+          transform: translateX(-2px);
+        }
       }
 
-      .testimonials-next:hover::after {
-        transform: translateX(2px);
+      @media (hover: hover) and (pointer: fine) {
+        .testimonials-next:hover::after {
+          transform: translateX(2px);
+        }
       }
 
       .testimonials-prev:active,
@@ -2481,9 +2567,11 @@
           box-shadow 0.3s ease;
       }
 
-      .footer-brand img:hover {
-        transform: scale(1.06);
-        box-shadow: 0 0 30px rgba(252, 175, 1, 0.45);
+      @media (hover: hover) and (pointer: fine) {
+        .footer-brand img:hover {
+          transform: scale(1.06);
+          box-shadow: 0 0 30px rgba(252, 175, 1, 0.45);
+        }
       }
 
       /* Quiet brand mark: static text, subtle gold hover */
@@ -2499,9 +2587,11 @@
           text-shadow 0.3s ease;
       }
 
-      .footer-brand h3:hover {
-        color: var(--accent-gold);
-        text-shadow: 0 0 16px rgba(252, 175, 1, 0.35);
+      @media (hover: hover) and (pointer: fine) {
+        .footer-brand h3:hover {
+          color: var(--accent-gold);
+          text-shadow: 0 0 16px rgba(252, 175, 1, 0.35);
+        }
       }
 
       .footer-brand p {
@@ -2538,8 +2628,10 @@
         padding: 6px 0;
       }
 
-      .footer-links a:hover {
-        color: var(--accent-gold);
+      @media (hover: hover) and (pointer: fine) {
+        .footer-links a:hover {
+          color: var(--accent-gold);
+        }
       }
 
       .footer-links a::before {
@@ -2550,8 +2642,10 @@
         transition: var(--transition-fast);
       }
 
-      .footer-links a:hover::before {
-        width: 12px;
+      @media (hover: hover) and (pointer: fine) {
+        .footer-links a:hover::before {
+          width: 12px;
+        }
       }
 
       .footer-links a:active {
@@ -2611,19 +2705,25 @@
         z-index: 2;
       }
 
-      .social-link:hover {
-        transform: translateY(-4px);
-        border-color: transparent;
-        box-shadow: var(--accent-glow-gold);
-        color: var(--text-primary);
+      @media (hover: hover) and (pointer: fine) {
+        .social-link:hover {
+          transform: translateY(-4px);
+          border-color: transparent;
+          box-shadow: var(--accent-glow-gold);
+          color: var(--text-primary);
+        }
       }
 
-      .social-link:hover::before {
-        opacity: 1;
+      @media (hover: hover) and (pointer: fine) {
+        .social-link:hover::before {
+          opacity: 1;
+        }
       }
 
-      .social-link:hover::after {
-        left: 150%;
+      @media (hover: hover) and (pointer: fine) {
+        .social-link:hover::after {
+          left: 150%;
+        }
       }
 
       .social-link svg {
@@ -2635,8 +2735,10 @@
         transition: transform 0.3s ease;
       }
 
-      .social-link:hover svg {
-        transform: scale(1.15);
+      @media (hover: hover) and (pointer: fine) {
+        .social-link:hover svg {
+          transform: scale(1.15);
+        }
       }
 
       /* Footer Bottom */
@@ -2713,17 +2815,23 @@
         transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1);
       }
 
-      .nav-link:hover {
-        color: var(--accent-gold);
+      @media (hover: hover) and (pointer: fine) {
+        .nav-link:hover {
+          color: var(--accent-gold);
+        }
       }
 
-      .nav-link:hover::before {
-        opacity: 1;
-        transform: translateX(0);
+      @media (hover: hover) and (pointer: fine) {
+        .nav-link:hover::before {
+          opacity: 1;
+          transform: translateX(0);
+        }
       }
 
-      .nav-link:hover::after {
-        transform: scaleX(1);
+      @media (hover: hover) and (pointer: fine) {
+        .nav-link:hover::after {
+          transform: scaleX(1);
+        }
       }
 
       .mobile-only {
@@ -2774,21 +2882,27 @@
         z-index: 1;
       }
 
-      .nav-link-download:hover {
-        color: #001a33;
-        border-color: transparent;
-        box-shadow: var(--accent-glow-gold);
-        transform: translateY(-2px);
+      @media (hover: hover) and (pointer: fine) {
+        .nav-link-download:hover {
+          color: #001a33;
+          border-color: transparent;
+          box-shadow: var(--accent-glow-gold);
+          transform: translateY(-2px);
+        }
       }
 
-      .nav-link-download:hover::before {
-        opacity: 1;
-        transform: none;
+      @media (hover: hover) and (pointer: fine) {
+        .nav-link-download:hover::before {
+          opacity: 1;
+          transform: none;
+        }
       }
 
-      .nav-link-download:hover::after {
-        left: 150%;
-        transform: skewX(-20deg);
+      @media (hover: hover) and (pointer: fine) {
+        .nav-link-download:hover::after {
+          left: 150%;
+          transform: skewX(-20deg);
+        }
       }
 
       /* Header CTA Button */
@@ -2852,19 +2966,25 @@
         z-index: 1;
       }
 
-      .header-download-btn:hover {
-        transform: translateY(-2px);
-        border-color: transparent;
-        box-shadow: var(--accent-glow-gold);
-        color: #001a33;
+      @media (hover: hover) and (pointer: fine) {
+        .header-download-btn:hover {
+          transform: translateY(-2px);
+          border-color: transparent;
+          box-shadow: var(--accent-glow-gold);
+          color: #001a33;
+        }
       }
 
-      .header-download-btn:hover::before {
-        opacity: 1;
+      @media (hover: hover) and (pointer: fine) {
+        .header-download-btn:hover::before {
+          opacity: 1;
+        }
       }
 
-      .header-download-btn:hover::after {
-        left: 150%;
+      @media (hover: hover) and (pointer: fine) {
+        .header-download-btn:hover::after {
+          left: 150%;
+        }
       }
 
       .header-download-btn svg,
@@ -2880,8 +3000,10 @@
         transition: transform 0.3s ease;
       }
 
-      .header-download-btn:hover svg {
-        transform: scale(1.15);
+      @media (hover: hover) and (pointer: fine) {
+        .header-download-btn:hover svg {
+          transform: scale(1.15);
+        }
       }
 
       /* ========================================
@@ -3256,7 +3378,35 @@
           display: none;
         }
       }
-    </style>
+
+      /* ========================================
+         MOBILE PERFORMANCE & INTERACTION GUARD
+         ======================================== */
+      @media (pointer: coarse), (max-width: 768px) {
+        .hero-aurora,
+        .aurora-blob-wrap {
+          display: none !important;
+        }
+
+        #heroTrail {
+          display: none;
+        }
+
+        .logo-text,
+        .hero-title .word,
+        .section-title,
+        .app-showcase-content h2,
+        .cta-content h2 {
+          animation: none !important;
+        }
+
+        header,
+        .swiper-button-prev,
+        .swiper-button-next {
+          backdrop-filter: none !important;
+        }
+      }
+</style>
   </head>
   <body>
     <!-- Background Effects -->
