@@ -57,12 +57,13 @@ The site uses a **dark, gaming-inspired aesthetic** with a navy blue base and go
 | Token | Value | Usage |
 |-------|-------|-------|
 | `--bg-primary` | `#001a33` | Main page background |
-| `--bg-secondary` | `#00284e` | Section backgrounds (alternating) |
+| `--bg-secondary` | `#00284e` | Light sections (Main Features, App Gallery, Testimonials, footer), mobile menu |
 | `--bg-tertiary` | `#003366` | Cards, buttons, elevated surfaces |
 | `--bg-card` | `rgba(0, 51, 102, 0.6)` | Card backgrounds with transparency |
 | `--accent-gold` | `#fcaf01` | Primary accent, CTAs, highlights |
 | `--accent-green` | `#00c853` | Secondary accent, success states |
 | `--accent-blue` | `#1e90ff` | Tertiary accent, links |
+| `--accent-red` | `#ff4757` | Fourth card accent (features, why sections) |
 | `--text-primary` | `#ffffff` | Headlines, primary text |
 | `--text-secondary` | `rgba(255, 255, 255, 0.8)` | Body text |
 | `--text-muted` | `rgba(255, 255, 255, 0.6)` | Captions, subtle text |
@@ -71,10 +72,12 @@ The site uses a **dark, gaming-inspired aesthetic** with a navy blue base and go
 - **Display Font**: Chakra Petch (condensed, gaming-inspired)
 - **Body Font**: Inter (highly readable)
 - Headlines use gradient text effects with `-webkit-background-clip: text`
+- Section titles (`.section-title`) have an animated shimmer sweep and a gold bloom (`::after` fed by `data-title`) revealed on hover, press, and touch
 
 #### Visual Effects
 - **Background Grid**: Subtle golden grid overlay (50px)
-- **Glow Effects**: Blurred gradient orbs positioned absolutely (gold, green, blue)
+- **Section Rhythm**: Strict dark/light background alternation top to bottom (hero dark → … → footer light); `.video-section--dark` marks the dark variant
+- **Glow Effects**: Deliberately localized — animated aurora blobs only in the hero, plus static radial accents in Why and CTA sections. No global fixed glow orbs, so the hero stays the visual peak
 - **Glassmorphism**: Cards use `backdrop-filter: blur()` with semi-transparent backgrounds
 - **Gradients**: Primary gradient is gold → blue (135deg)
 
@@ -86,7 +89,7 @@ The site uses a **dark, gaming-inspired aesthetic** with a navy blue base and go
 - **Navigation Links**: Subtle hover background with color transition
 
 #### Cards
-- Feature cards with top accent line (gradient on hover)
+- Feature cards with per-card palette accents (gold/blue/green), corner glow and sheen sweep on hover
 - Box shadows with glow effects on hover
 - Smooth transitions for all interactive states
 
@@ -126,7 +129,7 @@ The site uses a **dark, gaming-inspired aesthetic** with a navy blue base and go
 - Two-column layout (content + phone mockup)
 - Phone frame with rounded corners (48px border-radius)
 - Swiper fade carousel for screenshots
-- Feature checklist with custom bullet styling
+- Feature checklist: cardless rows with hairline dividers and check markers that invert to solid gold on hover
 
 ### CTA Section
 - Centered layout with radial gradient background
@@ -192,7 +195,7 @@ Each JSON file follows a hierarchical structure organized by sections:
 **CSS Custom Properties** (CSS Variables) are defined in `:root` for the entire design system (~400 lines of CSS).
 
 **Sections** (in order):
-1. Background effects (grid, glow orbs)
+1. Background effects (grid overlay)
 2. Fixed header with logo, nav, and language toggle
 3. Hero section with headline and store buttons
 4. Main Features section with video carousel
