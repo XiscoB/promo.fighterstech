@@ -295,36 +295,6 @@
         z-index: 0;
       }
 
-      .bg-glow {
-        position: fixed;
-        width: 600px;
-        height: 600px;
-        border-radius: 50%;
-        filter: blur(150px);
-        opacity: 0.15;
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      .bg-glow-1 {
-        top: -200px;
-        right: -200px;
-        background: var(--accent-gold);
-      }
-
-      .bg-glow-2 {
-        bottom: 20%;
-        left: -300px;
-        background: var(--accent-green);
-      }
-
-      .bg-glow-3 {
-        top: 50%;
-        right: 10%;
-        background: var(--accent-blue);
-        opacity: 0.1;
-      }
-
       /* ========================================
          CONTAINER & LAYOUT
          ======================================== */
@@ -1619,6 +1589,13 @@
         position: relative;
       }
 
+      /* Dark variant: keeps the dark/light alternation between
+         consecutive sections (Other Features sits between two
+         light sections: App Gallery and Testimonials) */
+      .video-section--dark {
+        background: var(--bg-primary);
+      }
+
       .video-section::before {
         content: "";
         position: absolute;
@@ -1818,6 +1795,7 @@
          ======================================== */
       .app-showcase {
         position: relative;
+        background: var(--bg-secondary);
       }
 
       .app-showcase-wrapper {
@@ -2072,8 +2050,8 @@
          TESTIMONIALS SECTION
          ======================================== */
       .testimonials-section {
-        background: var(--bg-primary);
         position: relative;
+        background: var(--bg-secondary);
       }
 
       .testimonials-section::before {
@@ -2426,7 +2404,7 @@
          ======================================== */
       .cta-section {
         text-align: center;
-        background: var(--bg-secondary);
+        background: var(--bg-primary);
         position: relative;
         overflow: hidden;
       }
@@ -3265,7 +3243,6 @@
           scroll-behavior: auto !important;
         }
 
-        .bg-glow,
         .bg-grid,
         .hero-badge::before,
         .hero-aurora,
@@ -3283,9 +3260,6 @@
   <body>
     <!-- Background Effects -->
     <div class="bg-grid"></div>
-    <div class="bg-glow bg-glow-1"></div>
-    <div class="bg-glow bg-glow-2"></div>
-    <div class="bg-glow bg-glow-3"></div>
 
     <!-- Header -->
     <header id="header">
@@ -3763,7 +3737,7 @@
     </section>
 
     <!-- Other Features Section -->
-    <section class="section video-section" id="otherFeaturesSection">
+    <section class="section video-section video-section--dark" id="otherFeaturesSection">
       <div class="container">
         <div class="section-header fade-in">
           <span class="section-label">More</span>

@@ -178,7 +178,7 @@ Design tokens are the single source of truth for visual properties. **Always use
 | Token | Value | Hex | Usage |
 |-------|-------|-----|-------|
 | `--bg-primary` | Navy Blue | `#001a33` | Page background |
-| `--bg-secondary` | Lighter Navy | `#00284e` | Section backgrounds, header |
+| `--bg-secondary` | Lighter Navy | `#00284e` | Section backgrounds (video/CTA/footer), mobile menu |
 | `--bg-tertiary` | Card Background | `#003366` | Buttons, elevated surfaces |
 | `--bg-card` | Semi-transparent | `rgba(0,51,102,0.6)` | Card backgrounds |
 | `--bg-card-hover` | More opaque | `rgba(0,51,102,0.8)` | Card hover states |
@@ -319,10 +319,26 @@ All spacing uses an 8px base unit. This creates visual rhythm and consistency.
   position: relative;
 }
 
-/* Alternating section backgrounds */
-.section:nth-child(even) {
-  background-color: var(--bg-secondary);
+/* Strict dark/light alternation, top to bottom:
+   hero (dark, aurora) → Main Features (light) → Why (dark gradient)
+   → App Gallery (light) → Other Features (dark) → Testimonials (light)
+   → CTA (dark) → Footer (light) */
+.video-section,
+.app-showcase,
+.testimonials-section,
+footer {
+  background: var(--bg-secondary);  /* light sections */
 }
+
+/* Dark variant so Other Features contrasts with its light neighbors */
+.video-section--dark {
+  background: var(--bg-primary);
+}
+
+/* Why section uses a primary-based vertical gradient (dark).
+   Ambient glow is deliberately localized: the animated aurora lives
+   only in the hero, plus one static radial accent in
+   .why-section::after and .cta-section::before */
 ```
 
 **Section Structure:**
@@ -481,7 +497,7 @@ The primary background uses a layered approach:
 
 1. **Base Color**: `--bg-primary` solid color
 2. **Grid Overlay**: Subtle grid pattern at 3% opacity
-3. **Glow Orbs**: Blurred gradient circles for depth
+3. **Localized Glow**: Animated aurora blobs only in the hero; static radial accents in Why and CTA sections — no global fixed glow orbs, so the hero stays the visual peak
 
 ### Creating Color Variations
 
@@ -537,48 +553,15 @@ Creates a subtle grid pattern that adds texture without distraction.
 - Opacity: Adjust alpha value (0.03 = 3%)
 - Color: Change RGB values in `rgba()`
 
-### Glow Orbs
-
-Large, blurred circles that create ambient lighting effects.
-
-```css
-.bg-glow {
-  position: fixed;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  filter: blur(150px);
-  opacity: 0.15;
-  pointer-events: none;
-  z-index: var(--z-background);
-}
-
-.bg-glow-gold {
-  background: var(--accent-gold);
-  top: -200px;
-  right: -100px;
-}
-
-.bg-glow-green {
-  background: var(--accent-green);
-  bottom: -200px;
-  left: -100px;
-}
-
-.bg-glow-blue {
-  background: var(--accent-blue);
-  top: 50%;
-  right: 20%;
-}
-```
-
 **HTML Structure:**
 ```html
 <div class="bg-grid"></div>
-<div class="bg-glow bg-glow-gold"></div>
-<div class="bg-glow bg-glow-green"></div>
-<div class="bg-glow bg-glow-blue"></div>
 ```
+
+> **Note:** The site intentionally has no global fixed glow orbs.
+> Ambient glow is localized: the animated aurora system lives only
+> in the hero (`.hero-aurora`, `.aurora-blob-*`), with static radial
+> accents in `.why-section::after` and `.cta-section::before`.
 
 ---
 

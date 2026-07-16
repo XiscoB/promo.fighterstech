@@ -57,7 +57,7 @@ The site uses a **dark, gaming-inspired aesthetic** with a navy blue base and go
 | Token | Value | Usage |
 |-------|-------|-------|
 | `--bg-primary` | `#001a33` | Main page background |
-| `--bg-secondary` | `#00284e` | Section backgrounds (alternating) |
+| `--bg-secondary` | `#00284e` | Light sections (Main Features, App Gallery, Testimonials, footer), mobile menu |
 | `--bg-tertiary` | `#003366` | Cards, buttons, elevated surfaces |
 | `--bg-card` | `rgba(0, 51, 102, 0.6)` | Card backgrounds with transparency |
 | `--accent-gold` | `#fcaf01` | Primary accent, CTAs, highlights |
@@ -76,7 +76,8 @@ The site uses a **dark, gaming-inspired aesthetic** with a navy blue base and go
 
 #### Visual Effects
 - **Background Grid**: Subtle golden grid overlay (50px)
-- **Glow Effects**: Blurred gradient orbs positioned absolutely (gold, green, blue)
+- **Section Rhythm**: Strict dark/light background alternation top to bottom (hero dark → … → footer light); `.video-section--dark` marks the dark variant
+- **Glow Effects**: Deliberately localized — animated aurora blobs only in the hero, plus static radial accents in Why and CTA sections. No global fixed glow orbs, so the hero stays the visual peak
 - **Glassmorphism**: Cards use `backdrop-filter: blur()` with semi-transparent backgrounds
 - **Gradients**: Primary gradient is gold → blue (135deg)
 
@@ -194,7 +195,7 @@ Each JSON file follows a hierarchical structure organized by sections:
 **CSS Custom Properties** (CSS Variables) are defined in `:root` for the entire design system (~400 lines of CSS).
 
 **Sections** (in order):
-1. Background effects (grid, glow orbs)
+1. Background effects (grid overlay)
 2. Fixed header with logo, nav, and language toggle
 3. Hero section with headline and store buttons
 4. Main Features section with video carousel
