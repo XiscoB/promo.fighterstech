@@ -185,13 +185,13 @@ html = html.replace(/<script>[\s\S]*?<\/script>/g, function(match) {
 // Generic text replacements
 // Fix mismatches manually before the array loop:
 html = html.replace('Everything you need to compete, in one app.', '{{sections.mainFeatures.description}}');
-html = html.replace('FightersTech was born from a real problem: important competitive\n            information gets lost in algorithms, schedules, and noise.', '{{sections.whyFightersTech.description}}');
-html = html.replace('<span class="section-label">App Gallery</span>', '<span class="section-label">{{sections.appGallery.label}}</span>'); // First one
-html = html.replace('Take a look at the FightersTech interface. Built for speed,\n              designed for competitors. Every screen is optimized for quick\n              access to the features you need most.', '{{sections.appGallery.description}}');
+html = html.replace('FightersTech was born from a real problem: important competitive\n            information gets lost in algorithms, schedules, and noise.', '{{sections.faq.description}}');
+html = html.replace('<span class="section-label">App Gallery</span>', '<span class="section-label">{{sections.app.label}}</span>'); // First one
+html = html.replace('Take a look at the FightersTech interface. Built for speed,\n              designed for competitors. Every screen is optimized for quick\n              access to the features you need most.', '{{sections.app.description}}');
 // Wait, Other Features had "App Gallery" as its label!
-html = html.replace('<span class="section-label">{{sections.appGallery.label}}</span>\n          <h2 class="section-title" id="titleOtherFeatures">', '<span class="section-label">{{sections.otherFeatures.label}}</span>\n          <h2 class="section-title" id="titleOtherFeatures">');
+html = html.replace('<span class="section-label">{{sections.app.label}}</span>\n          <h2 class="section-title" id="titleOtherFeatures">', '<span class="section-label">{{sections.more.label}}</span>\n          <h2 class="section-title" id="titleOtherFeatures">');
 // Since the first replace changed it, wait, let's just do it directly.
-html = html.replace('Explore additional tools and features that make FightersTech the\n            complete platform for fighting game enthusiasts.', '{{sections.otherFeatures.description}}');
+html = html.replace('Explore additional tools and features that make FightersTech the\n            complete platform for fighting game enthusiasts.', '{{sections.more.description}}');
 html = html.replace('Download FightersTech today and become part of the ultimate Fighting\n            Game Community platform.', '{{sections.cta.description}}');
 html = html.replace('The ultimate platform for the Fighting Game Community. Train,\n              fight, and compete at your best.', '{{footer.brand.description}}');
 
@@ -205,27 +205,27 @@ const toReplace = [
   ['hero.storeButtons.google.title', '<span class="store-btn-title">', '</span>', 1],
 
   ['nav.menuMainFeatures', 'id="menuMainFeatures"\n                >', '</a>'],
-  ['nav.menuWhyFightersTech', 'id="menuWhyFightersTech"\n                >', '</a>'],
-  ['nav.menuAppImages', 'id="menuAppImages"\n                >', '</a>'],
-  ['nav.menuOtherFeatures', 'id="menuOtherFeatures"\n                >', '</a>'],
+  ['nav.menuFaq', 'id="menuFaq"\n                >', '</a>'],
+  ['nav.menuApp', 'id="menuApp"\n                >', '</a>'],
+  ['nav.menuMore', 'id="menuMore"\n                >', '</a>'],
   ['nav.downloadApp', '<span id="headerDownloadText">', '</span>'],
 
   ['sections.mainFeatures.label', 'id="featuresLabel">', '</span>'],
   ['sections.mainFeatures.title', 'id="titleMainFeatures">\n            ', '\n          </h2>'],
   ['sections.mainFeatures.description', 'id="featuresDesc">\n            ', '\n          </p>'],
 
-  ['sections.whyFightersTech.label', 'id="whyLabel">', '</span>'],
-  ['sections.whyFightersTech.title', 'id="titleWhyFightersTech">\n            ', '\n          </h2>'],
-  ['sections.whyFightersTech.description', 'id="whyDesc">\n            ', '\n          </p>'],
+  ['sections.faq.label', 'id="whyLabel">', '</span>'],
+  ['sections.faq.title', 'id="titleWhyFightersTech">\n            ', '\n          </h2>'],
+  ['sections.faq.description', 'id="whyDesc">\n            ', '\n          </p>'],
 
-  ['sections.appGallery.label', '<span class="section-label">', '</span>', 1], // App Gallery is the second span.section-label
-  ['sections.appGallery.title', '<h2 id="titleAppImages">', '</h2>'],
-  ['sections.appGallery.description', '<h2 id="titleAppImages">See the <span>Action</span></h2>\n            <p>\n              ', '\n            </p>'],
-  ['sections.appGallery.swipeInstruction', '<span id="swipeText">', '</span>'],
+  ['sections.app.label', '<span class="section-label">', '</span>', 1], // App Gallery is the second span.section-label
+  ['sections.app.title', '<h2 id="titleAppImages">', '</h2>'],
+  ['sections.app.description', '<h2 id="titleAppImages">See the <span>Action</span></h2>\n            <p>\n              ', '\n            </p>'],
+  ['sections.app.swipeInstruction', '<span id="swipeText">', '</span>'],
 
-  ['sections.otherFeatures.label', '<span class="section-label">', '</span>', 2], // 3rd
-  ['sections.otherFeatures.title', 'id="titleOtherFeatures">\n            ', '\n          </h2>'],
-  ['sections.otherFeatures.description', '<p class="section-description">\n            ', '\n          </p>'],
+  ['sections.more.label', '<span class="section-label">', '</span>', 2], // 3rd
+  ['sections.more.title', 'id="titleOtherFeatures">\n            ', '\n          </h2>'],
+  ['sections.more.description', '<p class="section-description">\n            ', '\n          </p>'],
 
   ['sections.cta.title', '<h2>', '</h2>'],
   ['sections.cta.description', '<div class="cta-content fade-in">\n          <h2>{{sections.cta.title}}</h2>\n          <p>\n            ', '\n          </p>'],
@@ -236,8 +236,8 @@ const toReplace = [
   ['footer.columns.contact.title', '<h4>', '</h4>', 2],
 
   ['footer.columns.product.links.features', '<li><a href="#mainFeaturesSection">', '</a></li>'],
-  ['footer.columns.product.links.whyFightersTech', '<li><a href="#whyFightersTechSection" id="linkWhyFightersTech">', '</a></li>'],
-  ['footer.columns.product.links.appGallery', '<li><a href="#appImagesSection">', '</a></li>'],
+  ['footer.columns.product.links.faq', '<li><a href="#faqSection" id="linkFaq">', '</a></li>'],
+  ['footer.columns.product.links.app', '<li><a href="#appSection">', '</a></li>'],
 
   ['footer.columns.legal.links.legalNotice', '<li><a href="#" id="linkLegal">', '</a></li>'],
   ['footer.columns.legal.links.privacyPolicy', '<li><a href="#" id="linkPrivacy">', '</a></li>'],
@@ -278,7 +278,7 @@ html = replaceOccurrence(html, '<span class="store-btn-title">', '</span>', 'her
 // App Gallery Feature List
 let featureListHTML = '<ul class="feature-list">\n';
 for (let i = 0; i < 5; i++) {
-  featureListHTML += `              <li>{{sections.appGallery.featureList.${i}}}</li>\n`;
+  featureListHTML += `              <li>{{sections.app.featureList.${i}}}</li>\n`;
 }
 featureListHTML += '            </ul>';
 html = html.replace(/<ul class="feature-list">[\s\S]*?<\/ul>/, featureListHTML);
@@ -291,8 +291,8 @@ for (let i = 0; i < 4; i++) {
 
 // Why cards
 for (let i = 0; i < 4; i++) {
-  html = replaceOccurrence(html, `<h3 id="whyCard${i+1}Title">`, '</h3>', `whyCards.${i}.title`);
-  html = replaceOccurrence(html, `<p id="whyCard${i+1}Desc">\n              `, '\n            </p>', `whyCards.${i}.description`);
+  html = replaceOccurrence(html, `<h3 id="whyCard${i+1}Title">`, '</h3>', `faqItems.${i}.title`);
+  html = replaceOccurrence(html, `<p id="whyCard${i+1}Desc">\n              `, '\n            </p>', `faqItems.${i}.description`);
 }
 
 // Video placeholders

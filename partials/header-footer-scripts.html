@@ -1,0 +1,153 @@
+    <script>
+      // Header/footer runtime for static subpages (tournaments, etc.)
+      (function () {
+        // Set current year in footer
+        const currentYear = document.getElementById("currentYear");
+        if (currentYear) {
+          currentYear.textContent = new Date().getFullYear();
+        }
+
+        // Header scroll effect
+        const header = document.getElementById("header");
+        if (header) {
+          window.addEventListener("scroll", function () {
+            header.classList.toggle("scrolled", window.scrollY > 50);
+          });
+        }
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+        const mainMenu = document.getElementById("mainMenu");
+
+        if (mobileMenuToggle && mainMenu) {
+          function setMobileMenuOpen(isOpen) {
+            mainMenu.classList.toggle("active", isOpen);
+            mobileMenuToggle.classList.toggle("active", isOpen);
+            mobileMenuToggle.setAttribute("aria-expanded", String(isOpen));
+          }
+
+          mobileMenuToggle.addEventListener("click", function () {
+            setMobileMenuOpen(!mainMenu.classList.contains("active"));
+          });
+
+          // Close mobile menu when clicking a link
+          document.querySelectorAll(".nav-link").forEach(function (link) {
+            link.addEventListener("click", function () {
+              setMobileMenuOpen(false);
+            });
+          });
+
+          // Close mobile menu when clicking outside
+          document.addEventListener("click", function (e) {
+            if (
+              mainMenu.classList.contains("active") &&
+              !mainMenu.contains(e.target) &&
+              !mobileMenuToggle.contains(e.target)
+            ) {
+              setMobileMenuOpen(false);
+            }
+          });
+
+          // Close mobile menu on Escape key
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && mainMenu.classList.contains("active")) {
+              setMobileMenuOpen(false);
+            }
+          });
+        }
+
+        // Language switch: navigate to the alternate language version
+        const path = window.location.pathname;
+        const currentLang = path.startsWith("/es/") ? "es" : "en";
+
+        document.querySelectorAll(".lang-btn").forEach(function (btn) {
+          btn.classList.toggle("active", btn.dataset.lang === currentLang);
+        });
+
+        window.setLanguage = function (lang) {
+          if (lang === currentLang) return;
+
+          let newPath;
+          if (lang === "es") {
+            if (path.startsWith("/tournaments/")) {
+              newPath = "/es/torneos/" + path.substring("/tournaments/".length);
+            } else {
+              newPath = "/es" + path;
+            }
+          } else {
+            if (path.startsWith("/es/torneos/")) {
+              newPath = "/tournaments/" + path.substring("/es/torneos/".length);
+            } else {
+              newPath = path.replace(/^\/es/, "") || "/";
+            }
+          }
+
+          window.location.href =
+            window.location.origin +
+            newPath +
+            window.location.search +
+            window.location.hash;
+        };
+
+        // Fix section links when on tournament pages and highlight active nav item
+        const isTournamentPage = path.startsWith("/tournaments/") || path.startsWith("/es/torneos/");
+        const landingBase = currentLang === "es" ? "/es/" : "/";
+        const sectionLinks = document.querySelectorAll(".nav-link[data-section], .footer-links a[data-section]");
+
+        function setActiveNav(sectionId) {
+          document.querySelectorAll(".nav-link[data-section]").forEach(function (link) {
+            link.classList.toggle("active", link.getAttribute("data-section") === sectionId);
+          });
+        }
+
+        if (isTournamentPage) {
+          sectionLinks.forEach(function (link) {
+            const section = link.getAttribute("data-section");
+            if (section === "tournaments") {
+              link.classList.add("active");
+            } else {
+              link.setAttribute("href", landingBase + "#" + section);
+            }
+          });
+
+          // Fix logo home link on tournament pages to keep language
+          const logo = document.querySelector(".logo");
+          if (logo) {
+            logo.setAttribute("href", landingBase);
+          }
+        } else {
+          // Landing page: highlight nav on scroll
+          const sections = [
+            "mainFeaturesSection",
+            "faqSection",
+            "appSection",
+            "reviewsSection",
+            "moreSection"
+          ];
+
+          function updateActiveFromScroll() {
+            const scrollPos = window.scrollY + 120;
+            let activeId = sections[0];
+            for (let i = sections.length - 1; i >= 0; i--) {
+              const section = document.getElementById(sections[i]);
+              if (section && section.offsetTop <= scrollPos) {
+                activeId = sections[i];
+                break;
+              }
+            }
+            setActiveNav(activeId);
+          }
+
+          window.addEventListener("scroll", updateActiveFromScroll, { passive: true });
+          updateActiveFromScroll();
+
+          // Highlight from hash on load
+          if (window.location.hash) {
+            const hash = window.location.hash.substring(1);
+            if (sections.indexOf(hash) !== -1) {
+              setActiveNav(hash);
+            }
+          }
+        }
+      })();
+    </script>

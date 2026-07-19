@@ -1,0 +1,19 @@
+{
+  "_comment": "",
+  "windowDays": 4,
+  "videogameIds": [
+    64423, 107706, 43868, 33945, 36963, 287, 3200, 904, 10055, 16, 1386, 37, 18,
+    610, 48599, 1, 49783, 50203, 53945, 73221, 6969
+  ],
+  "perPage": 50,
+  "maxPages": 5,
+  "maxRetries": 3,
+  "apiEndpoint": "https://api.start.gg/gql/alpha",
+  "siteBaseUrl": "https://promo.fighterstech.com",
+  "location": {
+    "_comment": "Dejar vacío para búsqueda global, o configurar para filtrar por zona",
+    "countryCode": "",
+    "distanceFrom": "",
+    "distance": ""
+  }
+}

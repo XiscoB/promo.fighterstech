@@ -2,11 +2,7 @@
 <html lang="es">
   <head>
     <!-- SEO_INJECTION -->
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
+    <!-- PARTIAL:head-common -->
     <title>FightersTech - Train. Fight. Compete. | FGC Tournament App</title>
 
     <!-- Primary Meta Tags -->
@@ -33,10 +29,7 @@
       name="copyright"
       content="© 2026 FightersTech. All rights reserved."
     />
-    <meta name="theme-color" content="#001a33" />
-    <meta name="msapplication-TileColor" content="#001a33" />
-    <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <meta name="format-detection" content="telephone=no" />
+    <!-- PARTIAL:head-common-meta -->
     <link rel="canonical" href="https://promo.fighterstech.com/" />
     <link
       rel="alternate"
@@ -91,24 +84,7 @@
     <meta name="apple-itunes-app" content="app-id=6741810411" />
     <meta name="google-play-app" content="app-id=com.xiscoteon.fighterstech" />
 
-    <!-- Performance: Preconnect to external origins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://unpkg.com" crossorigin />
-    <link rel="preconnect" href="https://www.youtube.com" crossorigin />
-    <link rel="preconnect" href="https://legal.fighterstech.com" crossorigin />
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://unpkg.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper/swiper-bundle.min.css"
-    />
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- PARTIAL:head-common-assets -->
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -180,6 +156,57 @@
       rel="alternate"
       href="ios-app://id123456789/https/promo.fighterstech.com/"
     />
+
+    <!-- FAQ Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "{{faqItems.0.title}}",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "{{faqItems.0.description}}"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "{{faqItems.1.title}}",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "{{faqItems.1.description}}"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "{{faqItems.2.title}}",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "{{faqItems.2.description}}"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "{{faqItems.3.title}}",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "{{faqItems.3.description}}"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "{{faqItems.4.title}}",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "{{faqItems.4.description}}"
+            }
+          }
+        ]
+      }
+    </script>
+
     <style>
       /* ========================================
          CSS VARIABLES & DESIGN SYSTEM
@@ -1217,6 +1244,18 @@
         margin-bottom: 16px;
       }
 
+      .section-title-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+      }
+
+      .section-title-link:hover .section-title,
+      .section-title-link:focus-visible .section-title {
+        animation-play-state: paused;
+      }
+
       /* Interactive shimmer + gold bloom shared by all section headings */
       .section-title,
       .app-showcase-content h2,
@@ -1460,7 +1499,7 @@
       }
 
       /* ========================================
-         WHY FIGHTERSTECH SECTION - BENTO GRID STYLE
+         FAQ SECTION
          ======================================== */
       .why-section {
         background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(0, 40, 78, 0.5) 50%, var(--bg-primary) 100%);
@@ -1479,7 +1518,6 @@
         opacity: 0.5;
       }
 
-      /* Decorative background elements */
       .why-section::after {
         content: "";
         position: absolute;
@@ -1491,111 +1529,80 @@
         pointer-events: none;
       }
 
-      .why-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
+      .faq-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
         margin-top: 64px;
         position: relative;
-      }
-
-      /* Bento Grid Items - same accent system as .feature-card */
-      .why-card-bento {
-        --card-accent: var(--accent-gold);
-        --card-accent-rgb: 252, 175, 1;
-        background: linear-gradient(
-          150deg,
-          rgba(var(--card-accent-rgb), 0.07) 0%,
-          rgba(255, 255, 255, 0.02) 60%
-        );
-        border: 1px solid rgba(var(--card-accent-rgb), 0.16);
-        border-radius: var(--radius-lg);
-        padding: 40px;
-        position: relative;
-        overflow: hidden;
-        transition:
-          transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-          border-color 0.35s ease,
-          box-shadow 0.35s ease;
         z-index: 1;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
-      .why-card-bento:nth-child(2) {
-        --card-accent: var(--accent-green);
-        --card-accent-rgb: 0, 200, 83;
+      .faq-item {
+        background: var(--bg-secondary);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        transition: border-color 0.25s ease, box-shadow 0.25s ease;
       }
 
-      .why-card-bento:nth-child(3) {
-        --card-accent: var(--accent-blue);
-        --card-accent-rgb: 30, 144, 255;
+      .faq-item[open] {
+        border-color: rgba(252, 175, 1, 0.35);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
       }
 
-      .why-card-bento:nth-child(4) {
-        --card-accent: var(--accent-red);
-        --card-accent-rgb: 255, 71, 87;
-      }
-
-      /* Corner glow that wakes up on hover */
-      .why-card-bento::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(
-          460px circle at 85% -10%,
-          rgba(var(--card-accent-rgb), 0.16) 0%,
-          transparent 65%
-        );
-        opacity: 0;
-        transition: opacity 0.35s ease;
-        pointer-events: none;
-      }
-
-      /* Diagonal sheen sweeping across the card on hover */
-      .why-card-bento::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          105deg,
-          transparent 42%,
-          rgba(255, 255, 255, 0.05) 50%,
-          transparent 58%
-        );
-        transform: translateX(-130%);
-        transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-        pointer-events: none;
-      }
-
-      @media (hover: hover) and (pointer: fine) {
-        .why-card-bento:hover {
-          transform: translateY(-6px);
-          border-color: rgba(var(--card-accent-rgb), 0.45);
-          box-shadow: 0 0 44px rgba(var(--card-accent-rgb), 0.16);
-        }
-      }
-
-      @media (hover: hover) and (pointer: fine) {
-        .why-card-bento:hover::before {
-          opacity: 1;
-        }
-      }
-
-      @media (hover: hover) and (pointer: fine) {
-        .why-card-bento:hover::after {
-          transform: translateX(130%);
-        }
-      }
-
-      .why-card-bento h3 {
+      .faq-question {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        width: 100%;
+        padding: 24px 28px;
+        background: transparent;
+        border: none;
+        color: var(--text-primary);
         font-family: var(--font-display);
-        font-size: 1.6rem;
+        font-size: 1.25rem;
         font-weight: 600;
-        margin-bottom: 16px;
-        line-height: 1.3;
-        color: var(--card-accent);
+        text-align: left;
+        cursor: pointer;
+        list-style: none;
+        transition: color 0.2s ease;
       }
 
-      .why-card-bento p {
+      .faq-question::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq-question::after {
+        content: "+";
+        flex-shrink: 0;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(252, 175, 1, 0.12);
+        color: var(--accent-gold);
+        font-size: 1.1rem;
+        transition: transform 0.25s ease, background 0.25s ease;
+      }
+
+      .faq-item[open] .faq-question::after {
+        content: "−";
+        transform: rotate(180deg);
+      }
+
+      .faq-question:hover {
+        color: var(--accent-gold);
+      }
+
+      .faq-answer {
+        padding: 0 28px 24px;
         color: var(--text-secondary);
         font-size: 1rem;
         line-height: 1.7;
@@ -1613,24 +1620,18 @@
       }
 
       /* Responsive adjustments */
-      @media (max-width: 1024px) {
-        .why-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-
       @media (max-width: 768px) {
-        .why-grid {
-          grid-template-columns: 1fr;
-          gap: 16px;
+        .faq-list {
+          margin-top: 48px;
         }
-        
-        .why-card-bento {
-          padding: 28px;
+
+        .faq-question {
+          padding: 20px 24px;
+          font-size: 1.1rem;
         }
-        
-        .why-card-bento h3 {
-          font-size: 1.35rem;
+
+        .faq-answer {
+          padding: 0 24px 20px;
         }
       }
 
@@ -2502,6 +2503,214 @@
       }
 
       /* ========================================
+         FEATURED TOURNAMENTS SECTION
+         ======================================== */
+      .featured-tournaments-section {
+        background: var(--bg-secondary);
+        position: relative;
+      }
+
+      .featured-tournaments-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse at 20% 20%,
+            rgba(252, 175, 1, 0.06) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 80% 80%,
+            rgba(30, 144, 255, 0.05) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+      }
+
+      .featured-tournaments-grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+        margin-top: 48px;
+      }
+
+      .featured-tournament-card {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        background: var(--bg-secondary);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius-lg);
+        padding: 20px;
+        text-decoration: none;
+        color: inherit;
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.25s cubic-bezier(0.23, 1, 0.32, 1),
+          border-color 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      .featured-tournament-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(252, 175, 1, 0.5),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .featured-tournament-card:hover {
+          transform: translateY(-4px);
+          border-color: rgba(252, 175, 1, 0.4);
+          box-shadow:
+            0 12px 30px rgba(0, 0, 0, 0.25),
+            0 0 20px rgba(252, 175, 1, 0.08);
+        }
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .featured-tournament-card:hover::before {
+          opacity: 1;
+        }
+      }
+
+      .featured-tournament-card:active {
+        transform: translateY(-2px) scale(0.98);
+      }
+
+      .featured-tournament-name {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        line-height: 1.35;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .featured-tournament-game {
+        font-size: 0.875rem;
+        color: var(--accent-gold);
+        font-weight: 500;
+      }
+
+      .featured-tournament-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+      }
+
+      .featured-tournament-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 10px;
+        border-radius: var(--radius-xl);
+        background: var(--bg-tertiary);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .featured-tournament-badge.online {
+        color: var(--accent-blue);
+      }
+
+      .featured-tournament-badge.in-person {
+        color: var(--accent-green);
+      }
+
+      .featured-tournaments-footer {
+        position: relative;
+        z-index: 1;
+        margin-top: 40px;
+        text-align: center;
+      }
+
+      .featured-tournaments-view-all {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 16px 36px;
+        background: var(--bg-tertiary);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-md);
+        color: var(--text-primary);
+        font-family: var(--font-display);
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.25s cubic-bezier(0.23, 1, 0.32, 1),
+          box-shadow 0.25s ease,
+          border-color 0.25s ease,
+          color 0.25s ease,
+          background 0.25s ease;
+      }
+
+      .featured-tournaments-view-all::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.25),
+          transparent
+        );
+        transform: skewX(-20deg);
+        transition: left 0.5s ease;
+        z-index: 1;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .featured-tournaments-view-all:hover {
+          transform: translateY(-2px);
+          border-color: transparent;
+          box-shadow: 0 6px 20px rgba(252, 175, 1, 0.25);
+          color: #001a33;
+          background: var(--accent-gold);
+        }
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .featured-tournaments-view-all:hover::after {
+          left: 150%;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .featured-tournaments-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ========================================
          CTA SECTION
          ======================================== */
       .cta-section {
@@ -2831,20 +3040,23 @@
       }
 
       @media (hover: hover) and (pointer: fine) {
-        .nav-link:hover {
+        .nav-link:hover,
+        .nav-link.active {
           color: var(--accent-gold);
         }
       }
 
       @media (hover: hover) and (pointer: fine) {
-        .nav-link:hover::before {
+        .nav-link:hover::before,
+        .nav-link.active::before {
           opacity: 1;
           transform: translateX(0);
         }
       }
 
       @media (hover: hover) and (pointer: fine) {
-        .nav-link:hover::after {
+        .nav-link:hover::after,
+        .nav-link.active::after {
           transform: scaleX(1);
         }
       }
@@ -3342,7 +3554,7 @@
       .swiper-button-prev:focus-visible,
       .swiper-button-next:focus-visible,
       .feature-card:focus-visible,
-      .why-card-bento:focus-visible {
+      .faq-question:focus-visible {
         outline: 2px solid var(--accent-gold);
         outline-offset: 3px;
       }
@@ -3366,9 +3578,7 @@
         transform: translateY(-4px) scale(0.99);
       }
 
-      .why-card-bento:active {
-        transform: translateY(-4px) scale(1);
-      }
+
 
       /* Respect reduced motion preferences */
       @media (prefers-reduced-motion: reduce) {
@@ -3481,100 +3691,7 @@
     <div class="bg-grid"></div>
 
     <!-- Header -->
-    <header id="header">
-      <div class="header-inner">
-        <a href="#" class="logo">
-          <img
-            src="https://legal.fighterstech.com/fighterstech.png"
-            alt="FightersTech Logo"
-          />
-          <span class="logo-text">FightersTech</span>
-        </a>
-
-        <nav class="main-menu" id="mainMenu">
-          <ul>
-            <li>
-              <a
-                href="#mainFeaturesSection"
-                class="nav-link"
-                id="menuMainFeatures"
-                >{{nav.menuMainFeatures}}</a
-              >
-            </li>
-            <li>
-              <a
-                href="#whyFightersTechSection"
-                class="nav-link"
-                id="menuWhyFightersTech"
-                >{{nav.menuWhyFightersTech}}</a
-              >
-            </li>
-            <li>
-              <a href="#appImagesSection" class="nav-link" id="menuAppImages"
-                >{{nav.menuAppImages}}</a
-              >
-            </li>
-            <li>
-              <a
-                href="#testimonialsSection"
-                class="nav-link"
-                id="menuTestimonials"
-                >{{nav.menuTestimonials}}</a
-              >
-            </li>
-            <li>
-              <a
-                href="#otherFeaturesSection"
-                class="nav-link"
-                id="menuOtherFeatures"
-                >{{nav.menuOtherFeatures}}</a
-              >
-            </li>
-            <li class="mobile-only">
-              <a
-                href="#hero"
-                class="nav-link nav-link-download"
-                id="menuDownloadApp"
-                >{{nav.menuDownloadApp}}</a
-              >
-            </li>
-          </ul>
-        </nav>
-
-        <div class="header-cta">
-          <a href="#hero" class="header-download-btn" id="headerDownloadBtn">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 16.5l4-4h-3v-9h-2v9H8l4 4zm9-13v18H3v-18h18zm-2 2H5v14h14V5.5z"/>
-            </svg>
-            <span id="headerDownloadText">{{nav.downloadApp}}</span>
-          </a>
-
-          <div class="lang-toggle">
-            <button
-              class="lang-btn {{active_es}}"
-              onclick="setLanguage('es')"
-              data-lang="es"
-            >
-              ES
-            </button>
-            <button class="lang-btn {{active_en}}" onclick="setLanguage('en')" data-lang="en">
-              EN
-            </button>
-          </div>
-
-          <button
-            class="mobile-menu-toggle"
-            id="mobileMenuToggle"
-            aria-label="Toggle menu"
-            aria-expanded="false"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-      </div>
-    </header>
+    <!-- PARTIAL:header -->
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
@@ -3610,7 +3727,7 @@
         </p>
         <div class="store-buttons">
           <a
-            href="https://apps.apple.com/es/app/fighterstech/id6741810411?l=en-GB"
+            href="{{hero.storeButtons.apple.url}}"
             class="store-btn"
             id="appleLink"
             target="_blank"
@@ -3627,7 +3744,7 @@
             </div>
           </a>
           <a
-            href="https://play.google.com/store/apps/details?id=com.xiscoteon.fighterstech"
+            href="{{hero.storeButtons.google.url}}"
             class="store-btn"
             id="googleLink"
             target="_blank"
@@ -3782,72 +3899,61 @@
       </div>
     </section>
 
-    <!-- Why FightersTech Section -->
-    <section class="section why-section" id="whyFightersTechSection">
+    <!-- FAQ Section -->
+    <section class="section why-section" id="faqSection">
       <div class="container">
         <div class="section-header fade-in">
-          <span class="section-label" id="whyLabel">{{sections.whyFightersTech.label}}</span>
-          <h2 class="section-title" id="titleWhyFightersTech" data-title="Why FightersTech?">
-            {{sections.whyFightersTech.title}}
+          <span class="section-label" id="faqLabel">{{sections.faq.label}}</span>
+          <h2 class="section-title" id="titleFaq" data-title="FAQ">
+            {{sections.faq.title}}
           </h2>
-          <p class="section-description" id="whyDesc">
-            {{sections.whyFightersTech.description}}
+          <p class="section-description" id="faqDesc">
+            {{sections.faq.description}}
           </p>
         </div>
 
-        <div class="why-grid fade-in" id="whyCardsGrid">
-          <!-- Card 1: Algorithm -->
-          <div class="why-card-bento">
-            <h3 id="whyCard1Title">{{whyCards.0.title}}</h3>
-            <p id="whyCard1Desc">
-              {{whyCards.0.description}}
-            </p>
-          </div>
-
-          <!-- Card 2: Intentional Training -->
-          <div class="why-card-bento">
-            <h3 id="whyCard2Title">{{whyCards.1.title}}</h3>
-            <p id="whyCard2Desc">
-              {{whyCards.1.description}}
-            </p>
-          </div>
-
-          <!-- Card 3: All in One -->
-          <div class="why-card-bento">
-            <h3 id="whyCard3Title">{{whyCards.2.title}}</h3>
-            <p id="whyCard3Desc">
-              {{whyCards.2.description}}
-            </p>
-          </div>
-
-          <!-- Card 4: Real Scene -->
-          <div class="why-card-bento">
-            <h3 id="whyCard4Title">{{whyCards.3.title}}</h3>
-            <p id="whyCard4Desc">
-              {{whyCards.3.description}}
-            </p>
-          </div>
+        <div class="faq-list fade-in" id="faqList">
+          <details class="faq-item">
+            <summary class="faq-question" id="faqQuestion0">{{faqItems.0.title}}</summary>
+            <div class="faq-answer" id="faqAnswer0">{{faqItems.0.description}}</div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-question" id="faqQuestion1">{{faqItems.1.title}}</summary>
+            <div class="faq-answer" id="faqAnswer1">{{faqItems.1.description}}</div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-question" id="faqQuestion2">{{faqItems.2.title}}</summary>
+            <div class="faq-answer" id="faqAnswer2">{{faqItems.2.description}}</div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-question" id="faqQuestion3">{{faqItems.3.title}}</summary>
+            <div class="faq-answer" id="faqAnswer3">{{faqItems.3.description}}</div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-question" id="faqQuestion4">{{faqItems.4.title}}</summary>
+            <div class="faq-answer" id="faqAnswer4">{{faqItems.4.description}}</div>
+          </details>
         </div>
       </div>
       <div class="section-transition"></div>
     </section>
 
     <!-- App Images Section -->
-    <section class="section app-showcase" id="appImagesSection">
+    <section class="section app-showcase" id="appSection">
       <div class="container">
         <div class="app-showcase-wrapper">
           <div class="app-showcase-content fade-in">
-            <span class="section-label">{{sections.appGallery.label}}</span>
-            <h2 id="titleAppImages" data-title="See the Action">{{sections.appGallery.title}}</h2>
+            <span class="section-label">{{sections.app.label}}</span>
+            <h2 id="titleApp" data-title="See the Action">{{sections.app.title}}</h2>
             <p>
-              {{sections.appGallery.description}}
+              {{sections.app.description}}
             </p>
             <ul class="feature-list">
-              <li>{{sections.appGallery.featureList.0}}</li>
-              <li>{{sections.appGallery.featureList.1}}</li>
-              <li>{{sections.appGallery.featureList.2}}</li>
-              <li>{{sections.appGallery.featureList.3}}</li>
-              <li>{{sections.appGallery.featureList.4}}</li>
+              <li>{{sections.app.featureList.0}}</li>
+              <li>{{sections.app.featureList.1}}</li>
+              <li>{{sections.app.featureList.2}}</li>
+              <li>{{sections.app.featureList.3}}</li>
+              <li>{{sections.app.featureList.4}}</li>
             </ul>
           </div>
 
@@ -3943,23 +4049,72 @@
               >
                 <path d="M7 11l5-5 5 5M12 4v12" />
               </svg>
-              <span id="swipeText">{{sections.appGallery.swipeInstruction}}</span>
+              <span id="swipeText">{{sections.app.swipeInstruction}}</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Other Features Section -->
-    <section class="section video-section video-section--dark" id="otherFeaturesSection">
+    <!-- Testimonials Section -->
+    <section class="section testimonials-section" id="reviewsSection">
       <div class="container">
         <div class="section-header fade-in">
-          <span class="section-label">{{sections.otherFeatures.label}}</span>
-          <h2 class="section-title" id="titleOtherFeatures" data-title="Other Features">
-            {{sections.otherFeatures.title}}
+          <span class="section-label" id="testimonialsLabel">{{sections.reviews.label}}</span>
+          <h2 class="section-title" id="titleReviews" data-title="What the FGC is Saying">
+            {{sections.reviews.title}}
+          </h2>
+          <p class="section-description" id="testimonialsDesc">
+            {{sections.reviews.description}}
+          </p>
+        </div>
+
+        <div class="testimonials-swiper swiper-container fade-in" id="testimonialsSwiper">
+          <div class="swiper-wrapper" id="testimonialsWrapper">{{reviewsHtml}}</div>
+          <div class="swiper-pagination testimonials-pagination"></div>
+          <div class="swiper-button-prev testimonials-prev"></div>
+          <div class="swiper-button-next testimonials-next"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Tournaments Section -->
+    <section class="section featured-tournaments-section" id="featuredTournamentsSection">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-label">{{sections.featuredTournaments.label}}</span>
+          <a href="{{tournamentUrl}}" class="section-title-link">
+            <h2 class="section-title" id="titleFeaturedTournaments" data-title="Upcoming Tournaments">
+              {{sections.featuredTournaments.title}}
+            </h2>
+          </a>
+          <p class="section-description">
+            {{sections.featuredTournaments.description}}
+          </p>
+        </div>
+
+        <div class="featured-tournaments-grid" id="featuredTournamentsGrid">
+          {{featuredTournamentsHtml}}
+        </div>
+
+        <div class="featured-tournaments-footer fade-in">
+          <a href="{{tournamentUrl}}" class="featured-tournaments-view-all">
+            {{sections.featuredTournaments.viewAll}}
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Other Features Section -->
+    <section class="section video-section video-section--dark" id="moreSection">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-label">{{sections.more.label}}</span>
+          <h2 class="section-title" id="titleMore" data-title="Other Features">
+            {{sections.more.title}}
           </h2>
           <p class="section-description">
-            {{sections.otherFeatures.description}}
+            {{sections.more.description}}
           </p>
         </div>
 
@@ -3977,28 +4132,6 @@
       </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="section testimonials-section" id="testimonialsSection">
-      <div class="container">
-        <div class="section-header fade-in">
-          <span class="section-label" id="testimonialsLabel">{{sections.testimonials.label}}</span>
-          <h2 class="section-title" id="titleTestimonials" data-title="What the FGC is Saying">
-            {{sections.testimonials.title}}
-          </h2>
-          <p class="section-description" id="testimonialsDesc">
-            {{sections.testimonials.description}}
-          </p>
-        </div>
-
-        <div class="testimonials-swiper swiper-container fade-in" id="testimonialsSwiper">
-          <div class="swiper-wrapper" id="testimonialsWrapper">{{testimonialsHtml}}</div>
-          <div class="swiper-pagination testimonials-pagination"></div>
-          <div class="swiper-button-prev testimonials-prev"></div>
-          <div class="swiper-button-next testimonials-next"></div>
-        </div>
-      </div>
-    </section>
-
     <!-- CTA Section -->
     <section class="section cta-section">
       <div class="container">
@@ -4009,7 +4142,7 @@
           </p>
           <div class="store-buttons">
             <a
-              href="https://apps.apple.com/es/app/fighterstech/id6741810411?l=en-GB"
+              href="{{hero.storeButtons.apple.url}}"
               class="store-btn"
               target="_blank"
               rel="noopener noreferrer"
@@ -4030,7 +4163,7 @@
               </div>
             </a>
             <a
-              href="https://play.google.com/store/apps/details?id=com.xiscoteon.fighterstech"
+              href="{{hero.storeButtons.google.url}}"
               class="store-btn"
               target="_blank"
               rel="noopener noreferrer"
@@ -4056,145 +4189,7 @@
     </section>
 
     <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <img
-              src="https://legal.fighterstech.com/fighterstech.png"
-              alt="FightersTech Logo"
-            />
-            <h3>FightersTech</h3>
-            <p>
-              {{footer.brand.description}}
-            </p>
-            <div class="social-links">
-              <a
-                href="{{footer.columns.contact.links.twitterUrl}}"
-                class="social-link"
-                id="footerTwitterLink"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Twitter"
-              >
-                <svg viewBox="0 0 24 24">
-                  <path
-                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-                  />
-                </svg>
-              </a>
-              <a
-                href="https://instagram.com/fighterstech"
-                class="social-link"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-              >
-                <svg viewBox="0 0 24 24">
-                  <path
-                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"
-                  />
-                </svg>
-              </a>
-              <a
-                href="https://www.tiktok.com/@fighterstech"
-                class="social-link"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="TikTok"
-              >
-                <svg viewBox="0 0 24 24">
-                  <path
-                    d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"
-                  />
-                </svg>
-              </a>
-              <a
-                href="https://bsky.app/profile/fighterstech.bsky.social"
-                class="social-link"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Bluesky"
-              >
-                <svg viewBox="0 0 24 24">
-                  <path
-                    d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.599.9 2.15.508 2.48.172 2.9 0 3.36c-.172.46-.1.982.1 1.42.2.44.56.8 1.02 1.02.2.1.4.18.62.22-.22 2.02.28 4.18 1.52 6.06 1.76 2.7 4.78 4.76 8.74 4.76s7-2.06 8.76-4.76c1.24-1.88 1.74-4.04 1.52-6.06.22-.04.42-.12.62-.22.46-.22.82-.58 1.02-1.02.2-.44.26-.96.1-1.42-.18-.46-.52-.88-.92-1.2-.66-.56-1.66-1.2-4.3.7-2.76 1.94-5.72 5.88-6.8 8z"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <div class="footer-column">
-            <h4>{{footer.columns.product.title}}</h4>
-            <ul class="footer-links">
-              <li><a href="#mainFeaturesSection">{{footer.columns.product.links.features}}</a></li>
-              <li><a href="#whyFightersTechSection" id="linkWhyFightersTech">{{footer.columns.product.links.whyFightersTech}}</a></li>
-              <li><a href="#appImagesSection">{{footer.columns.product.links.appGallery}}</a></li>
-              <li>
-                <a href="#testimonialsSection" id="linkTestimonials"
-                  >{{footer.columns.product.links.testimonials}}</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://apps.apple.com/es/app/fighterstech/id6741810411?l=en-GB"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >App Store</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://play.google.com/store/apps/details?id=com.xiscoteon.fighterstech"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Google Play</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <div class="footer-column">
-            <h4>{{footer.columns.legal.title}}</h4>
-            <ul class="footer-links">
-              <li><a href="#" id="linkLegal">{{footer.columns.legal.links.legalNotice}}</a></li>
-              <li><a href="#" id="linkPrivacy">{{footer.columns.legal.links.privacyPolicy}}</a></li>
-              <li><a href="#" id="linkTerms">{{footer.columns.legal.links.termsOfService}}</a></li>
-              <li><a href="#" id="linkCookies">{{footer.columns.legal.links.cookiePolicy}}</a></li>
-              <li><a href="#" id="linkConduct">{{footer.columns.legal.links.codeOfConduct}}</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-column">
-            <h4>{{footer.columns.contact.title}}</h4>
-            <ul class="footer-links">
-              <li>
-                <a href="mailto:info@fighterstech.com" id="linkContact"
-                  >{{footer.columns.contact.links.contactUs}}</a
-                >
-              </li>
-              <li>
-                <a
-                  href="{{footer.columns.contact.links.twitterUrl}}"
-                  id="footerSupportLink"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >{{footer.columns.contact.links.support}}</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <p>
-            © <span id="currentYear"></span> FightersTech.
-            <span id="footerRights">{{footer.rights}}</span>
-          </p>
-        </div>
-      </div>
-    </footer>
+    <!-- PARTIAL:footer -->
 
     <script>
       // ========================================
@@ -4306,7 +4301,7 @@
       // Load translations from JSON file
       async function loadTranslationFile(lang) {
         try {
-          const response = await fetch(`/lang/${lang}.json?v=2`);
+          const response = await fetch(`/lang/${lang}.json?v=3`);
           if (!response.ok) throw new Error(`Failed to load ${lang}.json`);
           return await response.json();
         } catch (error) {
@@ -4355,10 +4350,10 @@
 
       function renderTestimonials(t) {
         const wrapper = document.getElementById("testimonialsWrapper");
-        if (!wrapper || !t.sections.testimonials || !t.sections.testimonials.reviews)
+        if (!wrapper || !t.sections.reviews || !t.sections.reviews.reviews)
           return;
 
-        const reviews = t.sections.testimonials.reviews;
+        const reviews = t.sections.reviews.reviews;
         const linkText = currentLang === "es" ? "Ver en X" : "View on X";
 
         const slidesHtml = reviews
@@ -4441,6 +4436,52 @@
             },
           },
         });
+      }
+
+      function updateFeaturedTournamentsLanguage(lang) {
+        const tournamentListUrl = lang === 'es' ? '/es/torneos/' : '/tournaments/';
+        const t = translations[lang];
+        if (!t || !t.tournaments) return;
+
+        document.querySelectorAll('.featured-tournament-card').forEach((card) => {
+          const slug = card.dataset.slug;
+          if (slug) {
+            card.href = `${tournamentListUrl}${slug}/`;
+          }
+
+          const badge = card.querySelector('[data-featured-badge]');
+          if (badge) {
+            const mode = badge.dataset.featuredBadge;
+            badge.textContent = mode === 'online'
+              ? t.tournaments.online
+              : t.tournaments.inPerson;
+          }
+
+          const dateEl = card.querySelector('.featured-tournament-date');
+          if (dateEl) {
+            const timestamp = parseInt(dateEl.dataset.timestamp, 10);
+            if (timestamp) {
+              const date = new Date(timestamp * 1000);
+              const options = {
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+              };
+              dateEl.textContent = date.toLocaleDateString(
+                lang === 'es' ? 'es-ES' : 'en-US',
+                options
+              );
+            }
+          }
+        });
+
+        // Update the section title link and "view all" button hrefs
+        const titleLink = document.querySelector('#featuredTournamentsSection .section-title-link');
+        if (titleLink) titleLink.href = tournamentListUrl;
+        const viewAllBtn = document.querySelector('.featured-tournaments-view-all');
+        if (viewAllBtn) viewAllBtn.href = tournamentListUrl;
       }
 
       function setLanguage(lang) {
@@ -4544,27 +4585,40 @@
           "data-title",
           t.sections.mainFeatures.title,
         );
-        const otherFeaturesTitle = document.getElementById("titleOtherFeatures");
-        otherFeaturesTitle.textContent = t.sections.otherFeatures.title;
+        const otherFeaturesTitle = document.getElementById("titleMore");
+        otherFeaturesTitle.textContent = t.sections.more.title;
         otherFeaturesTitle.setAttribute(
           "data-title",
-          t.sections.otherFeatures.title,
+          t.sections.more.title,
         );
 
         // Menu items
         document.getElementById("menuMainFeatures").textContent =
           t.nav.menuMainFeatures;
-        document.getElementById("menuWhyFightersTech").textContent =
-          t.nav.menuWhyFightersTech;
-        document.getElementById("menuAppImages").textContent =
-          t.nav.menuAppImages;
-        document.getElementById("menuTestimonials").textContent =
-          t.nav.menuTestimonials;
-        document.getElementById("menuOtherFeatures").textContent =
-          t.nav.menuOtherFeatures;
+        document.getElementById("menuFaq").textContent =
+          t.nav.menuFaq;
+        document.getElementById("menuApp").textContent =
+          t.nav.menuApp;
+        document.getElementById("menuReviews").textContent =
+          t.nav.menuReviews;
+        document.getElementById("menuMore").textContent =
+          t.nav.menuMore;
         const menuDownloadApp = document.getElementById("menuDownloadApp");
         if (menuDownloadApp && t.nav.menuDownloadApp) {
           menuDownloadApp.textContent = t.nav.menuDownloadApp;
+        }
+
+        // Tournament link (ruta absoluta, cambia con el idioma)
+        const tournamentUrl = lang === 'es' ? '/es/torneos/' : '/tournaments/';
+        const menuTournaments = document.getElementById("menuTournaments");
+        if (menuTournaments) {
+          menuTournaments.textContent = t.nav.menuTournaments;
+          menuTournaments.href = tournamentUrl;
+        }
+        const linkTournaments = document.getElementById("linkTournaments");
+        if (linkTournaments) {
+          linkTournaments.textContent = t.footer?.columns?.product?.links?.tournaments || '';
+          linkTournaments.href = tournamentUrl;
         }
 
         // Header download button
@@ -4576,10 +4630,11 @@
         // Section labels and descriptions
         const sectionLabels = document.querySelectorAll(".section-label");
         sectionLabels[0].textContent = t.sections.mainFeatures.label;
-        sectionLabels[1].textContent = t.sections.whyFightersTech.label;
-        sectionLabels[2].textContent = t.sections.appGallery.label;
-        sectionLabels[3].textContent = t.sections.otherFeatures.label;
-        sectionLabels[4].textContent = t.sections.testimonials.label;
+        sectionLabels[1].textContent = t.sections.faq.label;
+        sectionLabels[2].textContent = t.sections.app.label;
+        sectionLabels[3].textContent = t.sections.reviews.label;
+        sectionLabels[4].textContent = t.sections.featuredTournaments.label;
+        sectionLabels[5].textContent = t.sections.more.label;
 
         const sectionDescriptions = document.querySelectorAll(
           ".section-description",
@@ -4587,11 +4642,13 @@
         sectionDescriptions[0].textContent =
           t.sections.mainFeatures.description;
         sectionDescriptions[1].textContent =
-          t.sections.whyFightersTech.description;
+          t.sections.faq.description;
         sectionDescriptions[2].textContent =
-          t.sections.otherFeatures.description;
+          t.sections.reviews.description;
         sectionDescriptions[3].textContent =
-          t.sections.testimonials.description;
+          t.sections.featuredTournaments.description;
+        sectionDescriptions[4].textContent =
+          t.sections.more.description;
 
         // CTA section
         const ctaTitle = document.querySelector(".cta-content h2");
@@ -4604,23 +4661,23 @@
         const appShowcaseTitle = document.querySelector(
           ".app-showcase-content h2",
         );
-        appShowcaseTitle.textContent = t.sections.appGallery.title;
-        appShowcaseTitle.setAttribute("data-title", t.sections.appGallery.title);
+        appShowcaseTitle.textContent = t.sections.app.title;
+        appShowcaseTitle.setAttribute("data-title", t.sections.app.title);
 
         // Swipe instruction text
         const swipeText = document.getElementById("swipeText");
         if (swipeText) {
-          swipeText.textContent = t.sections.appGallery.swipeInstruction;
+          swipeText.textContent = t.sections.app.swipeInstruction;
         }
 
         const appShowcaseText = document.querySelector(
           ".app-showcase-content p",
         );
-        appShowcaseText.textContent = t.sections.appGallery.description;
+        appShowcaseText.textContent = t.sections.app.description;
 
         // Update feature list
         const featureList = document.querySelectorAll(".feature-list li");
-        t.sections.appGallery.featureList.forEach((text, i) => {
+        t.sections.app.featureList.forEach((text, i) => {
           if (featureList[i]) featureList[i].textContent = text;
         });
 
@@ -4633,20 +4690,37 @@
           }
         });
 
-        // Update Why FightersTech cards (bento grid)
-        const whyCards = document.querySelectorAll(".why-card-bento");
-        whyCards.forEach((card, i) => {
-          if (t.whyCards[i]) {
-            card.querySelector("h3").textContent = t.whyCards[i].title;
-            card.querySelector("p").textContent = t.whyCards[i].description;
+        // Update FAQ items
+        const faqItems = document.querySelectorAll(".faq-item");
+        faqItems.forEach((item, i) => {
+          if (t.faqItems[i]) {
+            item.querySelector(".faq-question").textContent = t.faqItems[i].title;
+            item.querySelector(".faq-answer").innerHTML = t.faqItems[i].description;
           }
         });
 
+        // Update Featured Tournaments section title and view-all button
+        const featuredTournamentsTitle = document.getElementById("titleFeaturedTournaments");
+        if (featuredTournamentsTitle && t.sections.featuredTournaments.title) {
+          const titleText = t.sections.featuredTournaments.title;
+          featuredTournamentsTitle.setAttribute("data-title", titleText);
+          const parts = titleText.split(" ");
+          if (parts.length > 1) {
+            featuredTournamentsTitle.innerHTML = `${parts.slice(0, -1).join(" ")} <span>${parts[parts.length - 1]}</span>`;
+          } else {
+            featuredTournamentsTitle.textContent = titleText;
+          }
+        }
+        const viewAllBtn = document.querySelector(".featured-tournaments-view-all");
+        if (viewAllBtn && t.sections.featuredTournaments.viewAll) {
+          viewAllBtn.textContent = t.sections.featuredTournaments.viewAll;
+        }
+
         // Update Why FightersTech section title
-        const whyTitle = document.getElementById("titleWhyFightersTech");
-        if (whyTitle && t.sections.whyFightersTech.title) {
+        const whyTitle = document.getElementById("titleFaq");
+        if (whyTitle && t.sections.faq.title) {
           // Preserve the span wrapper for styling
-          const titleText = t.sections.whyFightersTech.title;
+          const titleText = t.sections.faq.title;
           whyTitle.setAttribute("data-title", titleText);
           const parts = titleText.split(" ");
           if (parts.length > 1) {
@@ -4657,9 +4731,9 @@
         }
 
         // Update Testimonials section title and content
-        const testimonialsTitle = document.getElementById("titleTestimonials");
-        if (testimonialsTitle && t.sections.testimonials.title) {
-          const titleText = t.sections.testimonials.title;
+        const testimonialsTitle = document.getElementById("titleReviews");
+        if (testimonialsTitle && t.sections.reviews.title) {
+          const titleText = t.sections.reviews.title;
           testimonialsTitle.setAttribute("data-title", titleText);
           const parts = titleText.split(" ");
           if (parts.length > 1) {
@@ -4672,22 +4746,39 @@
         renderTestimonials(t);
 
         // Update footer columns
+        const footerProductTitle = document.getElementById("footerProductTitle");
+        if (footerProductTitle) {
+          footerProductTitle.textContent = t.footer.columns.product.title;
+        }
+        const footerLinkFeatures = document.getElementById("footerLinkFeatures");
+        if (footerLinkFeatures) {
+          footerLinkFeatures.textContent = t.footer.columns.product.links.features;
+        }
+        // linkFaq is updated above together with its href
+        const footerLinkApp = document.getElementById("footerLinkApp");
+        if (footerLinkApp) {
+          footerLinkApp.textContent = t.footer.columns.product.links.app;
+        }
+        const linkReviews = document.getElementById("linkReviews");
+        if (linkReviews) {
+          linkReviews.textContent = t.footer.columns.product.links.reviews;
+        }
+        // linkTournaments is updated below together with its href
+        const footerLinkMore = document.getElementById("footerLinkMore");
+        if (footerLinkMore) {
+          footerLinkMore.textContent = t.footer.columns.product.links.more;
+        }
+        const footerLinkAppStore = document.getElementById("footerLinkAppStore");
+        if (footerLinkAppStore) {
+          footerLinkAppStore.textContent = t.footer.columns.product.links.appStore;
+        }
+        const footerLinkGooglePlay = document.getElementById("footerLinkGooglePlay");
+        if (footerLinkGooglePlay) {
+          footerLinkGooglePlay.textContent = t.footer.columns.product.links.googlePlay;
+        }
+
         const footerColumns = document.querySelectorAll(".footer-column");
         if (footerColumns.length >= 3) {
-          // Product column
-          footerColumns[0].querySelector("h4").textContent =
-            t.footer.columns.product.title;
-          const productLinks =
-            footerColumns[0].querySelectorAll(".footer-links a");
-          productLinks[0].textContent = t.footer.columns.product.links.features;
-          productLinks[1].textContent =
-            t.footer.columns.product.links.whyFightersTech;
-          productLinks[2].textContent =
-            t.footer.columns.product.links.appGallery;
-          productLinks[3].textContent =
-            t.footer.columns.product.links.testimonials;
-          // App Store and Google Play don't need translation
-
           // Legal column
           footerColumns[1].querySelector("h4").textContent =
             t.footer.columns.legal.title;
@@ -4762,6 +4853,9 @@
           window.otherSwiper.slideTo(0);
           setTimeout(updateActiveOtherVideoTitle, 100);
         }
+
+        // Update featured tournament cards language-dependent texts
+        updateFeaturedTournamentsLanguage(lang);
       }
 
       function updateActiveVideoTitle() {
@@ -4868,6 +4962,63 @@
 
         // Initialize translations (loads JSON files and applies them)
         await initTranslations();
+
+        // Highlight active nav link on scroll
+        const navSections = [
+          "mainFeaturesSection",
+          "faqSection",
+          "appSection",
+          "reviewsSection",
+          "featuredTournamentsSection",
+          "moreSection"
+        ];
+
+        // Map section IDs to the nav-link data-section they should activate.
+        // The tournaments page link represents the featured tournaments section on the landing.
+        const sectionToNav = {
+          "featuredTournamentsSection": "tournaments"
+        };
+
+        function setActiveNav(sectionId) {
+          const navSection = sectionToNav[sectionId] || sectionId;
+          document.querySelectorAll(".nav-link[data-section]").forEach((link) => {
+            link.classList.toggle(
+              "active",
+              link.getAttribute("data-section") === navSection
+            );
+          });
+        }
+
+        function updateActiveFromScroll() {
+          const scrollPos = window.scrollY + 120;
+          let activeId = null;
+          for (let i = navSections.length - 1; i >= 0; i--) {
+            const section = document.getElementById(navSections[i]);
+            if (section && section.offsetTop <= scrollPos) {
+              // Past the last tracked section (CTA/footer): don't highlight any nav item
+              if (i === navSections.length - 1 && scrollPos > section.offsetTop + section.offsetHeight) {
+                activeId = null;
+              } else {
+                activeId = navSections[i];
+              }
+              break;
+            }
+          }
+          setActiveNav(activeId);
+        }
+
+        window.addEventListener("scroll", updateActiveFromScroll, { passive: true });
+        updateActiveFromScroll();
+
+        if (window.location.hash) {
+          const hash = window.location.hash.substring(1);
+          if (navSections.indexOf(hash) !== -1) {
+            setActiveNav(hash);
+          }
+        }
+
+        // Localize featured tournament cards (dates, badges, links)
+        updateFeaturedTournamentsLanguage(currentLang);
 
         // Add event listeners for slide changes
         window.videoSwiper.on("slideChange", updateActiveVideoTitle);
@@ -5016,5 +5167,7 @@
         }
       });
     </script>
+
+    <!-- PARTIAL:download-modal -->
   </body>
 </html>
