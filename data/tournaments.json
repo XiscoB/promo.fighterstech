@@ -1,58 +1,7 @@
 {
-  "fetchedAt": "2026-07-19T12:53:51.197Z",
+  "fetchedAt": "2026-07-19T13:34:05.288Z",
   "windowDays": 4,
   "tournaments": [
-    {
-      "name": "Bristol's Basement: World",
-      "slug": "tournament/bristol-s-basement-world",
-      "startAt": 1784466000,
-      "endAt": 1784487600,
-      "city": "Bristol",
-      "addrState": "England",
-      "countryCode": "GB",
-      "lat": 51.4517505,
-      "lng": -2.5942398,
-      "isOnline": false,
-      "numAttendees": 18,
-      "games": [
-        "Super Smash Bros. Melee"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/929778/image-e17c356b46a9b2a7bfebb4e1789d623e.jpg"
-    },
-    {
-      "name": "Tournoi 2XKO Rocalys #3",
-      "slug": "tournament/tournoi-2xko-rocalys-3-3",
-      "startAt": 1784466000,
-      "endAt": 1784480400,
-      "city": "Montpellier",
-      "addrState": "Occitanie",
-      "countryCode": "FR",
-      "lat": 43.6053625,
-      "lng": 3.8876917,
-      "isOnline": false,
-      "numAttendees": 2,
-      "games": [
-        "2XKO"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/924867/image-b559824dcb7f2175e747168392cc652c.png"
-    },
-    {
-      "name": "SALT Weekly Tourangeau 19 juillet",
-      "slug": "tournament/salt-weekly-tourangeau-19-juillet",
-      "startAt": 1784466000,
-      "endAt": 1784484000,
-      "city": "Tours",
-      "addrState": "Centre-Val de Loire",
-      "countryCode": "FR",
-      "lat": 47.3932177,
-      "lng": 0.6808784999999999,
-      "isOnline": false,
-      "numAttendees": 15,
-      "games": [
-        "Super Smash Bros. Ultimate"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/934404/image-dbb0ca6633e01d9a776da7d654ce427c.png"
-    },
     {
       "name": "Smash After Leaning Over 36",
       "slug": "tournament/smash-after-leaning-over-36",
@@ -98,7 +47,7 @@
       "lat": 38.7621539,
       "lng": -9.154567499999999,
       "isOnline": true,
-      "numAttendees": 9,
+      "numAttendees": 10,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -115,28 +64,11 @@
       "lat": null,
       "lng": null,
       "isOnline": true,
-      "numAttendees": 8,
+      "numAttendees": 11,
       "games": [
         "Super Smash Bros. Melee"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/932435/image-544c30ab172d415f7bd01c36bfcda850.jpg"
-    },
-    {
-      "name": "Frog Hunt : Bounty Cup",
-      "slug": "tournament/frog-hunt-bounty-cup",
-      "startAt": 1784473200,
-      "endAt": 1784496600,
-      "city": null,
-      "addrState": null,
-      "countryCode": null,
-      "lat": null,
-      "lng": null,
-      "isOnline": true,
-      "numAttendees": 49,
-      "games": [
-        "2XKO"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/920028/image-9bd20ea1374f1f024e57cccf08cfe722.png"
     },
     {
       "name": "The Smash Unicorn#26",
@@ -149,11 +81,28 @@
       "lat": 43.2953842,
       "lng": 5.396455899999999,
       "isOnline": false,
-      "numAttendees": 15,
+      "numAttendees": 16,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/930818/image-f4251fbddb37f8bdeb30f5a708e1333a.jpg"
+    },
+    {
+      "name": "Frog Hunt : Bounty Cup",
+      "slug": "tournament/frog-hunt-bounty-cup",
+      "startAt": 1784473200,
+      "endAt": 1784496600,
+      "city": null,
+      "addrState": null,
+      "countryCode": null,
+      "lat": null,
+      "lng": null,
+      "isOnline": true,
+      "numAttendees": 50,
+      "games": [
+        "2XKO"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/920028/image-9bd20ea1374f1f024e57cccf08cfe722.png"
     },
     {
       "name": "Saltmine League - World Warrior 2026 - Germany 3",
@@ -183,7 +132,7 @@
       "lat": null,
       "lng": null,
       "isOnline": true,
-      "numAttendees": 5,
+      "numAttendees": 6,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -483,7 +432,7 @@
       "lat": null,
       "lng": null,
       "isOnline": true,
-      "numAttendees": 7,
+      "numAttendees": 8,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -690,7 +639,7 @@
       "lat": 45.76377309999999,
       "lng": 4.8443404,
       "isOnline": false,
-      "numAttendees": 15,
+      "numAttendees": 16,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -999,7 +948,7 @@
       "lat": 41.0783058,
       "lng": -81.5122887,
       "isOnline": false,
-      "numAttendees": 1,
+      "numAttendees": 2,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -1095,40 +1044,6 @@
       "imageUrl": "https://images.start.gg/images/tournament/926332/image-aecd60f7c76d57d9868e8e5b7d8f3936.png"
     },
     {
-      "name": "Burlington Battlefield #21",
-      "slug": "tournament/burlington-battlefield-21",
-      "startAt": 1784494800,
-      "endAt": 1784514600,
-      "city": "Burlington",
-      "addrState": "ON",
-      "countryCode": "CA",
-      "lat": 43.3679439,
-      "lng": -79.79894399999999,
-      "isOnline": false,
-      "numAttendees": 21,
-      "games": [
-        "Super Smash Bros. Ultimate"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/930666/image-488b6e74052247509b128e38cc12e77a.png"
-    },
-    {
-      "name": "Neon Dreams x The Kame Crew Dragonball FighterZ #22",
-      "slug": "tournament/neon-dreams-x-the-kame-crew-dragonball-fighterz-22",
-      "startAt": 1784494800,
-      "endAt": 1784516400,
-      "city": "Largo",
-      "addrState": "FL",
-      "countryCode": "US",
-      "lat": 27.8741223,
-      "lng": -82.73051,
-      "isOnline": false,
-      "numAttendees": 1,
-      "games": [
-        "DRAGON BALL FighterZ"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/934564/image-d2ce8a680b0d0ca31e19c9aa9e7d2d7c.png"
-    },
-    {
       "name": "Hotline Arbor 59",
       "slug": "tournament/hotline-arbor-59",
       "startAt": 1784494800,
@@ -1144,6 +1059,40 @@
         "Super Smash Bros. Ultimate"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/934414/image-342cbac3449c14a11c44742c81542caf.jpg"
+    },
+    {
+      "name": "Neon Dreams x The Kame Crew Dragonball FighterZ #22",
+      "slug": "tournament/neon-dreams-x-the-kame-crew-dragonball-fighterz-22",
+      "startAt": 1784494800,
+      "endAt": 1784516400,
+      "city": "Largo",
+      "addrState": "FL",
+      "countryCode": "US",
+      "lat": 27.8741223,
+      "lng": -82.73051,
+      "isOnline": false,
+      "numAttendees": 2,
+      "games": [
+        "DRAGON BALL FighterZ"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/934564/image-d2ce8a680b0d0ca31e19c9aa9e7d2d7c.png"
+    },
+    {
+      "name": "Burlington Battlefield #21",
+      "slug": "tournament/burlington-battlefield-21",
+      "startAt": 1784494800,
+      "endAt": 1784514600,
+      "city": "Burlington",
+      "addrState": "ON",
+      "countryCode": "CA",
+      "lat": 43.3679439,
+      "lng": -79.79894399999999,
+      "isOnline": false,
+      "numAttendees": 22,
+      "games": [
+        "Super Smash Bros. Ultimate"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/930666/image-488b6e74052247509b128e38cc12e77a.png"
     },
     {
       "name": "Ice Box Battles @ Primo #34",
@@ -1311,7 +1260,7 @@
       "lat": 44.65567129999999,
       "lng": -63.59379399999999,
       "isOnline": false,
-      "numAttendees": 7,
+      "numAttendees": 9,
       "games": [
         "Super Smash Bros. Melee"
       ],
@@ -1679,23 +1628,6 @@
       "imageUrl": "https://images.start.gg/images/tournament/934062/image-e9c761dc8eb0234e0ba618b9285247d5.png"
     },
     {
-      "name": "第2.5回スマフェス(通常トナメ＆R1600制限トナメの同時開催)",
-      "slug": "tournament/2-5-r1600",
-      "startAt": 1784505600,
-      "endAt": 1784552400,
-      "city": "堺市",
-      "addrState": "大阪府",
-      "countryCode": "JP",
-      "lat": 34.558636,
-      "lng": 135.5057053,
-      "isOnline": false,
-      "numAttendees": 53,
-      "games": [
-        "Super Smash Bros. Ultimate"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/924566/image-fdec5cd28a313fcf46c8e04f593c13ee.png"
-    },
-    {
       "name": "Grunts Training Grounds ($20)",
       "slug": "tournament/grunts-training-grounds-20",
       "startAt": 1784505600,
@@ -1711,6 +1643,23 @@
         "Super Smash Bros. Ultimate"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/933768/image-3f8b7c1503ad7cc1e8fc7bf9347940a8.jpg"
+    },
+    {
+      "name": "第2.5回スマフェス(通常トナメ＆R1600制限トナメの同時開催)",
+      "slug": "tournament/2-5-r1600",
+      "startAt": 1784505600,
+      "endAt": 1784552400,
+      "city": "堺市",
+      "addrState": "大阪府",
+      "countryCode": "JP",
+      "lat": 34.558636,
+      "lng": 135.5057053,
+      "isOnline": false,
+      "numAttendees": 54,
+      "games": [
+        "Super Smash Bros. Ultimate"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/924566/image-fdec5cd28a313fcf46c8e04f593c13ee.png"
     },
     {
       "name": "Reaper's Cup 172",
@@ -1968,11 +1917,28 @@
       "lat": 49.0158944,
       "lng": 8.4158868,
       "isOnline": false,
-      "numAttendees": 4,
+      "numAttendees": 5,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/933902/image-e1b6fa2b32aa2208a21b2020df2d7da0.png"
+    },
+    {
+      "name": "eSportRN Check-In #3",
+      "slug": "tournament/esportrn-check-in-3",
+      "startAt": 1784565000,
+      "endAt": 1784584800,
+      "city": "Schwetzingen",
+      "addrState": "BW",
+      "countryCode": "DE",
+      "lat": 49.3754122,
+      "lng": 8.5850488,
+      "isOnline": false,
+      "numAttendees": 0,
+      "games": [
+        "Super Smash Bros. Ultimate"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/934667/image-bfd913550319628fafe19aa0c4225dc7.png"
     },
     {
       "name": "Unit Smash #83",
@@ -2007,6 +1973,23 @@
         "Super Smash Bros. Ultimate"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/934302/image-54126f1d5a875a87b3d4d2a1682a73f9.png"
+    },
+    {
+      "name": "Weekly By Vegacy S9 #14",
+      "slug": "tournament/weekly-by-vegacy-s9-14",
+      "startAt": 1784566800,
+      "endAt": 1784581200,
+      "city": "Lille",
+      "addrState": "Hauts-de-France",
+      "countryCode": "FR",
+      "lat": 50.6128847,
+      "lng": 3.047575,
+      "isOnline": false,
+      "numAttendees": 3,
+      "games": [
+        "Super Smash Bros. Ultimate"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/934664/image-3e8bbff6eb268fb0e0e9ba97db291f21.png"
     },
     {
       "name": "XGC 2.0 - 20th July",
@@ -2227,7 +2210,7 @@
       "lat": null,
       "lng": null,
       "isOnline": true,
-      "numAttendees": 6,
+      "numAttendees": 7,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -3224,7 +3207,7 @@
       "lat": 43.669718,
       "lng": 7.215468899999999,
       "isOnline": false,
-      "numAttendees": 3,
+      "numAttendees": 4,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -3312,7 +3295,7 @@
       "lat": 49.1191273,
       "lng": 6.1718562,
       "isOnline": false,
-      "numAttendees": 1,
+      "numAttendees": 2,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -3346,7 +3329,7 @@
       "lat": 53.35853609999999,
       "lng": -6.273078000000001,
       "isOnline": false,
-      "numAttendees": 7,
+      "numAttendees": 8,
       "games": [
         "2XKO",
         "Guilty Gear: Strive",
@@ -3873,7 +3856,7 @@
       "lat": 40.9863591,
       "lng": -75.1926123,
       "isOnline": false,
-      "numAttendees": 39,
+      "numAttendees": 40,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -4354,6 +4337,23 @@
         "Super Smash Bros. Ultimate"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/934649/image-736ee5e87a35634bdabe967a810276b5.png"
+    },
+    {
+      "name": "Encore Smash #357",
+      "slug": "tournament/encore-smash-357",
+      "startAt": 1784732400,
+      "endAt": 1784775600,
+      "city": "New Rochelle",
+      "addrState": "NY",
+      "countryCode": "US",
+      "lat": 40.9079142,
+      "lng": -73.7827764,
+      "isOnline": false,
+      "numAttendees": 0,
+      "games": [
+        "Super Smash Bros. Ultimate"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/933819/image-6b08471e150e3d923991465a8836a1d2.png"
     }
   ]
 }
