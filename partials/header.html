@@ -1,0 +1,107 @@
+    <header id="header">
+      <div class="header-inner">
+        <a href="/" class="logo">
+          <img
+            src="https://legal.fighterstech.com/fighterstech.png"
+            alt="FightersTech Logo"
+          />
+          <span class="logo-text">FightersTech</span>
+        </a>
+
+        <nav class="main-menu" id="mainMenu">
+          <ul>
+            <li>
+              <a
+                href="#mainFeaturesSection"
+                class="nav-link"
+                id="menuMainFeatures"
+                data-section="mainFeaturesSection"
+                >{{nav.menuMainFeatures}}</a
+              >
+            </li>
+            <li>
+              <a
+                href="#faqSection"
+                class="nav-link"
+                id="menuFaq"
+                data-section="faqSection"
+                >{{nav.menuFaq}}</a
+              >
+            </li>
+            <li>
+              <a href="#appSection" class="nav-link" id="menuApp" data-section="appSection"
+                >{{nav.menuApp}}</a
+              >
+            </li>
+            <li>
+              <a
+                href="#reviewsSection"
+                class="nav-link"
+                id="menuReviews"
+                data-section="reviewsSection"
+                >{{nav.menuReviews}}</a
+              >
+            </li>
+            <li>
+              <a
+                href="{{tournamentUrl}}"
+                class="nav-link"
+                id="menuTournaments"
+                data-section="tournaments"
+                >{{nav.menuTournaments}}</a
+              >
+            </li>
+            <li>
+              <a
+                href="#moreSection"
+                class="nav-link"
+                id="menuMore"
+                data-section="moreSection"
+                >{{nav.menuMore}}</a
+              >
+            </li>
+            <li class="mobile-only">
+              <a
+                href="#"
+                class="nav-link nav-link-download download-modal-trigger"
+                id="menuDownloadApp"
+                >{{nav.menuDownloadApp}}</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header-cta">
+          <a href="#" class="header-download-btn download-modal-trigger" id="headerDownloadBtn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 16.5l4-4h-3v-9h-2v9H8l4 4zm9-13v18H3v-18h18zm-2 2H5v14h14V5.5z"/>
+            </svg>
+            <span id="headerDownloadText">{{nav.downloadApp}}</span>
+          </a>
+
+          <div class="lang-toggle">
+            <button
+              class="lang-btn {{active_es}}"
+              onclick="setLanguage('es')"
+              data-lang="es"
+            >
+              ES
+            </button>
+            <button class="lang-btn {{active_en}}" onclick="setLanguage('en')" data-lang="en">
+              EN
+            </button>
+          </div>
+
+          <button
+            class="mobile-menu-toggle"
+            id="mobileMenuToggle"
+            aria-label="Toggle menu"
+            aria-expanded="false"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>

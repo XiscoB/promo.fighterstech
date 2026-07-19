@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="{{lang}}">
+  <head>
+    <!-- PARTIAL:head-common -->
+    <!-- PARTIAL:header-footer-styles -->
+
+    <title>{{tournament.name}} — {{tournament.games}} | {{tournament.dateFormatted}} | FightersTech</title>
+    <meta name="description" content="{{tournament.metaDescription}}" />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="canonical" href="{{tournament.canonicalUrl}}" />
+    {{tournament.hreflangTags}}
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{tournament.name}} — {{tournament.games}}" />
+    <meta property="og:description" content="{{tournament.metaDescription}}" />
+    <meta property="og:type" content="event" />
+    <meta property="og:url" content="{{tournament.pageUrl}}" />
+    <meta property="og:site_name" content="FightersTech" />
+    <meta property="og:image" content="{{tournament.imageUrl}}" />
+
+    <style>
+      :root {
+        --bg-primary: #001a33;
+        --bg-secondary: #00284e;
+        --bg-tertiary: #003366;
+        --bg-card: rgba(0, 51, 102, 0.6);
+        --accent-gold: #fcaf01;
+        --accent-green: #00c853;
+        --accent-blue: #1e90ff;
+        --accent-gradient: linear-gradient(135deg, #fcaf01 0%, #1e90ff 100%);
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.85);
+        --text-muted: rgba(255, 255, 255, 0.72);
+        --font-display: "Chakra Petch", sans-serif;
+        --font-body: "Inter", sans-serif;
+        --container-max: 1280px;
+        --radius-md: 12px;
+        --radius-lg: 20px;
+        --radius-xl: 28px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--font-body);
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1;
+        padding: 120px 24px 48px;
+      }
+
+      .container {
+        max-width: var(--container-max);
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--accent-gold);
+        text-decoration: none;
+        font-weight: 500;
+        margin-bottom: 24px;
+        transition: color 0.2s ease;
+      }
+
+      .back-link:hover {
+        color: var(--accent-blue);
+      }
+
+      .detail-layout {
+        display: grid;
+        grid-template-columns: 1fr 360px;
+        gap: 32px;
+        align-items: start;
+      }
+
+      .detail-main {
+        min-width: 0;
+      }
+
+      .detail-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        position: sticky;
+        top: 104px;
+      }
+
+      .detail-card {
+        background: var(--bg-secondary);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius-lg);
+        padding: 32px;
+        margin-bottom: 24px;
+      }
+
+      h1 {
+        font-family: var(--font-display);
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-weight: 700;
+        margin-bottom: 24px;
+        line-height: 1.2;
+        text-wrap: balance;
+      }
+
+      .tournament-meta {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin-bottom: 28px;
+      }
+
+      .meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        background: var(--bg-tertiary);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 16px;
+        border-radius: var(--radius-md);
+        transition: border-color 0.2s ease, background-color 0.2s ease;
+      }
+
+      .meta-item:hover {
+        border-color: rgba(252, 175, 1, 0.25);
+        background-color: rgba(0, 51, 102, 0.7);
+      }
+
+      .meta-item dt {
+        color: var(--text-muted);
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .meta-item dd {
+        margin: 0;
+        color: var(--text-primary);
+        font-size: 1rem;
+      }
+
+      .game-badge {
+        display: inline-block;
+        background: rgba(252, 175, 1, 0.15);
+        color: var(--accent-gold);
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 4px 10px;
+        border-radius: 100px;
+      }
+
+      .tournament-game {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .utc-notice {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin-bottom: 16px;
+        padding: 12px 16px;
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-blue) 100%);
+        color: #000000;
+        font-family: var(--font-display);
+        font-weight: 600;
+        text-decoration: none;
+        padding: 14px 24px;
+        border-radius: var(--radius-md);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(252, 175, 1, 0.25);
+        filter: brightness(1.05);
+      }
+
+      .cta-button::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+        transform: translateX(-100%);
+        transition: transform 0.5s ease;
+      }
+
+      .cta-button:hover::after {
+        transform: translateX(100%);
+      }
+
+      .sidebar-section {
+        background: var(--bg-secondary);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius-lg);
+        padding: 24px;
+      }
+
+      .sidebar-section h3 {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+        line-height: 1.3;
+      }
+
+      .app-cta p {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        margin-bottom: 16px;
+      }
+
+      .secondary-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: transparent;
+        color: var(--accent-gold);
+        border: 1px solid var(--accent-gold);
+        font-family: var(--font-display);
+        font-weight: 600;
+        text-decoration: none;
+        padding: 12px 20px;
+        border-radius: var(--radius-md);
+        transition: background 0.2s ease, color 0.2s ease;
+        cursor: pointer;
+      }
+
+      .secondary-button:hover {
+        background: rgba(252, 175, 1, 0.12);
+        color: #ffffff;
+        border-color: #ffffff;
+      }
+
+      .related-tournaments ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .related-tournaments li {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .related-tournaments li:last-child {
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      .related-tournaments a {
+        color: var(--text-primary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
+
+      .related-tournaments a:hover {
+        color: var(--accent-gold);
+      }
+
+      .related-date {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+
+      .attribution,
+      .download-cta {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin-top: 16px;
+      }
+
+      .attribution a,
+      .download-cta a {
+        color: var(--accent-gold);
+        text-decoration: none;
+      }
+
+      .attribution a:hover,
+      .download-cta a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 1024px) {
+        .detail-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .detail-sidebar {
+          position: static;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+      }
+
+      @media (max-width: 768px) {
+        main {
+          padding: 104px 16px 32px;
+        }
+
+        .detail-card {
+          padding: 24px;
+        }
+
+        .tournament-meta {
+          grid-template-columns: 1fr;
+        }
+
+        .detail-sidebar {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .back-link,
+        .cta-button,
+        .secondary-button,
+        .related-tournaments a {
+          transition: none;
+        }
+
+        .cta-button:hover {
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- PARTIAL:header -->
+
+    <main class="tournament-detail">
+      <div class="container">
+        <a href="{{tournaments.listUrl}}" class="back-link">{{tournaments.backToList}}</a>
+
+        <div class="detail-layout">
+          <article class="detail-main">
+            <div class="detail-card">
+              <noscript><p class="utc-notice">{{tournaments.utcNotice}}</p></noscript>
+
+              <h1>{{tournament.name}}</h1>
+
+              <dl class="tournament-meta">
+                <div class="meta-item">
+                  <dt>{{tournaments.labelGame}}</dt>
+                  <dd class="tournament-game">{{tournament.gamesList}}</dd>
+                </div>
+                <div class="meta-item">
+                  <dt>{{tournaments.labelDate}}</dt>
+                  <dd class="tournament-date"><time class="local-time" datetime="{{tournament.startDateISO}}">{{tournament.dateFormatted}}</time></dd>
+                </div>
+                <div class="meta-item">
+                  <dt>{{tournaments.labelLocation}}</dt>
+                  <dd class="tournament-location">{{tournament.location}}</dd>
+                </div>
+                <div class="meta-item">
+                  <dt>{{tournaments.labelAttendees}}</dt>
+                  <dd class="tournament-attendees">{{tournament.numAttendees}} {{tournaments.attendees}}</dd>
+                </div>
+              </dl>
+
+              <a href="{{tournament.startGgUrl}}"
+                 class="cta-button"
+                 rel="noopener"
+                 target="_blank">
+                {{tournaments.goToTournament}} →
+              </a>
+            </div>
+
+            <p class="attribution">
+              {{tournaments.poweredBy}} <a href="https://www.start.gg" rel="noopener" target="_blank">start.gg</a>
+            </p>
+
+            <p class="download-cta">
+              {{tournaments.downloadCta}} —
+              <a href="/">FightersTech</a>
+            </p>
+          </article>
+
+          <aside class="detail-sidebar">
+            <div class="sidebar-section app-cta">
+              <h3>{{tournaments.appCtaTitle}}</h3>
+              <p>{{tournaments.appCtaDescription}}</p>
+              <a href="#" class="secondary-button download-modal-trigger">{{nav.downloadApp}}</a>
+            </div>
+
+            <div class="sidebar-section map-cta" {{tournament.mapUrlHidden}}>
+              <h3>{{tournaments.labelLocation}}</h3>
+              <a href="{{tournament.mapUrl}}" class="secondary-button" rel="noopener" target="_blank">
+                {{tournaments.viewOnMap}} →
+              </a>
+            </div>
+
+            {{tournament.relatedTournaments}}
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <!-- PARTIAL:footer -->
+
+    <!-- PARTIAL:header-footer-scripts -->
+
+    <!-- PARTIAL:tournaments-scripts -->
+
+    <script>
+      (function () {
+        document.querySelectorAll('time.local-time').forEach(function (time) {
+          const iso = time.getAttribute('datetime');
+          if (!iso) return;
+          const date = new Date(iso);
+          time.textContent = date.toLocaleString(document.documentElement.lang || navigator.language || 'en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            timeZoneName: 'short'
+          });
+        });
+      })();
+    </script>
+
+    <!-- PARTIAL:download-modal -->
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "{{tournament.name}}",
+      "startDate": "{{tournament.startDateISO}}",
+      {{tournament.endDateLD}}
+      "eventAttendanceMode": "{{tournament.attendanceMode}}",
+      "eventStatus": "https://schema.org/EventScheduled",
+      {{tournament.locationLD}}
+      "organizer": {
+        "@type": "Organization",
+        "name": "start.gg",
+        "url": "https://www.start.gg"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "{{tournament.startGgUrl}}"
+      },
+      {{tournament.aboutLD}}
+      "image": "{{tournament.imageUrl}}"
+    }
+    </script>
+  </body>
+</html>

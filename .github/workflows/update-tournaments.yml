@@ -1,0 +1,63 @@
+name: Actualizar torneos start.gg
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # Cada hora, al minuto 0
+  workflow_dispatch: {}    # Permite ejecución manual
+  repository_dispatch:
+    types: [startgg-sync]  # Permite disparo desde el backend
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-tournaments
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Obtener torneos de start.gg
+        env:
+          STARTGG_API_KEY: ${{ secrets.STARTGG_API_KEY }}
+        run: node scripts/fetch-tournaments.mjs
+
+      - name: Comprobar si hay cambios
+        id: git-check
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit y push
+        if: steps.git-check.outputs.changed == 'true'
+        run: |
+          git config user.name "fighterstech-bot"
+          git config user.email "bot@fighterstech.com"
+          git commit -m "chore: actualizar datos de torneos"
+          git push
+
+      - name: Resumen del job
+        if: always()
+        run: |
+          echo "### Sincronización de torneos" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Cambios detectados: ${{ steps.git-check.outputs.changed }}" >> "$GITHUB_STEP_SUMMARY"
+          if [ -f data/tournaments-summary.json ]; then
+            echo "- Detalle:" >> "$GITHUB_STEP_SUMMARY"
+            cat data/tournaments-summary.json >> "$GITHUB_STEP_SUMMARY"
+          fi

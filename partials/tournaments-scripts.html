@@ -1,0 +1,144 @@
+    <!-- External link confirmation modal -->
+    <div class="leave-modal" id="leaveModal" role="dialog" aria-modal="true" aria-labelledby="leaveTitle" hidden>
+      <div class="leave-modal__overlay"></div>
+      <div class="leave-modal__content">
+        <h3 id="leaveTitle">{{tournaments.leaveTitle}}</h3>
+        <p>{{tournaments.leaveMessage}}</p>
+        <p class="leave-modal__url" id="leaveUrl"></p>
+        <div class="leave-modal__actions">
+          <button class="leave-modal__cancel" id="leaveCancel">{{tournaments.leaveCancel}}</button>
+          <a href="#" class="leave-modal__confirm" id="leaveConfirm" target="_blank" rel="noopener noreferrer">{{tournaments.leaveConfirm}}</a>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .leave-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+
+      .leave-modal[hidden] {
+        display: none;
+      }
+
+      .leave-modal__overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 10, 20, 0.85);
+        backdrop-filter: blur(6px);
+      }
+
+      .leave-modal__content {
+        position: relative;
+        background: var(--bg-secondary, #00284e);
+        border: 1px solid rgba(252, 175, 1, 0.2);
+        border-radius: var(--radius-lg, 20px);
+        padding: 28px;
+        max-width: 480px;
+        width: 100%;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+        text-align: center;
+      }
+
+      .leave-modal__content h3 {
+        font-family: var(--font-display, "Chakra Petch", sans-serif);
+        font-size: 1.35rem;
+        margin-bottom: 16px;
+        color: var(--text-primary, #ffffff);
+      }
+
+      .leave-modal__content p {
+        color: var(--text-secondary, rgba(255, 255, 255, 0.8));
+        margin-bottom: 8px;
+      }
+
+      .leave-modal__url {
+        font-family: var(--font-display, "Chakra Petch", sans-serif);
+        color: var(--accent-gold, #fcaf01);
+        word-break: break-all;
+        margin-bottom: 24px;
+      }
+
+      .leave-modal__actions {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .leave-modal__cancel,
+      .leave-modal__confirm {
+        padding: 12px 24px;
+        border-radius: var(--radius-md, 12px);
+        font-family: var(--font-display, "Chakra Petch", sans-serif);
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        border: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .leave-modal__cancel {
+        background: var(--bg-tertiary, #003366);
+        color: var(--text-primary, #ffffff);
+      }
+
+      .leave-modal__confirm {
+        background: linear-gradient(135deg, var(--accent-gold, #fcaf01) 0%, var(--accent-blue, #1e90ff) 100%);
+        color: #000000;
+      }
+
+      .leave-modal__cancel:hover,
+      .leave-modal__confirm:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(252, 175, 1, 0.25);
+      }
+    </style>
+
+    <script>
+      (function () {
+        const modal = document.getElementById("leaveModal");
+        const leaveUrl = document.getElementById("leaveUrl");
+        const leaveConfirm = document.getElementById("leaveConfirm");
+        const leaveCancel = document.getElementById("leaveCancel");
+        let pendingUrl = null;
+
+        function openModal(url) {
+          pendingUrl = url;
+          leaveUrl.textContent = url;
+          leaveConfirm.href = url;
+          modal.removeAttribute("hidden");
+          document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+          modal.setAttribute("hidden", "");
+          document.body.style.overflow = "";
+          pendingUrl = null;
+          leaveConfirm.href = "#";
+        }
+
+        leaveCancel.addEventListener("click", closeModal);
+        modal.querySelector(".leave-modal__overlay").addEventListener("click", closeModal);
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && !modal.hasAttribute("hidden")) {
+            closeModal();
+          }
+        });
+
+        document.querySelectorAll('a[href^="http"]:not(.download-modal__store), a[target="_blank"]:not(.download-modal__store)').forEach(function (link) {
+          link.addEventListener("click", function (e) {
+            const url = link.getAttribute("href");
+            if (!url || url.indexOf("promo.fighterstech.com") !== -1) return;
+            e.preventDefault();
+            openModal(url);
+          });
+        });
+      })();
+    </script>

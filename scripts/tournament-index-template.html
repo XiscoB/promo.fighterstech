@@ -1,0 +1,1097 @@
+<!doctype html>
+<html lang="{{lang}}">
+  <head>
+    <!-- PARTIAL:head-common -->
+    <!-- PARTIAL:header-footer-styles -->
+
+    <title>{{tournaments.pageTitle}} | FightersTech</title>
+    <meta name="description" content="{{tournaments.indexMetaDescription}}" />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="canonical" href="{{index.canonicalUrl}}" />
+    {{index.hreflangTags}}
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{tournaments.pageTitle}} | FightersTech" />
+    <meta property="og:description" content="{{tournaments.indexMetaDescription}}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{index.pageUrl}}" />
+    <meta property="og:site_name" content="FightersTech" />
+
+    <style>
+      :root {
+        --bg-primary: #001a33;
+        --bg-secondary: #00284e;
+        --bg-tertiary: #003366;
+        --bg-card: rgba(0, 51, 102, 0.6);
+        --accent-gold: #fcaf01;
+        --accent-green: #00c853;
+        --accent-blue: #1e90ff;
+        --accent-gradient: linear-gradient(135deg, #fcaf01 0%, #1e90ff 100%);
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.85);
+        --text-muted: rgba(255, 255, 255, 0.72);
+        --font-display: "Chakra Petch", sans-serif;
+        --font-body: "Inter", sans-serif;
+        --container-max: 1280px;
+        --radius-md: 12px;
+        --radius-lg: 20px;
+        --radius-xl: 28px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--font-body);
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1;
+        padding: 120px 24px 48px;
+      }
+
+      .container {
+        max-width: var(--container-max);
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      h1 {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 700;
+        margin-bottom: 16px;
+        text-align: center;
+        text-wrap: balance;
+      }
+
+      .page-subtitle {
+        max-width: 720px;
+        margin: 0 auto 32px;
+        text-align: center;
+        color: var(--text-secondary);
+        font-size: 1.05rem;
+        line-height: 1.6;
+        text-wrap: balance;
+      }
+
+      .tournament-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 32px;
+      }
+
+      .utc-notice {
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin-bottom: 16px;
+      }
+
+      .tournament-day {
+        margin-bottom: 48px;
+        scroll-margin-top: 140px;
+      }
+
+      .day-heading {
+        font-family: var(--font-display);
+        font-size: clamp(1.25rem, 3vw, 1.75rem);
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        text-wrap: balance;
+      }
+
+      .tournament-day .tournament-list {
+        margin-bottom: 0;
+      }
+
+      .filters {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-end;
+        margin-bottom: 24px;
+        padding: 20px;
+        background: var(--bg-secondary);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius-lg);
+      }
+
+      .filter-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .filter-group label {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: color 0.2s ease;
+      }
+
+      .filter-group:has(.filter-trigger:hover) label,
+      .filter-group:has(.filter-trigger:focus-visible) label,
+      .filter-group:has(.filter-options:not([aria-hidden="true"])) label {
+        color: var(--accent-gold);
+      }
+
+      .filter-dropdown {
+        position: relative;
+        min-width: 180px;
+      }
+
+      .filter-trigger {
+        width: 100%;
+        appearance: none;
+        -webkit-appearance: none;
+        background-color: var(--bg-tertiary);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23fcaf01' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        color: var(--text-primary);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--radius-md);
+        padding: 12px 40px 12px 16px;
+        font-family: var(--font-body);
+        font-size: 1rem;
+        cursor: pointer;
+        text-align: left;
+        transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+      }
+
+      .filter-trigger:hover {
+        border-color: var(--accent-gold);
+        box-shadow: 0 0 8px rgba(252, 175, 1, 0.2);
+      }
+
+      .filter-trigger:focus-visible {
+        outline: none;
+        border-color: var(--accent-gold);
+        box-shadow: 0 0 0 3px rgba(252, 175, 1, 0.15);
+      }
+
+      .filter-trigger[aria-expanded="true"] {
+        border-color: var(--accent-gold);
+        box-shadow: 0 0 0 3px rgba(252, 175, 1, 0.15);
+      }
+
+      .filter-trigger:disabled,
+      .filter-trigger[aria-disabled="true"] {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .filter-trigger-text {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .filter-options {
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        list-style: none;
+        margin: 0;
+        padding: 6px;
+        background: var(--bg-secondary);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--radius-md);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        max-height: 320px;
+        overflow-y: auto;
+        display: none;
+      }
+
+      .filter-options:not([aria-hidden="true"]) {
+        display: block;
+      }
+
+      .filter-options li {
+        padding: 10px 14px;
+        color: var(--text-primary);
+        font-size: 1rem;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: background-color 0.15s ease, color 0.15s ease;
+      }
+
+      .filter-options li:hover,
+      .filter-options li:focus-visible,
+      .filter-options li.is-focused {
+        background: var(--bg-tertiary);
+        color: var(--accent-gold);
+        outline: none;
+      }
+
+      .filter-options li[aria-selected="true"],
+      .filter-options li.selected {
+        background: rgba(252, 175, 1, 0.12);
+        color: var(--accent-gold);
+      }
+
+      .filter-options li[aria-disabled="true"] {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .filter-clear {
+        background: transparent;
+        color: var(--accent-gold);
+        border: 1px solid var(--accent-gold);
+        border-radius: var(--radius-md);
+        padding: 12px 20px;
+        font-family: var(--font-display);
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        min-width: 120px;
+        transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      }
+
+      .filter-clear:focus {
+        outline: 2px solid var(--accent-gold);
+        outline-offset: 2px;
+      }
+
+      .country-notice {
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin-top: 0;
+        margin-bottom: 24px;
+      }
+
+      .filter-clear:hover {
+        background: rgba(252, 175, 1, 0.12);
+        color: #ffffff;
+        border-color: #ffffff;
+      }
+
+      .filter-status,
+      .filter-empty {
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.95rem;
+        margin-bottom: 24px;
+      }
+
+      .filter-empty {
+        color: var(--text-secondary);
+      }
+
+      .day-shortcuts {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 32px;
+      }
+
+      .day-shortcuts button {
+        background: var(--bg-tertiary);
+        color: var(--text-secondary);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-md);
+        padding: 8px 16px;
+        font-family: var(--font-body);
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      }
+
+      .day-shortcuts button:hover,
+      .day-shortcuts button:focus {
+        background: rgba(252, 175, 1, 0.1);
+        color: var(--accent-gold);
+        border-color: var(--accent-gold);
+      }
+
+      .scroll-top {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 999;
+        background: var(--bg-tertiary);
+        color: var(--accent-gold);
+        border: 1px solid var(--accent-gold);
+        border-radius: var(--radius-md);
+        padding: 12px 18px;
+        font-family: var(--font-display);
+        font-weight: 600;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background 0.2s ease;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      }
+
+      .scroll-top.is-visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .scroll-top:hover {
+        background: rgba(252, 175, 1, 0.1);
+      }
+
+      .tournament-card.hidden {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .filters {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .filter-dropdown,
+        .filter-trigger,
+        .filter-clear {
+          width: 100%;
+        }
+
+        .tournament-card {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+        }
+
+        .card-meta {
+          min-width: auto;
+          width: 100%;
+        }
+
+        .card-cta {
+          width: 100%;
+        }
+      }
+
+      .tournament-card {
+        background: var(--bg-secondary);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius-md);
+        padding: 20px 24px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 24px;
+        transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+      }
+
+      .tournament-card:hover {
+        transform: translateY(-2px);
+        border-color: rgba(252, 175, 1, 0.45);
+        background-color: rgba(0, 40, 78, 0.85);
+      }
+
+      .card-main {
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+
+      .card-header {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 8px;
+      }
+
+      .game-badge {
+        background: rgba(252, 175, 1, 0.15);
+        color: var(--accent-gold);
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 4px 10px;
+        border-radius: 100px;
+      }
+
+      .mode-badge {
+        background: rgba(0, 200, 83, 0.15);
+        color: var(--accent-green);
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 4px 10px;
+        border-radius: 100px;
+      }
+
+      .tournament-card h2 {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+
+      .tournament-card h2 a {
+        color: var(--text-primary);
+        text-decoration: none;
+      }
+
+      .tournament-card h2 a:hover {
+        color: var(--accent-gold);
+      }
+
+      .card-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        flex: 0 0 auto;
+        min-width: 220px;
+      }
+
+      .card-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        color: var(--accent-gold);
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        text-decoration: none;
+        padding: 10px 16px;
+        border: 1px solid var(--accent-gold);
+        border-radius: var(--radius-md);
+        transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        flex: 0 0 auto;
+      }
+
+      .card-cta:hover {
+        background: rgba(252, 175, 1, 0.12);
+        color: #ffffff;
+        border-color: #ffffff;
+      }
+
+      .empty-state {
+        text-align: center;
+        color: var(--text-secondary);
+        padding: 48px 24px;
+        background: var(--bg-secondary);
+        border-radius: var(--radius-lg);
+        margin-bottom: 32px;
+      }
+
+      .last-updated,
+      .attribution,
+      .download-cta {
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin-top: 16px;
+      }
+
+      .attribution a,
+      .download-cta a {
+        color: var(--accent-gold);
+        text-decoration: none;
+      }
+
+      .attribution a:hover,
+      .download-cta a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 768px) {
+        main {
+          padding: 104px 16px 32px;
+        }
+
+        .tournament-card {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+        }
+
+        .card-meta {
+          min-width: auto;
+          width: 100%;
+        }
+
+        .day-shortcuts {
+          justify-content: flex-start;
+          overflow-x: auto;
+          flex-wrap: nowrap;
+          padding-bottom: 8px;
+        }
+
+        .scroll-top {
+          bottom: 16px;
+          right: 16px;
+          padding: 10px 14px;
+          font-size: 0.85rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .tournament-card,
+        .filter-trigger,
+        .filter-options li,
+        .filter-clear,
+        .day-shortcuts button,
+        .scroll-top,
+        .card-cta {
+          transition: none;
+        }
+
+        .tournament-card:hover {
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- PARTIAL:header -->
+
+    <main class="tournament-index">
+      <div class="container">
+        <h1>{{tournaments.pageTitle}}</h1>
+        <p class="page-subtitle">{{tournaments.pageSubtitle}}</p>
+
+        <noscript><p class="utc-notice">{{tournaments.utcNotice}}</p></noscript>
+
+        <div id="tournamentI18n" data-today="{{tournaments.today}}" data-tomorrow="{{tournaments.tomorrow}}" aria-hidden="true"></div>
+
+        <div class="filters">
+          <div class="filter-group">
+            <label id="filterGameLabel">{{tournaments.filterGame}}</label>
+            <div class="filter-dropdown" id="filterGameDropdown">
+              <button type="button" class="filter-trigger" id="filterGameTrigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="filterGameLabel filterGameTriggerText">
+                <span class="filter-trigger-text" id="filterGameTriggerText" data-placeholder="{{tournaments.filterModeAll}}">{{tournaments.filterModeAll}}</span>
+              </button>
+              <ul class="filter-options" role="listbox" aria-hidden="true" aria-labelledby="filterGameLabel" tabindex="-1">
+                <li role="option" data-value="" class="selected" aria-selected="true">{{tournaments.filterModeAll}}</li>
+              </ul>
+              <input type="hidden" id="filterGame" value="">
+            </div>
+          </div>
+          <div class="filter-group">
+            <label id="filterModeLabel">{{tournaments.filterMode}}</label>
+            <div class="filter-dropdown" id="filterModeDropdown">
+              <button type="button" class="filter-trigger" id="filterModeTrigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="filterModeLabel filterModeTriggerText">
+                <span class="filter-trigger-text" id="filterModeTriggerText" data-placeholder="{{tournaments.filterModeAll}}">{{tournaments.filterModeAll}}</span>
+              </button>
+              <ul class="filter-options" role="listbox" aria-hidden="true" aria-labelledby="filterModeLabel" tabindex="-1">
+                <li role="option" data-value="" class="selected" aria-selected="true">{{tournaments.filterModeAll}}</li>
+                <li role="option" data-value="true">{{tournaments.filterOnline}}</li>
+                <li role="option" data-value="false">{{tournaments.filterInPerson}}</li>
+              </ul>
+              <input type="hidden" id="filterMode" value="">
+            </div>
+          </div>
+          <div class="filter-group">
+            <label id="filterCountryLabel">{{tournaments.filterCountry}}</label>
+            <div class="filter-dropdown" id="filterCountryDropdown">
+              <button type="button" class="filter-trigger" id="filterCountryTrigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="filterCountryLabel filterCountryTriggerText">
+                <span class="filter-trigger-text" id="filterCountryTriggerText" data-placeholder="{{tournaments.filterCountryAll}}">{{tournaments.filterCountryAll}}</span>
+              </button>
+              <ul class="filter-options" role="listbox" aria-hidden="true" aria-labelledby="filterCountryLabel" tabindex="-1">
+                <li role="option" data-value="" class="selected" aria-selected="true">{{tournaments.filterCountryAll}}</li>
+              </ul>
+              <input type="hidden" id="filterCountry" value="">
+            </div>
+          </div>
+          <button type="button" class="filter-clear" id="filterClear">{{tournaments.filterClear}}</button>
+        </div>
+
+        <p class="country-notice" id="countryNotice" hidden>{{tournaments.countryFilterNotice}}</p>
+
+        <p class="filter-status" id="filterStatus" data-template="{{tournaments.filterResults}}" aria-live="polite"></p>
+        <p class="filter-empty" id="filterEmpty" hidden>{{tournaments.filterNoResults}}</p>
+
+        <nav class="day-shortcuts" id="dayShortcuts" aria-label="{{tournaments.pageTitle}}"></nav>
+
+        <div class="tournament-list" id="tournamentList">
+          {{tournamentCards}}
+        </div>
+
+        <!-- Estado vacío (se muestra si no hay torneos) -->
+        {{emptyState}}
+
+        <p class="last-updated">
+          {{tournaments.lastUpdated}}: <time class="local-time" datetime="{{fetchedAt}}">{{fetchedAt}}</time>
+        </p>
+
+        <p class="attribution">
+          {{tournaments.poweredBy}} <a href="https://www.start.gg" rel="noopener" target="_blank">start.gg</a>
+        </p>
+
+        <p class="download-cta">
+          {{tournaments.downloadCta}} —
+          <a href="/">FightersTech</a>
+        </p>
+      </div>
+    </main>
+
+    <button type="button" class="scroll-top" id="scrollTop" aria-label="{{tournaments.scrollToTop}}">
+      ↑ {{tournaments.scrollToTop}}
+    </button>
+
+    <!-- PARTIAL:footer -->
+
+    <!-- PARTIAL:header-footer-scripts -->
+
+    <!-- PARTIAL:tournaments-scripts -->
+
+    <script>
+      (function () {
+        const i18nEl = document.getElementById('tournamentI18n');
+        const i18n = {
+          today: i18nEl ? i18nEl.dataset.today : 'Today',
+          tomorrow: i18nEl ? i18nEl.dataset.tomorrow : 'Tomorrow'
+        };
+
+        const dateTimeOptions = {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          timeZoneName: 'short'
+        };
+
+        function formatLocalTime(isoString) {
+          const date = new Date(isoString);
+          return date.toLocaleString(document.documentElement.lang || navigator.language || 'en-US', dateTimeOptions);
+        }
+
+        function getLocalDateKey(isoString) {
+          const date = new Date(isoString);
+          return date.toLocaleDateString(document.documentElement.lang || navigator.language || 'en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+        }
+
+        function isSameLocalDate(a, b) {
+          return a.toDateString() === b.toDateString();
+        }
+
+        // Formatear todos los tiempos locales (cards, last updated, etc.)
+        document.querySelectorAll('time.local-time').forEach(function (time) {
+          const iso = time.getAttribute('datetime');
+          if (!iso) return;
+          time.textContent = formatLocalTime(iso);
+        });
+
+        // Agrupar cards por día local
+        const list = document.getElementById('tournamentList');
+        if (!list) return;
+        const cards = Array.from(list.querySelectorAll('.tournament-card'));
+        if (cards.length === 0) return;
+
+        const groups = new Map();
+        cards.forEach(function (card) {
+          const time = card.querySelector('time.local-time');
+          const iso = time ? time.getAttribute('datetime') : null;
+          const date = iso ? new Date(iso) : new Date();
+          const key = getLocalDateKey(iso);
+          if (!groups.has(key)) {
+            groups.set(key, { date: date, cards: [] });
+          }
+          groups.get(key).cards.push(card);
+        });
+
+        const sortedGroups = Array.from(groups.entries()).sort(function (a, b) {
+          return a[1].date - b[1].date;
+        });
+
+        list.innerHTML = '';
+
+        const now = new Date();
+
+        sortedGroups.forEach(function (entry, index) {
+          const group = entry[1];
+          const section = document.createElement('section');
+          section.className = 'tournament-day';
+          section.id = 'tournamentDay' + index;
+          const heading = document.createElement('h2');
+          heading.className = 'day-heading';
+          let headingText;
+          if (isSameLocalDate(group.date, now)) {
+            headingText = i18n.today;
+          } else if (isSameLocalDate(group.date, new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1))) {
+            headingText = i18n.tomorrow;
+          } else {
+            headingText = group.date.toLocaleDateString(document.documentElement.lang || navigator.language || 'en-US', {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            });
+          }
+          group.headingText = headingText;
+          heading.textContent = headingText;
+          section.appendChild(heading);
+
+          const dayList = document.createElement('div');
+          dayList.className = 'tournament-list';
+          group.cards.forEach(function (card) {
+            dayList.appendChild(card);
+          });
+          section.appendChild(dayList);
+          list.appendChild(section);
+        });
+
+        // Generar shortcuts de días
+        const shortcutsNav = document.getElementById('dayShortcuts');
+        if (shortcutsNav && sortedGroups.length > 0) {
+          sortedGroups.forEach(function (entry, index) {
+            const group = entry[1];
+            const section = document.getElementById('tournamentDay' + index);
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.textContent = group.headingText;
+            button.addEventListener('click', function () {
+              if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            });
+            shortcutsNav.appendChild(button);
+          });
+        }
+      })();
+    </script>
+
+    <script>
+      (function () {
+        const gameInput = document.getElementById('filterGame');
+        const modeInput = document.getElementById('filterMode');
+        const countryInput = document.getElementById('filterCountry');
+        const clearBtn = document.getElementById('filterClear');
+        const statusText = document.getElementById('filterStatus');
+        const emptyText = document.getElementById('filterEmpty');
+        const countryNotice = document.getElementById('countryNotice');
+        const cards = Array.from(document.querySelectorAll('.tournament-card'));
+
+        function createCustomDropdown(inputId) {
+          const input = document.getElementById(inputId);
+          const dropdown = input.closest('.filter-dropdown');
+          const trigger = dropdown.querySelector('.filter-trigger');
+          const triggerText = dropdown.querySelector('.filter-trigger-text');
+          const list = dropdown.querySelector('.filter-options');
+          const placeholder = triggerText.getAttribute('data-placeholder');
+
+          function setTriggerText(text) {
+            triggerText.textContent = text || placeholder;
+          }
+
+          function close() {
+            trigger.setAttribute('aria-expanded', 'false');
+            list.setAttribute('aria-hidden', 'true');
+          }
+
+          function open() {
+            document.querySelectorAll('.filter-trigger[aria-expanded="true"]').forEach(function (t) {
+              if (t !== trigger) {
+                t.setAttribute('aria-expanded', 'false');
+                t.closest('.filter-dropdown').querySelector('.filter-options').setAttribute('aria-hidden', 'true');
+              }
+            });
+            trigger.setAttribute('aria-expanded', 'true');
+            list.setAttribute('aria-hidden', 'false');
+            const selected = list.querySelector('[aria-selected="true"]') || list.firstElementChild;
+            if (selected) selected.focus();
+          }
+
+          function selectValue(value, text) {
+            input.value = value;
+            Array.from(list.children).forEach(function (item) {
+              const isSelected = item.getAttribute('data-value') === value;
+              item.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+              item.classList.toggle('selected', isSelected);
+            });
+            setTriggerText(text);
+            close();
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+
+          function attachOptionListener(li) {
+            if (li._customDropdownAttached) return;
+            li._customDropdownAttached = true;
+            li.addEventListener('click', function () {
+              selectValue(li.getAttribute('data-value'), li.textContent);
+            });
+          }
+
+          function addOption(value, text) {
+            const li = document.createElement('li');
+            li.setAttribute('role', 'option');
+            li.setAttribute('data-value', value);
+            li.textContent = text;
+            li.setAttribute('aria-selected', value === input.value ? 'true' : 'false');
+            if (value === input.value) li.classList.add('selected');
+            attachOptionListener(li);
+            list.appendChild(li);
+          }
+
+          function clearOptions() {
+            Array.from(list.children).forEach(function (child) {
+              if (child.getAttribute('data-value') !== '') {
+                list.removeChild(child);
+              }
+            });
+          }
+
+          // Vincular listeners a opciones estáticas preexistentes
+          Array.from(list.children).forEach(attachOptionListener);
+
+          trigger.addEventListener('click', function () {
+            if (trigger.disabled || trigger.getAttribute('aria-disabled') === 'true') return;
+            if (trigger.getAttribute('aria-expanded') === 'true') {
+              close();
+            } else {
+              open();
+            }
+          });
+
+          list.addEventListener('keydown', function (e) {
+            const current = document.activeElement;
+            if (!current || current.parentNode !== list) return;
+            let next = null;
+            if (e.key === 'Escape') {
+              e.preventDefault();
+              close();
+              trigger.focus();
+            } else if (e.key === 'ArrowDown') {
+              e.preventDefault();
+              next = current.nextElementSibling || list.firstElementChild;
+            } else if (e.key === 'ArrowUp') {
+              e.preventDefault();
+              next = current.previousElementSibling || list.lastElementChild;
+            } else if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              selectValue(current.getAttribute('data-value'), current.textContent);
+            }
+            if (next) next.focus();
+          });
+
+          trigger.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              open();
+            } else if (e.key === 'Escape') {
+              e.preventDefault();
+              close();
+            }
+          });
+
+          return {
+            input: input,
+            addOption: addOption,
+            clearOptions: clearOptions,
+            setValue: function (value) {
+              const item = list.querySelector('[data-value="' + value + '"]');
+              selectValue(value, item ? item.textContent : '');
+            },
+            setDisabled: function (disabled) {
+              trigger.disabled = disabled;
+              trigger.setAttribute('aria-disabled', disabled ? 'true' : 'false');
+            },
+            clear: function () {
+              const first = list.querySelector('[data-value=""]');
+              selectValue('', first ? first.textContent : placeholder);
+            }
+          };
+        }
+
+        const gameDropdown = createCustomDropdown('filterGame');
+        const modeDropdown = createCustomDropdown('filterMode');
+        const countryDropdown = createCustomDropdown('filterCountry');
+
+        function populateGames() {
+          const labels = new Map();
+          cards.forEach(function (card) {
+            const gameSlugs = (card.getAttribute('data-game') || '').split(' ').filter(Boolean);
+            const badges = card.querySelectorAll('.game-badge');
+            badges.forEach(function (badge, index) {
+              const slug = gameSlugs[index];
+              if (slug) {
+                labels.set(slug, badge.textContent.trim());
+              }
+            });
+          });
+          gameDropdown.clearOptions();
+          const sortedGames = Array.from(labels.keys()).sort();
+          sortedGames.forEach(function (game) {
+            gameDropdown.addOption(game, labels.get(game));
+          });
+        }
+
+        function populateCountries() {
+          const countries = new Map();
+          cards.forEach(function (card) {
+            const country = card.getAttribute('data-country');
+            if (!country) return;
+            const locationSpan = card.querySelector('.card-meta span:nth-child(2)');
+            if (locationSpan) {
+              const text = locationSpan.textContent.trim();
+              const parts = text.split(',').map(p => p.trim());
+              const countryName = parts[parts.length - 1] || country;
+              countries.set(country, countryName);
+            }
+          });
+          countryDropdown.clearOptions();
+          const sortedCountries = Array.from(countries.entries()).sort(function (a, b) {
+            return a[1].localeCompare(b[1]);
+          });
+          sortedCountries.forEach(function (entry) {
+            countryDropdown.addOption(entry[0], entry[1]);
+          });
+        }
+
+        function updateCountrySelectState() {
+          const isOnlineOnly = modeInput.value === 'true';
+          if (isOnlineOnly) {
+            countryDropdown.setValue('');
+          }
+          countryDropdown.setDisabled(isOnlineOnly);
+          if (countryNotice) {
+            countryNotice.hidden = !isOnlineOnly;
+          }
+        }
+
+        function updateStatus(visibleCount) {
+          const template = statusText.getAttribute('data-template') || 'Showing {count} tournaments';
+          statusText.textContent = template.replace('{count}', visibleCount);
+          emptyText.hidden = visibleCount > 0;
+        }
+
+        function applyFilters() {
+          const selectedGame = gameInput.value;
+          const selectedMode = modeInput.value;
+          const selectedCountry = countryInput.value;
+          let visibleCount = 0;
+
+          cards.forEach(function (card) {
+            const gameSlugs = (card.getAttribute('data-game') || '').split(' ').filter(Boolean);
+            const online = card.getAttribute('data-online');
+            const country = card.getAttribute('data-country');
+            const gameMatch = !selectedGame || gameSlugs.includes(selectedGame);
+            const modeMatch = !selectedMode || online === selectedMode;
+            const countryMatch = !selectedCountry || (online === 'false' && country === selectedCountry);
+            const visible = gameMatch && modeMatch && countryMatch;
+            card.classList.toggle('hidden', !visible);
+            if (visible) visibleCount++;
+          });
+
+          document.querySelectorAll('.tournament-day').forEach(function (day) {
+            const visibleInDay = day.querySelectorAll('.tournament-card:not(.hidden)').length;
+            day.hidden = visibleInDay === 0;
+          });
+
+          if (countryNotice) {
+            countryNotice.hidden = modeInput.value !== 'true';
+          }
+
+          updateStatus(visibleCount);
+        }
+
+        function clearFilters() {
+          gameDropdown.clear();
+          modeDropdown.clear();
+          countryDropdown.clear();
+          countryDropdown.setDisabled(false);
+          if (countryNotice) {
+            countryNotice.hidden = true;
+          }
+          applyFilters();
+        }
+
+        document.addEventListener('click', function (e) {
+          if (!e.target.closest('.filter-dropdown')) {
+            document.querySelectorAll('.filter-options:not([aria-hidden="true"])').forEach(function (list) {
+              list.setAttribute('aria-hidden', 'true');
+              list.closest('.filter-dropdown').querySelector('.filter-trigger').setAttribute('aria-expanded', 'false');
+            });
+          }
+        });
+
+        populateGames();
+        populateCountries();
+        applyFilters();
+
+        gameInput.addEventListener('change', applyFilters);
+        modeInput.addEventListener('change', function () {
+          updateCountrySelectState();
+          applyFilters();
+        });
+        countryInput.addEventListener('change', applyFilters);
+        clearBtn.addEventListener('click', clearFilters);
+      })();
+    </script>
+
+    <script>
+      (function () {
+        const scrollTopBtn = document.getElementById('scrollTop');
+        if (!scrollTopBtn) return;
+
+        function toggleVisibility() {
+          if (window.scrollY > 400) {
+            scrollTopBtn.classList.add('is-visible');
+          } else {
+            scrollTopBtn.classList.remove('is-visible');
+          }
+        }
+
+        scrollTopBtn.addEventListener('click', function () {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        window.addEventListener('scroll', toggleVisibility, { passive: true });
+        toggleVisibility();
+      })();
+    </script>
+
+    <!-- PARTIAL:download-modal -->
+
+    <!-- JSON-LD ItemList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "{{tournaments.pageTitle}}",
+      "numberOfItems": {{totalTournaments}},
+      "itemListElement": [
+        {{itemListElements}}
+      ]
+    }
+    </script>
+  </body>
+</html>

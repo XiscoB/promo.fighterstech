@@ -5,12 +5,61 @@
   },
   "nav": {
     "menuMainFeatures": "Características",
-    "menuWhyFightersTech": "¿Por qué FightersTech?",
-    "menuAppImages": "Imágenes",
-    "menuTestimonials": "Testimonios",
-    "menuOtherFeatures": "Otras Funcionalidades",
+    "menuFaq": "FAQ",
+    "menuApp": "App",
+    "menuReviews": "Reseñas",
+    "menuMore": "Más",
+    "menuTournaments": "Torneos",
     "menuDownloadApp": "Descargar App",
-    "downloadApp": "Descargar App"
+    "downloadApp": "Descargar App",
+    "downloadTitle": "Descargar FightersTech",
+    "downloadDescription": "Elige tu plataforma:",
+    "downloadAppStore": "App Store",
+    "downloadGooglePlay": "Google Play",
+    "downloadCancel": "Cancelar"
+  },
+  "tournaments": {
+    "pageTitle": "Próximos {{days}} días de Torneos la FGC",
+    "pageSubtitle": "Estos son algunos de los próximos torneos de fighting games disponibles en FightersTech. Desde la app puedes acceder al listado completo de torneos, inscribirte fácilmente, filtrar por ubicación (online o presencial), seguir tus juegos favoritos y recibir notificaciones en tiempo real, también en Discord.",
+    "indexMetaDescription": "Descubre los próximos torneos de juegos de lucha: Street Fighter, Tekken, Guilty Gear y más. Torneos actualizados cada hora desde start.gg.",
+    "detailMetaDescription": "{{name}} — Torneo de {{game}} el {{date}} en {{location}}. Inscríbete en start.gg.",
+    "goToTournament": "Ir al torneo",
+    "online": "Online",
+    "inPerson": "Presencial",
+    "attendees": "inscritos",
+    "poweredBy": "Datos de torneos proporcionados por",
+    "noTournaments": "No hay torneos programados en los próximos días. ¡Descarga la app para no perderte ninguno!",
+    "lastUpdated": "Última actualización",
+    "backToList": "← Ver todos los torneos",
+    "downloadCta": "Descarga FightersTech para seguir todos los torneos",
+    "filterGame": "Juego",
+    "filterMode": "Modo",
+    "filterModeAll": "Todos",
+    "filterOnline": "Online",
+    "filterInPerson": "Presencial",
+    "filterCountry": "País",
+    "filterCountryAll": "Todos los países",
+    "countryFilterNotice": "Los torneos online no se muestran al filtrar por país.",
+    "filterResults": "Mostrando {count} torneos",
+    "filterClear": "Limpiar filtros",
+    "filterNoResults": "Ningún torneo coincide con los filtros.",
+    "today": "Hoy",
+    "tomorrow": "Mañana",
+    "utcNotice": "Las fechas se muestran en UTC. Activa JavaScript para verlas en tu zona horaria.",
+    "labelGame": "Juego",
+    "labelDate": "Fecha",
+    "labelLocation": "Ubicación",
+    "labelAttendees": "Asistentes",
+    "appCtaTitle": "No te pierdas ningún torneo",
+    "appCtaDescription": "Descarga FightersTech y recibe notificaciones de tus juegos y tu zona.",
+    "viewOnMap": "Ver en mapa",
+    "relatedTournaments": "Más torneos de {{game}}",
+    "relatedTournamentsGeneric": "Más torneos relacionados",
+    "scrollToTop": "Volver arriba",
+    "leaveTitle": "Vas a salir de promo.fighterstech.com",
+    "leaveMessage": "Estás a punto de visitar:",
+    "leaveConfirm": "Continuar",
+    "leaveCancel": "Quedarme aquí"
   },
   "seo": {
     "twitterHandle": "@fighterstechES"
@@ -25,12 +74,14 @@
       "apple": {
         "label": "Descargar en",
         "title": "App Store",
-        "alt": "Disponible en App Store"
+        "alt": "Disponible en App Store",
+        "url": "https://apps.apple.com/es/app/fighterstech/id6741810411?l=en-GB"
       },
       "google": {
         "label": "Disponible en",
         "title": "Play Store",
-        "alt": "Disponible en Play Store"
+        "alt": "Disponible en Play Store",
+        "url": "https://play.google.com/store/apps/details?id=com.xiscoteon.fighterstech"
       }
     }
   },
@@ -40,8 +91,8 @@
       "title": "Características Principales",
       "description": "Descubre las funciones clave de FightersTech para jugadores competitivos, casuales y organizadores de torneos."
     },
-    "appGallery": {
-      "label": "Galería",
+    "app": {
+      "label": "App",
       "title": "Ve la Acción",
       "description": "Deja de depender del algoritmo para enterarte de torneos. FightersTech te ayuda a organizar tu actividad competitiva y a encontrar justo lo que estás buscando para mejorar.",
       "swipeInstruction": "Desliza o arrastra para explorar",
@@ -53,22 +104,28 @@
         "Integración con Discord para notificaciones"
       ]
     },
-    "otherFeatures": {
+    "more": {
       "label": "Más",
       "title": "Otras Funcionalidades",
       "description": "Explora herramientas adicionales que hacen de FightersTech la plataforma completa para los entusiastas de los juegos de lucha."
     },
-    "whyFightersTech": {
-      "label": "Diferencia",
-      "title": "¿Por qué FightersTech?",
+    "faq": {
+      "label": "FAQ",
+      "title": "FAQ",
       "description": "FightersTech nace de un problema real: la información importante para competir se pierde entre algoritmos, horarios y ruido. Aquí todo está pensado para jugadores que quieren entrenar, organizarse y competir sin depender de redes sociales."
+    },
+    "featuredTournaments": {
+      "label": "Torneos",
+      "title": "Próximos torneos",
+      "description": "Descubre los próximos eventos de la FGC y no te pierdas ninguna competición. Sigue tus juegos favoritos y recibe notificaciones en FightersTech.",
+      "viewAll": "Ver todos los torneos"
     },
     "cta": {
       "title": "¿Listo para unirte a la lucha?",
       "description": "Descarga FightersTech hoy y forma parte de la plataforma definitiva para la comunidad de juegos de lucha."
     },
-    "testimonials": {
-      "label": "Testimonios",
+    "reviews": {
+      "label": "Reseñas",
       "title": "Lo que dice la FGC",
       "description": "Jugadores Top y miembros de la comunidad ya usan FightersTech para subir de nivel.",
       "reviews": [
@@ -244,22 +301,26 @@
       "description": "Encuentra rivales a tu nivel y analiza tus matchups para mejorar de forma dirigida."
     }
   ],
-  "whyCards": [
+  "faqItems": [
     {
-      "title": "Sin depender del algoritmo",
-      "description": "Los torneos no deberían depender de si una red social decide enseñártelos. En FightersTech recibes la información directamente de los organizadores, según tu juego y tu ubicación."
+      "title": "¿Qué es FightersTech y para qué sirve?",
+      "description": "<strong>FightersTech</strong> es la aplicación definitiva diseñada para facilitar a los jugadores de <em>fighting games</em> la búsqueda de partidas y asegurar que nunca se pierdan un evento competitivo local o global.<br><br>Sus funciones principales son:<ul><li><strong>Buscar y organizar enfrentamientos:</strong> Encuentra rivales usando filtros avanzados (personaje específico, región, conexión por cable LAN o Wi-Fi). Puedes retar a jugadores, proponer fecha y hora, decidir si el set será público o privado, y gestionarlo todo con nuestro sistema de <em>check-in</em>.</li><li><strong>Notificaciones de torneos:</strong> Entérate al instante de los torneos organizados en tu zona. Configura alertas personalizadas por juego, radio de distancia, coordenadas y la hora exacta a la que prefieres recibir el aviso.</li><li><strong>Perfiles de jugador detallados:</strong> Crea tu Player Card indicando tu juego, rango, <em>main</em> y personajes secundarios. Vincula tus redes sociales, tu plataforma de juego y define tu estilo basado en 'cerebro, cuerpo y corazón'.</li><li><strong>Agenda y calendario integrado:</strong> Revisa las propuestas de partidas, añade torneos a tu calendario, configura recordatorios y obtén acceso directo a la ubicación física del evento o al enlace oficial del <em>bracket</em>.</li></ul>"
     },
     {
-      "title": "Entrena con intención, no al azar",
-      "description": "No se trata solo de jugar más, sino de jugar mejor. Encuentra jugadores que buscan entrenar los mismos matchups que tú y enfoca tu tiempo en mejorar de verdad."
+      "title": "¿Cómo puedo encontrar torneos de Fighting Games cerca de mí?",
+      "description": "Para encontrar torneos locales de <em>Fighting Games</em> cerca de ti usando FightersTech, solo tienes que configurar nuestro potente sistema de alertas de eventos.<br><br>Sigue estos sencillos pasos:<ol><li><strong>Crea tu perfil:</strong> Es indispensable tener un perfil creado para los juegos de los que deseas recibir información.</li><li><strong>Configura tus notificaciones:</strong> Ve a la sección de <strong>'Perfil'</strong> en la app y entra en <strong>'Notificaciones de torneos'</strong>.</li><li><strong>Elige tus juegos:</strong> Selecciona los títulos específicos que quieres seguir.</li><li><strong>Define tu zona de búsqueda:</strong> Establece la distancia (millas o kilómetros) y ajusta las coordenadas para que la app rastree tu área local.</li><li><strong>Programa los avisos:</strong> Elige la hora exacta a la que prefieres recibir estas notificaciones.</li></ol>Una vez guardado, recibirás notificaciones que te permitirán filtrar torneos por juego y país, ver la ubicación física, visitar el link del torneo e incluso añadirlo a tu agenda."
     },
     {
-      "title": "Todo tu calendario competitivo, en un solo sitio",
-      "description": "Partidas, invitaciones, torneos y horarios. FightersTech te ayuda a tenerlo todo organizado para que no se te pase ningún evento importante."
+      "title": "¿Qué juegos de pelea (Fighting Games) soporta la aplicación?",
+      "description": "FightersTech soporta los principales juegos competitivos de la escena actual y los grandes clásicos retro de la FGC. Nuestra base de datos incluye:<ul><li>Super Smash Bros. (Ultimate y Melee)</li><li>Tekken 8 y Tekken 7</li><li>Street Fighter 6, Street Fighter V, Ultra Street Fighter IV, SFIII: 3rd Strike y Super Street Fighter II X</li><li>2XKO</li><li>Mortal Kombat 1 y Mortal Kombat 11</li><li>Guilty Gear Strive</li><li>Dragon Ball FighterZ</li><li>Fatal Fury: City of the Wolves</li><li>Rivals of Aether 2</li><li>Granblue Fantasy Versus: Rising</li><li>Ultimate Marvel vs. Capcom 3</li><li>Under Night In-Birth II Sys:Celes</li><li>BlazBlue: Central Fiction</li><li>The King of Fighters XV</li><li>Soulcalibur VI</li><li>DNF Duel</li></ul>¡Y siempre añadimos los nuevos lanzamientos! Si tu juego principal no está en la lista, ¡no dudes en citarnos en redes sociales para que lo incluyamos!"
     },
     {
-      "title": "Diseñado para la escena real",
-      "description": "Da igual si juegas en tu ciudad o estás de viaje. FightersTech te conecta con la escena local y online para que siempre sepas qué está pasando a tu alrededor."
+      "title": "¿Cómo funciona el Matchmaking en FightersTech?",
+      "description": "El <em>matchmaking</em> en FightersTech es un sistema de búsqueda personalizada y propuestas de partidas muy completo, asegurado con un proceso de <em>check-in</em>, ideal para jugar en serio o echar unos <em>casuals</em>.<br><br>Así es como funciona paso a paso:<ol><li><strong>Búsqueda y filtros:</strong> Busca rivales especificando contra qué personaje quieres jugar (o contra cualquiera). Filtra por región y por tipo de conexión (cable o Wi-Fi) para asegurar combates sin <em>lag</em>.</li><li><strong>Lanza tu reto:</strong> Revisa la lista de posibles rivales, pulsa en 'acciones' y selecciona 'proponer fecha' para elegir el día y la hora del enfrentamiento.</li><li><strong>Condiciones de victoria:</strong> Indica qué personaje usarás y define las reglas. Decide si la partida será 'pública' (si no te importa salir en stream) o 'privada', elige a cuántas partidas será el set, y confirma el resumen de tu reto.</li><li><strong>Tu Agenda:</strong> Controla a quién has retado o cancela propuestas pendientes directamente desde la sección 'Agenda enviadas'.</li><li><strong>Check-in y a pelear:</strong> Si el rival acepta, <strong>10 minutos antes</strong> de la hora acordada aparecerá una opción de <em>check-in</em>. Ambos debéis realizarlo para confirmar asistencia. Una vez hecho, recibiréis una notificación con las instrucciones exactas sobre dónde jugar o a quién invitar, dependiendo del sistema de cada juego.</li></ol>"
+    },
+    {
+      "title": "¿Es FightersTech una aplicación gratuita?",
+      "description": "Sí, descargar y usar las funciones principales de FightersTech es totalmente gratis. Nuestro objetivo es hacer crecer la comunidad de los fighting games ofreciendo acceso gratuito a las herramientas de matchmaking, búsqueda de torneos y perfiles de jugador, disponible tanto en iOS como en Android."
     }
   ],
   "footer": {
@@ -272,9 +333,11 @@
         "title": "Producto",
         "links": {
           "features": "Características",
-          "whyFightersTech": "¿Por qué FightersTech?",
-          "appGallery": "Galería",
-          "testimonials": "Testimonios",
+          "faq": "FAQ",
+          "app": "App",
+          "reviews": "Reseñas",
+          "tournaments": "Torneos",
+          "more": "Más",
           "appStore": "App Store",
           "googlePlay": "Google Play"
         }
