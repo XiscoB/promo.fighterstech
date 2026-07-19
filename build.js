@@ -328,7 +328,21 @@ const reviewsSection = `
 ${enData.sections.reviews.reviews.map(r => `> "${r.text}"\n> — **${r.name}** (${r.handle})\n> Source: ${r.sourceUrl}`).join('\n\n')}
 `;
 
-const llmsTxt = llmsTxtBase + '\n' + reviewsSection;
+let tournamentsSection = '';
+if (tournamentsData && tournamentsData.tournaments && tournamentsData.tournaments.length > 0) {
+  tournamentsSection = `
+# ------------------------------------------------------------
+# UPCOMING TOURNAMENTS (LIVE DATA — Updated: ${tournamentsData.fetchedAt || 'N/A'})
+# ------------------------------------------------------------
+${tournamentsData.tournaments.slice(0, 10).map(t =>
+  `- ${t.name} | ${t.games.join(', ')} | ${new Date(t.startAt * 1000).toISOString().split('T')[0]} | ${t.isOnline ? 'Online' : (t.city || 'TBD')} | ${t.numAttendees} attendees | https://www.start.gg/tournament/${cleanSlug(t.slug)}/details`
+).join('\n')}
+
+Total upcoming tournaments: ${tournamentsData.tournaments.length}
+`;
+}
+
+const llmsTxt = llmsTxtBase + '\n' + reviewsSection + '\n' + tournamentsSection;
 
 const wellKnownDir = path.join(distDir, '.well-known');
 if (!fs.existsSync(wellKnownDir)) {

@@ -161,7 +161,7 @@ async function main() {
   const summaryOutput = {
     fetchedAt,
     totalTournaments: allTournaments.length,
-    games: [...new Set(allTournaments.map(t => t.game))].sort(),
+    games: [...new Set(allTournaments.flatMap(t => t.games))].sort(),
     windowDays: config.windowDays
   };
 
