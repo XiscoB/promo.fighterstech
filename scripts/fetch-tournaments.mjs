@@ -115,8 +115,10 @@ function normalizeTournament(raw) {
 }
 
 async function main() {
-  const now = Date.now();
-  const afterDate = Math.floor(now / 1000);
+  const now = new Date();
+  const nowSec = Math.floor(Date.now() / 1000);
+  const startOfTodayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  const afterDate = Math.floor(startOfTodayUtc / 1000);
   const beforeDate = afterDate + (config.windowDays * 24 * 60 * 60);
 
   const variables = {
@@ -127,10 +129,16 @@ async function main() {
   };
 
   const allTournaments = [];
-  const maxPages = config.maxPages || 5;
+  const hardMaxPages = config.hardMaxPages || 20;
+  const pagesPerBatch = config.pagesPerBatch || 5;
+  const batchDelayMs = config.batchDelayMs || 5000;
 
-  for (let page = 1; page <= maxPages; page++) {
-    console.log(`📡 Fetching page ${page}/${maxPages}...`);
+  let page = 1;
+  let totalPages = 1;
+  let discardedCount = 0;
+
+  while (page <= totalPages && page <= hardMaxPages) {
+    console.log(`📡 Fetching page ${page}/${Math.min(totalPages, hardMaxPages)}...`);
     const data = await fetchPage(page, variables);
 
     if (data.errors) {
@@ -141,17 +149,29 @@ async function main() {
     const nodes = data.data?.tournaments?.nodes || [];
     if (nodes.length === 0) break;
 
-    const normalized = nodes.map(normalizeTournament).filter(Boolean);
-    allTournaments.push(...normalized);
+    for (const node of nodes) {
+      if (node.startAt < nowSec) {
+        discardedCount++;
+        continue;
+      }
+      const normalized = normalizeTournament(node);
+      if (normalized) allTournaments.push(normalized);
+    }
 
-    const totalPages = data.data?.tournaments?.pageInfo?.totalPages || 1;
-    if (page >= totalPages) break;
+    totalPages = data.data?.tournaments?.pageInfo?.totalPages || 1;
+
+    if (page % pagesPerBatch === 0 && page < Math.min(totalPages, hardMaxPages)) {
+      console.log(`⏳ Pausa de ${batchDelayMs}ms tras ${pagesPerBatch} páginas...`);
+      await new Promise(r => setTimeout(r, batchDelayMs));
+    }
+
+    page++;
   }
 
   const outputDir = join(__dirname, '..', 'data');
   mkdirSync(outputDir, { recursive: true });
 
-  const fetchedAt = new Date(now).toISOString();
+  const fetchedAt = now.toISOString();
   const tournamentsOutput = {
     fetchedAt,
     windowDays: config.windowDays,
@@ -161,6 +181,7 @@ async function main() {
   const summaryOutput = {
     fetchedAt,
     totalTournaments: allTournaments.length,
+    discardedByDate: discardedCount,
     games: [...new Set(allTournaments.flatMap(t => t.games))].sort(),
     windowDays: config.windowDays
   };
@@ -168,7 +189,8 @@ async function main() {
   writeFileSync(join(outputDir, 'tournaments.json'), JSON.stringify(tournamentsOutput, null, 2));
   writeFileSync(join(outputDir, 'tournaments-summary.json'), JSON.stringify(summaryOutput, null, 2));
 
-  console.log(`✅ ${allTournaments.length} torneos guardados en data/tournaments.json`);
+  console.log(`✅ ${allTournaments.length} torneos futuros guardados en data/tournaments.json`);
+  console.log(`🗑️ ${discardedCount} torneos descartados por fecha pasada`);
   console.log(`✅ Resumen guardado en data/tournaments-summary.json`);
 }
 
