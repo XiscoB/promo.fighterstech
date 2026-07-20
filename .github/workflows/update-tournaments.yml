@@ -34,6 +34,9 @@ jobs:
           STARTGG_API_KEY: ${{ secrets.STARTGG_API_KEY }}
         run: node scripts/fetch-tournaments.mjs
 
+      - name: Generar páginas HTML
+        run: node scripts/build-tournaments.mjs
+
       - name: Comprobar si hay cambios
         id: git-check
         run: |

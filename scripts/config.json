@@ -6,7 +6,9 @@
     610, 48599, 1, 49783, 50203, 53945, 73221, 6969
   ],
   "perPage": 50,
-  "maxPages": 5,
+  "pagesPerBatch": 5,
+  "batchDelayMs": 5000,
+  "hardMaxPages": 20,
   "maxRetries": 3,
   "apiEndpoint": "https://api.start.gg/gql/alpha",
   "siteBaseUrl": "https://promo.fighterstech.com",
