@@ -332,10 +332,26 @@ function generateTournamentPage(tournament, tournaments, lang, translations, i18
     ? `"about": [\n      ${tournament.games.map(game => `{"@type": "VideoGame", "name": "${escapeJson(game)}"}`).join(',\n      ')}\n    ],`
     : `"about": {\n        "@type": "VideoGame",\n        "name": "${escapeJson(tournament.games[0])}"\n      },`;
 
+  const seoTitleFormat = lang === 'es' 
+    ? '{name} - Torneo de {games} en {location} | FightersTech' 
+    : '{name} - {games} Tournament in {location} | FightersTech';
+  const seoTitle = seoTitleFormat.replace('{name}', escapeHtml(tournament.name))
+                                 .replace('{games}', escapeHtml(tournament.games.join(', ')))
+                                 .replace('{location}', escapeHtml(location));
+  
+  const homeLink = lang === 'es' ? '/es/' : '/';
+  const ctaText = lang === 'es'
+    ? 'Descarga FightersTech, la app definitiva para la FGC y no te pierdas ningún torneo. →'
+    : 'Download FightersTech, the ultimate FGC app and never miss a tournament. →';
+  
+  const homeCtaHtml = `<a href="${homeLink}" style="display: block; margin: 1.5rem 0; padding: 1rem 1.5rem; background: linear-gradient(135deg, rgba(30,144,255,0.1) 0%, rgba(252,175,1,0.1) 100%); border: 1px solid rgba(30,144,255,0.3); border-radius: 12px; color: #fff; text-decoration: none; font-weight: 600; font-size: 1.1rem; text-align: center; transition: all 0.2s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(0,0,0,0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.1)';">${ctaText}</a>`;
+
   const replacements = {
     'lang': lang,
     'tournamentUrl': lang === 'es' ? '/es/torneos/' : '/tournaments/',
     'tournaments.listUrl': lang === 'es' ? '/es/torneos/' : '/tournaments/',
+    'tournament.seoTitle': seoTitle,
+    'tournament.homeCtaHtml': homeCtaHtml,
     'tournament.name': escapeHtml(tournament.name),
     'tournament.game': escapeHtml(tournament.games[0]),
     'tournament.games': escapeHtml(tournament.games.join(', ')),

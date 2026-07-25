@@ -4,7 +4,7 @@
     <!-- PARTIAL:head-common -->
     <!-- PARTIAL:header-footer-styles -->
 
-    <title>{{tournament.name}} — {{tournament.games}} | {{tournament.dateFormatted}} | FightersTech</title>
+    <title>{{tournament.seoTitle}}</title>
     <meta name="description" content="{{tournament.metaDescription}}" />
     <meta name="robots" content="index, follow" />
 
@@ -12,7 +12,7 @@
     {{tournament.hreflangTags}}
 
     <!-- Open Graph -->
-    <meta property="og:title" content="{{tournament.name}} — {{tournament.games}}" />
+    <meta property="og:title" content="{{tournament.seoTitle}}" />
     <meta property="og:description" content="{{tournament.metaDescription}}" />
     <meta property="og:type" content="event" />
     <meta property="og:url" content="{{tournament.pageUrl}}" />
@@ -378,6 +378,8 @@
               <noscript><p class="utc-notice">{{tournaments.utcNotice}}</p></noscript>
 
               <h1>{{tournament.name}}</h1>
+              
+              {{tournament.homeCtaHtml}}
 
               <dl class="tournament-meta">
                 <div class="meta-item">
