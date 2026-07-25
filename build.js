@@ -78,7 +78,13 @@ function cleanSlug(slug) {
 }
 
 function sanitizeDirName(slug) {
-  return slug.replace(/[^a-zA-Z0-9_-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+  return slug
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-zA-Z0-9_-]/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '')
+    .toLowerCase();
 }
 
 function escapeHtml(text) {
@@ -115,17 +121,14 @@ function buildFeaturedTournamentsHtml(lang, tournamentsData, count = 4) {
 
   const tournaments = tournamentsData.tournaments.slice(0, count);
   return tournaments.map((t) => {
-    const cleanSlugName = sanitizeDirName(cleanSlug(t.slug));
-    const tournamentPath = lang === 'en'
-      ? `/tournaments/${cleanSlugName}/`
-      : `/es/torneos/${cleanSlugName}/`;
+    const tournamentPath = `https://www.start.gg/tournament/${cleanSlug(t.slug)}/details`;
     const games = t.games.slice(0, 2).join(', ') + (t.games.length > 2 ? ` +${t.games.length - 2}` : '');
     const modeLabel = t.isOnline
       ? (lang === 'es' ? 'Online' : 'Online')
       : (lang === 'es' ? 'Presencial' : 'In Person');
     const badgeClass = t.isOnline ? 'online' : 'in-person';
 
-    return `<a href="${tournamentPath}" class="featured-tournament-card" data-slug="${escapeHtml(cleanSlugName)}" data-is-online="${t.isOnline ? '1' : '0'}">
+    return `<a href="${tournamentPath}" target="_blank" rel="noopener noreferrer" class="featured-tournament-card" data-slug="${escapeHtml(cleanSlug(t.slug))}" data-is-online="${t.isOnline ? '1' : '0'}">
       <div class="featured-tournament-name">${escapeHtml(t.name)}</div>
       <div class="featured-tournament-game">${escapeHtml(games)}</div>
       <div class="featured-tournament-meta">
@@ -237,31 +240,87 @@ if (fs.existsSync(tournamentsDataPath)) {
     <xhtml:link rel="alternate" hreflang="x-default" href="https://promo.fighterstech.com/tournaments/" />
   </url>`;
 
-  // Torneos individuales
+  // Game Hubs (Agregadores)
+  const counts = {};
   for (const t of tournamentsData.tournaments || []) {
-    const cleanSlugName = sanitizeDirName(cleanSlug(t.slug));
+    if (t.games && t.games.length > 0) {
+      const g = t.games[0];
+      counts[g] = (counts[g] || 0) + 1;
+    }
+  }
+  const topGames = Object.entries(counts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 12)
+    .map(entry => entry[0]);
+
+  for (const game of topGames) {
+    const gameSlug = sanitizeDirName(cleanSlug(game));
     tournamentUrls += `
   <url>
-    <loc>https://promo.fighterstech.com/tournaments/${cleanSlugName}/</loc>
+    <loc>https://promo.fighterstech.com/tournaments/${gameSlug}/</loc>
     <lastmod>${lastmod}</lastmod>
-    <changefreq>hourly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://promo.fighterstech.com/tournaments/${cleanSlugName}/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://promo.fighterstech.com/es/torneos/${cleanSlugName}/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://promo.fighterstech.com/tournaments/${cleanSlugName}/" />
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://promo.fighterstech.com/tournaments/${gameSlug}/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://promo.fighterstech.com/es/torneos/${gameSlug}/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://promo.fighterstech.com/tournaments/${gameSlug}/" />
   </url>
   <url>
-    <loc>https://promo.fighterstech.com/es/torneos/${cleanSlugName}/</loc>
+    <loc>https://promo.fighterstech.com/es/torneos/${gameSlug}/</loc>
     <lastmod>${lastmod}</lastmod>
-    <changefreq>hourly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://promo.fighterstech.com/tournaments/${cleanSlugName}/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://promo.fighterstech.com/es/torneos/${cleanSlugName}/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://promo.fighterstech.com/tournaments/${cleanSlugName}/" />
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://promo.fighterstech.com/tournaments/${gameSlug}/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://promo.fighterstech.com/es/torneos/${gameSlug}/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://promo.fighterstech.com/tournaments/${gameSlug}/" />
   </url>`;
   }
 
-  console.log(`✅ Sitemap: añadidas ${(tournamentsData.tournaments || []).length * 2 + 2} URLs de torneos`);
+  // Country Hubs (Agregadores)
+  const TOP_COUNTRIES = ['US', 'ES', 'FR', 'GB', 'MX', 'JP', 'BR', 'DE', 'CA', 'IT', 'AR', 'CL', 'CO'];
+  let addedCountries = 0;
+  
+  function getCountryName(countryCode, locale) {
+    if (!countryCode) return '';
+    try {
+      return new Intl.DisplayNames(locale, { type: 'region' }).of(countryCode.toUpperCase()) || countryCode;
+    } catch {
+      return countryCode;
+    }
+  }
+
+  for (const countryCode of TOP_COUNTRIES) {
+    const countryTournaments = (tournamentsData.tournaments || []).filter(t => !t.isOnline && t.countryCode === countryCode);
+    if (countryTournaments.length === 0) continue;
+    addedCountries++;
+    
+    const countryNameEn = getCountryName(countryCode, 'en-US');
+    const countryNameEs = getCountryName(countryCode, 'es-ES');
+    const countrySlugEn = sanitizeDirName(countryNameEn);
+    const countrySlugEs = sanitizeDirName(countryNameEs);
+    
+    tournamentUrls += `
+  <url>
+    <loc>https://promo.fighterstech.com/tournaments/${countrySlugEn}/</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://promo.fighterstech.com/tournaments/${countrySlugEn}/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://promo.fighterstech.com/es/torneos/${countrySlugEs}/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://promo.fighterstech.com/tournaments/${countrySlugEn}/" />
+  </url>
+  <url>
+    <loc>https://promo.fighterstech.com/es/torneos/${countrySlugEs}/</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://promo.fighterstech.com/tournaments/${countrySlugEn}/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://promo.fighterstech.com/es/torneos/${countrySlugEs}/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://promo.fighterstech.com/tournaments/${countrySlugEn}/" />
+  </url>`;
+  }
+
+  console.log(`✅ Sitemap: añadidas ${topGames.length * 2 + 2 + addedCountries * 2} URLs de directorios de torneos (Hubs)`);
 }
 
 const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -334,6 +393,10 @@ if (tournamentsData && tournamentsData.tournaments && tournamentsData.tournament
 # ------------------------------------------------------------
 # UPCOMING TOURNAMENTS (LIVE DATA — Updated: ${tournamentsData.fetchedAt || 'N/A'})
 # ------------------------------------------------------------
+Find our full programmatic SEO hubs here:
+- EN: https://promo.fighterstech.com/tournaments/
+- ES: https://promo.fighterstech.com/es/torneos/
+
 ${tournamentsData.tournaments.slice(0, 10).map(t =>
   `- ${t.name} | ${t.games.join(', ')} | ${new Date(t.startAt * 1000).toISOString().split('T')[0]} | ${t.isOnline ? 'Online' : (t.city || 'TBD')} | ${t.numAttendees} attendees | https://www.start.gg/tournament/${cleanSlug(t.slug)}/details`
 ).join('\n')}

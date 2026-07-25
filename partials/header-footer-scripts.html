@@ -67,6 +67,18 @@
         window.setLanguage = function (lang) {
           if (lang === currentLang) return;
 
+          // Attempt to use SEO hreflang links to find the exact translated URL
+          const altLink = document.querySelector('link[rel="alternate"][hreflang="' + lang + '"]');
+          if (altLink && altLink.href) {
+            try {
+              const url = new URL(altLink.href);
+              window.location.href = window.location.origin + url.pathname + window.location.search + window.location.hash;
+            } catch (e) {
+              window.location.href = altLink.href;
+            }
+            return;
+          }
+
           let newPath;
           if (lang === "es") {
             if (path.startsWith("/tournaments/")) {

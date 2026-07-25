@@ -39,12 +39,14 @@
 
 ## Competitive Landscape
 **Direct:** Actualmente no hay una "super app" global estandarizada solo para la FGC con enfoque en localización y matchmaking.
-**Secondary:** Start.gg app (limitado a la gestión pura del bracket, no tanto al descubrimiento social).
+**Secondary:** Start.gg app (limitado a la gestión pura del bracket, no tanto al descubrimiento social, y los filtros online fallan al no discriminar por región jugable).
 **Indirect:** Grupos de WhatsApp/Telegram, Servidores de Discord locales (muy útiles pero cerrados y difíciles de descubrir para nuevos jugadores).
 
 ## Differentiation
 **Key differentiators:**
-- Notificaciones push basadas en geolocalización ("Torneo de SF6 a 10km de ti").
+- Base de datos exhaustiva (más torneos que cualquier otra plataforma mediante agregación).
+- Filtro de región estricto para torneos Online (exclusivo de la App móvil, evita el ruido de torneos globales injugables por lag).
+- Notificaciones push diarias basadas en geolocalización (los usuarios eligen la hora exacta del día para recibir su resumen diario, "Torneo de SF6 a 10km de ti").
 - Filtro de matchmaking por personaje (buscar enfrentamientos contra "Mains" específicos).
 - Integración de alarmas sin conexión (1h, 1d, 7d antes del evento).
 **How we do it differently:** No sustituimos a Start.gg, nos integramos con ellos (links directos al bracket) pero centralizamos el "descubrimiento" y la parte social.
@@ -111,5 +113,7 @@
 
 ## Changelog
 *Newest first. One line per revision: what changed and why.*
+- v4 (2026-07-25) — Clarificado que los filtros de torneos online por región son internos/exclusivos de la app (no están en la web promocional) y que las notificaciones son diarias a la hora que el usuario elige.
+- v3 (2026-07-25) — Añadido énfasis en tener más torneos que nadie y el filtro de región estricto para torneos online como diferenciador clave frente a la competencia.
 - v2 (2026-07-25) — Aclarado el funcionamiento de las notificaciones de Discord (DM privado en lugar de mensaje a servidor) y eliminada mención a terceros (Fightcade).
 - v1 (2026-07-25) — Initial context based on website copy and app features.

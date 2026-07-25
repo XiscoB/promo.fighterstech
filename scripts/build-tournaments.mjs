@@ -176,7 +176,13 @@ function buildMetaDescription(template, tournament, locale) {
 }
 
 function sanitizeDirName(slug) {
-  return slug.replace(/[^a-zA-Z0-9_-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+  return slug
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-zA-Z0-9_-]/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '')
+    .toLowerCase();
 }
 
 // ─── Rendering ───
@@ -187,9 +193,7 @@ function renderGameBadges(games) {
 
 function renderTournamentCard(tournament, lang, translations, baseUrl) {
   const locale = lang === 'es' ? 'es-ES' : 'en-US';
-  const clean = cleanSlug(tournament.slug);
-  const safeDir = sanitizeDirName(clean);
-  const detailUrl = `${baseUrl}${safeDir}/`;
+  const startGgUrl = `https://www.start.gg/tournament/${escapeHtml(cleanSlug(tournament.slug))}/details`;
   const modeLabel = tournament.isOnline ? translations.online : translations.inPerson;
   const location = buildLocation(tournament, translations, locale);
 
@@ -202,14 +206,14 @@ function renderTournamentCard(tournament, lang, translations, baseUrl) {
       ${renderGameBadges(tournament.games)}
       <span class="mode-badge">${escapeHtml(modeLabel)}</span>
     </div>
-    <h2><a href="${detailUrl}">${escapeHtml(tournament.name)}</a></h2>
+    <h2><a href="${startGgUrl}" rel="noopener" target="_blank">${escapeHtml(tournament.name)}</a></h2>
   </div>
   <div class="card-meta">
     <time class="local-time" datetime="${toISODate(tournament.startAt)}">${formatDateUtc(tournament.startAt)}</time>
     <span>${escapeHtml(location)}</span>
     <span>${tournament.numAttendees} ${translations.attendees}</span>
   </div>
-  <a href="https://www.start.gg/tournament/${escapeHtml(cleanSlug(tournament.slug))}/details" class="card-cta" rel="noopener" target="_blank">
+  <a href="${startGgUrl}" class="card-cta" rel="noopener" target="_blank">
     ${translations.goToTournament} →
   </a>
 </article>`;
@@ -220,9 +224,11 @@ function cleanGameSlug(gameName) {
 }
 
 function renderItemListElement(tournament, index, baseUrl) {
-  const clean = cleanSlug(tournament.slug);
-  const safeDir = sanitizeDirName(clean);
-  const pageUrl = `${baseUrl}tournaments/${safeDir}/`;
+  const startGgUrl = `https://www.start.gg/tournament/${cleanSlug(tournament.slug)}/details`;
+  const locationLD = buildLocationLD(tournament);
+  const attendanceMode = buildAttendanceMode(tournament.isOnline);
+  const endDateLD = buildEndDateLD(tournament);
+
   return `{
       "@type": "ListItem",
       "position": ${index + 1},
@@ -230,7 +236,10 @@ function renderItemListElement(tournament, index, baseUrl) {
         "@type": "Event",
         "name": "${escapeJson(tournament.name)}",
         "startDate": "${toISODate(tournament.startAt)}",
-        "url": "${pageUrl}"
+        ${endDateLD}
+        "eventAttendanceMode": "${attendanceMode}",
+        "url": "${startGgUrl}",
+        ${locationLD.replace(/,$/, '')}
       }
     }`;
 }
@@ -251,151 +260,202 @@ function buildMapUrl(tournament) {
   return `https://www.google.com/maps/search/?api=1&query=${query}`;
 }
 
-function renderRelatedTournaments(tournaments, currentTournament, lang, translations, baseUrl) {
-  const currentGames = currentTournament.games;
-  const related = tournaments
-    .filter(function (t) {
-      return t.slug !== currentTournament.slug && t.games.some(function (game) {
-        return currentGames.includes(game);
-      });
-    })
-    .sort(function (a, b) {
-      return a.startAt - b.startAt;
-    })
-    .slice(0, 4);
 
-  if (related.length === 0) return '';
-
-  const heading = escapeHtml(translations.relatedTournamentsGeneric);
-  const locale = lang === 'es' ? 'es-ES' : 'en-US';
-
-  const items = related.map(function (t) {
-    const clean = cleanSlug(t.slug);
-    const safeDir = sanitizeDirName(clean);
-    const detailUrl = `${baseUrl}${safeDir}/`;
-    return `<li>
-      <a href="${detailUrl}">${escapeHtml(t.name)}</a>
-      <time class="related-date local-time" datetime="${toISODate(t.startAt)}">${formatDateUtc(t.startAt)}</time>
-    </li>`;
-  }).join('\n');
-
-  return `<div class="sidebar-section related-tournaments">
-    <h3>${heading}</h3>
-    <ul>${items}</ul>
-  </div>`;
+function getTopGames(tournaments, limit = 10) {
+  const counts = {};
+  for (const t of tournaments) {
+    if (t.games && t.games.length > 0) {
+      const g = t.games[0];
+      counts[g] = (counts[g] || 0) + 1;
+    }
+  }
+  return Object.entries(counts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(entry => entry[0]);
 }
 
-// ─── Generators ───
-
-function generateTournamentPage(tournament, tournaments, lang, translations, i18nFlat, baseUrl, canonicalBaseUrl, detailTemplate, partials) {
-  const locale = lang === 'es' ? 'es-ES' : 'en-US';
-  const clean = cleanSlug(tournament.slug);
-  const safeDir = sanitizeDirName(clean);
-  const pageUrl = lang === 'es'
-    ? `${canonicalBaseUrl}es/torneos/${safeDir}/`
-    : `${canonicalBaseUrl}tournaments/${safeDir}/`;
-  const canonicalUrl = pageUrl;
-  const pageEs = lang === 'es'
-    ? pageUrl
-    : pageUrl.replace('/tournaments/', '/es/torneos/');
-  const canonicalEn = lang === 'en'
-    ? canonicalUrl
-    : canonicalUrl.replace('/es/torneos/', '/tournaments/');
-  const hreflangTags = buildHreflangTags(canonicalEn, pageEs);
-  const location = buildLocation(tournament, translations, locale);
-  const metaDescription = buildMetaDescription(translations.detailMetaDescription, tournament, locale);
-  const imageUrl = tournament.imageUrl || 'https://legal.fighterstech.com/fighterstech.png';
-  const mapUrl = buildMapUrl(tournament);
-  const relatedTournaments = renderRelatedTournaments(tournaments, tournament, lang, translations, baseUrl);
-
-  let html = detailTemplate;
-
-  // Inyectar parciales
-  html = injectPartial(html, '<!-- PARTIAL:head-common -->', partials.headCommon);
-  html = injectPartial(html, '<!-- PARTIAL:header-footer-styles -->', partials.headerFooterStyles);
-  html = injectPartial(html, '<!-- PARTIAL:header -->', partials.header);
-  html = injectPartial(html, '<!-- PARTIAL:footer -->', partials.footer);
-  html = injectPartial(html, '<!-- PARTIAL:header-footer-scripts -->', partials.headerFooterScripts);
-  html = injectPartial(html, '<!-- PARTIAL:download-modal -->', partials.downloadModal);
-  html = injectPartial(html, '<!-- PARTIAL:tournaments-scripts -->', partials.tournamentsScripts);
-
-  // Reemplazar i18n (tournaments.* y nav.* / footer.* desde el JSON aplanado)
-  const allI18n = { ...i18nFlat, ...flattenObject({ tournaments: translations }) };
-  for (const [key, value] of Object.entries(allI18n)) {
-    const regex = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
-    html = html.replace(regex, String(value));
-  }
-
-  // Reemplazar marcadores dinámicos del torneo
-  const gamesListHtml = tournament.games.map(game => `<span class="game-badge">${escapeHtml(game)}</span>`).join('');
-  const aboutLd = tournament.games.length > 1
-    ? `"about": [\n      ${tournament.games.map(game => `{"@type": "VideoGame", "name": "${escapeJson(game)}"}`).join(',\n      ')}\n    ],`
-    : `"about": {\n        "@type": "VideoGame",\n        "name": "${escapeJson(tournament.games[0])}"\n      },`;
-
-  const seoTitleFormat = lang === 'es' 
-    ? '{name} - Torneo de {games} en {location} | FightersTech' 
-    : '{name} - {games} Tournament in {location} | FightersTech';
-  const seoTitle = seoTitleFormat.replace('{name}', escapeHtml(tournament.name))
-                                 .replace('{games}', escapeHtml(tournament.games.join(', ')))
-                                 .replace('{location}', escapeHtml(location));
+function renderGamePills(topGames, currentGame, lang) {
+  const basePath = lang === 'es' ? '/es/torneos/' : '/tournaments/';
+  const allText = lang === 'es' ? 'Todos los juegos' : 'All games';
   
-  const homeLink = lang === 'es' ? '/es/' : '/';
-  const ctaText = lang === 'es'
-    ? 'Descarga FightersTech, la app definitiva para la FGC y no te pierdas ningún torneo. →'
-    : 'Download FightersTech, the ultimate FGC app and never miss a tournament. →';
+  let html = `<div class="game-pills">\n`;
+  html += `  <a href="${basePath}" class="game-pill ${!currentGame ? 'active' : ''}">${allText}</a>\n`;
   
-  const homeCtaHtml = `<a href="${homeLink}" style="display: block; margin: 1.5rem 0; padding: 1rem 1.5rem; background: linear-gradient(135deg, rgba(30,144,255,0.1) 0%, rgba(252,175,1,0.1) 100%); border: 1px solid rgba(30,144,255,0.3); border-radius: 12px; color: #fff; text-decoration: none; font-weight: 600; font-size: 1.1rem; text-align: center; transition: all 0.2s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(0,0,0,0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.1)';">${ctaText}</a>`;
-
-  const replacements = {
-    'lang': lang,
-    'tournamentUrl': lang === 'es' ? '/es/torneos/' : '/tournaments/',
-    'tournaments.listUrl': lang === 'es' ? '/es/torneos/' : '/tournaments/',
-    'tournament.seoTitle': seoTitle,
-    'tournament.homeCtaHtml': homeCtaHtml,
-    'tournament.name': escapeHtml(tournament.name),
-    'tournament.game': escapeHtml(tournament.games[0]),
-    'tournament.games': escapeHtml(tournament.games.join(', ')),
-    'tournament.gamesList': gamesListHtml,
-    'tournament.slug': escapeHtml(tournament.slug),
-    'tournament.startGgUrl': `https://www.start.gg/tournament/${escapeHtml(cleanSlug(tournament.slug))}/details`,
-    'tournament.dateFormatted': formatDateUtc(tournament.startAt),
-    'tournament.startDateISO': toISODate(tournament.startAt),
-    'tournament.endDateLD': buildEndDateLD(tournament),
-    'tournament.location': escapeHtml(location),
-    'tournament.numAttendees': tournament.numAttendees,
-    'tournament.pageUrl': pageUrl,
-    'tournament.canonicalUrl': canonicalUrl,
-    'tournament.hreflangTags': hreflangTags,
-    'tournament.metaDescription': escapeHtml(metaDescription),
-    'tournament.attendanceMode': buildAttendanceMode(tournament.isOnline),
-    'tournament.locationLD': buildLocationLD(tournament),
-    'tournament.aboutLD': aboutLd,
-    'tournament.imageUrl': escapeHtml(imageUrl),
-    'tournament.mapUrl': mapUrl,
-    'tournament.mapUrlHidden': mapUrl ? '' : 'hidden',
-    'tournament.relatedTournaments': relatedTournaments
-  };
-
-  for (const [key, value] of Object.entries(replacements)) {
-    const regex = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
-    html = html.replace(regex, String(value));
+  for (const game of topGames) {
+    const isActive = game === currentGame;
+    const gameSlug = sanitizeDirName(cleanSlug(game));
+    const targetHref = isActive ? basePath : `${basePath}${gameSlug}/`;
+    html += `  <a href="${targetHref}" class="game-pill ${isActive ? 'active' : ''}">${escapeHtml(game)}</a>\n`;
   }
-
+  html += `</div>\n`;
   return html;
 }
 
-function generateIndexPage(tournaments, lang, translations, i18nFlat, baseUrl, canonicalBaseUrl, indexTemplate, partials, fetchedAt, windowDays) {
+function renderCountryPills(topCountries, currentCountryCode, lang) {
+  const basePath = lang === 'es' ? '/es/torneos/' : '/tournaments/';
+  
+  let html = `<div class="country-pills">\n`;
+  
+  for (const code of topCountries) {
+    const isActive = code === currentCountryCode;
+    const countryName = getCountryName(code, lang === 'es' ? 'es-ES' : 'en-US');
+    const slug = sanitizeDirName(countryName);
+    const targetHref = isActive ? basePath : `${basePath}${slug}/`;
+    html += `  <a href="${targetHref}" class="country-pill ${isActive ? 'active' : ''}">${escapeHtml(countryName)}</a>\n`;
+  }
+  html += `</div>\n`;
+  return html;
+}
+
+function renderBreadcrumbsUI(lang, translations, baseUrl, currentGame, currentCountryCode) {
+  const homeUrl = lang === 'es' ? '/es/' : '/';
+  const tournamentsUrl = lang === 'es' ? '/es/torneos/' : '/tournaments/';
+  
+  let html = `<nav class="breadcrumbs" aria-label="Breadcrumb">\n  <ol>\n`;
+  html += `    <li><a href="${homeUrl}">${translations.breadcrumbHome}</a><span class="separator">/</span></li>\n`;
+  
+  if (!currentGame && !currentCountryCode) {
+    html += `    <li aria-current="page">${translations.breadcrumbTournaments}</li>\n`;
+  } else {
+    html += `    <li><a href="${tournamentsUrl}">${translations.breadcrumbTournaments}</a><span class="separator">/</span></li>\n`;
+    
+    if (currentGame) {
+      html += `    <li aria-current="page">${escapeHtml(currentGame)}</li>\n`;
+    } else if (currentCountryCode) {
+      const countryName = getCountryName(currentCountryCode, lang === 'es' ? 'es-ES' : 'en-US');
+      html += `    <li aria-current="page">${escapeHtml(countryName)}</li>\n`;
+    }
+  }
+  
+  html += `  </ol>\n</nav>\n`;
+  return html;
+}
+
+function getFaqData(translations, currentGame, currentCountryCode, count, windowDays, lang) {
+  let q1, a1, q2, a2;
+  
+  if (currentGame) {
+    q1 = translations.faqGameQ1.replace('{{gameName}}', currentGame).replace('{{days}}', windowDays);
+    a1 = translations.faqGameA1.replace('{{gameName}}', currentGame).replace('{{count}}', count).replace('{{days}}', windowDays);
+    q2 = translations.faqGameQ2.replace('{{gameName}}', currentGame).replace('{{days}}', windowDays);
+    a2 = translations.faqGameA2.replace('{{gameName}}', currentGame).replace('{{count}}', count).replace('{{days}}', windowDays);
+  } else if (currentCountryCode) {
+    const countryName = getCountryName(currentCountryCode, lang === 'es' ? 'es-ES' : 'en-US');
+    q1 = translations.faqCountryQ1.replace('{{countryName}}', countryName).replace('{{days}}', windowDays);
+    a1 = translations.faqCountryA1.replace('{{countryName}}', countryName).replace('{{count}}', count).replace('{{days}}', windowDays);
+    q2 = translations.faqCountryQ2.replace('{{countryName}}', countryName).replace('{{days}}', windowDays);
+    a2 = translations.faqCountryA2.replace('{{countryName}}', countryName).replace('{{count}}', count).replace('{{days}}', windowDays);
+  } else {
+    q1 = translations.faqGlobalQ1.replace('{{days}}', windowDays);
+    a1 = translations.faqGlobalA1.replace('{{days}}', windowDays);
+    q2 = translations.faqGlobalQ2.replace('{{days}}', windowDays);
+    a2 = translations.faqGlobalA2.replace('{{days}}', windowDays);
+  }
+  
+  return [
+    { q: q1, a: a1 },
+    { q: q2, a: a2 }
+  ];
+}
+
+function renderFaqUI(translations, currentGame, currentCountryCode, count, windowDays, lang) {
+  if (count === 0) return '';
+  const faqs = getFaqData(translations, currentGame, currentCountryCode, count, windowDays, lang);
+  
+  let html = `<section class="faq-section" id="faqSection">\n  <div class="section-header">\n    <h2 class="section-title" data-title="FAQ">${translations.faqTitle}</h2>\n  </div>\n  <div class="faq-list">\n`;
+  
+  for (let i = 0; i < faqs.length; i++) {
+    const faq = faqs[i];
+    html += `    <details class="faq-item">\n      <summary class="faq-question" id="faqQuestion${i}">${escapeHtml(faq.q)}</summary>\n      <div class="faq-answer" id="faqAnswer${i}">${faq.a}</div>\n    </details>\n`;
+  }
+  
+  html += `  </div>\n</section>\n`;
+  return html;
+}
+
+function renderFaqSchema(translations, currentGame, currentCountryCode, count, windowDays, lang) {
+  if (count === 0) return '';
+  const faqs = getFaqData(translations, currentGame, currentCountryCode, count, windowDays, lang);
+  
+  let schema = `{\n  "@context": "https://schema.org",\n  "@type": "FAQPage",\n  "mainEntity": [\n`;
+  
+  const elements = faqs.map(faq => {
+    return `    {\n      "@type": "Question",\n      "name": "${escapeJson(faq.q)}",\n      "acceptedAnswer": {\n        "@type": "Answer",\n        "text": "${escapeJson(faq.a)}"\n      }\n    }`;
+  });
+  
+  schema += elements.join(',\n') + `\n  ]\n}`;
+  return schema;
+}
+
+function renderBreadcrumbSchema(lang, translations, baseUrl, canonicalBaseUrl, currentGame, currentCountryCode) {
+  const homeUrl = lang === 'es' ? canonicalBaseUrl + 'es/' : canonicalBaseUrl;
+  const tournamentsUrl = lang === 'es' ? canonicalBaseUrl + 'es/torneos/' : canonicalBaseUrl + 'tournaments/';
+  
+  const items = [
+    { name: translations.breadcrumbHome, url: homeUrl },
+    { name: translations.breadcrumbTournaments, url: tournamentsUrl }
+  ];
+  
+  if (currentGame) {
+    const safeDir = sanitizeDirName(cleanSlug(currentGame));
+    items.push({ name: currentGame, url: `${tournamentsUrl}${safeDir}/` });
+  } else if (currentCountryCode) {
+    const countryName = getCountryName(currentCountryCode, lang === 'es' ? 'es-ES' : 'en-US');
+    const safeDir = sanitizeDirName(countryName);
+    items.push({ name: countryName, url: `${tournamentsUrl}${safeDir}/` });
+  }
+  
+  let schema = `{\n  "@context": "https://schema.org",\n  "@type": "BreadcrumbList",\n  "itemListElement": [\n`;
+  
+  const elements = items.map((item, index) => {
+    return `    {\n      "@type": "ListItem",\n      "position": ${index + 1},\n      "name": "${escapeJson(item.name)}",\n      "item": "${item.url}"\n    }`;
+  });
+  
+  schema += elements.join(',\n') + `\n  ]\n}`;
+  return schema;
+}
+
+function generateIndexPage({
+  tournaments,
+  lang,
+  translations,
+  i18nFlat,
+  baseUrl,
+  canonicalBaseUrl,
+  indexTemplate,
+  partials,
+  fetchedAt,
+  windowDays,
+  currentGame = null,
+  currentCountryCode = null,
+  topGames = [],
+  TOP_COUNTRIES = []
+}) {
   const locale = lang === 'es' ? 'es-ES' : 'en-US';
+  
+  const basePathEn = '/tournaments/';
+  const basePathEs = '/es/torneos/';
+  
+  let subPathEn = '';
+  let subPathEs = '';
+  if (currentGame) {
+    subPathEn = sanitizeDirName(cleanSlug(currentGame)) + '/';
+    subPathEs = subPathEn;
+  } else if (currentCountryCode) {
+    const countryNameEn = getCountryName(currentCountryCode, 'en-US');
+    const countryNameEs = getCountryName(currentCountryCode, 'es-ES');
+    subPathEn = sanitizeDirName(countryNameEn) + '/';
+    subPathEs = sanitizeDirName(countryNameEs) + '/';
+  }
+  
   const pageUrl = lang === 'es'
-    ? `${canonicalBaseUrl}es/torneos/`
-    : `${canonicalBaseUrl}tournaments/`;
+    ? `${canonicalBaseUrl}es/torneos/${subPathEs}`
+    : `${canonicalBaseUrl}tournaments/${subPathEn}`;
   const canonicalUrl = pageUrl;
-  const pageEs = lang === 'es'
-    ? pageUrl
-    : pageUrl.replace('/tournaments/', '/es/torneos/');
-  const canonicalEn = lang === 'en'
-    ? canonicalUrl
-    : canonicalUrl.replace('/es/torneos/', '/tournaments/');
+  
+  const pageEs = `${canonicalBaseUrl}es/torneos/${subPathEs}`;
+  const canonicalEn = `${canonicalBaseUrl}tournaments/${subPathEn}`;
   const hreflangTags = buildHreflangTags(canonicalEn, pageEs);
 
   const sorted = [...tournaments].sort((a, b) => a.startAt - b.startAt);
@@ -404,7 +464,26 @@ function generateIndexPage(tournaments, lang, translations, i18nFlat, baseUrl, c
     : '';
   const emptyState = sorted.length === 0 ? renderEmptyState(translations) : '';
   const itemListElements = sorted.map((t, i) => renderItemListElement(t, i, canonicalBaseUrl)).join(',\n');
-  const pageTitle = translations.pageTitle.replace('{{days}}', windowDays);
+  
+  let pageTitle = translations.pageTitle.replace('{{days}}', windowDays);
+  let pageSubtitle = translations.pageSubtitle.replace('{{days}}', windowDays);
+  let indexMetaDescription = translations.indexMetaDescription.replace('{{days}}', windowDays);
+  
+  let gameFilterStyle = '';
+  let countryFilterStyle = '';
+
+  if (currentGame) {
+    pageTitle = translations.gamePageTitle.replace('{{gameName}}', currentGame).replace('{{days}}', windowDays);
+    pageSubtitle = translations.gamePageSubtitle.replace('{{gameName}}', currentGame).replace('{{count}}', sorted.length).replace('{{days}}', windowDays);
+    indexMetaDescription = translations.gameMetaDescription.replace('{{gameName}}', currentGame).replace('{{count}}', sorted.length).replace('{{days}}', windowDays);
+    gameFilterStyle = 'display: none;';
+  } else if (currentCountryCode) {
+    const countryName = getCountryName(currentCountryCode, locale);
+    pageTitle = translations.countryPageTitle.replace('{{countryName}}', countryName).replace('{{days}}', windowDays);
+    pageSubtitle = translations.countryPageSubtitle.replace('{{countryName}}', countryName).replace('{{count}}', sorted.length).replace('{{days}}', windowDays);
+    indexMetaDescription = translations.countryMetaDescription.replace('{{countryName}}', countryName).replace('{{count}}', sorted.length).replace('{{days}}', windowDays);
+    countryFilterStyle = 'display: none;';
+  }
 
   let html = indexTemplate;
 
@@ -418,6 +497,9 @@ function generateIndexPage(tournaments, lang, translations, i18nFlat, baseUrl, c
 
   const allI18n = { ...i18nFlat, ...flattenObject({ tournaments: translations }) };
   allI18n['tournaments.pageTitle'] = pageTitle;
+  allI18n['tournaments.pageSubtitle'] = pageSubtitle;
+  allI18n['tournaments.indexMetaDescription'] = indexMetaDescription;
+  
   for (const [key, value] of Object.entries(allI18n)) {
     const regex = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
     html = html.replace(regex, String(value));
@@ -435,8 +517,18 @@ function generateIndexPage(tournaments, lang, translations, i18nFlat, baseUrl, c
     'emptyState': emptyState,
     'itemListElements': itemListElements,
     'totalTournaments': sorted.length,
+    'robotsMeta': sorted.length === 0 ? '<meta name="robots" content="noindex, follow" />' : '<meta name="robots" content="index, follow" />',
     'fetchedAt': fetchedAt,
-    'windowDays': windowDays
+    'windowDays': windowDays,
+    'breadcrumbsUI': renderBreadcrumbsUI(lang, translations, baseUrl, currentGame, currentCountryCode),
+    'breadcrumbSchema': renderBreadcrumbSchema(lang, translations, baseUrl, canonicalBaseUrl, currentGame, currentCountryCode),
+    'faqUI': renderFaqUI(translations, currentGame, currentCountryCode, sorted.length, windowDays, lang),
+    'faqSchema': renderFaqSchema(translations, currentGame, currentCountryCode, sorted.length, windowDays, lang),
+    'gamePills': renderGamePills(topGames, currentGame, lang),
+    'countryPills': renderCountryPills(TOP_COUNTRIES, currentCountryCode, lang),
+    'filtersHidden': '',
+    'gameFilterStyle': gameFilterStyle,
+    'countryFilterStyle': countryFilterStyle
   };
 
   for (const [key, value] of Object.entries(replacements)) {
@@ -506,13 +598,16 @@ async function main() {
     { code: 'es', translations: esTranslations.tournaments, i18nFlat: flattenObject(esTranslations), baseUrl: esNavBaseUrl, canonicalBaseUrl: siteBaseUrl }
   ];
 
+  const topGames = getTopGames(tournaments, 12);
+  const TOP_COUNTRIES = ['US', 'ES', 'FR', 'GB', 'MX', 'JP', 'BR', 'DE', 'CA', 'IT', 'AR', 'CL', 'CO'];
+
   for (const langConfig of languages) {
     const { code, translations, i18nFlat, baseUrl, canonicalBaseUrl } = langConfig;
 
-    // Índice
-    const indexHtml = generateIndexPage(
+    // Índice principal
+    const indexHtml = generateIndexPage({
       tournaments,
-      code,
+      lang: code,
       translations,
       i18nFlat,
       baseUrl,
@@ -520,33 +615,71 @@ async function main() {
       indexTemplate,
       partials,
       fetchedAt,
-      windowDays
-    );
+      windowDays,
+      topGames,
+      TOP_COUNTRIES
+    });
     const indexDir = code === 'en' ? enTournamentsDir : esTournamentsDir;
     mkdirSync(indexDir, { recursive: true });
     writeFileSync(join(indexDir, 'index.html'), indexHtml);
-    console.log(`✅ Índice ${code.toUpperCase()}: ${indexDir}\\index.html`);
+    console.log(`✅ Índice principal ${code.toUpperCase()}: ${indexDir}\\index.html`);
 
-    // Páginas individuales
-    for (const tournament of tournaments) {
-      const pageHtml = generateTournamentPage(
-        tournament,
-        tournaments,
-        code,
+    // Páginas Agregadoras por Juego (Game Hubs)
+    for (const game of topGames) {
+      const gameTournaments = tournaments.filter(t => t.games && t.games.includes(game));
+      if (gameTournaments.length === 0) continue;
+
+      const gameHtml = generateIndexPage({
+        tournaments: gameTournaments,
+        lang: code,
         translations,
         i18nFlat,
         baseUrl,
         canonicalBaseUrl,
-        detailTemplate,
-        partials
-      );
-      const clean = cleanSlug(tournament.slug);
-      const safeDir = sanitizeDirName(clean);
-      const tournamentDir = join(indexDir, safeDir);
-      mkdirSync(tournamentDir, { recursive: true });
-      writeFileSync(join(tournamentDir, 'index.html'), pageHtml);
+        indexTemplate,
+        partials,
+        fetchedAt,
+        windowDays,
+        currentGame: game,
+        topGames,
+        TOP_COUNTRIES
+      });
+      
+      const gameSlug = sanitizeDirName(cleanSlug(game));
+      const gameDir = join(indexDir, gameSlug);
+      mkdirSync(gameDir, { recursive: true });
+      writeFileSync(join(gameDir, 'index.html'), gameHtml);
     }
-    console.log(`✅ ${tournaments.length} páginas de torneo ${code.toUpperCase()} generadas`);
+    console.log(`✅ ${topGames.length} Game Hubs ${code.toUpperCase()} generados`);
+
+    // Páginas Agregadoras por País (Country Hubs)
+    for (const countryCode of TOP_COUNTRIES) {
+      const countryTournaments = tournaments.filter(t => t.countryCode === countryCode);
+      // Generate the page EVEN IF EMPTY to avoid URL churn
+      
+      const countryHtml = generateIndexPage({
+        tournaments: countryTournaments,
+        lang: code,
+        translations,
+        i18nFlat,
+        baseUrl,
+        canonicalBaseUrl,
+        indexTemplate,
+        partials,
+        fetchedAt,
+        windowDays,
+        currentCountryCode: countryCode,
+        topGames,
+        TOP_COUNTRIES
+      });
+      
+      const countryName = getCountryName(countryCode, code === 'es' ? 'es-ES' : 'en-US');
+      const countrySlug = sanitizeDirName(countryName);
+      const countryDir = join(indexDir, countrySlug);
+      mkdirSync(countryDir, { recursive: true });
+      writeFileSync(join(countryDir, 'index.html'), countryHtml);
+    }
+    console.log(`✅ ${TOP_COUNTRIES.length} Country Hubs ${code.toUpperCase()} generados`);
   }
 
 

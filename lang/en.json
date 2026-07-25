@@ -21,9 +21,28 @@
   },
   "tournaments": {
     "pageTitle": "Next {{days}} days of the FGC Tournaments",
-    "pageSubtitle": "These are some of the upcoming fighting game tournaments available on FightersTech. From the app you can access the full tournament list, register easily, filter by location (online or in-person), follow your favorite games, and receive real-time notifications, including on Discord.",
+    "pageSubtitle": "These are some of the upcoming fighting game tournaments available on FightersTech. Download the app to access the complete list of tournaments, track your favorite games, and unlock exclusive region-based online filtering. You'll also receive daily notifications at your preferred time, including direct messages on Discord.",
     "indexMetaDescription": "Discover upcoming fighting game tournaments: Street Fighter, Tekken, Guilty Gear and more. Updated hourly from start.gg.",
-    "detailMetaDescription": "{{name}} — {{game}} tournament on {{date}} in {{location}}. Register on start.gg.",
+    "gamePageTitle": "Upcoming {{gameName}} Tournaments in the next {{days}} days",
+    "gamePageSubtitle": "Currently tracking {{count}} upcoming {{gameName}} tournaments in the next {{days}} days. Filter by online or in-person events, track your matchups, and level up your game with FightersTech.",
+    "gameMetaDescription": "Find and register for the next {{count}} {{gameName}} tournaments happening in the next {{days}} days. Play online or locally and organize your competitive schedule.",
+    "countryPageTitle": "Upcoming Tournaments in {{countryName}} in the next {{days}} days",
+    "countryPageSubtitle": "We currently have {{count}} upcoming local tournaments scheduled in {{countryName}} in the next {{days}} days. Filter by game, track your brackets, and download the FightersTech app to unlock our exclusive region-based online tournament filters.",
+    "countryMetaDescription": "Find and register for the next {{count}} fighting game tournaments in {{countryName}} happening in the next {{days}} days. Play locally and organize your competitive schedule.",
+    "faqTitle": "Frequently Asked Questions",
+    "faqGlobalQ1": "What fighting game tournaments are available?",
+    "faqGlobalA1": "We aggregate tournaments for the top FGC games including Street Fighter 6, Tekken 8, Super Smash Bros. Ultimate, Guilty Gear Strive, and many more. The FightersTech app offers the most comprehensive list of tournaments you'll find anywhere, updated hourly directly from start.gg and other sources.",
+    "faqGlobalQ2": "Can I filter tournaments by online or in-person?",
+    "faqGlobalA2": "Yes! You can use our Mode filter here to see Online or In-Person events. However, by downloading the FightersTech App, you get exclusive access to our strict region-based online filters, ensuring you only see online tournaments you can actually play with a better connection. The app also sends you daily tournament notifications at the exact time you choose.",
+    "faqGameQ1": "How many {{gameName}} tournaments are scheduled in the next {{days}} days?",
+    "faqGameA1": "We are currently tracking {{count}} upcoming {{gameName}} tournaments in the next {{days}} days. By downloading the app, you get access to an even larger database of events and matchups.",
+    "faqGameQ2": "Can I play {{gameName}} tournaments from home?",
+    "faqGameA2": "Absolutely. You can use the 'Online' filter here on the web. But for the ultimate experience, download the FightersTech app to unlock our exclusive region-based online filtering—something other platforms struggle to offer—so you only see events playable from your area. Plus, the app sends daily notifications at your chosen time.",
+    "faqCountryQ1": "Are there active FGC tournaments in {{countryName}} in the next {{days}} days?",
+    "faqCountryA1": "Yes, we are currently tracking {{count}} upcoming fighting game events in {{countryName}} in the next {{days}} days. The FightersTech app features even more local events that are hard to find elsewhere. You can browse by game to find the perfect local tournament for you.",
+    "faqCountryQ2": "How do I register for these tournaments?",
+    "faqCountryA2": "Simply click on any tournament card to be taken directly to its start.gg registration page where you can sign up for the brackets.",
+    "detailMetaDescription": "{{name}} - {{game}} tournament on {{date}} in {{location}}. Register now on start.gg.",
     "goToTournament": "Go to tournament",
     "online": "Online",
     "inPerson": "In Person",
@@ -31,10 +50,15 @@
     "poweredBy": "Tournament data provided by",
     "noTournaments": "No tournaments scheduled in the coming days. Download the app to never miss one!",
     "lastUpdated": "Last updated",
+    "emptyStateBody": "New tournaments are added daily. Download FightersTech to find communities playing {{game}} or events near {{location}}.",
+    "browseByGame": "Browse Tournaments by Game",
+    "browseByCountry": "Browse Tournaments by Region",
     "backToList": "← View all tournaments",
     "downloadCta": "Download FightersTech to follow all tournaments",
     "filterGame": "Game",
     "filterMode": "Mode",
+    "breadcrumbHome": "Home",
+    "breadcrumbTournaments": "Tournaments",
     "filterModeAll": "All",
     "filterOnline": "Online",
     "filterInPerson": "In Person",
@@ -310,19 +334,27 @@
     },
     {
       "title": "How can I find fighting game tournaments near me?",
-      "description": "To find local fighting game tournaments near you using FightersTech, you just need to set up our powerful event alert system.<br><br>Follow these simple steps:<ol><li><strong>Create your profile:</strong> You must have a game profile set up for the titles you want to track.</li><li><strong>Access settings:</strong> Go to the <strong>'Profile'</strong> section in the app and select <strong>'Tournament Notifications'</strong>.</li><li><strong>Select your games:</strong> Choose the specific titles you want to follow.</li><li><strong>Define your search area:</strong> Set your preferred distance metric (miles or kilometers) and configure your coordinates so the app scans your specific local area.</li><li><strong>Schedule your alerts:</strong> Choose the exact time you prefer to receive these notifications.</li></ol>Once saved, you will receive notifications allowing you to filter tournaments by game and country, check the venue's location, visit the official tournament link, and even add it to your in-app schedule so you never forget a bracket."
+      "description": "To find fighting game tournaments using FightersTech, you just need to set up our powerful event alert system.<br><br>Follow these simple steps:<ol><li><strong>Create your profile:</strong> You must have a game profile set up for the titles you want to track.</li><li><strong>Access settings:</strong> Go to the <strong>'Profile'</strong> section in the app and select <strong>'Tournament Notifications'</strong>.</li><li><strong>Select your games:</strong> Choose the specific titles you want to follow.</li><li><strong>Define your search area:</strong> Set your preferred distance metric (miles or kilometers) and configure your coordinates so the app scans your specific local area. You can also enable our exclusive region-based filters for Online tournaments to ensure a better online experience.</li><li><strong>Schedule your alerts:</strong> Choose the exact time of day you prefer to receive your daily tournament digest.</li></ol>Once saved, you will receive daily notifications allowing you to check the venue's location, visit the official tournament link, and even add it to your in-app schedule so you never forget a bracket."
     },
     {
       "title": "Which fighting games are supported on the app?",
-      "description": "FightersTech supports all major competitive fighting games currently in the scene, as well as beloved retro FGC classics. Our database includes:<ul><li>Super Smash Bros. (Ultimate and Melee)</li><li>Tekken 8 and Tekken 7</li><li>Street Fighter 6, Street Fighter V, Ultra Street Fighter IV, SFIII: 3rd Strike, and Super Street Fighter II X</li><li>2XKO</li><li>Mortal Kombat 1 and Mortal Kombat 11</li><li>Guilty Gear Strive</li><li>Dragon Ball FighterZ</li><li>Fatal Fury: City of the Wolves</li><li>Rivals of Aether 2</li><li>Granblue Fantasy Versus: Rising</li><li>Ultimate Marvel vs. Capcom 3</li><li>Under Night In-Birth II Sys:Celes</li><li>BlazBlue: Central Fiction</li><li>The King of Fighters XV</li><li>Soulcalibur VI</li><li>DNF Duel</li></ul>And we are constantly adding new releases! If your main game is missing, don't hesitate to tag us on social media so we can get it added!"
+      "description": "Currently, we support all major games with active communities like Street Fighter 6, Tekken 8, Guilty Gear Strive, Super Smash Bros. Ultimate and Melee, Mortal Kombat 1, Dragon Ball FighterZ, and Granblue Fantasy Versus: Rising, plus retro titles like Street Fighter III: 3rd Strike, Super Street Fighter II Turbo, and King of Fighters XV."
     },
     {
       "title": "How does Matchmaking work on FightersTech?",
-      "description": "Matchmaking on FightersTech relies on a highly customizable search and match proposal system, secured with a <em>check-in</em> process—perfect for both tryhard training sessions and casual sets.<br><br>Here is how it works step by step:<ol><li><strong>Search and filters:</strong> Find rivals by specifying the exact character you want to practice against (or leave it open). Apply detailed filters like region and connection type (wired or Wi-Fi) to ensure lag-free matches.</li><li><strong>Issue your challenge:</strong> Browse the list of potential opponents, tap 'actions,' and choose 'propose date' to select the exact day and time for your set.</li><li><strong>Match conditions:</strong> Specify the character you will use and set the rules. Decide if the match will be 'public' or 'private,' choose the win condition (e.g., First to 3), and confirm your proposal summary.</li><li><strong>Manage your schedule:</strong> Keep track of who you’ve challenged and cancel pending proposals directly from the 'Sent Schedule' section.</li><li><strong>Check-in and Fight:</strong> If your opponent accepts, a <em>check-in</em> option will appear <strong>10 minutes before</strong> the agreed time. Both players must complete it to confirm attendance. Once checked in, you will receive a notification with specific instructions on where to play or who to invite, depending on each game's lobby system.</li></ol>"
+      "description": "Matchmaking on FightersTech relies on a highly customizable search and match proposal system, secured with a <em>check-in</em> process—perfect for both tryhard training sessions and casual sets.<br><br>Here is how it works step by step:<ol><li><strong>Search and filters:</strong> Find rivals by specifying the exact character you want to practice against (or leave it open). Apply detailed filters like region and connection type (wired or Wi-Fi) to improve connection quality.</li><li><strong>Issue your challenge:</strong> Browse the list of potential opponents, tap 'actions,' and choose 'propose date' to select the exact day and time for your set.</li><li><strong>Match conditions:</strong> Specify the character you will use and set the rules. Decide if the match will be 'public' or 'private,' choose the win condition (e.g., First to 3), and confirm your proposal summary.</li><li><strong>Manage your schedule:</strong> Keep track of who you’ve challenged and cancel pending proposals directly from the 'Sent Schedule' section.</li><li><strong>Check-in and Fight:</strong> If your opponent accepts, a <em>check-in</em> option will appear <strong>10 minutes before</strong> the agreed time. Both players must complete it to confirm attendance. Once checked in, you will receive a notification with specific instructions on where to play or who to invite, depending on each game's lobby system.</li></ol>"
     },
     {
       "title": "Is FightersTech free to use?",
       "description": "Yes, downloading and using the core features of FightersTech is completely free. Our main goal is to grow the fighting game community by providing everyone with free access to our matchmaking tools, tournament locator, and player profiles, available on both iOS and Android."
+    },
+    {
+      "title": "What fighting game tournaments are available?",
+      "description": "We aggregate tournaments for the top FGC games including Street Fighter 6, Tekken 8, Super Smash Bros. Ultimate, Guilty Gear Strive, and many more. The FightersTech app offers the most comprehensive list of tournaments you'll find anywhere, updated hourly directly from start.gg and other sources."
+    },
+    {
+      "title": "Can I filter tournaments by online or in-person?",
+      "description": "Yes! You can use our Mode filter to see Online or In-Person events. However, by downloading the FightersTech App, you get exclusive access to our strict region-based online filters, ensuring you only see online tournaments you can actually play with a better connection. The app also sends you daily tournament notifications at the exact time you choose."
     }
   ],
   "footer": {
