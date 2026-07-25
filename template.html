@@ -3,16 +3,16 @@
   <head>
     <!-- SEO_INJECTION -->
     <!-- PARTIAL:head-common -->
-    <title>FightersTech - Train. Fight. Compete. | FGC Tournament App</title>
+    <title>{{seo.appTitle}}</title>
 
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="FightersTech - Train. Fight. Compete. | FGC Tournament App"
+      content="{{seo.appTitle}}"
     />
     <meta
       name="description"
-      content="FightersTech: The ultimate platform for the Fighting Game Community. Find tournaments, track matchups, and level up your game. Download free on iOS & Android!"
+      content="{{seo.appDescription}}"
     />
     <meta
       name="robots"
@@ -30,23 +30,11 @@
       content="© 2026 FightersTech. All rights reserved."
     />
     <!-- PARTIAL:head-common-meta -->
-    <link rel="canonical" href="https://promo.fighterstech.com/" />
-    <link
-      rel="alternate"
-      href="https://promo.fighterstech.com/"
-      hreflang="en"
-    />
-    <link
-      rel="alternate"
-      href="https://promo.fighterstech.com/"
-      hreflang="es"
-    />
-
     <!-- Open Graph / Facebook / WhatsApp -->
-    <meta property="og:title" content="FightersTech - Train. Fight. Compete." />
+    <meta property="og:title" content="{{seo.appTitle}}" />
     <meta
       property="og:description"
-      content="The ultimate platform for the Fighting Game Community. Find tournaments, track matchups, and level up your game. Download free on iOS & Android!"
+      content="{{seo.appDescription}}"
     />
     <meta
       property="og:image"
@@ -67,11 +55,11 @@
     <meta name="twitter:creator" content="{{seo.twitterHandle}}" />
     <meta
       name="twitter:title"
-      content="FightersTech - Train. Fight. Compete."
+      content="{{seo.appTitle}}"
     />
     <meta
       name="twitter:description"
-      content="The ultimate platform for the Fighting Game Community. Find tournaments, track matchups, and level up your game. Download free on iOS & Android!"
+      content="{{seo.appDescription}}"
     />
     <meta
       name="twitter:image"
@@ -196,6 +184,22 @@
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "{{faqItems.4.description}}"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "{{faqItems.5.title}}",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "{{faqItems.5.description}}"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "{{faqItems.6.title}}",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "{{faqItems.6.description}}"
             }
           }
         ]
@@ -3708,7 +3712,7 @@
       <canvas class="hero-trail" id="heroTrail" aria-hidden="true"></canvas>
       <div class="hero-content">
         <div class="hero-badge">{{hero.badge}}</div>
-        <h1
+        <div
           class="hero-title"
           id="heroTitle"
           aria-label="{{hero.title}}"
@@ -3716,10 +3720,10 @@
           <span class="word" data-text="{{hero.words.0}}">{{hero.words.0}}</span>
           <span class="word" data-text="{{hero.words.1}}">{{hero.words.1}}</span>
           <span class="word" data-text="{{hero.words.2}}">{{hero.words.2}}</span>
-        </h1>
-        <p class="hero-subtitle" id="heroSubtitle">
+        </div>
+        <h1 class="hero-subtitle" id="heroSubtitle">
           {{hero.subtitle}}
-        </p>
+        </h1>
         <div class="store-buttons">
           <a
             href="{{hero.storeButtons.apple.url}}"
@@ -3927,6 +3931,14 @@
           <details class="faq-item">
             <summary class="faq-question" id="faqQuestion4">{{faqItems.4.title}}</summary>
             <div class="faq-answer" id="faqAnswer4">{{faqItems.4.description}}</div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-question" id="faqQuestion5">{{faqItems.5.title}}</summary>
+            <div class="faq-answer" id="faqAnswer5">{{faqItems.5.description}}</div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-question" id="faqQuestion6">{{faqItems.6.title}}</summary>
+            <div class="faq-answer" id="faqAnswer6">{{faqItems.6.description}}</div>
           </details>
         </div>
       </div>

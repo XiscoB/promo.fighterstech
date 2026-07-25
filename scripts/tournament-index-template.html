@@ -6,7 +6,7 @@
 
     <title>{{tournaments.pageTitle}} | FightersTech</title>
     <meta name="description" content="{{tournaments.indexMetaDescription}}" />
-    <meta name="robots" content="index, follow" />
+    {{robotsMeta}}
 
     <link rel="canonical" href="{{index.canonicalUrl}}" />
     {{index.hreflangTags}}
@@ -17,6 +17,19 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{index.pageUrl}}" />
     <meta property="og:site_name" content="FightersTech" />
+    <meta property="og:image" content="https://legal.fighterstech.com/fighterstech.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="FightersTech - FGC Tournament App" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@fighterstech" />
+    <meta name="twitter:creator" content="@fighterstech" />
+    <meta name="twitter:title" content="{{tournaments.pageTitle}} | FightersTech" />
+    <meta name="twitter:description" content="{{tournaments.indexMetaDescription}}" />
+    <meta name="twitter:image" content="https://legal.fighterstech.com/fighterstech.png" />
+    <meta name="twitter:image:alt" content="FightersTech - FGC Tournament App" />
 
     <style>
       :root {
@@ -145,6 +158,123 @@
         text-transform: uppercase;
         letter-spacing: 0.5px;
         transition: color 0.2s ease;
+      }
+
+      /* ========================================
+         FAQ SECTION
+         ======================================== */
+      .faq-section {
+        background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(0, 40, 78, 0.5) 50%, var(--bg-primary) 100%);
+        position: relative;
+        overflow: hidden;
+        margin-top: 64px;
+        padding-top: 32px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .faq-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        opacity: 0.5;
+      }
+
+      .faq-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 32px;
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .faq-item {
+        background: var(--bg-secondary);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .faq-item[open] {
+        border-color: rgba(252, 175, 1, 0.35);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      }
+
+      .faq-question {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        width: 100%;
+        padding: 24px 28px;
+        background: transparent;
+        border: none;
+        color: var(--text-primary);
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 600;
+        text-align: left;
+        cursor: pointer;
+        list-style: none;
+        transition: color 0.2s ease;
+      }
+
+      .faq-question::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq-question::after {
+        content: "+";
+        flex-shrink: 0;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(252, 175, 1, 0.12);
+        color: var(--accent-gold);
+        font-size: 1.1rem;
+        transition: transform 0.25s ease, background 0.25s ease;
+      }
+
+      .faq-item[open] .faq-question::after {
+        content: "-";
+        transform: rotate(180deg);
+      }
+
+      .faq-question:hover {
+        color: var(--accent-gold);
+      }
+
+      .faq-answer {
+        padding: 0 28px 24px;
+        color: var(--text-secondary);
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      @media (max-width: 768px) {
+        .faq-list {
+          margin-top: 24px;
+        }
+
+        .faq-question {
+          padding: 20px 24px;
+          font-size: 1.1rem;
+        }
+
+        .faq-answer {
+          padding: 0 24px 20px;
+        }
       }
 
       .filter-group:has(.filter-trigger:hover) label,
@@ -557,6 +687,46 @@
         }
       }
 
+      .hubs-nav, .hubs-nav-top {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        margin: 48px 0;
+        align-items: center;
+      }
+      .hubs-nav-top {
+        margin: 24px 0 48px;
+      }
+      .country-pills, .game-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+        width: 100%;
+      }
+      .country-pill, .game-pill {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: var(--surface-light);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+      }
+      .country-pill:hover, .game-pill:hover {
+        background-color: var(--surface-lighter);
+        color: var(--text-primary);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+      .country-pill.active, .game-pill.active {
+        background-color: var(--accent-gold);
+        color: var(--bg-dark);
+        border-color: var(--accent-gold);
+        font-weight: 600;
+      }
+
       @media (prefers-reduced-motion: reduce) {
         .tournament-card,
         .filter-trigger,
@@ -583,6 +753,13 @@
         <p class="page-subtitle">{{tournaments.pageSubtitle}}</p>
 
         <noscript><p class="utc-notice">{{tournaments.utcNotice}}</p></noscript>
+
+        <div class="hubs-nav-top">
+          <h2>{{tournaments.browseByGame}}</h2>
+          <div class="game-pills">
+            {{gamePills}}
+          </div>
+        </div>
 
         <div id="tournamentI18n" data-today="{{tournaments.today}}" data-tomorrow="{{tournaments.tomorrow}}" aria-hidden="true"></div>
 
@@ -641,6 +818,15 @@
 
         <!-- Estado vacío (se muestra si no hay torneos) -->
         {{emptyState}}
+
+        <div class="hubs-nav">
+          <h2>{{tournaments.browseByCountry}}</h2>
+          <div class="country-pills">
+            {{countryPills}}
+          </div>
+        </div>
+
+        {{faqUI}}
 
         <p class="last-updated">
           {{tournaments.lastUpdated}}: <time class="local-time" datetime="{{fetchedAt}}">{{fetchedAt}}</time>
@@ -1092,6 +1278,9 @@
         {{itemListElements}}
       ]
     }
+    </script>
+    <script type="application/ld+json">
+      {{faqSchema}}
     </script>
   </body>
 </html>
