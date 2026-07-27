@@ -24,6 +24,7 @@ This is the **FightersTech promotional landing page** - a static website for the
 ```
 promo.fighterstech/
 ├── template.html           # SOURCE OF TRUTH for the landing page - edit this, never a loose index.html
+├── games-template.html     # Template for the /games and /es/juegos pages
 ├── build.js                # Build script: template + lang JSONs -> dist/
 ├── package.json            # npm scripts (build) and sharp dependency
 ├── CNAME                   # GitHub Pages custom domain config (promo.fighterstech.com)
@@ -35,6 +36,10 @@ promo.fighterstech/
 ├── README.md               # Public project overview and development guide
 ├── assets/
 │   └── kickstarter.png     # Kickstarter campaign image asset
+├── data/
+│   ├── games.json          # List of supported fighting games for the /games page
+│   ├── tournaments.json    # Live tournament data fetched from start.gg
+│   └── tournaments-summary.json # Aggregated tournament stats
 ├── img/                    # App screenshots (bilingual - 18 total)
 │   ├── 01_en.jpg ... 09_en.jpg   # English versions
 │   ├── 01_es.jpg ... 09_es.jpg   # Spanish versions
