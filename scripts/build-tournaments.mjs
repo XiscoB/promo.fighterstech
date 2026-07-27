@@ -261,18 +261,23 @@ function buildMapUrl(tournament) {
 }
 
 
-function getTopGames(tournaments, limit = 10) {
+function getTopGames(tournaments, limit = 0) {
   const counts = {};
   for (const t of tournaments) {
     if (t.games && t.games.length > 0) {
-      const g = t.games[0];
-      counts[g] = (counts[g] || 0) + 1;
+      for (const g of t.games) {
+        counts[g] = (counts[g] || 0) + 1;
+      }
     }
   }
-  return Object.entries(counts)
+  let sorted = Object.entries(counts)
     .sort((a, b) => b[1] - a[1])
-    .slice(0, limit)
     .map(entry => entry[0]);
+    
+  if (limit > 0) {
+    sorted = sorted.slice(0, limit);
+  }
+  return sorted;
 }
 
 function renderGamePills(topGames, currentGame, lang) {
@@ -599,7 +604,7 @@ async function main() {
     { code: 'es', translations: esTranslations.tournaments, i18nFlat: flattenObject(esTranslations), baseUrl: esNavBaseUrl, canonicalBaseUrl: siteBaseUrl }
   ];
 
-  const topGames = getTopGames(tournaments, 12);
+  const topGames = getTopGames(tournaments, 0);
   const TOP_COUNTRIES = ['US', 'ES', 'FR', 'GB', 'MX', 'JP', 'BR', 'DE', 'CA', 'IT', 'AR', 'CL', 'CO'];
 
   for (const langConfig of languages) {

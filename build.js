@@ -398,13 +398,13 @@ if (fs.existsSync(tournamentsDataPath)) {
   const counts = {};
   for (const t of tournamentsData.tournaments || []) {
     if (t.games && t.games.length > 0) {
-      const g = t.games[0];
-      counts[g] = (counts[g] || 0) + 1;
+      for (const g of t.games) {
+        counts[g] = (counts[g] || 0) + 1;
+      }
     }
   }
   const topGames = Object.entries(counts)
     .sort((a, b) => b[1] - a[1])
-    .slice(0, 12)
     .map(entry => entry[0]);
 
   for (const game of topGames) {
