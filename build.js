@@ -42,6 +42,7 @@ const footerPartial = fs.readFileSync(path.join(__dirname, 'partials', 'footer.h
 template = injectPartial(template, '<!-- PARTIAL:footer -->', footerPartial);
 
 const headerFooterStylesPartial = fs.readFileSync(path.join(__dirname, 'partials', 'header-footer-styles.html'), 'utf8');
+const headerFooterScriptsPartial = fs.readFileSync(path.join(__dirname, 'partials', 'header-footer-scripts.html'), 'utf8');
 
 const downloadModalPartial = fs.readFileSync(path.join(__dirname, 'partials', 'download-modal.html'), 'utf8');
 template = injectPartial(template, '<!-- PARTIAL:download-modal -->', downloadModalPartial);
@@ -243,12 +244,13 @@ function buildGamesPageHtml(lang, gamesData, tournamentsData, translations) {
 
   let html = gamesTemplate;
 
-  // Inyectar partials comunes (head, header, footer, download-modal)
+  // Inyectar partials comunes (head, header, footer, download-modal, scripts)
   html = injectPartial(html, '<!-- PARTIAL:head-common -->', headCommonBase);
   html = injectPartial(html, '<!-- PARTIAL:header-footer-styles -->', headerFooterStylesPartial);
   html = injectPartial(html, '<!-- PARTIAL:header -->', headerPartial);
   html = injectPartial(html, '<!-- PARTIAL:footer -->', footerPartial);
   html = injectPartial(html, '<!-- PARTIAL:download-modal -->', downloadModalPartial);
+  html = injectPartial(html, '<!-- PARTIAL:header-footer-scripts -->', headerFooterScriptsPartial);
 
   for (const [key, value] of Object.entries(replacements)) {
     html = html.replaceAll(`{{${key}}}`, value);

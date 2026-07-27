@@ -81,14 +81,18 @@
 
           let newPath;
           if (lang === "es") {
-            if (path.startsWith("/tournaments/")) {
-              newPath = "/es/torneos/" + path.substring("/tournaments/".length);
+            if (path.startsWith("/tournaments")) {
+              newPath = "/es/torneos" + path.substring("/tournaments".length);
+            } else if (path.startsWith("/games")) {
+              newPath = "/es/juegos" + path.substring("/games".length);
             } else {
               newPath = "/es" + path;
             }
           } else {
-            if (path.startsWith("/es/torneos/")) {
-              newPath = "/tournaments/" + path.substring("/es/torneos/".length);
+            if (path.startsWith("/es/torneos")) {
+              newPath = "/tournaments" + path.substring("/es/torneos".length);
+            } else if (path.startsWith("/es/juegos")) {
+              newPath = "/games" + path.substring("/es/juegos".length);
             } else {
               newPath = path.replace(/^\/es/, "") || "/";
             }
@@ -101,8 +105,10 @@
             window.location.hash;
         };
 
-        // Fix section links when on tournament pages and highlight active nav item
-        const isTournamentPage = path.startsWith("/tournaments/") || path.startsWith("/es/torneos/");
+        // Fix section links when on subpages and highlight active nav item
+        const isTournamentPage = path.startsWith("/tournaments") || path.startsWith("/es/torneos");
+        const isGamesPage = path.startsWith("/games") || path.startsWith("/es/juegos");
+        const isSubpage = isTournamentPage || isGamesPage;
         const landingBase = currentLang === "es" ? "/es/" : "/";
         const sectionLinks = document.querySelectorAll(".nav-link[data-section], .footer-links a[data-section]");
 
@@ -112,17 +118,19 @@
           });
         }
 
-        if (isTournamentPage) {
+        if (isSubpage) {
           sectionLinks.forEach(function (link) {
             const section = link.getAttribute("data-section");
             if (section === "tournaments") {
-              link.classList.add("active");
+              if (isTournamentPage) link.classList.add("active");
+            } else if (section === "games") {
+              if (isGamesPage) link.classList.add("active");
             } else {
               link.setAttribute("href", landingBase + "#" + section);
             }
           });
 
-          // Fix logo home link on tournament pages to keep language
+          // Fix logo home link on subpages to keep language
           const logo = document.querySelector(".logo");
           if (logo) {
             logo.setAttribute("href", landingBase);
