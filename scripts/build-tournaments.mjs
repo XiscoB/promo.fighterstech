@@ -508,6 +508,7 @@ function generateIndexPage({
   const replacements = {
     'lang': lang,
     'tournamentUrl': lang === 'es' ? '/es/torneos/' : '/tournaments/',
+    'gamesUrl': lang === 'es' ? '/es/juegos/' : '/games/',
     'tournaments.listUrl': lang === 'es' ? '/es/torneos/' : '/tournaments/',
     'tournaments.pageTitle': pageTitle,
     'index.pageUrl': pageUrl,

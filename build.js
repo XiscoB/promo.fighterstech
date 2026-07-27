@@ -41,6 +41,8 @@ template = injectPartial(template, '<!-- PARTIAL:header -->', headerPartial);
 const footerPartial = fs.readFileSync(path.join(__dirname, 'partials', 'footer.html'), 'utf8');
 template = injectPartial(template, '<!-- PARTIAL:footer -->', footerPartial);
 
+const headerFooterStylesPartial = fs.readFileSync(path.join(__dirname, 'partials', 'header-footer-styles.html'), 'utf8');
+
 const downloadModalPartial = fs.readFileSync(path.join(__dirname, 'partials', 'download-modal.html'), 'utf8');
 template = injectPartial(template, '<!-- PARTIAL:download-modal -->', downloadModalPartial);
 
@@ -55,6 +57,9 @@ template = injectPartial(template, '<!-- PARTIAL:head-common-assets -->', headCo
 
 const enData = JSON.parse(fs.readFileSync(path.join(__dirname, 'lang', 'en.json'), 'utf8'));
 const esData = JSON.parse(fs.readFileSync(path.join(__dirname, 'lang', 'es.json'), 'utf8'));
+
+const gamesData = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'games.json'), 'utf8'));
+const gamesTemplate = fs.readFileSync(path.join(__dirname, 'games-template.html'), 'utf8');
 
 function flattenObject(ob) {
   var toReturn = {};
@@ -140,12 +145,138 @@ function buildFeaturedTournamentsHtml(lang, tournamentsData, count = 4) {
   }).join('\n');
 }
 
+// ─── Games page helpers ───
+
+function getGamesWithTournaments(tournamentsData) {
+  if (!tournamentsData || !tournamentsData.tournaments) return new Set();
+  const games = new Set();
+  for (const t of tournamentsData.tournaments) {
+    if (t.games) {
+      for (const g of t.games) games.add(g);
+    }
+  }
+  return games;
+}
+
+function buildGameCardsHtml(games, lang, gamesWithTournaments, translations) {
+  return games.map(game => {
+    const hasTournaments = gamesWithTournaments.has(game);
+    const gameSlug = sanitizeDirName(cleanSlug(game));
+    const tournamentsUrl = lang === 'es' ? `/es/torneos/${gameSlug}/` : `/tournaments/${gameSlug}/`;
+    const linkText = hasTournaments ? translations.viewTournaments : translations.noTournaments;
+    const linkHtml = hasTournaments
+      ? `<a href="${tournamentsUrl}" class="game-link">${escapeHtml(linkText)} →</a>`
+      : `<span class="game-note">${escapeHtml(linkText)}</span>`;
+
+    return `<div class="game-card">
+      <div class="game-name">${escapeHtml(game)}</div>
+      ${linkHtml}
+    </div>`;
+  }).join('\n');
+}
+
+function buildItemListSchema(gamesData, lang) {
+  const baseUrl = lang === 'es' ? 'https://promo.fighterstech.com/es/juegos/' : 'https://promo.fighterstech.com/games/';
+  const allGames = gamesData.categories.flatMap(cat => cat.games);
+
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": lang === 'es' ? "Juegos de lucha soportados por FightersTech" : "Fighting games supported by FightersTech",
+    "itemListElement": allGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game,
+        "url": baseUrl
+      }
+    }))
+  }, null, 2);
+}
+
+function buildGamesPageHtml(lang, gamesData, tournamentsData, translations) {
+  const gamesWithTournaments = getGamesWithTournaments(tournamentsData);
+  const tournamentsBase = lang === 'es' ? '/es/torneos/' : '/tournaments/';
+  const pageUrl = lang === 'es' ? 'https://promo.fighterstech.com/es/juegos/' : 'https://promo.fighterstech.com/games/';
+  const canonicalUrl = pageUrl;
+  const hreflangTags = `
+    <link rel="alternate" href="https://promo.fighterstech.com/games/" hreflang="en" />
+    <link rel="alternate" href="https://promo.fighterstech.com/es/juegos/" hreflang="es" />
+    <link rel="alternate" href="https://promo.fighterstech.com/games/" hreflang="x-default" />
+  `;
+
+  const gamesTranslations = translations.games || {};
+
+  const categoriesHtml = gamesData.categories.map(cat => {
+    const title = cat.id === 'modern' ? gamesTranslations.categoryModern : gamesTranslations.categoryRetro;
+    const cards = buildGameCardsHtml(cat.games, lang, gamesWithTournaments, gamesTranslations);
+    return `<section class="games-category">
+      <h2>${escapeHtml(title)}</h2>
+      <div class="games-grid">
+        ${cards}
+      </div>
+    </section>`;
+  }).join('\n');
+
+  const replacements = {
+    'lang': lang,
+    'games.pageTitle': gamesTranslations.pageTitle,
+    'games.metaDescription': gamesTranslations.metaDescription,
+    'games.sectionLabel': gamesTranslations.sectionLabel,
+    'games.h1': gamesTranslations.h1,
+    'games.subtitle': gamesTranslations.subtitle,
+    'games.canonicalUrl': canonicalUrl,
+    'games.pageUrl': pageUrl,
+    'games.hreflangTags': hreflangTags,
+    'games.itemListSchema': buildItemListSchema(gamesData, lang),
+    'games.categoriesHtml': categoriesHtml,
+    'games.ctaTitle': gamesTranslations.ctaTitle,
+    'games.ctaText': gamesTranslations.ctaText,
+    'games.ctaUrl': tournamentsBase,
+    'games.ctaButton': gamesTranslations.ctaButton,
+    'tournamentUrl': tournamentsBase,
+    'gamesUrl': lang === 'es' ? '/es/juegos/' : '/games/',
+    'active_en': lang === 'en' ? 'active' : '',
+    'active_es': lang === 'es' ? 'active' : ''
+  };
+
+  let html = gamesTemplate;
+
+  // Inyectar partials comunes (head, header, footer, download-modal)
+  html = injectPartial(html, '<!-- PARTIAL:head-common -->', headCommonBase);
+  html = injectPartial(html, '<!-- PARTIAL:header-footer-styles -->', headerFooterStylesPartial);
+  html = injectPartial(html, '<!-- PARTIAL:header -->', headerPartial);
+  html = injectPartial(html, '<!-- PARTIAL:footer -->', footerPartial);
+  html = injectPartial(html, '<!-- PARTIAL:download-modal -->', downloadModalPartial);
+
+  for (const [key, value] of Object.entries(replacements)) {
+    html = html.replaceAll(`{{${key}}}`, value);
+  }
+
+  // Inyectar traducciones generales del footer/nav
+  const flatData = flattenObject(translations);
+  for (const [key, value] of Object.entries(flatData)) {
+    if (typeof value === 'string' || typeof value === 'number') {
+      html = html.replaceAll(`{{${key}}}`, value);
+    }
+  }
+
+  html = html.replace(/<html lang="[^"]*">/, `<html lang="${lang}">`);
+
+  return html;
+}
+
 function buildHtml(lang, data, outputDir, tournamentsData) {
   let html = template;
 
   // URL de la sección de torneos según idioma
   const tournamentUrl = lang === 'en' ? '/tournaments/' : '/es/torneos/';
   html = html.replaceAll('{{tournamentUrl}}', tournamentUrl);
+
+  // URL de la página de juegos según idioma
+  const gamesUrl = lang === 'en' ? '/games/' : '/es/juegos/';
+  html = html.replaceAll('{{gamesUrl}}', gamesUrl);
 
   const flatData = flattenObject(data);
   
@@ -218,6 +349,27 @@ let tournamentUrls = '';
 if (fs.existsSync(tournamentsDataPath)) {
   tournamentsData = JSON.parse(fs.readFileSync(tournamentsDataPath, 'utf8'));
   const lastmod = tournamentsData.fetchedAt ? tournamentsData.fetchedAt.split('T')[0] : today;
+
+  // Páginas de juegos
+  tournamentUrls += `
+  <url>
+    <loc>https://promo.fighterstech.com/games/</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://promo.fighterstech.com/games/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://promo.fighterstech.com/es/juegos/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://promo.fighterstech.com/games/" />
+  </url>
+  <url>
+    <loc>https://promo.fighterstech.com/es/juegos/</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://promo.fighterstech.com/games/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://promo.fighterstech.com/es/juegos/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://promo.fighterstech.com/games/" />
+  </url>`;
 
   // Índices de torneos
   tournamentUrls += `
@@ -354,6 +506,23 @@ buildHtml('en', enData, distDir, tournamentsData);
 
 // Generar versión Español (Carpeta /dist/es/)
 buildHtml('es', esData, path.join(distDir, 'es'), tournamentsData);
+
+// Generar páginas de juegos soportados
+const gamesEnHtml = buildGamesPageHtml('en', gamesData, tournamentsData, enData);
+const gamesEnDir = path.join(distDir, 'games');
+if (!fs.existsSync(gamesEnDir)) {
+  fs.mkdirSync(gamesEnDir, { recursive: true });
+}
+fs.writeFileSync(path.join(gamesEnDir, 'index.html'), gamesEnHtml);
+console.log('✅ Página de juegos EN generada en: /dist/games/index.html');
+
+const gamesEsHtml = buildGamesPageHtml('es', gamesData, tournamentsData, esData);
+const gamesEsDir = path.join(distDir, 'es', 'juegos');
+if (!fs.existsSync(gamesEsDir)) {
+  fs.mkdirSync(gamesEsDir, { recursive: true });
+}
+fs.writeFileSync(path.join(gamesEsDir, 'index.html'), gamesEsHtml);
+console.log('✅ Página de juegos ES generada en: /dist/es/juegos/index.html');
 
 // Copiar torneos en español (sin sobrescriber dist/es/index.html)
 const esTournamentsDir = path.join(__dirname, 'es', 'torneos');
