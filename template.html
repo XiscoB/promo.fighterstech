@@ -4638,6 +4638,19 @@
           linkTournaments.href = tournamentUrl;
         }
 
+        // Games link (ruta absoluta, cambia con el idioma)
+        const gamesUrl = lang === 'es' ? '/es/juegos/' : '/games/';
+        const menuGames = document.getElementById("menuGames");
+        if (menuGames) {
+          menuGames.textContent = t.nav.menuGames;
+          menuGames.href = gamesUrl;
+        }
+        const linkGames = document.getElementById("linkGames");
+        if (linkGames) {
+          linkGames.textContent = t.footer?.columns?.product?.links?.games || '';
+          linkGames.href = gamesUrl;
+        }
+
         // Header download button
         const headerDownloadText = document.getElementById("headerDownloadText");
         if (headerDownloadText && t.nav.downloadApp) {
