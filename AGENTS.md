@@ -208,10 +208,14 @@ Each JSON file follows a hierarchical structure organized by sections:
 2. Fixed header with logo, nav, and language toggle
 3. Hero section with headline and store buttons
 4. Main Features section with video carousel
-5. App Images section with phone mockup
-6. Other Features section with video carousel
-7. CTA section
-8. Footer with grid layout
+5. FAQ (Why) section
+6. App Images section with phone mockup
+7. Reviews (testimonials) section
+8. Games section (`#gamesSection`) - grid of supported games from `data/games.json`; games with active tournaments link to their `/tournaments/<game>/` hub
+9. Featured Tournaments section (`#featuredTournamentsSection`) - cards link out to start.gg (individual tournament pages no longer exist; never rewrite them to internal URLs), plus game-hub pills linking to the top hubs
+10. Other Features section with video carousel
+11. CTA section
+12. Footer with grid layout
 
 **JavaScript** (~400 lines):
 - `setLanguage(lang)` - Updates all translatable content dynamically
@@ -281,7 +285,7 @@ When making changes, maintain:
 
 ### Build Step
 
-The landing page is **generated**: `npm run build` (node build.js) substitutes the `{{placeholders}}` in `template.html` with the values from `lang/en.json` / `lang/es.json`, injects the video/testimonial slides, and writes `dist/index.html` (EN) and `dist/es/index.html` (ES), plus static asset copies. Section titles get their last word wrapped in a `<span>` automatically by build.js - keep titles as plain text in the JSONs.
+The landing page is **generated**: `npm run build` (node build.js) substitutes the `{{placeholders}}` in `template.html` with the values from `lang/en.json` / `lang/es.json`, injects the video/testimonial slides, the games-section cards (`{{landingGamesHtml}}`) and the game-hub pills (`{{hubPillsHtml}}`), and writes `dist/index.html` (EN) and `dist/es/index.html` (ES), plus static asset copies. Section titles get their last word wrapped in a `<span>` automatically by build.js - keep titles as plain text in the JSONs.
 
 ### Deployment
 

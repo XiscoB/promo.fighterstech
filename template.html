@@ -2639,14 +2639,16 @@
         color: var(--accent-green);
       }
 
-      .featured-tournaments-footer {
+      .featured-tournaments-footer,
+      .games-footer {
         position: relative;
         z-index: 1;
         margin-top: 40px;
         text-align: center;
       }
 
-      .featured-tournaments-view-all {
+      .featured-tournaments-view-all,
+      .games-view-all {
         display: inline-flex;
         align-items: center;
         gap: 10px;
@@ -2669,7 +2671,8 @@
           background 0.25s ease;
       }
 
-      .featured-tournaments-view-all::after {
+      .featured-tournaments-view-all::after,
+      .games-view-all::after {
         content: "";
         position: absolute;
         top: 0;
@@ -2688,7 +2691,8 @@
       }
 
       @media (hover: hover) and (pointer: fine) {
-        .featured-tournaments-view-all:hover {
+        .featured-tournaments-view-all:hover,
+        .games-view-all:hover {
           transform: translateY(-2px);
           border-color: transparent;
           box-shadow: 0 6px 20px rgba(252, 175, 1, 0.25);
@@ -2698,7 +2702,8 @@
       }
 
       @media (hover: hover) and (pointer: fine) {
-        .featured-tournaments-view-all:hover::after {
+        .featured-tournaments-view-all:hover::after,
+        .games-view-all:hover::after {
           left: 150%;
         }
       }
@@ -2706,6 +2711,155 @@
       @media (max-width: 768px) {
         .featured-tournaments-grid {
           grid-template-columns: 1fr;
+        }
+      }
+
+      /* Game hub pills (browse by game) */
+      .hub-pills {
+        position: relative;
+        z-index: 1;
+        margin-top: 40px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .hub-pills-caption {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--text-muted);
+      }
+
+      .hub-pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 16px;
+        border-radius: var(--radius-xl);
+        background: var(--bg-tertiary);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition:
+          transform 0.25s cubic-bezier(0.23, 1, 0.32, 1),
+          border-color 0.25s ease,
+          color 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .hub-pill:hover {
+          transform: translateY(-2px);
+          border-color: rgba(252, 175, 1, 0.4);
+          color: var(--accent-gold);
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+        }
+      }
+
+      .hub-pill:active {
+        transform: translateY(-1px) scale(0.97);
+      }
+
+      /* ========================================
+         GAMES SECTION
+         ======================================== */
+      .games-section {
+        background: var(--bg-primary);
+        position: relative;
+      }
+
+      .games-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse at 80% 20%,
+            rgba(252, 175, 1, 0.05) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 20% 80%,
+            rgba(30, 144, 255, 0.05) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+      }
+
+      .landing-games-grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+        gap: 12px;
+        margin-top: 48px;
+      }
+
+      .landing-game-card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 16px 14px;
+        background: rgba(0, 51, 102, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius-md);
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.25s cubic-bezier(0.23, 1, 0.32, 1),
+          border-color 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      .landing-game-name {
+        font-family: var(--font-display);
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        line-height: 1.3;
+        transition: color 0.25s ease;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        a.landing-game-card:hover {
+          transform: translateY(-3px);
+          border-color: rgba(252, 175, 1, 0.4);
+          box-shadow:
+            0 10px 24px rgba(0, 0, 0, 0.25),
+            0 0 18px rgba(252, 175, 1, 0.08);
+        }
+
+        a.landing-game-card:hover .landing-game-name {
+          color: var(--accent-gold);
+        }
+      }
+
+      a.landing-game-card:active {
+        transform: translateY(-1px) scale(0.98);
+      }
+
+      /* Games without scheduled tournaments render as static, muted cards */
+      .landing-game-card--static {
+        opacity: 0.55;
+      }
+
+      @media (max-width: 768px) {
+        .landing-games-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
+
+        .landing-game-card {
+          padding: 14px 10px;
+        }
+
+        .landing-game-name {
+          font-size: 0.85rem;
         }
       }
 
@@ -4095,6 +4249,33 @@
       </div>
     </section>
 
+    <!-- Games Section -->
+    <section class="section games-section" id="gamesSection">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-label" id="gamesLabel">{{sections.games.label}}</span>
+          <a href="{{gamesUrl}}" class="section-title-link">
+            <h2 class="section-title" id="titleGames" data-title="All Your Fighting Games">
+              {{sections.games.title}}
+            </h2>
+          </a>
+          <p class="section-description" id="gamesDesc">
+            {{sections.games.description}}
+          </p>
+        </div>
+
+        <div class="landing-games-grid fade-in" id="landingGamesGrid">
+          {{landingGamesHtml}}
+        </div>
+
+        <div class="games-footer fade-in">
+          <a href="{{gamesUrl}}" class="games-view-all">
+            {{sections.games.viewAll}}
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- Featured Tournaments Section -->
     <section class="section featured-tournaments-section" id="featuredTournamentsSection">
       <div class="container">
@@ -4112,6 +4293,11 @@
 
         <div class="featured-tournaments-grid" id="featuredTournamentsGrid">
           {{featuredTournamentsHtml}}
+        </div>
+
+        <div class="hub-pills fade-in" id="hubPills">
+          <span class="hub-pills-caption" id="hubPillsCaption">{{sections.featuredTournaments.browseByGame}}</span>
+          {{hubPillsHtml}}
         </div>
 
         <div class="featured-tournaments-footer fade-in">
@@ -4318,7 +4504,7 @@
       // Load translations from JSON file
       async function loadTranslationFile(lang) {
         try {
-          const response = await fetch(`/lang/${lang}.json?v=3`);
+          const response = await fetch(`/lang/${lang}.json?v=4`);
           if (!response.ok) throw new Error(`Failed to load ${lang}.json`);
           return await response.json();
         } catch (error) {
@@ -4457,15 +4643,13 @@
 
       function updateFeaturedTournamentsLanguage(lang) {
         const tournamentListUrl = lang === 'es' ? '/es/torneos/' : '/tournaments/';
+        const gamesUrl = lang === 'es' ? '/es/juegos/' : '/games/';
         const t = translations[lang];
         if (!t || !t.tournaments) return;
 
+        // Featured cards link to start.gg (set at build time); individual
+        // tournament pages no longer exist, so never rewrite them here.
         document.querySelectorAll('.featured-tournament-card').forEach((card) => {
-          const slug = card.dataset.slug;
-          if (slug) {
-            card.href = `${tournamentListUrl}${slug}/`;
-          }
-
           const badge = card.querySelector('[data-featured-badge]');
           if (badge) {
             const mode = badge.dataset.featuredBadge;
@@ -4499,6 +4683,18 @@
         if (titleLink) titleLink.href = tournamentListUrl;
         const viewAllBtn = document.querySelector('.featured-tournaments-view-all');
         if (viewAllBtn) viewAllBtn.href = tournamentListUrl;
+
+        // Game hub links (pills + games section cards) share the same slugs
+        // in EN and ES, so only the base path changes with the language
+        document.querySelectorAll('[data-hub-slug]').forEach((el) => {
+          el.href = `${tournamentListUrl}${el.dataset.hubSlug}/`;
+        });
+
+        // Games section links to the /games page
+        const gamesTitleLink = document.querySelector('#gamesSection .section-title-link');
+        if (gamesTitleLink) gamesTitleLink.href = gamesUrl;
+        const gamesViewAllBtn = document.querySelector('.games-view-all');
+        if (gamesViewAllBtn) gamesViewAllBtn.href = gamesUrl;
       }
 
       function setLanguage(lang) {
@@ -4663,8 +4859,9 @@
         sectionLabels[1].textContent = t.sections.faq.label;
         sectionLabels[2].textContent = t.sections.app.label;
         sectionLabels[3].textContent = t.sections.reviews.label;
-        sectionLabels[4].textContent = t.sections.featuredTournaments.label;
-        sectionLabels[5].textContent = t.sections.more.label;
+        sectionLabels[4].textContent = t.sections.games.label;
+        sectionLabels[5].textContent = t.sections.featuredTournaments.label;
+        sectionLabels[6].textContent = t.sections.more.label;
 
         const sectionDescriptions = document.querySelectorAll(
           ".section-description",
@@ -4676,8 +4873,10 @@
         sectionDescriptions[2].textContent =
           t.sections.reviews.description;
         sectionDescriptions[3].textContent =
-          t.sections.featuredTournaments.description;
+          t.sections.games.description;
         sectionDescriptions[4].textContent =
+          t.sections.featuredTournaments.description;
+        sectionDescriptions[5].textContent =
           t.sections.more.description;
 
         // CTA section
@@ -4744,6 +4943,29 @@
         const viewAllBtn = document.querySelector(".featured-tournaments-view-all");
         if (viewAllBtn && t.sections.featuredTournaments.viewAll) {
           viewAllBtn.textContent = t.sections.featuredTournaments.viewAll;
+        }
+
+        // Update game hub pills caption
+        const hubPillsCaption = document.getElementById("hubPillsCaption");
+        if (hubPillsCaption && t.sections.featuredTournaments.browseByGame) {
+          hubPillsCaption.textContent = t.sections.featuredTournaments.browseByGame;
+        }
+
+        // Update Games section title and view-all button
+        const gamesTitle = document.getElementById("titleGames");
+        if (gamesTitle && t.sections.games.title) {
+          const titleText = t.sections.games.title;
+          gamesTitle.setAttribute("data-title", titleText);
+          const parts = titleText.split(" ");
+          if (parts.length > 1) {
+            gamesTitle.innerHTML = `${parts.slice(0, -1).join(" ")} <span>${parts[parts.length - 1]}</span>`;
+          } else {
+            gamesTitle.textContent = titleText;
+          }
+        }
+        const gamesViewAllBtn = document.querySelector(".games-view-all");
+        if (gamesViewAllBtn && t.sections.games.viewAll) {
+          gamesViewAllBtn.textContent = t.sections.games.viewAll;
         }
 
         // Update Why FightersTech section title
@@ -4999,13 +5221,15 @@
           "faqSection",
           "appSection",
           "reviewsSection",
+          "gamesSection",
           "featuredTournamentsSection",
           "moreSection"
         ];
 
         // Map section IDs to the nav-link data-section they should activate.
-        // The tournaments page link represents the featured tournaments section on the landing.
+        // The tournaments/games page links represent their landing sections.
         const sectionToNav = {
+          "gamesSection": "games",
           "featuredTournamentsSection": "tournaments"
         };
 

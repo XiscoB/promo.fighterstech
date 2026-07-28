@@ -176,6 +176,42 @@ function buildGameCardsHtml(games, lang, gamesWithTournaments, translations) {
   }).join('\n');
 }
 
+// ─── Landing page helpers (games section + hub pills) ───
+
+function getTopGamesByTournaments(tournamentsData, count = 8) {
+  const counts = {};
+  for (const t of (tournamentsData && tournamentsData.tournaments) || []) {
+    if (t.games && t.games.length > 0) {
+      for (const g of t.games) {
+        counts[g] = (counts[g] || 0) + 1;
+      }
+    }
+  }
+  return Object.entries(counts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, count)
+    .map(entry => entry[0]);
+}
+
+function buildLandingGamesHtml(lang, gamesData, gamesWithTournaments) {
+  const tournamentsBase = lang === 'es' ? '/es/torneos/' : '/tournaments/';
+  return gamesData.categories.flatMap(cat => cat.games).map(game => {
+    const gameSlug = sanitizeDirName(cleanSlug(game));
+    if (gamesWithTournaments.has(game)) {
+      return `<a href="${tournamentsBase}${gameSlug}/" class="landing-game-card" data-hub-slug="${escapeHtml(gameSlug)}"><span class="landing-game-name">${escapeHtml(game)}</span></a>`;
+    }
+    return `<span class="landing-game-card landing-game-card--static"><span class="landing-game-name">${escapeHtml(game)}</span></span>`;
+  }).join('\n');
+}
+
+function buildHubPillsHtml(lang, tournamentsData, count = 8) {
+  const tournamentsBase = lang === 'es' ? '/es/torneos/' : '/tournaments/';
+  return getTopGamesByTournaments(tournamentsData, count).map(game => {
+    const gameSlug = sanitizeDirName(cleanSlug(game));
+    return `<a href="${tournamentsBase}${gameSlug}/" class="hub-pill" data-hub-slug="${escapeHtml(gameSlug)}">${escapeHtml(game)}</a>`;
+  }).join('\n');
+}
+
 function buildItemListSchema(gamesData, lang) {
   const baseUrl = lang === 'es' ? 'https://promo.fighterstech.com/es/juegos/' : 'https://promo.fighterstech.com/games/';
   const allGames = gamesData.categories.flatMap(cat => cat.games);
@@ -287,7 +323,7 @@ function buildHtml(lang, data, outputDir, tournamentsData) {
     if (typeof value === 'string' || typeof value === 'number') {
       let finalValue = value;
       // Añadir <span> a la última palabra de los títulos
-      if (key.match(/^sections\.(mainFeatures|more|faq|app|reviews|featuredTournaments)\.title$/)) {
+      if (key.match(/^sections\.(mainFeatures|more|faq|app|reviews|featuredTournaments|games)\.title$/)) {
         const parts = value.split(" ");
         if (parts.length > 1) {
           const lastWord = parts.pop();
@@ -313,11 +349,16 @@ function buildHtml(lang, data, outputDir, tournamentsData) {
   const otherVideosHtml = '';
   const reviewsHtml = '';
   const featuredTournamentsHtml = buildFeaturedTournamentsHtml(lang, tournamentsData);
+  const gamesWithTournaments = getGamesWithTournaments(tournamentsData);
+  const landingGamesHtml = buildLandingGamesHtml(lang, gamesData, gamesWithTournaments);
+  const hubPillsHtml = buildHubPillsHtml(lang, tournamentsData);
 
   html = html.replace('{{mainVideosHtml}}', mainVideosHtml);
   html = html.replace('{{otherVideosHtml}}', otherVideosHtml);
   html = html.replace('{{reviewsHtml}}', reviewsHtml);
   html = html.replace('{{featuredTournamentsHtml}}', featuredTournamentsHtml);
+  html = html.replace('{{landingGamesHtml}}', landingGamesHtml);
+  html = html.replace('{{hubPillsHtml}}', hubPillsHtml);
 
   html = html.replace(/<html lang="[^"]*">/, `<html lang="${lang}">`);
   html = html.replaceAll('{{active_en}}', lang === 'en' ? 'active' : '');
