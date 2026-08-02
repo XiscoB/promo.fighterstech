@@ -1,63 +1,7 @@
 {
-  "fetchedAt": "2026-08-02T11:29:46.581Z",
+  "fetchedAt": "2026-08-02T12:29:03.883Z",
   "windowDays": 4,
   "tournaments": [
-    {
-      "name": "Bunker Fights 02.08. (Tekken)",
-      "slug": "tournament/bunker-fights-02-08-tekken",
-      "startAt": 1785672000,
-      "endAt": 1785697200,
-      "city": "Frankfurt am Main",
-      "addrState": "HE",
-      "countryCode": "DE",
-      "lat": 50.093943,
-      "lng": 8.6098732,
-      "isOnline": false,
-      "numAttendees": 10,
-      "games": [
-        "Avatar Legends: The Fighting Game",
-        "Super Smash Bros. Ultimate",
-        "TEKKEN 8"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/938769/image-83c4e52c8d1bf454929f00562b736786.png"
-    },
-    {
-      "name": "NFC#66 August Double Header Part 1 ft SF6/Tekken 8/GG:ST/Avatar Legends/ST/SMS",
-      "slug": "tournament/nfc-66-august-double-header-part-1-ft-sf6-tekken-8-gg-st-avatar-legends",
-      "startAt": 1785672000,
-      "endAt": 1785693600,
-      "city": "Newcastle upon Tyne",
-      "addrState": "England",
-      "countryCode": "GB",
-      "lat": 54.9685194,
-      "lng": -1.6102278,
-      "isOnline": false,
-      "numAttendees": 26,
-      "games": [
-        "Avatar Legends: The Fighting Game",
-        "Guilty Gear: Strive",
-        "Street Fighter 6",
-        "TEKKEN 8"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/931924/image-ce201e7ca226d01836614c9358392ad6.jpg"
-    },
-    {
-      "name": "House of Smash #193: Melee",
-      "slug": "tournament/house-of-smash-193-melee",
-      "startAt": 1785672000,
-      "endAt": 1785697200,
-      "city": "Oslo",
-      "addrState": "Oslo",
-      "countryCode": "NO",
-      "lat": 59.9217514,
-      "lng": 10.7516198,
-      "isOnline": false,
-      "numAttendees": 13,
-      "games": [
-        "Super Smash Bros. Melee"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/937188/image-09eeb874482cd21a63a794feb9a0f85a.png"
-    },
     {
       "name": "Calaboston Tournament II",
       "slug": "tournament/calaboston-tournament-ii",
@@ -86,7 +30,7 @@
       "lat": null,
       "lng": null,
       "isOnline": true,
-      "numAttendees": 7,
+      "numAttendees": 21,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -172,7 +116,7 @@
       "lat": null,
       "lng": null,
       "isOnline": true,
-      "numAttendees": 7,
+      "numAttendees": 9,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -189,7 +133,7 @@
       "lat": 43.2953842,
       "lng": 5.396455899999999,
       "isOnline": false,
-      "numAttendees": 18,
+      "numAttendees": 20,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -600,7 +544,7 @@
       "lat": 45.76377309999999,
       "lng": 4.8443404,
       "isOnline": false,
-      "numAttendees": 17,
+      "numAttendees": 20,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -699,24 +643,6 @@
       "imageUrl": "https://images.start.gg/images/tournament/938884/image-1083ebfa2eb325a2feab724849e7dc1f.png"
     },
     {
-      "name": "Smasheville: Chococroc Saga ($200 Pot Bonus)",
-      "slug": "tournament/smasheville-chococroc-saga-200-pot-bonus",
-      "startAt": 1785697200,
-      "endAt": 1785715200,
-      "city": "Asheville",
-      "addrState": "NC",
-      "countryCode": "US",
-      "lat": 35.61102,
-      "lng": -82.62791,
-      "isOnline": false,
-      "numAttendees": 14,
-      "games": [
-        "Super Smash Bros. Melee",
-        "Super Smash Bros. Ultimate"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/935788/image-ab86788c8c42f7aff64271d93ee0445a.png"
-    },
-    {
       "name": "CINCY DOJO 8/2/2026",
       "slug": "tournament/cincy-dojo-8-2-2026",
       "startAt": 1785697200,
@@ -783,6 +709,24 @@
         "Super Smash Bros. Ultimate"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/937720/image-59b03ebf88972572ef7a2d1e1449faca.png"
+    },
+    {
+      "name": "Smasheville: Chococroc Saga ($200 Pot Bonus)",
+      "slug": "tournament/smasheville-chococroc-saga-200-pot-bonus",
+      "startAt": 1785697200,
+      "endAt": 1785715200,
+      "city": "Asheville",
+      "addrState": "NC",
+      "countryCode": "US",
+      "lat": 35.61102,
+      "lng": -82.62791,
+      "isOnline": false,
+      "numAttendees": 14,
+      "games": [
+        "Super Smash Bros. Melee",
+        "Super Smash Bros. Ultimate"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/935788/image-ab86788c8c42f7aff64271d93ee0445a.png"
     },
     {
       "name": "Summer Fox Smackdown 31 - FGC Monthly",
@@ -1276,7 +1220,7 @@
       "lat": 38.7990716,
       "lng": -77.44582650000001,
       "isOnline": false,
-      "numAttendees": 24,
+      "numAttendees": 25,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -1911,7 +1855,7 @@
       "lat": -32.91838630000001,
       "lng": 151.7508455,
       "isOnline": false,
-      "numAttendees": 4,
+      "numAttendees": 5,
       "games": [
         "Guilty Gear: Strive",
         "Street Fighter 6",
@@ -2068,7 +2012,7 @@
       "lat": 60.16985569999999,
       "lng": 24.938379,
       "isOnline": false,
-      "numAttendees": 3,
+      "numAttendees": 4,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -2085,7 +2029,7 @@
       "lat": 49.0158944,
       "lng": 8.4158868,
       "isOnline": false,
-      "numAttendees": 6,
+      "numAttendees": 8,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -3004,7 +2948,7 @@
       "lat": null,
       "lng": null,
       "isOnline": true,
-      "numAttendees": 5,
+      "numAttendees": 6,
       "games": [
         "Guilty Gear: Strive"
       ],
@@ -3157,7 +3101,7 @@
       "lat": 35.6642645,
       "lng": 139.7032434,
       "isOnline": false,
-      "numAttendees": 14,
+      "numAttendees": 15,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -3226,7 +3170,7 @@
       "lat": 46.5252784,
       "lng": 6.6360449,
       "isOnline": false,
-      "numAttendees": 3,
+      "numAttendees": 4,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -4045,23 +3989,6 @@
       "imageUrl": "https://images.start.gg/images/tournament/927880/image-4263aac450eaa366d81b27f8c772d2c1.png"
     },
     {
-      "name": "$100+ Aegis Esports x ZenMarket #2 (NA SERVER) - Avatar Legends",
-      "slug": "tournament/100-aegis-esports-x-zenmarket-2-na-server-avatar-legends",
-      "startAt": 1785888000,
-      "endAt": 1785902400,
-      "city": null,
-      "addrState": null,
-      "countryCode": null,
-      "lat": null,
-      "lng": null,
-      "isOnline": true,
-      "numAttendees": 20,
-      "games": [
-        "Avatar Legends: The Fighting Game"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/937894/image-1abc2dd24504e845a81dba87646a73ab.png"
-    },
-    {
       "name": "Double Perfect #29",
       "slug": "tournament/double-perfect-29",
       "startAt": 1785888000,
@@ -4078,6 +4005,23 @@
         "TEKKEN 8"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/939064/image-737a9b20dfaffeedd88cc69405679024.png"
+    },
+    {
+      "name": "$100+ Aegis Esports x ZenMarket #2 (NA SERVER) - Avatar Legends",
+      "slug": "tournament/100-aegis-esports-x-zenmarket-2-na-server-avatar-legends",
+      "startAt": 1785888000,
+      "endAt": 1785902400,
+      "city": null,
+      "addrState": null,
+      "countryCode": null,
+      "lat": null,
+      "lng": null,
+      "isOnline": true,
+      "numAttendees": 21,
+      "games": [
+        "Avatar Legends: The Fighting Game"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/937894/image-1abc2dd24504e845a81dba87646a73ab.png"
     },
     {
       "name": "Tuesdays at D&B #55",
@@ -4128,7 +4072,7 @@
       "lat": 49.2607872,
       "lng": -123.0474429,
       "isOnline": false,
-      "numAttendees": 2,
+      "numAttendees": 3,
       "games": [
         "Super Smash Bros. Melee"
       ],
@@ -4666,7 +4610,7 @@
       "lat": 49.25676929999999,
       "lng": 4.0253629,
       "isOnline": false,
-      "numAttendees": 8,
+      "numAttendees": 9,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -4702,7 +4646,7 @@
       "lat": 44.8355249,
       "lng": -0.5756036,
       "isOnline": false,
-      "numAttendees": 1,
+      "numAttendees": 2,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
