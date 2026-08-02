@@ -1,58 +1,7 @@
 {
-  "fetchedAt": "2026-08-02T13:33:40.387Z",
+  "fetchedAt": "2026-08-02T14:34:58.782Z",
   "windowDays": 4,
   "tournaments": [
-    {
-      "name": "Por Água Abaixo #13 - Mais torneios do que o Smash or Pass!",
-      "slug": "tournament/por-gua-abaixo-13-mais-torneios-do-que-o-smash-or-pass",
-      "startAt": 1785679200,
-      "endAt": 1785697200,
-      "city": "Lisboa",
-      "addrState": "Lisboa",
-      "countryCode": "PT",
-      "lat": 38.7621539,
-      "lng": -9.154567499999999,
-      "isOnline": true,
-      "numAttendees": 12,
-      "games": [
-        "Super Smash Bros. Ultimate"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/934786/image-930d3ebc94b0cb2e3bc2868494f7eabd.png"
-    },
-    {
-      "name": "Funday Sunday Ep. 84",
-      "slug": "tournament/funday-sunday-ep-84",
-      "startAt": 1785679500,
-      "endAt": 1785688260,
-      "city": null,
-      "addrState": null,
-      "countryCode": null,
-      "lat": null,
-      "lng": null,
-      "isOnline": true,
-      "numAttendees": 9,
-      "games": [
-        "Super Smash Bros. Melee"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/934713/image-523847d5b472756b08bbffd4d66ef8e3.jpg"
-    },
-    {
-      "name": "Cierzone 49",
-      "slug": "tournament/cierzone-49",
-      "startAt": 1785681000,
-      "endAt": 1785702600,
-      "city": "Zaragoza",
-      "addrState": "AR",
-      "countryCode": "ES",
-      "lat": 41.63048819999999,
-      "lng": -0.9089324999999999,
-      "isOnline": false,
-      "numAttendees": 16,
-      "games": [
-        "Super Smash Bros. Ultimate"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/937665/image-1c6ef49b2b7f8bc4e2c19e337c4c142b.png"
-    },
     {
       "name": "Encore Duality #2",
       "slug": "tournament/encore-duality-2",
@@ -82,7 +31,7 @@
       "lat": 43.2953842,
       "lng": 5.396455899999999,
       "isOnline": false,
-      "numAttendees": 20,
+      "numAttendees": 21,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -99,45 +48,11 @@
       "lat": null,
       "lng": null,
       "isOnline": true,
-      "numAttendees": 13,
+      "numAttendees": 21,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/938892/image-416c0942751786ea8a2330e17c2fa26c.jpg"
-    },
-    {
-      "name": "Press Smash #2",
-      "slug": "tournament/press-smash-2",
-      "startAt": 1785682800,
-      "endAt": 1785708000,
-      "city": "Chillán",
-      "addrState": "Ñuble",
-      "countryCode": "CL",
-      "lat": -36.6138009,
-      "lng": -72.1054052,
-      "isOnline": false,
-      "numAttendees": 30,
-      "games": [
-        "Super Smash Bros. Ultimate"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/933118/image-f23a7b800d7537f046ab6b655b86b9f2.png"
-    },
-    {
-      "name": "RVA Sm★sh #230",
-      "slug": "tournament/rva-sm-sh-230",
-      "startAt": 1785682800,
-      "endAt": 1785711600,
-      "city": "Richmond",
-      "addrState": "VA",
-      "countryCode": "US",
-      "lat": 37.5659862,
-      "lng": -77.4713118,
-      "isOnline": false,
-      "numAttendees": 14,
-      "games": [
-        "Super Smash Bros. Ultimate"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/937544/image-6396d9f86e2b648da77195e6bdd0272a.jpg"
     },
     {
       "name": "Smash The Challenge",
@@ -155,6 +70,40 @@
         "TEKKEN 8"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/925440/image-859ccd48031ac88f535cd0051162047f.jpg"
+    },
+    {
+      "name": "RVA Sm★sh #230",
+      "slug": "tournament/rva-sm-sh-230",
+      "startAt": 1785682800,
+      "endAt": 1785711600,
+      "city": "Richmond",
+      "addrState": "VA",
+      "countryCode": "US",
+      "lat": 37.5659862,
+      "lng": -77.4713118,
+      "isOnline": false,
+      "numAttendees": 16,
+      "games": [
+        "Super Smash Bros. Ultimate"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/937544/image-6396d9f86e2b648da77195e6bdd0272a.jpg"
+    },
+    {
+      "name": "Press Smash #2",
+      "slug": "tournament/press-smash-2",
+      "startAt": 1785682800,
+      "endAt": 1785708000,
+      "city": "Chillán",
+      "addrState": "Ñuble",
+      "countryCode": "CL",
+      "lat": -36.6138009,
+      "lng": -72.1054052,
+      "isOnline": false,
+      "numAttendees": 31,
+      "games": [
+        "Super Smash Bros. Ultimate"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/933118/image-f23a7b800d7537f046ab6b655b86b9f2.png"
     },
     {
       "name": "Pretty Boy Dirty Roy",
@@ -201,7 +150,7 @@
       "lat": null,
       "lng": null,
       "isOnline": true,
-      "numAttendees": 12,
+      "numAttendees": 14,
       "games": [
         "Rivals of Aether II"
       ],
@@ -252,7 +201,7 @@
       "lat": 39.7049049,
       "lng": -86.1512808,
       "isOnline": false,
-      "numAttendees": 8,
+      "numAttendees": 9,
       "games": [
         "Super Smash Bros. Melee"
       ],
@@ -293,23 +242,6 @@
       "imageUrl": "https://images.start.gg/images/tournament/931765/image-fe49c624bc88d9c4d0683febaf598c5f.png"
     },
     {
-      "name": "Smash on the Harbour #273 - Why is it August already",
-      "slug": "tournament/smash-on-the-harbour-273-why-is-it-august-already",
-      "startAt": 1785690000,
-      "endAt": 1785711600,
-      "city": "Halifax",
-      "addrState": "NS",
-      "countryCode": "CA",
-      "lat": 44.6370275,
-      "lng": -63.5882169,
-      "isOnline": false,
-      "numAttendees": 10,
-      "games": [
-        "Super Smash Bros. Ultimate"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/938628/image-e63b13cb05101112c006028be8546277.png"
-    },
-    {
       "name": "The War Room Season 3 #4",
       "slug": "tournament/the-war-room-season-3-4",
       "startAt": 1785690000,
@@ -325,23 +257,6 @@
         "TEKKEN 8"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/932987/image-85a8538a7cbfbcf47aceb51860322b69.jpg"
-    },
-    {
-      "name": "Heinous' and DankStep's Birthday Bash",
-      "slug": "tournament/heinous-and-dankstep-s-birthday-bash",
-      "startAt": 1785690000,
-      "endAt": 1785729540,
-      "city": "Wallingford",
-      "addrState": "CT",
-      "countryCode": "US",
-      "lat": 41.4557041,
-      "lng": -72.8212707,
-      "isOnline": false,
-      "numAttendees": 31,
-      "games": [
-        "Super Smash Bros. Ultimate"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/936057/image-6c13ce95f76e08ad5af624de7dc9dfaf.png"
     },
     {
       "name": "Swole Smash: Carb Loaded 🍕#2",
@@ -360,6 +275,40 @@
         "Super Smash Bros. Ultimate"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/934447/image-e35351c6fce3e01eae3a2863b263fb30.png"
+    },
+    {
+      "name": "Smash on the Harbour #273 - Why is it August already",
+      "slug": "tournament/smash-on-the-harbour-273-why-is-it-august-already",
+      "startAt": 1785690000,
+      "endAt": 1785711600,
+      "city": "Halifax",
+      "addrState": "NS",
+      "countryCode": "CA",
+      "lat": 44.6370275,
+      "lng": -63.5882169,
+      "isOnline": false,
+      "numAttendees": 12,
+      "games": [
+        "Super Smash Bros. Ultimate"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/938628/image-e63b13cb05101112c006028be8546277.png"
+    },
+    {
+      "name": "Heinous' and DankStep's Birthday Bash",
+      "slug": "tournament/heinous-and-dankstep-s-birthday-bash",
+      "startAt": 1785690000,
+      "endAt": 1785729540,
+      "city": "Wallingford",
+      "addrState": "CT",
+      "countryCode": "US",
+      "lat": 41.4557041,
+      "lng": -72.8212707,
+      "isOnline": false,
+      "numAttendees": 32,
+      "games": [
+        "Super Smash Bros. Ultimate"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/936057/image-6c13ce95f76e08ad5af624de7dc9dfaf.png"
     },
     {
       "name": "TALK SMACK GET BODIED PEAK 8 LAST CHANCE QUALIFIER",
@@ -396,23 +345,6 @@
       "imageUrl": "https://images.start.gg/images/tournament/938747/image-48166d4978f6abb9e25407f732f5bcb9.jpg"
     },
     {
-      "name": "RIVALS 2 ROOKIES TOURNAMENT #62",
-      "slug": "tournament/rivals-2-rookies-tournament-62",
-      "startAt": 1785690000,
-      "endAt": 1785707940,
-      "city": null,
-      "addrState": null,
-      "countryCode": null,
-      "lat": null,
-      "lng": null,
-      "isOnline": true,
-      "numAttendees": 4,
-      "games": [
-        "Rivals of Aether II"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/938779/image-c96d48dd4909e03f2174549f81c0b739.png"
-    },
-    {
       "name": "Nook Knockout 46",
       "slug": "tournament/nook-knockout-46",
       "startAt": 1785690000,
@@ -431,6 +363,23 @@
       "imageUrl": "https://images.start.gg/images/tournament/937344/image-e0c7cf4e125e6231f4d4ec3febd0f023.png"
     },
     {
+      "name": "RIVALS 2 ROOKIES TOURNAMENT #62",
+      "slug": "tournament/rivals-2-rookies-tournament-62",
+      "startAt": 1785690000,
+      "endAt": 1785707940,
+      "city": null,
+      "addrState": null,
+      "countryCode": null,
+      "lat": null,
+      "lng": null,
+      "isOnline": true,
+      "numAttendees": 5,
+      "games": [
+        "Rivals of Aether II"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/938779/image-c96d48dd4909e03f2174549f81c0b739.png"
+    },
+    {
       "name": "Summer Smash Club #7",
       "slug": "tournament/summer-smash-club-7",
       "startAt": 1785690000,
@@ -441,7 +390,7 @@
       "lat": 38.3640265,
       "lng": -75.6007925,
       "isOnline": false,
-      "numAttendees": 10,
+      "numAttendees": 11,
       "games": [
         "Super Smash Bros. Melee",
         "Super Smash Bros. Ultimate"
@@ -476,7 +425,7 @@
       "lat": 23.0966006,
       "lng": -82.34215050000002,
       "isOnline": false,
-      "numAttendees": 27,
+      "numAttendees": 30,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -493,11 +442,28 @@
       "lat": null,
       "lng": null,
       "isOnline": true,
-      "numAttendees": 52,
+      "numAttendees": 57,
       "games": [
         "TEKKEN 8"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/937053/image-bfc73c66669eb91d0bcccf7440f6b9bb.png"
+    },
+    {
+      "name": "Surprise R2 bracket",
+      "slug": "tournament/surprise-r2-bracket",
+      "startAt": 1785691800,
+      "endAt": 1785708000,
+      "city": null,
+      "addrState": null,
+      "countryCode": null,
+      "lat": null,
+      "lng": null,
+      "isOnline": true,
+      "numAttendees": 5,
+      "games": [
+        "Rivals of Aether II"
+      ],
+      "imageUrl": null
     },
     {
       "name": "La Tea Party #35",
@@ -510,7 +476,7 @@
       "lat": 45.76377309999999,
       "lng": 4.8443404,
       "isOnline": false,
-      "numAttendees": 22,
+      "numAttendees": 24,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -544,7 +510,7 @@
       "lat": 42.7040281,
       "lng": -83.28571389999999,
       "isOnline": false,
-      "numAttendees": 5,
+      "numAttendees": 6,
       "games": [
         "Super Smash Bros. Melee"
       ],
@@ -781,23 +747,6 @@
       "imageUrl": "https://images.start.gg/images/tournament/938495/image-21dd4f8b4295f4cc389abb2e2be1d28f.png"
     },
     {
-      "name": "Freedom.zips 155",
-      "slug": "tournament/freedom-zips-155",
-      "startAt": 1785697200,
-      "endAt": 1785722400,
-      "city": "Akron",
-      "addrState": "OH",
-      "countryCode": "US",
-      "lat": 41.0783058,
-      "lng": -81.5122887,
-      "isOnline": false,
-      "numAttendees": 9,
-      "games": [
-        "Super Smash Bros. Ultimate"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/938926/image-817bcf374a8c17cfa20751c6cfcdd8b8.png"
-    },
-    {
       "name": "Crimson Crown #1",
       "slug": "tournament/crimson-crown-1",
       "startAt": 1785697200,
@@ -813,6 +762,23 @@
         "Super Smash Bros. Ultimate"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/939143/image-3e257b213ada3ce0bb4e7969e7eaecef.png"
+    },
+    {
+      "name": "Freedom.zips 155",
+      "slug": "tournament/freedom-zips-155",
+      "startAt": 1785697200,
+      "endAt": 1785722400,
+      "city": "Akron",
+      "addrState": "OH",
+      "countryCode": "US",
+      "lat": 41.0783058,
+      "lng": -81.5122887,
+      "isOnline": false,
+      "numAttendees": 12,
+      "games": [
+        "Super Smash Bros. Ultimate"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/938926/image-817bcf374a8c17cfa20751c6cfcdd8b8.png"
     },
     {
       "name": "Show Time",
@@ -894,7 +860,7 @@
       "lat": null,
       "lng": null,
       "isOnline": true,
-      "numAttendees": 3,
+      "numAttendees": 4,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -1067,7 +1033,7 @@
       "lat": 42.2798442,
       "lng": -83.7390533,
       "isOnline": false,
-      "numAttendees": 10,
+      "numAttendees": 11,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -1091,23 +1057,6 @@
       "imageUrl": "https://images.start.gg/images/tournament/938324/image-fc218b941ddcccefb1613c3b34a0183f.png"
     },
     {
-      "name": "Zeekly #5 Mambo",
-      "slug": "tournament/zeekly-5-mambo",
-      "startAt": 1785704400,
-      "endAt": 1785722400,
-      "city": null,
-      "addrState": null,
-      "countryCode": null,
-      "lat": null,
-      "lng": null,
-      "isOnline": true,
-      "numAttendees": 5,
-      "games": [
-        "Rivals of Aether II"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/937063/image-ab5b17782f383b7e36142e1725276d90.png"
-    },
-    {
       "name": "Ice Box Battles @ Primo #35",
       "slug": "tournament/ice-box-battles-primo-35",
       "startAt": 1785704400,
@@ -1123,6 +1072,23 @@
         "Super Smash Bros. Ultimate"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/938399/image-340798862080664ffb4105bd64643c3c.png"
+    },
+    {
+      "name": "Zeekly #5 Mambo",
+      "slug": "tournament/zeekly-5-mambo",
+      "startAt": 1785704400,
+      "endAt": 1785722400,
+      "city": null,
+      "addrState": null,
+      "countryCode": null,
+      "lat": null,
+      "lng": null,
+      "isOnline": true,
+      "numAttendees": 6,
+      "games": [
+        "Rivals of Aether II"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/937063/image-ab5b17782f383b7e36142e1725276d90.png"
     },
     {
       "name": "Raging Tournament Weekly #3",
@@ -1159,23 +1125,6 @@
       "imageUrl": "https://images.start.gg/images/tournament/938828/image-a59d9cb43c270d8fbf01ffc82cd0c1a7.png"
     },
     {
-      "name": "($20) Fuel The Fire #15 (Worldwide Edition)",
-      "slug": "tournament/20-fuel-the-fire-15-worldwide-edition",
-      "startAt": 1785708000,
-      "endAt": 1785751200,
-      "city": null,
-      "addrState": null,
-      "countryCode": null,
-      "lat": null,
-      "lng": null,
-      "isOnline": true,
-      "numAttendees": 5,
-      "games": [
-        "Super Smash Bros. Ultimate"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/933596/image-bec89e3dbc76420f37a062b2519b3256.png"
-    },
-    {
       "name": "Thunder Jolt Series #10",
       "slug": "tournament/thunder-jolt-series-10",
       "startAt": 1785708000,
@@ -1203,28 +1152,28 @@
       "lat": 38.7990716,
       "lng": -77.44582650000001,
       "isOnline": false,
-      "numAttendees": 26,
+      "numAttendees": 28,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/937148/image-9f2330b9b0198fc02ffa355cc333e981.png"
     },
     {
-      "name": "City of the Cream 72 2v2 - FATAL FURY: City of the Wolves Tournament COTW Torneo",
-      "slug": "tournament/city-of-the-cream-72-2v2-fatal-fury-city-of-the-wolves-tournament-cotw-torneo",
+      "name": "($20) Fuel The Fire #15 (Worldwide Edition)",
+      "slug": "tournament/20-fuel-the-fire-15-worldwide-edition",
       "startAt": 1785708000,
-      "endAt": 1785736740,
+      "endAt": 1785751200,
       "city": null,
       "addrState": null,
       "countryCode": null,
       "lat": null,
       "lng": null,
       "isOnline": true,
-      "numAttendees": 25,
+      "numAttendees": 8,
       "games": [
-        "Fatal Fury: City of the Wolves"
+        "Super Smash Bros. Ultimate"
       ],
-      "imageUrl": "https://images.start.gg/images/tournament/936858/image-2a02445c67203ad24da58e30468e3aeb.png"
+      "imageUrl": "https://images.start.gg/images/tournament/933596/image-bec89e3dbc76420f37a062b2519b3256.png"
     },
     {
       "name": "Finde De Melee #7",
@@ -1242,6 +1191,23 @@
         "Super Smash Bros. Melee"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/937266/image-deb87cd88348d96aaf10eca1ecd41baa.png"
+    },
+    {
+      "name": "City of the Cream 72 2v2 - FATAL FURY: City of the Wolves Tournament COTW Torneo",
+      "slug": "tournament/city-of-the-cream-72-2v2-fatal-fury-city-of-the-wolves-tournament-cotw-torneo",
+      "startAt": 1785708000,
+      "endAt": 1785736740,
+      "city": null,
+      "addrState": null,
+      "countryCode": null,
+      "lat": null,
+      "lng": null,
+      "isOnline": true,
+      "numAttendees": 26,
+      "games": [
+        "Fatal Fury: City of the Wolves"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/936858/image-2a02445c67203ad24da58e30468e3aeb.png"
     },
     {
       "name": "Abitibi E-Sports - Tournoi Super Smash Bros. Ultimate du 2 août 2026",
@@ -1392,7 +1358,7 @@
       "lat": null,
       "lng": null,
       "isOnline": true,
-      "numAttendees": 28,
+      "numAttendees": 29,
       "games": [
         "The King of Fighters XV"
       ],
@@ -1414,23 +1380,6 @@
         "Super Smash Bros. Ultimate"
       ],
       "imageUrl": null
-    },
-    {
-      "name": "Seal Street 42",
-      "slug": "tournament/seal-street-42-1",
-      "startAt": 1785711600,
-      "endAt": 1785718800,
-      "city": null,
-      "addrState": null,
-      "countryCode": null,
-      "lat": null,
-      "lng": null,
-      "isOnline": true,
-      "numAttendees": 6,
-      "games": [
-        "Street Fighter 6"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/934420/image-3ca5c614e3cf9ddfc05b1e2202f3e211.png"
     },
     {
       "name": "Torneo de Manjares",
@@ -1469,6 +1418,23 @@
       "imageUrl": "https://images.start.gg/images/tournament/935906/image-77e6413790b37c14469423d9ebe44d68.jpg"
     },
     {
+      "name": "Seal Street 42",
+      "slug": "tournament/seal-street-42-1",
+      "startAt": 1785711600,
+      "endAt": 1785718800,
+      "city": null,
+      "addrState": null,
+      "countryCode": null,
+      "lat": null,
+      "lng": null,
+      "isOnline": true,
+      "numAttendees": 7,
+      "games": [
+        "Street Fighter 6"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/934420/image-3ca5c614e3cf9ddfc05b1e2202f3e211.png"
+    },
+    {
       "name": "The Hollow #28: Can Hollow Actually Make It To 30 Attendees?",
       "slug": "tournament/the-hollow-28-can-hollow-actually-make-it-to-30-attendees",
       "startAt": 1785711600,
@@ -1479,7 +1445,7 @@
       "lat": null,
       "lng": null,
       "isOnline": true,
-      "numAttendees": 0,
+      "numAttendees": 1,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -1496,7 +1462,7 @@
       "lat": null,
       "lng": null,
       "isOnline": true,
-      "numAttendees": 1,
+      "numAttendees": 2,
       "games": [
         "Fatal Fury: City of the Wolves"
       ],
@@ -1530,7 +1496,7 @@
       "lat": 27.6648274,
       "lng": -81.5157535,
       "isOnline": false,
-      "numAttendees": 3,
+      "numAttendees": 4,
       "games": [
         "Street Fighter 6"
       ],
@@ -1821,7 +1787,7 @@
       "lat": null,
       "lng": null,
       "isOnline": true,
-      "numAttendees": 5,
+      "numAttendees": 6,
       "games": [
         "TEKKEN 8"
       ],
@@ -1857,7 +1823,7 @@
       "lat": 35.7170766,
       "lng": 139.7819864,
       "isOnline": false,
-      "numAttendees": 9,
+      "numAttendees": 10,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -1891,11 +1857,28 @@
       "lat": 35.4419858,
       "lng": 139.6349043,
       "isOnline": false,
-      "numAttendees": 4,
+      "numAttendees": 5,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/936866/image-ec54d18c96e8a4dfcc71241bd727a428.jpg"
+    },
+    {
+      "name": "Pixel Smash #339",
+      "slug": "tournament/pixel-smash-339",
+      "startAt": 1785747600,
+      "endAt": 1785758400,
+      "city": "Huntingdale",
+      "addrState": "VIC",
+      "countryCode": "AU",
+      "lat": -37.9113885,
+      "lng": 145.10385559999997,
+      "isOnline": false,
+      "numAttendees": 0,
+      "games": [
+        "Super Smash Bros. Ultimate"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/939147/image-8f54008e792467217f404ece48571b84.jpg"
     },
     {
       "name": "マエスマ'HIT#186 / Maesuma'HIT#186",
@@ -1908,7 +1891,7 @@
       "lat": 34.6974065,
       "lng": 135.5166652,
       "isOnline": false,
-      "numAttendees": 9,
+      "numAttendees": 10,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -1995,7 +1978,7 @@
       "lat": 60.16985569999999,
       "lng": 24.938379,
       "isOnline": false,
-      "numAttendees": 4,
+      "numAttendees": 5,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -2029,7 +2012,7 @@
       "lat": 50.6128847,
       "lng": 3.047575,
       "isOnline": false,
-      "numAttendees": 1,
+      "numAttendees": 2,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
@@ -2063,11 +2046,28 @@
       "lat": 49.3754122,
       "lng": 8.5850488,
       "isOnline": false,
-      "numAttendees": 16,
+      "numAttendees": 20,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/938788/image-312efb1dbf638b2c35abfbd705778026.png"
+    },
+    {
+      "name": "Smash Downtown #129 - Smash à Lez x Burnout",
+      "slug": "tournament/smash-downtown-129-smash-lez-x-burnout",
+      "startAt": 1785776400,
+      "endAt": 1785794340,
+      "city": "Montpellier",
+      "addrState": "Occitanie",
+      "countryCode": "FR",
+      "lat": 43.6053301,
+      "lng": 3.8889589,
+      "isOnline": false,
+      "numAttendees": 4,
+      "games": [
+        "Super Smash Bros. Ultimate"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/939154/image-865c4d3dc5f21552fbf61c5039e7297e.png"
     },
     {
       "name": "Monday Night Fighters 23 - 7",
@@ -2184,7 +2184,7 @@
       "lat": 50.8323185,
       "lng": -0.1376198,
       "isOnline": false,
-      "numAttendees": 27,
+      "numAttendees": 28,
       "games": [
         "TEKKEN 8"
       ],
@@ -2289,7 +2289,7 @@
       "lat": 41.658788,
       "lng": -81.36279449999999,
       "isOnline": false,
-      "numAttendees": 9,
+      "numAttendees": 11,
       "games": [
         "Avatar Legends: The Fighting Game",
         "Mortal Kombat 1",
@@ -2705,29 +2705,12 @@
       "lat": 40.6069987,
       "lng": -74.273408,
       "isOnline": false,
-      "numAttendees": 4,
+      "numAttendees": 5,
       "games": [
         "Rivals of Aether II",
         "Super Smash Bros. Ultimate"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/938034/image-ec1c43134106a2e5051474b992c70e83.png"
-    },
-    {
-      "name": "Algerian meet up #6",
-      "slug": "tournament/algerian-meet-up-6",
-      "startAt": 1785798000,
-      "endAt": 1785862800,
-      "city": "Bouzareah",
-      "addrState": "Algiers Province",
-      "countryCode": "DZ",
-      "lat": 36.7741097,
-      "lng": 3.0107491,
-      "isOnline": false,
-      "numAttendees": 7,
-      "games": [
-        "Super Smash Bros. Ultimate"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/938569/image-01803c44499621969f2416ad9bc48e97.jpg"
     },
     {
       "name": "Maverick Mondays #63 - Melee",
@@ -2798,6 +2781,41 @@
         "Super Smash Bros. Ultimate"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/938851/image-2cad8beb56826ecf5f6d42c803f820a7.png"
+    },
+    {
+      "name": "Algerian meet up #6",
+      "slug": "tournament/algerian-meet-up-6",
+      "startAt": 1785798000,
+      "endAt": 1785862800,
+      "city": "Bouzareah",
+      "addrState": "Algiers Province",
+      "countryCode": "DZ",
+      "lat": 36.7741097,
+      "lng": 3.0107491,
+      "isOnline": false,
+      "numAttendees": 8,
+      "games": [
+        "Super Smash Bros. Ultimate"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/938569/image-01803c44499621969f2416ad9bc48e97.jpg"
+    },
+    {
+      "name": "Small Town Showdown 2026 Week 27 - Smash Ultimate/Melee",
+      "slug": "tournament/small-town-showdown-2026-week-27-smash-ultimate-melee",
+      "startAt": 1785799800,
+      "endAt": 1785815940,
+      "city": "Seaford",
+      "addrState": "DE",
+      "countryCode": "US",
+      "lat": 38.6561768,
+      "lng": -75.6199449,
+      "isOnline": false,
+      "numAttendees": 1,
+      "games": [
+        "Super Smash Bros. Melee",
+        "Super Smash Bros. Ultimate"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/939161/image-906c88161a91caebdf1431fa12a19d70.jpg"
     },
     {
       "name": "Chain Attack #37",
@@ -3187,7 +3205,7 @@
       "lat": 43.6070342,
       "lng": 1.4513299,
       "isOnline": false,
-      "numAttendees": 19,
+      "numAttendees": 20,
       "games": [
         "Rivals of Aether II",
         "Super Smash Bros. Melee",
@@ -3496,7 +3514,7 @@
       "lat": 45.2744297,
       "lng": -66.05948230000001,
       "isOnline": false,
-      "numAttendees": 1,
+      "numAttendees": 2,
       "games": [
         "Guilty Gear: Strive",
         "Street Fighter 6"
@@ -3656,7 +3674,7 @@
       "lat": 41.7419947,
       "lng": -71.4058629,
       "isOnline": false,
-      "numAttendees": 7,
+      "numAttendees": 8,
       "games": [
         "Super Smash Bros. Melee"
       ],
@@ -3733,23 +3751,6 @@
       "imageUrl": null
     },
     {
-      "name": "Alrest Series",
-      "slug": "tournament/alrest-series",
-      "startAt": 1785884400,
-      "endAt": 1785902220,
-      "city": null,
-      "addrState": null,
-      "countryCode": null,
-      "lat": null,
-      "lng": null,
-      "isOnline": true,
-      "numAttendees": 447,
-      "games": [
-        "Super Smash Bros. Ultimate"
-      ],
-      "imageUrl": "https://images.start.gg/images/tournament/928466/image-347b51f569d515104052adb9a82c2ac6.png"
-    },
-    {
       "name": "Summer at the Skypad #25",
       "slug": "tournament/summer-at-the-skypad-25",
       "startAt": 1785884400,
@@ -3765,6 +3766,23 @@
         "Super Smash Bros. Ultimate"
       ],
       "imageUrl": "https://images.start.gg/images/tournament/939022/image-01dc294a6acc4030f400c54ba0e312df.png"
+    },
+    {
+      "name": "Alrest Series",
+      "slug": "tournament/alrest-series",
+      "startAt": 1785884400,
+      "endAt": 1785902220,
+      "city": null,
+      "addrState": null,
+      "countryCode": null,
+      "lat": null,
+      "lng": null,
+      "isOnline": true,
+      "numAttendees": 448,
+      "games": [
+        "Super Smash Bros. Ultimate"
+      ],
+      "imageUrl": "https://images.start.gg/images/tournament/928466/image-347b51f569d515104052adb9a82c2ac6.png"
     },
     {
       "name": "Cabinet Clash IV",
@@ -4627,7 +4645,7 @@
       "lat": 49.25676929999999,
       "lng": 4.0253629,
       "isOnline": false,
-      "numAttendees": 9,
+      "numAttendees": 10,
       "games": [
         "Super Smash Bros. Ultimate"
       ],
