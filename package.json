@@ -2,7 +2,10 @@
   "name": "fighterstech-promo",
   "version": "1.0.0",
   "scripts": {
-    "build": "node build.js"
+    "build:tournaments": "node scripts/build-tournaments.mjs",
+    "build:main": "node build.js",
+    "build": "npm run build:tournaments && npm run build:main",
+    "dev": "npm run build && npx http-server dist -c-1 -p 8123"
   },
   "dependencies": {
     "sharp": "^0.35.1"
