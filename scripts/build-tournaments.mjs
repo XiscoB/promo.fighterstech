@@ -435,7 +435,9 @@ function generateIndexPage({
   currentGame = null,
   currentCountryCode = null,
   topGames = [],
-  TOP_COUNTRIES = []
+  TOP_COUNTRIES = [],
+  gameDescriptions = {},
+  countryDescriptions = {}
 }) {
   const locale = lang === 'es' ? 'es-ES' : 'en-US';
   
@@ -537,6 +539,17 @@ function generateIndexPage({
     'countryFilterStyle': countryFilterStyle
   };
 
+  let seoDescriptionHtml = '';
+  if (currentGame && gameDescriptions[currentGame] && gameDescriptions[currentGame][lang]) {
+    seoDescriptionHtml = `<div class="seo-description-block"><p>${escapeHtml(gameDescriptions[currentGame][lang])}</p></div>`;
+  } else if (currentCountryCode && countryDescriptions[currentCountryCode] && countryDescriptions[currentCountryCode][lang]) {
+    seoDescriptionHtml = `<div class="seo-description-block"><p>${escapeHtml(countryDescriptions[currentCountryCode][lang])}</p></div>`;
+  }
+  if (currentGame === 'Street Fighter 6' || currentCountryCode === 'MX') {
+    console.log(`Debug [${lang}]: game=${currentGame}, country=${currentCountryCode}, html=${seoDescriptionHtml}`);
+  }
+  replacements['seoDescriptionHtml'] = seoDescriptionHtml;
+
   for (const [key, value] of Object.entries(replacements)) {
     const regex = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
     html = html.replace(regex, String(value));
@@ -548,6 +561,15 @@ function generateIndexPage({
 // ─── Main ───
 
 async function main() {
+  let gameDescriptions = {};
+  let countryDescriptions = {};
+  if (existsSync(join(rootDir, 'data', 'game-descriptions.json'))) {
+    gameDescriptions = JSON.parse(readFileSync(join(rootDir, 'data', 'game-descriptions.json'), 'utf8'));
+  }
+  if (existsSync(join(rootDir, 'data', 'country-descriptions.json'))) {
+    countryDescriptions = JSON.parse(readFileSync(join(rootDir, 'data', 'country-descriptions.json'), 'utf8'));
+  }
+
   const dataPath = join(rootDir, 'data', 'tournaments.json');
   let tournamentData = { fetchedAt: new Date().toISOString(), windowDays: config.windowDays, tournaments: [] };
   if (existsSync(dataPath)) {
@@ -623,7 +645,9 @@ async function main() {
       fetchedAt,
       windowDays,
       topGames,
-      TOP_COUNTRIES
+      TOP_COUNTRIES,
+      gameDescriptions,
+      countryDescriptions
     });
     const indexDir = code === 'en' ? enTournamentsDir : esTournamentsDir;
     mkdirSync(indexDir, { recursive: true });
@@ -648,7 +672,9 @@ async function main() {
         windowDays,
         currentGame: game,
         topGames,
-        TOP_COUNTRIES
+        TOP_COUNTRIES,
+        gameDescriptions,
+        countryDescriptions
       });
       
       const gameSlug = sanitizeDirName(cleanSlug(game));
@@ -676,7 +702,9 @@ async function main() {
         windowDays,
         currentCountryCode: countryCode,
         topGames,
-        TOP_COUNTRIES
+        TOP_COUNTRIES,
+        gameDescriptions,
+        countryDescriptions
       });
       
       const countryName = getCountryName(countryCode, code === 'es' ? 'es-ES' : 'en-US');
